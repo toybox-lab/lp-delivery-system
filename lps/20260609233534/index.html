@@ -1,0 +1,616 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>スモールアイス | 新感覚アイスクリーム</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            offwhite: '#FAF8F5',
+            pastelPink: '#F9C6D0',
+            pastelPinkDark: '#F4A0B0',
+            pastelGreen: '#B8E4C9',
+            pastelGreenDark: '#8FD0A8',
+            softText: '#5C4A4A',
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #5C4A4A;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #FAF8F5 0%, #FDEEF1 40%, #E8F7EF 100%);
+    }
+    .card-shadow {
+      box-shadow: 0 8px 32px rgba(249, 198, 208, 0.25);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #F9C6D0, #F4A0B0);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #F4A0B0, #ec8da0);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(244, 160, 176, 0.4);
+    }
+    .btn-green {
+      background: linear-gradient(135deg, #B8E4C9, #8FD0A8);
+      transition: all 0.3s ease;
+    }
+    .btn-green:hover {
+      background: linear-gradient(135deg, #8FD0A8, #70be90);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(143, 208, 168, 0.4);
+    }
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .ribbon {
+      position: relative;
+      overflow: hidden;
+    }
+    .ribbon::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      width: 120px;
+      height: 120px;
+      background: rgba(249, 198, 208, 0.3);
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- ナビゲーション -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-pastelPink/30">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🍦</span>
+        <span class="font-bold text-xl text-softText tracking-wide">スモールアイス</span>
+      </div>
+      <a href="#purchase" class="btn-primary text-white font-bold text-sm px-5 py-2 rounded-full hidden sm:block">
+        今すぐ購入
+      </a>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section class="hero-gradient min-h-screen flex items-center pt-16">
+    <div class="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- テキスト -->
+      <div class="fade-in">
+        <span class="inline-block bg-pastelPink/40 text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-6 uppercase">
+          🌸 NEW ARRIVAL 2024
+        </span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6 text-softText">
+          かわいくて<br />
+          <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, #F4A0B0, #8FD0A8);">
+            おいしい
+          </span><br />
+          が詰まった<br />
+          アイス🍦
+        </h1>
+        <p class="text-lg text-softText/70 leading-relaxed mb-8">
+          見た目も味も妥協しない。<br />
+          新感覚アイスクリームが、あなたの毎日を<br />
+          もっと甘く、もっとかわいくします。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#purchase" class="btn-primary text-white font-bold text-lg px-8 py-4 rounded-full text-center shadow-lg">
+            🛒 今すぐ購入する
+          </a>
+          <a href="#features" class="border-2 border-pastelPink text-softText font-bold text-lg px-8 py-4 rounded-full text-center hover:bg-pastelPink/20 transition-all">
+            詳しく見る ↓
+          </a>
+        </div>
+        <!-- バッジ -->
+        <div class="flex flex-wrap gap-3 mt-8">
+          <span class="bg-white border border-pastelPink/50 text-softText text-sm px-4 py-2 rounded-full card-shadow">✨ 新照院素材使用</span>
+          <span class="bg-white border border-pastelGreen/50 text-softText text-sm px-4 py-2 rounded-full card-shadow">💰 手ごろな価格</span>
+          <span class="bg-white border border-pastelPink/50 text-softText text-sm px-4 py-2 rounded-full card-shadow">🎀 かわいいデザイン</span>
+        </div>
+      </div>
+      <!-- ビジュアル -->
+      <div class="flex justify-center items-center fade-in">
+        <div class="relative">
+          <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full floating"
+               style="background: linear-gradient(135deg, #FDEEF1 0%, #E8F7EF 100%); box-shadow: 0 20px 60px rgba(249,198,208,0.4);">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-9xl sm:text-[10rem] select-none">🍦</span>
+            </div>
+          </div>
+          <!-- デコ要素 -->
+          <div class="absolute -top-4 -right-4 w-16 h-16 bg-pastelPink/60 rounded-full flex items-center justify-center text-2xl floating" style="animation-delay: 0.5s;">🌸</div>
+          <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-pastelGreen/60 rounded-full flex items-center justify-center text-xl floating" style="animation-delay: 1s;">⭐</div>
+          <div class="absolute top-1/4 -left-8 w-10 h-10 bg-pastelPink/40 rounded-full flex items-center justify-center text-lg floating" style="animation-delay: 1.5s;">💕</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 商品紹介セクション -->
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16 fade-in">
+        <span class="inline-block bg-pastelGreen/40 text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-4 uppercase">
+          🍃 ABOUT PRODUCT
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-softText mb-4">
+          スモールアイスの<br />
+          <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, #F4A0B0, #8FD0A8);">新商品の魅力</span>
+        </h2>
+        <p class="text-softText/70 max-w-xl mx-auto leading-relaxed">
+          20代女性のために生まれた、こだわりのアイスクリーム。
+          毎日の小さな幸せをお届けします。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- カード1 -->
+        <div class="fade-in bg-offwhite rounded-3xl p-8 card-shadow text-center hover:-translate-y-2 transition-transform duration-300 ribbon">
+          <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl"
+               style="background: linear-gradient(135deg, #FDEEF1, #F9C6D0);">
+            🌟
+          </div>
+          <h3 class="text-xl font-black text-softText mb-3">新照院素材</h3>
+          <p class="text-softText/70 leading-relaxed text-sm">
+            こだわりの新照院素材を使用。素材の旨みを最大限に引き出した、本格派の味わいをお楽しみください。
+          </p>
+        </div>
+        <!-- カード2 -->
+        <div class="fade-in bg-offwhite rounded-3xl p-8 card-shadow text-center hover:-translate-y-2 transition-transform duration-300 ribbon" style="animation-delay: 0.2s;">
+          <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl"
+               style="background: linear-gradient(135deg, #E8F7EF, #B8E4C9);">
+            😋
+          </div>
+          <h3 class="text-xl font-black text-softText mb-3">本格的な美味しさ</h3>
+          <p class="text-softText/70 leading-relaxed text-sm">
+            一口食べれば違いがわかる。濃厚でなめらかな口どけが、あなたをとりこにする絶品アイスです。
+          </p>
+        </div>
+        <!-- カード3 -->
+        <div class="fade-in bg-offwhite rounded-3xl p-8 card-shadow text-center hover:-translate-y-2 transition-transform duration-300 ribbon" style="animation-delay: 0.4s;">
+          <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl"
+               style="background: linear-gradient(135deg, #FDEEF1, #F9C6D0);">
+            🎀
+          </div>
+          <h3 class="text-xl font-black text-softText mb-3">かわいいデザイン</h3>
+          <p class="text-softText/70 leading-relaxed text-sm">
+            SNSに投稿したくなるほどのかわいいビジュアル。プレゼントにもぴったりなおしゃれなパッケージです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強みセクション -->
+  <section class="py-20" style="background: linear-gradient(135deg, #FAF8F5 0%, #FDEEF1 50%, #E8F7EF 100%);">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16 fade-in">
+        <span class="inline-block bg-pastelPink/40 text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-4 uppercase">
+          💖 WHY SMALL ICE
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-softText mb-4">
+          選ばれる理由
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="fade-in space-y-6">
+          <!-- 強み1 -->
+          <div class="bg-white rounded-2xl p-6 flex items-start gap-4 card-shadow hover:-translate-y-1 transition-transform">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                 style="background: linear-gradient(135deg, #F9C6D0, #F4A0B0);">
+              💰
+            </div>
+            <div>
+              <h4 class="font-black text-lg text-softText mb-1">手ごろな価格</h4>
+              <p class="text-softText/70 text-sm leading-relaxed">
+                高品質なのに手の届きやすい価格設定。毎日のご褒美にも、気軽に楽しめます。他店と比べてもリーズナブル！
+              </p>
+            </div>
+          </div>
+          <!-- 強み2 -->
+          <div class="bg-white rounded-2xl p-6 flex items-start gap-4 card-shadow hover:-translate-y-1 transition-transform">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                 style="background: linear-gradient(135deg, #B8E4C9, #8FD0A8);">
+              🌿
+            </div>
+            <div>
+              <h4 class="font-black text-lg text-softText mb-1">こだわりの素材</h4>
+              <p class="text-softText/70 text-sm leading-relaxed">
+                厳選した新照院素材を使用。安心・安全にこだわり、素材本来の美味しさをお届けします。
+              </p>
+            </div>
+          </div>
+          <!-- 強み3 -->
+          <div class="bg-white rounded-2xl p-6 flex items-start gap-4 card-shadow hover:-translate-y-1 transition-transform">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
+                 style="background: linear-gradient(135deg, #F9C6D0, #F4A0B0);">
+              📸
+            </div>
+            <div>
+              <h4 class="font-black text-lg text-softText mb-1">フォトジェニック</h4>
+              <p class="text-softText/70 text-sm leading-relaxed">
+                インスタ映え間違いなし！かわいいビジュアルは、SNSでのシェアにも最適です。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 比較表 -->
+        <div class="fade-in">
+          <div class="bg-white rounded-3xl overflow-hidden card-shadow">
+            <div class="p-4 text-center font-black text-white text-lg"
+                 style="background: linear-gradient(135deg, #F9C6D0, #8FD0A8);">
+              スモールアイス vs 一般のアイス
+            </div>
+            <div class="p-2">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-pastelPink/30">
+                    <th class="py-3 px-4 text-left text-softText/60 font-bold">比較項目</th>
+                    <th class="py-3 px-4 text-center font-black text-softText">
+                      <span class="text-base">🍦</span> スモールアイス
+                    </th>
+                    <th class="py-3 px-4 text-center text-softText/60 font-bold">一般のアイス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-100">
+                    <td class="py-3 px-4 text-softText/70">価格</td>
+                    <td class="py-3 px-4 text-center">
+                      <span class="bg-pastelGreen/40 text-softText px-3 py-1 rounded-full text-xs font-bold">手ごろ ✓</span>
+                    </td>
+                    <td class="py-3 px-4 text-center text-softText/50 text-xs">高め</td>
+                  </tr>
+                  <tr class="border-b border-gray-100">
+                    <td class="py-3 px-4 text-softText/70">デザイン</td>
+                    <td class="py-3 px-4 text-center">
+                      <span class="bg-pastelPink/40 text-softText px-3 py-1 rounded-full text-xs font-bold">かわいい ✓</span>
+                    </td>
+                    <td class="py-3 px-4 text-center text-softText/50 text-xs">普通</td>
+                  </tr>
+                  <tr class="border-b border-gray-100">
+                    <td class="py-3 px-4 text-softText/70">素材</td>
+                    <td class="py-3 px-4 text-center">
+                      <span class="bg-pastelGreen/40 text-softText px-3 py-1 rounded-full text-xs font-bold">新照院素材 ✓</span>
+                    </td>
+                    <td class="py-3 px-4 text-center text-softText/50 text-xs">一般素材</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 text-softText/70">SNS映え</td>
+                    <td class="py-3 px-4 text-center">
+                      <span class="bg-pastelPink/40 text-softText px-3 py-1 rounded-full text-xs font-bold">抜群 ✓</span>
+                    </td>
+                    <td class="py-3 px-4 text-center text-softText/50 text-xs">△</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フレーバーセクション -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16 fade-in">
+        <span class="inline-block bg-pastelGreen/40 text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-4 uppercase">
+          🍦 FLAVOR LINE UP
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-softText mb-4">
+          人気フレーバー
+        </h2>
+        <p class="text-softText/70 max-w-xl mx-auto">
+          どれを選んでも間違いなし！こだわりのフレーバーをご用意しています。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="fade-in bg-offwhite rounded-3xl p-6 text-center card-shadow hover:-translate-y-2 transition-transform cursor-pointer">
+          <div class="text-5xl mb-4">🍓</div>
+          <h4 class="font-black text-softText mb-1">ストロベリー</h4>
+          <p class="text-softText/60 text-xs">甘酸っぱい人気NO.1</p>
+          <span class="mt-3 inline-block bg-pastelPink/50 text-softText text-xs px-3 py-1 rounded-full font-bold">¥380〜</span>
+        </div>
+        <div class="fade-in bg-offwhite rounded-3xl p-6 text-center card-shadow hover:-translate-y-2 transition-transform cursor-pointer" style="animation-delay: 0.1s;">
+          <div class="text-5xl mb-4">🍵</div>
+          <h4 class="font-black text-softText mb-1">抹茶</h4>
+          <p class="text-softText/60 text-xs">上品な和の味わい</p>
+          <span class="mt-3 inline-block bg-pastelGreen/50 text-softText text-xs px-3 py-1 rounded-full font-bold">¥380〜</span>
+        </div>
+        <div class="fade-in bg-offwhite rounded-3xl p-6 text-center card-shadow hover:-translate-y-2 transition-transform cursor-pointer" style="animation-delay: 0.2s;">
+          <div class="text-5xl mb-4">🍫</div>
+          <h4 class="font-black text-softText mb-1">チョコレート</h4>
+          <p class="text-softText/60 text-xs">濃厚リッチな口どけ</p>
+          <span class="mt-3 inline-block bg-pastelPink/50 text-softText text-xs px-3 py-1 rounded-full font-bold">¥380〜</span>
+        </div>
+        <div class="fade-in bg-offwhite rounded-3xl p-6 text-center card-shadow hover:-translate-y-2 transition-transform cursor-pointer" style="animation-delay: 0.3s;">
+          <div class="text-5xl mb-4">🍋</div>
+          <h4 class="font-black text-softText mb-1">レモン</h4>
+          <p class="text-softText/60 text-xs">さっぱり爽やか</p>
+          <span class="mt-3 inline-block bg-pastelGreen/50 text-softText text-xs px-3 py-1 rounded-full font-bold">¥380〜</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="py-20" style="background: linear-gradient(135deg, #FAF8F5 0%, #FDEEF1 50%, #E8F7EF 100%);">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16 fade-in">
+        <span class="inline-block bg-pastelPink/40 text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-4 uppercase">
+          💬 CUSTOMER VOICE
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-softText mb-4">
+          お客様の声
+        </h2>
+        <p class="text-softText/70">実際にご購入いただいたお客様からの声です</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- レビュー1 -->
+        <div class="fade-in bg-white rounded-3xl p-8 card-shadow hover:-translate-y-2 transition-transform">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400 text-xl">★★★★★</span>
+          </div>
+          <p class="text-softText/80 leading-relaxed text-sm mb-6">
+            「かわいすぎて食べるのがもったいないくらい！でも食べたら美味しすぎてあっという間になくなりました。お値段もリーズナブルで毎月リピートしています🌸」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl"
+                 style="background: linear-gradient(135deg, #F9C6D0, #F4A0B0);">
+              👧
+            </div>
+            <div>
+              <p class="font-bold text-softText text-sm">A.K さん</p>
+              <p class="text-softText/50 text-xs">23歳 / 会社員</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- レビュー2 -->
+        <div class="fade-in bg-white rounded-3xl p-8 card-shadow hover:-translate-y-2 transition-transform" style="animation-delay: 0.2s;">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400 text-xl">★★★★★</span>
+          </div>
+          <p class="text-softText/80 leading-relaxed text-sm mb-6">
+            「友達へのプレゼントに購入しました。パッケージが本当にかわいくて、もらった友達も大喜び！味も文句なしで、これからも愛用したいと思います💕」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl"
+                 style="background: linear-gradient(135deg, #B8E4C9, #8FD0A8);">
+              👩
+            </div>
+            <div>
+              <p class="font-bold text-softText text-sm">M.T さん</p>
+              <p class="text-softText/50 text-xs">26歳 / 学生</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- レビュー3 -->
+        <div class="fade-in bg-white rounded-3xl p-8 card-shadow hover:-translate-y-2 transition-transform" style="animation-delay: 0.4s;">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400 text-xl">★★★★★</span>
+          </div>
+          <p class="text-softText/80 leading-relaxed text-sm mb-6">
+            「この価格でこのクオリティは驚き！素材にこだわっているのが食べてわかります。インスタにも投稿したらたくさんいいねもらえました✨」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl"
+                 style="background: linear-gradient(135deg, #F9C6D0, #F4A0B0);">
+              🧑
+            </div>
+            <div>
+              <p class="font-bold text-softText text-sm">R.S さん</p>
+              <p class="text-softText/50 text-xs">21歳 / フリーランス</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 数字 -->
+      <div class="mt-16 grid grid-cols-3 gap-6 fade-in">
+        <div class="bg-white rounded-2xl p-6 text-center card-shadow">
+          <p class="text-4xl font-black text-transparent bg-clip-text mb-2"
+             style="background: linear-gradient(135deg, #F4A0B0, #8FD0A8); -webkit-background-clip: text;">
+            98%
+          </p>
+          <p class="text-softText/70 text-sm font-bold">顧客満足度</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 text-center card-shadow">
+          <p class="text-4xl font-black text-transparent bg-clip-text mb-2"
+             style="background: linear-gradient(135deg, #F4A0B0, #8FD0A8); -webkit-background-clip: text;">
+            2,000+
+          </p>
+          <p class="text-softText/70 text-sm font-bold">購入者数</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 text-center card-shadow">
+          <p class="text-4xl font-black text-transparent bg-clip-text mb-2"
+             style="background: linear-gradient(135deg, #F4A0B0, #8FD0A8); -webkit-background-clip: text;">
+            4.9
+          </p>
+          <p class="text-softText/70 text-sm font-bold">平均評価</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="purchase" class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="rounded-3xl p-12 text-center relative overflow-hidden fade-in"
+           style="background: linear-gradient(135deg, #FDEEF1 0%, #E8F7EF 100%); box-shadow: 0 20px 60px rgba(249,198,208,0.3);">
+        <!-- デコ -->
+        <div class="absolute top-0 right-0 w-40 h-40 opacity-20 text-9xl">🍦</div>
+        <div class="absolute bottom-0 left-0 w-32 h-32 opacity-10 text-8xl">🌸</div>
+
+        <span class="inline-block bg-pastelPink text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-6 uppercase relative z-10">
+          🛒 LIMITED OFFER
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-softText mb-6 relative z-10 leading-tight">
+          今すぐ試してみませんか？<br />
+          <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, #F4A0B0, #8FD0A8);">
+            初回限定セット販売中🎀
+          </span>
+        </h2>
+        <p class="text-softText/70 text-lg mb-8 max-w-xl mx-auto relative z-10 leading-relaxed">
+          新商品を実際に食べて体験してみてください。<br />
+          かわいくて美味しい、新感覚アイスをお届けします。
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+          <a href="#" class="btn-primary text-white font-black text-xl px-10 py-5 rounded-full shadow-xl text-center">
+            🛒 今すぐ購入する
+          </a>
+          <a href="#" class="btn-green text-white font-black text-xl px-10 py-5 rounded-full shadow-xl text-center">
+            📦 セット内容を見る
+          </a>
+        </div>
+
+        <p class="text-softText/50 text-sm mt-6 relative z-10">
+          ※ 数量限定のため、お早めにどうぞ
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="py-20" style="background: linear-gradient(135deg, #FAF8F5, #FDEEF1 50%, #E8F7EF);">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-12 fade-in">
+        <span class="inline-block bg-pastelGreen/40 text-softText text-xs font-bold tracking-widest px-4 py-2 rounded-full mb-4 uppercase">
+          ❓ FAQ
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-softText">よくある質問</h2>
+      </div>
+
+      <div class="space-y-4 fade-in">
+        <div class="bg-white rounded-2xl p-6 card-shadow">
+          <div class="flex items-start gap-3">
+            <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 text-white"
+                  style="background: linear-gradient(135deg, #F9C6D0, #F4A0B0);">Q</span>
+            <div>
+              <p class="font-bold text-softText mb-2">送料はかかりますか？</p>
+              <p class="text-softText/70 text-sm leading-relaxed">一定金額以上のご購入で送料無料になります。詳しくはご注文時にご確認ください。</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 card-shadow">
+          <div class="flex items-start gap-3">
+            <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 text-white"
+                  style="background: linear-gradient(135deg, #B8E4C9, #8FD0A8);">Q</span>
+            <div>
+              <p class="font-bold text-softText mb-2">賞味期限はどのくらいですか？</p>
+              <p class="text-softText/70 text-sm leading-relaxed">冷凍保存で約3ヶ月です。お届け後はできるだけ早めにお召し上がりください。</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 card-shadow">
+          <div class="flex items-start gap-3">
+            <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 text-white"
+                  style="background: linear-gradient(135deg, #F9C6D0, #F4A0B0);">Q</span>
+            <div>
+              <p class="font-bold text-softText mb-2">プレゼント用のラッピングはできますか？</p>
+              <p class="text-softText/70 text-sm leading-relaxed">はい、ギフト用のラッピングも承っております。ご注文時にオプションをお選びください。</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 card-shadow">
+          <div class="flex items-start gap-3">
+            <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 text-white"
+                  style="background: linear-gradient(135deg, #B8E4C9, #8FD0A8);">Q</span>
+            <div>
+              <p class="font-bold text-softText mb-2">アレルギー表示は確認できますか？</p>
+              <p class="text-softText/70 text-sm leading-relaxed">各商品ページにアレルギー情報を記載しております。ご不明な点はお気軽にお問い合わせください。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="py-12 bg-softText text-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">🍦</span>
+          <div>
+            <p class="font-black text-xl">スモールアイス</p>
+            <p class="text-white/60 text-sm">毎日をもっと甘く、もっとかわいく</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center md:items-end gap-2">
+          <p class="text-white/60 text-sm">お問い合わせ：テスト</p>
+          <p class="text-white/40 text-xs">© 2024 スモールアイス All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 固定CTAボタン（スマホ） -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 p-4 sm:hidden"
+       style="background: linear-gradient(to top, rgba(250,248,245,0.95), transparent);">
+    <a href="#purchase"
+       class="btn-primary text-white font-black text-base py-4 rounded-full block text-center shadow-2xl w-full">
+      🛒 今すぐ購入する
+    </a>
+  </div>
+
+  <script>
+    // フェードインアニメーション
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ヒーローのfade-inを即時実行
+    setTimeout(() => {
+      document.querySelectorAll('.hero-gradient .fade-in').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 200);
+  </script>
+</body>
+</html>
+```
