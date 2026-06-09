@@ -1,0 +1,575 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>靴下本舗 | おしゃれな靴下で、毎日をもっと豊かに</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            offwhite: '#F8F5F0',
+            bordeaux: '#6B1A2A',
+            bordeauxLight: '#8B2A3A',
+            bordeauxDark: '#4A0F1A',
+            lightgold: '#C9A96E',
+            lightgoldLight: '#D4B882',
+            lightgoldDark: '#B8924A',
+            cream: '#FAF7F2',
+          },
+          fontFamily: {
+            sans: ['Noto Sans JP', 'sans-serif'],
+            serif: ['Noto Serif JP', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #F8F5F0; font-family: 'Noto Sans JP', sans-serif; }
+    .hero-gradient {
+      background: linear-gradient(135deg, #F8F5F0 0%, #F0E8DC 40%, #E8D5C0 100%);
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #C9A96E 0%, #D4B882 50%, #B8924A 100%);
+    }
+    .bordeaux-gradient {
+      background: linear-gradient(135deg, #6B1A2A 0%, #8B2A3A 50%, #4A0F1A 100%);
+    }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(107, 26, 42, 0.15);
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #C9A96E, #B8924A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .divider-gold {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #C9A96E, #D4B882, #C9A96E);
+    }
+    .sock-pattern {
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(201, 169, 110, 0.05) 10px,
+        rgba(201, 169, 110, 0.05) 20px
+      );
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C9A96E;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.2s; opacity: 0; }
+    .delay-2 { animation-delay: 0.4s; opacity: 0; }
+    .delay-3 { animation-delay: 0.6s; opacity: 0; }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-offwhite/95 backdrop-blur-sm border-b border-lightgold/20 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2">
+          <span class="text-lightgold text-xl">✦</span>
+          <span class="font-serif text-bordeaux text-xl font-semibold tracking-widest">靴下本舗</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#features" class="nav-link text-gray-600 hover:text-bordeaux text-sm tracking-wider transition-colors">特徴</a>
+          <a href="#products" class="nav-link text-gray-600 hover:text-bordeaux text-sm tracking-wider transition-colors">商品</a>
+          <a href="#voice" class="nav-link text-gray-600 hover:text-bordeaux text-sm tracking-wider transition-colors">お客様の声</a>
+          <a href="#cta" class="gold-gradient text-white text-sm px-5 py-2 rounded-full font-medium tracking-wider hover:opacity-90 transition-opacity shadow-md">
+            今すぐ購入
+          </a>
+        </div>
+        <button class="md:hidden text-bordeaux" id="menuBtn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-offwhite border-t border-lightgold/20 px-4 pb-4">
+      <div class="flex flex-col gap-4 pt-4">
+        <a href="#features" class="text-gray-600 hover:text-bordeaux text-sm tracking-wider" onclick="closeMobileMenu()">特徴</a>
+        <a href="#products" class="text-gray-600 hover:text-bordeaux text-sm tracking-wider" onclick="closeMobileMenu()">商品</a>
+        <a href="#voice" class="text-gray-600 hover:text-bordeaux text-sm tracking-wider" onclick="closeMobileMenu()">お客様の声</a>
+        <a href="#cta" class="gold-gradient text-white text-sm px-5 py-2 rounded-full font-medium tracking-wider text-center hover:opacity-90 transition-opacity" onclick="closeMobileMenu()">今すぐ購入</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient sock-pattern min-h-screen flex items-center pt-16 overflow-hidden relative">
+    <div class="absolute top-20 right-0 w-96 h-96 bg-bordeaux/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-0 w-64 h-64 bg-lightgold/10 rounded-full blur-2xl"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div>
+          <div class="fade-in-up">
+            <span class="inline-flex items-center gap-2 bg-bordeaux/10 text-bordeaux text-xs font-medium tracking-widest px-4 py-1.5 rounded-full mb-6">
+              <span class="text-lightgold">✦</span> 30代女性のための特別な靴下
+            </span>
+          </div>
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 fade-in-up delay-1">
+            <span class="text-bordeaux">おしゃれな靴下で</span><br />
+            <span class="text-gold-gradient">毎日をもっと</span><br />
+            <span class="text-bordeaux">豊かに。</span>
+          </h1>
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-8 fade-in-up delay-2">
+            上質な素材と洗練されたデザインが出会った、特別な靴下コレクション。<br class="hidden sm:block" />
+            足元から始まる、あなただけのスタイルを見つけてください。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 fade-in-up delay-3">
+            <a href="#cta" class="bordeaux-gradient text-white font-medium text-base px-8 py-4 rounded-full text-center hover:opacity-90 transition-all shadow-lg hover:shadow-bordeaux/30 hover:shadow-xl tracking-wider">
+              コレクションを見る →
+            </a>
+            <a href="#features" class="border-2 border-lightgold text-bordeaux font-medium text-base px-8 py-4 rounded-full text-center hover:bg-lightgold/10 transition-all tracking-wider">
+              特徴を知る
+            </a>
+          </div>
+          <div class="flex items-center gap-6 mt-10 fade-in-up delay-3">
+            <div class="flex -space-x-2">
+              <div class="w-9 h-9 rounded-full bg-bordeaux/20 border-2 border-offwhite flex items-center justify-center text-bordeaux text-sm font-bold">K</div>
+              <div class="w-9 h-9 rounded-full bg-lightgold/30 border-2 border-offwhite flex items-center justify-center text-bordeaux text-sm font-bold">M</div>
+              <div class="w-9 h-9 rounded-full bg-bordeaux/10 border-2 border-offwhite flex items-center justify-center text-bordeaux text-sm font-bold">Y</div>
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span class="text-lightgold">★★★★★</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-0.5">1,200名以上のお客様に愛用中</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right Visual -->
+        <div class="flex justify-center lg:justify-end fade-in-up delay-2">
+          <div class="relative">
+            <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-bordeaux/10 to-lightgold/20 flex items-center justify-center">
+              <div class="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-lightgold/20 to-bordeaux/10 flex items-center justify-center">
+                <div class="text-center p-8">
+                  <div class="text-8xl sm:text-9xl mb-2">🧦</div>
+                  <p class="font-serif text-bordeaux text-sm font-semibold tracking-widest">Premium Collection</p>
+                </div>
+              </div>
+            </div>
+            <!-- Floating badges -->
+            <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg p-3 border border-lightgold/20">
+              <p class="text-xs text-gray-500">品質</p>
+              <p class="font-serif text-bordeaux font-bold text-sm">最上級</p>
+            </div>
+            <div class="absolute -bottom-4 -left-4 bg-bordeaux rounded-2xl shadow-lg p-3">
+              <p class="text-xs text-lightgold">価格</p>
+              <p class="font-serif text-white font-bold text-sm">リーズナブル</p>
+            </div>
+            <div class="absolute top-1/2 -left-8 bg-white rounded-2xl shadow-lg p-3 border border-lightgold/20 -translate-y-1/2">
+              <p class="text-xs text-gray-500">満足度</p>
+              <p class="font-serif text-lightgold font-bold text-sm">98%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom wave -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20L0 60Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Brand Statement -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="divider-gold mx-auto mb-6"></div>
+      <p class="font-serif text-2xl sm:text-3xl text-bordeaux font-light leading-relaxed">
+        "素材へのこだわりと、手の届く価格で。<br class="hidden sm:block" />
+        <span class="font-semibold">上質な靴下を、すべての女性に。</span>"
+      </p>
+      <div class="divider-gold mx-auto mt-6"></div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-cream">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-lightgold text-sm tracking-widest font-medium uppercase">Features</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-bordeaux font-bold mt-2 mb-4">靴下本舗が選ばれる理由</h2>
+        <p class="text-gray-500 text-base max-w-xl mx-auto">他とは違う、3つの特別な理由</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-sm border border-lightgold/10 text-center">
+          <div class="w-16 h-16 bordeaux-gradient rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-3xl">✨</span>
+          </div>
+          <h3 class="font-serif text-xl text-bordeaux font-bold mb-3">上質な質感</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            厳選された高品質素材を使用。肌触りの良さと耐久性を両立し、履くたびに心地よさを実感できます。
+          </p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="card-hover bg-bordeaux rounded-3xl p-8 shadow-sm text-center">
+          <div class="w-16 h-16 gold-gradient rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-3xl">💎</span>
+          </div>
+          <h3 class="font-serif text-xl text-white font-bold mb-3">おしゃれなデザイン</h3>
+          <p class="text-lightgoldLight text-sm leading-relaxed">
+            トレンドを押さえながらも飽きのこないデザイン。コーデのアクセントにも、シンプルな日常使いにも。
+          </p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-sm border border-lightgold/10 text-center">
+          <div class="w-16 h-16 gold-gradient rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-3xl">💰</span>
+          </div>
+          <h3 class="font-serif text-xl text-bordeaux font-bold mb-3">リーズナブルな価格</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            上質なものを、もっと身近に。品質にこだわりながらも、毎日手に取りやすい価格帯をご用意しています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-lightgold text-sm tracking-widest font-medium uppercase">Collection</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-bordeaux font-bold mt-2 mb-4">人気コレクション</h2>
+        <p class="text-gray-500 text-base max-w-xl mx-auto">30代女性のライフスタイルに寄り添う、こだわりの靴下たち</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="card-hover group cursor-pointer">
+          <div class="bg-gradient-to-br from-offwhite to-lightgold/10 rounded-2xl aspect-square flex items-center justify-center mb-4 overflow-hidden border border-lightgold/10">
+            <div class="text-center p-4 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-6xl">🧦</span>
+              <p class="text-bordeaux font-serif font-semibold text-sm mt-2">シルクタッチ</p>
+            </div>
+          </div>
+          <h4 class="font-serif text-bordeaux font-semibold text-sm mb-1">シルクタッチソックス</h4>
+          <p class="text-gray-500 text-xs mb-2">なめらかな肌触りの最高級コットン</p>
+          <p class="text-lightgold font-bold text-sm">¥1,200 〜</p>
+        </div>
+        <!-- Product 2 -->
+        <div class="card-hover group cursor-pointer">
+          <div class="bg-gradient-to-br from-bordeaux/5 to-bordeaux/15 rounded-2xl aspect-square flex items-center justify-center mb-4 overflow-hidden border border-bordeaux/10">
+            <div class="text-center p-4 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-6xl">🎀</span>
+              <p class="text-bordeaux font-serif font-semibold text-sm mt-2">フリル</p>
+            </div>
+          </div>
+          <h4 class="font-serif text-bordeaux font-semibold text-sm mb-1">フリルレースソックス</h4>
+          <p class="text-gray-500 text-xs mb-2">エレガントなレースデザイン</p>
+          <p class="text-lightgold font-bold text-sm">¥1,500 〜</p>
+        </div>
+        <!-- Product 3 -->
+        <div class="card-hover group cursor-pointer">
+          <div class="bg-gradient-to-br from-lightgold/10 to-lightgold/25 rounded-2xl aspect-square flex items-center justify-center mb-4 overflow-hidden border border-lightgold/20">
+            <div class="text-center p-4 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-6xl">🌸</span>
+              <p class="text-bordeaux font-serif font-semibold text-sm mt-2">ボタニカル</p>
+            </div>
+          </div>
+          <h4 class="font-serif text-bordeaux font-semibold text-sm mb-1">ボタニカルソックス</h4>
+          <p class="text-gray-500 text-xs mb-2">花柄プリントがキュートな一足</p>
+          <p class="text-lightgold font-bold text-sm">¥1,300 〜</p>
+        </div>
+        <!-- Product 4 -->
+        <div class="card-hover group cursor-pointer">
+          <div class="bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl aspect-square flex items-center justify-center mb-4 overflow-hidden border border-gray-100">
+            <div class="text-center p-4 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-6xl">⭐</span>
+              <p class="text-bordeaux font-serif font-semibold text-sm mt-2">ギフト</p>
+            </div>
+          </div>
+          <h4 class="font-serif text-bordeaux font-semibold text-sm mb-1">ギフトセット</h4>
+          <p class="text-gray-500 text-xs mb-2">大切な方へのプレゼントに最適</p>
+          <p class="text-lightgold font-bold text-sm">¥3,800 〜</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-lightgold text-sm tracking-widest font-medium uppercase">Why Us</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-bordeaux font-bold mt-2 mb-4">他の靴下との違い</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl p-8 border-2 border-lightgold/20 shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+              <span class="text-gray-400 text-lg">❌</span>
+            </div>
+            <h3 class="font-serif text-gray-400 font-bold text-xl">一般的な靴下</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-gray-400 text-sm"><span>✗</span> デザインが限られている</li>
+            <li class="flex items-center gap-3 text-gray-400 text-sm"><span>✗</span> 素材の質感が気になる</li>
+            <li class="flex items-center gap-3 text-gray-400 text-sm"><span>✗</span> 高いか安っぽいかの二択</li>
+            <li class="flex items-center gap-3 text-gray-400 text-sm"><span>✗</span> すぐに伸びてしまう</li>
+          </ul>
+        </div>
+        <div class="bordeaux-gradient rounded-3xl p-8 shadow-xl">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 gold-gradient rounded-full flex items-center justify-center shadow-lg">
+              <span class="text-white text-lg">✦</span>
+            </div>
+            <h3 class="font-serif text-white font-bold text-xl">靴下本舗</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-lightgoldLight text-sm"><span class="text-lightgold">✓</span> トレンドを押さえた豊富なデザイン</li>
+            <li class="flex items-center gap-3 text-lightgoldLight text-sm"><span class="text-lightgold">✓</span> 厳選素材で上質な肌触り</li>
+            <li class="flex items-center gap-3 text-lightgoldLight text-sm"><span class="text-lightgold">✓</span> 品質とコストのベストバランス</li>
+            <li class="flex items-center gap-3 text-lightgoldLight text-sm"><span class="text-lightgold">✓</span> 型崩れしにくい高耐久設計</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="voice" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-lightgold text-sm tracking-widest font-medium uppercase">Reviews</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-bordeaux font-bold mt-2 mb-4">お客様の声</h2>
+        <p class="text-gray-500 text-base">実際にご購入いただいたお客様よりいただいたレビューです</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Review 1 -->
+        <div class="card-hover bg-cream rounded-3xl p-8 border border-lightgold/10">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-lightgold text-sm">★★★★★</span>
+          </div>
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            「デザインがとても可愛くて、質も良いので気に入っています。コーデのポイントになってよく褒められます！価格もリーズナブルでリピート確定です。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bordeaux-gradient rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">K</div>
+            <div>
+              <p class="font-semibold text-bordeaux text-sm">川口 さとみ</p>
+              <p class="text-gray-400 text-xs">32歳・会社員</p>
+            </div>
+          </div>
+        </div>
+        <!-- Review 2 -->
+        <div class="card-hover bg-bordeaux rounded-3xl p-8">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-lightgold text-sm">★★★★★</span>
+          </div>
+          <p class="text-lightgoldLight text-sm leading-relaxed mb-6">
+            「今まで靴下にこだわりはなかったのですが、初めて購入して驚きました。はき心地が全然違う！毎日のコーデが楽しくなりました。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 gold-gradient rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">M</div>
+            <div>
+              <p class="font-semibold text-white text-sm">松本 ゆり</p>
+              <p class="text-lightgold/70 text-xs">35歳・主婦</p>
+            </div>
+          </div>
+        </div>
+        <!-- Review 3 -->
+        <div class="card-hover bg-cream rounded-3xl p-8 border border-lightgold/10">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-lightgold text-sm">★★★★★</span>
+          </div>
+          <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            「友人へのプレゼントに購入しました。パッケージも素敵で喜んでもらえました。自分用にも購入しようと思っています。大人女性にぴったりです。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 gold-gradient rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">Y</div>
+            <div>
+              <p class="font-semibold text-bordeaux text-sm">吉田 なおみ</p>
+              <p class="text-gray-400 text-xs">38歳・フリーランス</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="hero-gradient sock-pattern py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-serif text-4xl font-bold text-bordeaux mb-1">1,200<span class="text-lightgold text-2xl">+</span></p>
+          <p class="text-gray-500 text-xs tracking-wider">累計購入者数</p>
+        </div>
+        <div>
+          <p class="font-serif text-4xl font-bold text-bordeaux mb-1">98<span class="text-lightgold text-2xl">%</span></p>
+          <p class="text-gray-500 text-xs tracking-wider">顧客満足度</p>
+        </div>
+        <div>
+          <p class="font-serif text-4xl font-bold text-bordeaux mb-1">50<span class="text-lightgold text-2xl">+</span></p>
+          <p class="text-gray-500 text-xs tracking-wider">デザイン数</p>
+        </div>
+        <div>
+          <p class="font-serif text-4xl font-bold text-bordeaux mb-1">4.9<span class="text-lightgold text-2xl">★</span></p>
+          <p class="text-gray-500 text-xs tracking-wider">平均レビュー</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta" class="bordeaux-gradient py-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 w-40 h-40 rounded-full border-2 border-lightgold"></div>
+      <div class="absolute bottom-10 right-10 w-60 h-60 rounded-full border-2 border-lightgold"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-lightgold"></div>
+    </div>
+    <div class="max-w-3xl mx-auto px-4 text-center relative">
+      <span class="text-lightgold text-2xl">✦</span>
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
+        今すぐ、あなただけの<br />
+        <span class="text-lightgoldLight">特別な靴下</span>を見つけよう
+      </h2>
+      <p class="text-white/70 text-base sm:text-lg mb-10 leading-relaxed">
+        上質な素材とおしゃれなデザインを、手の届く価格で。<br class="hidden sm:block" />
+        足元から始まる、新しいスタイルを体験してください。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#" class="gold-gradient text-white font-bold text-base sm:text-lg px-10 py-4 rounded-full hover:opacity-90 transition-all shadow-2xl hover:shadow-lightgold/30 tracking-wider">
+          今すぐ商品を購入する →
+        </a>
+        <a href="#products" class="border-2 border-white/40 text-white font-medium text-base sm:text-lg px-10 py-4 rounded-full hover:bg-white/10 transition-all tracking-wider">
+          コレクションを見る
+        </a>
+      </div>
+      <p class="text-white/50 text-xs mt-8">※ 送料無料（一定金額以上） ・ 返品・交換対応 ・ 安全なお支払い</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-lightgold text-xl">✦</span>
+            <span class="font-serif text-white text-xl font-semibold tracking-widest">靴下本舗</span>
+          </div>
+          <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
+            30代女性のための、おしゃれで上質な靴下コレクション。
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-8">
+          <div>
+            <h4 class="text-white text-sm font-medium mb-3 tracking-wider">メニュー</h4>
+            <ul class="space-y-2">
+              <li><a href="#features" class="text-gray-400 hover:text-lightgold text-sm transition-colors">特徴</a></li>
+              <li><a href="#products" class="text-gray-400 hover:text-lightgold text-sm transition-colors">商品</a></li>
+              <li><a href="#voice" class="text-gray-400 hover:text-lightgold text-sm transition-colors">お客様の声</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white text-sm font-medium mb-3 tracking-wider">お問い合わせ</h4>
+            <ul class="space-y-2">
+              <li><a href="mailto:テスト" class="text-gray-400 hover:text-lightgold text-sm transition-colors">メールで相談</a></li>
+              <li><a href="#cta" class="text-gray-400 hover:text-lightgold text-sm transition-colors">購入はこちら</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-xs">© 2025 靴下本舗 All Rights Reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="text-gray-500 hover:text-lightgold text-xs transition-colors">プライバシーポリシー</a>
+          <a href="#" class="text-gray-500 hover:text-lightgold text-xs transition-colors">特定商取引法</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA Button (Mobile) -->
+  <div class="fixed bottom-6 right-4 left-4 sm:hidden z-40">
+    <a href="#cta" class="bordeaux-gradient text-white font-bold text-sm py-4 rounded-full shadow-2xl flex items-center justify-center gap-2 tracking-wider">
+      <span class="text-lightgold">✦</span> 今すぐ購入する
+    </a>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          entry.target.style.opacity = '1';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-hover').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease';
+      observer.observe(el);
+    });
+
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-hover').forEach(el => {
+      cardObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
+```
