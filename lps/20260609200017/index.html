@@ -1,0 +1,659 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフェッショナルサービス | あなたのビジネスを次のステージへ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .hero-text-gradient {
+      background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+    }
+    .section-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .section-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(167, 139, 250, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(167, 139, 250, 0.8); }
+    }
+    .pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- ナビゲーション -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center">
+            <span class="text-white font-bold text-sm">P</span>
+          </div>
+          <span class="font-bold text-xl text-gray-800">ProService</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#service" class="text-gray-600 hover:text-purple-600 transition-colors font-medium">サービス</a>
+          <a href="#strength" class="text-gray-600 hover:text-purple-600 transition-colors font-medium">強み</a>
+          <a href="#voice" class="text-gray-600 hover:text-purple-600 transition-colors font-medium">お客様の声</a>
+          <a href="#contact" class="btn-gradient text-white px-6 py-2 rounded-full font-medium text-sm">無料相談</a>
+        </div>
+        <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" id="menuBtn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- モバイルメニュー -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+      <a href="#service" class="block text-gray-600 hover:text-purple-600 font-medium py-2">サービス</a>
+      <a href="#strength" class="block text-gray-600 hover:text-purple-600 font-medium py-2">強み</a>
+      <a href="#voice" class="block text-gray-600 hover:text-purple-600 font-medium py-2">お客様の声</a>
+      <a href="#contact" class="block btn-gradient text-white px-6 py-3 rounded-full font-medium text-center">無料相談</a>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section class="gradient-bg min-h-screen flex items-center relative overflow-hidden pt-16">
+    <!-- 背景装飾 -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur rounded-full px-4 py-2 mb-6">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-white/80 text-sm font-medium">現在、新規受付中</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+            あなたのビジネスを
+            <br>
+            <span class="hero-text-gradient">次のステージへ</span>
+          </h1>
+          <p class="text-white/70 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+            最先端のデジタル戦略と豊富な実績で、中小企業から大企業まで、ビジネス成長を強力にサポートします。まずは無料相談から始めましょう。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#contact" class="btn-gradient text-white px-8 py-4 rounded-full font-bold text-lg pulse-glow">
+              無料で相談する →
+            </a>
+            <a href="#service" class="bg-white/10 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all">
+              サービスを見る
+            </a>
+          </div>
+          <div class="mt-10 flex items-center justify-center lg:justify-start space-x-8">
+            <div class="text-center">
+              <div class="text-3xl font-black text-white">500<span class="text-purple-400">+</span></div>
+              <div class="text-white/60 text-sm">支援実績</div>
+            </div>
+            <div class="w-px h-10 bg-white/20"></div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-white">98<span class="text-purple-400">%</span></div>
+              <div class="text-white/60 text-sm">顧客満足度</div>
+            </div>
+            <div class="w-px h-10 bg-white/20"></div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-white">10<span class="text-purple-400">年</span></div>
+              <div class="text-white/60 text-sm">業界経験</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center lg:justify-end">
+          <div class="float-animation relative">
+            <div class="w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-purple-400/20 to-blue-400/20 backdrop-blur-sm rounded-3xl border border-white/10 flex items-center justify-center relative">
+              <div class="absolute inset-4 bg-gradient-to-br from-purple-500/30 to-blue-500/30 rounded-2xl"></div>
+              <!-- ダミーダッシュボード風イラスト -->
+              <div class="relative z-10 p-6 w-full">
+                <div class="bg-white/10 rounded-xl p-4 mb-3">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-white/80 text-xs font-medium">月次成長率</span>
+                    <span class="text-green-400 text-xs font-bold">+24.5%</span>
+                  </div>
+                  <div class="flex items-end space-x-1 h-12">
+                    <div class="bg-purple-400/60 rounded w-4" style="height:40%"></div>
+                    <div class="bg-purple-400/60 rounded w-4" style="height:55%"></div>
+                    <div class="bg-purple-400/60 rounded w-4" style="height:45%"></div>
+                    <div class="bg-purple-400/60 rounded w-4" style="height:70%"></div>
+                    <div class="bg-purple-400/80 rounded w-4" style="height:60%"></div>
+                    <div class="bg-blue-400/80 rounded w-4" style="height:80%"></div>
+                    <div class="bg-green-400/80 rounded w-4" style="height:100%"></div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-white/10 rounded-lg p-3">
+                    <div class="text-white/60 text-xs mb-1">新規顧客</div>
+                    <div class="text-white font-bold">142件</div>
+                  </div>
+                  <div class="bg-white/10 rounded-lg p-3">
+                    <div class="text-white/60 text-xs mb-1">売上増加</div>
+                    <div class="text-green-400 font-bold">+38%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 浮かぶカード装飾 -->
+            <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-3 flex items-center space-x-2">
+              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                <span class="text-green-600 text-lg">✓</span>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-gray-800">プロジェクト完了</div>
+                <div class="text-xs text-gray-500">目標達成 100%</div>
+              </div>
+            </div>
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-3 flex items-center space-x-2">
+              <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                <span class="text-purple-600 text-lg">⭐</span>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-gray-800">顧客評価</div>
+                <div class="text-xs text-gray-500">★★★★★ 5.0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実績ロゴ帯 -->
+  <section class="bg-white py-10 border-y border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-gray-400 text-sm font-medium mb-6">多くの企業様にご利用いただいています</p>
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40">
+        <div class="text-2xl font-black text-gray-400">ACME Corp.</div>
+        <div class="text-2xl font-black text-gray-400">TechFlow</div>
+        <div class="text-2xl font-black text-gray-400">Nexus Inc.</div>
+        <div class="text-2xl font-black text-gray-400">StartUp X</div>
+        <div class="text-2xl font-black text-gray-400">GlobalBiz</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス説明セクション -->
+  <section id="service" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 section-fade">
+        <span class="inline-block bg-purple-100 text-purple-700 text-sm font-bold px-4 py-1 rounded-full mb-4">SERVICE</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">提供サービス</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">ビジネスの課題に合わせた幅広いソリューションをご提供します。</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- サービスカード1 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Webサイト制作</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">最新のデザイントレンドと技術を活用し、集客力の高いWebサイトを制作。SEO対策も万全で、検索上位表示をサポートします。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-purple-600 text-xs">✓</span></span>レスポンシブデザイン</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-purple-600 text-xs">✓</span></span>SEO最適化</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-purple-600 text-xs">✓</span></span>CMS導入サポート</li>
+          </ul>
+        </div>
+
+        <!-- サービスカード2 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">デジタルマーケティング</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">SNS広告・リスティング広告・コンテンツマーケティングを組み合わせた総合的な戦略で、ROIを最大化します。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-blue-600 text-xs">✓</span></span>SNS広告運用</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-blue-600 text-xs">✓</span></span>リスティング広告</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-blue-600 text-xs">✓</span></span>データ分析・レポート</li>
+          </ul>
+        </div>
+
+        <!-- サービスカード3 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">ビジネスコンサルティング</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">経験豊富なコンサルタントが、貴社の課題を深く分析し、具体的な改善策と成長戦略を提案します。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-green-600 text-xs">✓</span></span>課題分析・診断</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-green-600 text-xs">✓</span></span>成長戦略立案</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-green-600 text-xs">✓</span></span>継続的なサポート</li>
+          </ul>
+        </div>
+
+        <!-- サービスカード4 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2a2 2 0 002 2zM12 15V3m0 0L8 7m4-4l4 4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">システム開発</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">業務効率化のためのカスタムシステムや、ECサイト・予約システムなど、御社専用のシステムを開発します。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-orange-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-orange-600 text-xs">✓</span></span>業務システム開発</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-orange-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-orange-600 text-xs">✓</span></span>ECサイト構築</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-orange-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-orange-600 text-xs">✓</span></span>API連携・自動化</li>
+          </ul>
+        </div>
+
+        <!-- サービスカード5 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">ブランディング</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">ロゴデザインからブランドガイドライン策定まで、一貫したブランドイメージを構築し、市場での差別化を実現します。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-pink-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-pink-600 text-xs">✓</span></span>ロゴ・VI制作</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-pink-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-pink-600 text-xs">✓</span></span>ブランド戦略</li>
+            <li class="flex items-center text-sm text-gray-600"><span class="w-5 h-5 bg-pink-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"><span class="text-pink-600 text-xs">✓</span></span>コンテンツ制作</li>
+          </ul>
+        </div>
+
+        <!-- サービスカード6 -->
+        <div class="bg-gradient-to-br from-purple-600 to-indigo-700 rounded-2xl p-8 card-hover section-fade">
+          <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">無料相談・カスタムプラン</h3>
+          <p class="text-white/80 leading-relaxed mb-6">上記に当てはまらないお悩みでも大丈夫。まずは無料でご相談ください。御社の課題に最適なオーダーメイドのプランをご提案します。</p>
+          <a href="#contact" class="inline-block bg-white text-purple-700 font-bold px-6 py-3 rounded-full hover:bg-purple-50 transition-all">
+            無料相談を申し込む →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強みセクション -->
+  <section id="strength" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 section-fade">
+        <span class="inline-block bg-blue-100 text-blue-700 text-sm font-bold px-4 py-1 rounded-full mb-4">STRENGTH</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">選ばれる理由</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">私たちが多くのお客様から信頼をいただける4つの理由をご紹介します。</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <div class="flex items-start space-x-5 section-fade">
+          <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-white font-black text-lg">01</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">圧倒的な実績と経験</h3>
+            <p class="text-gray-500 leading-relaxed">創業10年以上、500社以上の支援実績。業界を問わず幅広いプロジェクトで成果を出してきた経験が、お客様の課題解決に活きます。</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-5 section-fade">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-white font-black text-lg">02</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">スピーディーな対応</h3>
+            <p class="text-gray-500 leading-relaxed">お問い合わせから24時間以内に対応。プロジェクト開始後も迅速な進捗報告と柔軟な対応で、お客様の時間を大切にします。</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-5 section-fade">
+          <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-white font-black text-lg">03</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">成果にこだわるアプローチ</h3>
+            <p class="text-gray-500 leading-relaxed">見た目だけでなく、実際のビジネス成果にこだわります。数値目標を設定し、定期的なレビューで継続的な改善を行います。</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-5 section-fade">
+          <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
+            <span class="text-white font-black text-lg">04</span>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">透明性の高い料金体系</h3>
+            <p class="text-gray-500 leading-relaxed">隠れた費用は一切なし。事前に詳細な見積もりをご提示し、追加費用が発生する場合は必ず事前にご相談します。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 数字で見る実績 -->
+      <div class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 rounded-3xl p-10 section-fade">
+        <h3 class="text-center text-white text-2xl font-black mb-10">数字で見る実績</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-4xl sm:text-5xl font-black text-white mb-2">500<span class="text-yellow-300">+</span></div>
+            <div class="text-white/70 text-sm">プロジェクト完了数</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl sm:text-5xl font-black text-white mb-2">98<span class="text-yellow-300">%</span></div>
+            <div class="text-white/70 text-sm">顧客満足度</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl sm:text-5xl font-black text-white mb-2">10<span class="text-yellow-300">年</span></div>
+            <div class="text-white/70 text-sm">業界経験</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl sm:text-5xl font-black text-white mb-2">24<span class="text-yellow-300">h</span></div>
+            <div class="text-white/70 text-sm">最短対応時間</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声セクション -->
+  <section id="voice" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 section-fade">
+        <span class="inline-block bg-green-100 text-green-700 text-sm font-bold px-4 py-1 rounded-full mb-4">TESTIMONIALS</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">お客様の声</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">実際にサービスをご利用いただいたお客様からの声をご紹介します。</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 口コミ1 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400 space-x-1">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">5.0</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"Webサイトをリニューアルしてもらいました。デザインが一新されただけでなく、問い合わせ数が3倍になりました！迅速な対応と丁寧なコミュニケーションで、安心してお任せできました。"</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold">田</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">田中 健太</div>
+              <div class="text-gray-500 text-xs">株式会社タナカ商事 代表取締役</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ2 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400 space-x-1">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">5.0</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"デジタルマーケティングの戦略を依頼しました。SNS広告のROIが以前の2.5倍に改善し、月次売上も大幅に向上。数値に基づいた提案が非常に的確で、毎月のレポートも分かりやすいです。"</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold">佐</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">佐藤 美咲</div>
+              <div class="text-gray-500 text-xs">佐藤フード株式会社 マーケティング部長</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ3 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400 space-x-1">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">5.0</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"業務管理システムを開発していただきました。複雑な要件にも柔軟に対応いただき、スケジュール通りにリリース。導入後は業務効率が40%向上し、残業も大幅に削減されました。"</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold">山</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">山本 大輔</div>
+              <div class="text-gray-500 text-xs">山本製造株式会社 システム部長</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ4 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400 space-x-1">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">5.0</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"ブランディングの見直しをお願いしました。新しいロゴと統一されたビジュアルイメージにより、お客様からの印象が大きく変わりました。プロとしての提案力に大変満足しています。"</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white font-bold">鈴</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">鈴木 陽子</div>
+              <div class="text-gray-500 text-xs">鈴木クリエイティブ 代表</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ5 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400 space-x-1">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">5.0</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"コンサルティングをお願いし、経営課題が明確になりました。具体的なアクションプランと継続的なフォローアップのおかげで、半年で黒字転換を達成。本当に感謝しています。"</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold">伊</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">伊藤 誠</div>
+              <div class="text-gray-500 text-xs">伊藤産業 代表取締役</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ6 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 card-hover section-fade">
+          <div class="flex items-center mb-4">
+            <div class="flex text-yellow-400 space-x-1">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">5.0</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6">"ECサイトを構築してもらいました。使いやすいデザインと最適なシステム構成で、開設1ヶ月で想定の2倍の売上を達成。アフターサポートも手厚く、長期的なパートナーとして信頼しています。"</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">中</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">中村 花子</div>
+              <div class="text-gray-500 text-xs">ナカムラショップ オーナー</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- プロセスセクション -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 section-fade">
+        <span class="inline-block bg-orange-100 text-orange-700 text-sm font-bold px-4 py-1 rounded-full mb-4">PROCESS</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">ご利用の流れ</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">シンプルな4ステップで、すぐにスタートできます。</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center section-fade">
+          <div class="relative mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
+            </div>
+            <div class="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-purple-200 to-transparent"></div>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">STEP 1<br>無料相談</h3>
+          <p class="text-gray-500 text-sm">フォームからお問い合わせ。24時間以内にご連絡します。</p>
+        </div>
+        <div class="text-center section-fade">
+          <div class="relative mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+              </svg>
+            </div>
+            <div class="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-blue-200 to-transparent"></div>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">STEP 2<br>ヒアリング・提案</h3>
+          <p class="text-gray-500 text-sm">課題をヒアリングし、最適なプランをご提案します。</p>
+        </div>
+        <div class="text-center section-fade">
+          <div class="relative mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div class="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-green-200 to-transparent"></div>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">STEP 3<br>実行・制作</h3>
+          <p class="text-gray-500 text-sm">スピーディーかつ丁寧に進捗報告しながら制作・実行します。</p>
+        </div>
+        <div class="text-center section-fade">
+          <div class="mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">STEP 4<br>納品・継続サポート</h3>
+          <p class="text-gray-500 text-sm">納品後も継続的なサポートで成果をフォローアップします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="contact" class="py-20 gradient-bg relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-12 section-fade">
+        <span class="inline-block bg-white/10 text-white text-sm font-bold px-4 py-1 rounded-full mb-4">CONTACT</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">まずは無料でご相談ください</h2>
+        <p class="text-white/70 text-lg max-w-2xl mx-auto">お気軽にお問い合わせください。専任のコンサルタントが24時間以内にご連絡いたします。</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 sm:p-12 section-fade">
+        <form class="space-y-6">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-white/80 text-sm font-medium mb-2">お名前 <span class="text-red-400">*</span></label>
+              <input type="text" placeholder="山田 太郎" class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all">
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm font-medium mb-2">会社名</label>
+              <input type="text" placeholder="株式会社〇〇" class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all">
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-white/80 text-sm font-medium mb-2">メールアドレス <span class="text-red-400">*</span></label>
+              <input type="email" placeholder="example@email.com" class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all">
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm font-medium mb-2">電話番号</label>
+              <input type="tel" placeholder="090-0000-0000" class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all">
+            </div>
+          </div>
+          <div>
+            <label class="block text-white/80 text-sm font-medium mb-2">ご相談内容 <span class="text-red-400">*</span></label>
+            <select class="w-full bg-white/10 border border-white/20 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 transition-all">
+              <option value="" class="text-gray-900">サービスを選択してください</option>
+              <option value="web" class="text-gray-900">Webサイト制作</option>
+              <option value="marketing" class="text-gray-900">デジタルマーケティング</option>
+              <option value="consulting" class="text-gray-900">ビジネスコンサルティング</option>
+              <option value="system" class="text-gray-900">システム開発</option>
+              <option value="branding" class="text-gray-900">ブランディング</option>
+              <option value="other" class="text-gray-900">その他</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-white/80 text-sm font-medium mb-2">お問い合わせ内容</label>
+            <textarea rows="4" placeholder="ご相談内容を詳しくお聞かせください..." class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all resize-none"></textarea>
+          </div>
+          <div class="flex items-start space-x-3">
+            <input type="checkbox" id="agree" class="mt-1 w-4 h-4 rounded accent-purple-500">
+            <label for="agree" class="text-white/70 text-sm">
+              <a href="#" class="text-purple-300 hover:underline">プライバシーポリシー</a>に同意する
+            </label>
+          </div>
+          <button type="submit" class="w-full btn-gradient text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-purple-500/30 transition-all">
+            無料相談を申し込む →
+          </button>
+          <p class="text-center text-white/50 text-xs">※ 24時間以内にご連絡いたします。しつこい営業は一切行いません。</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center">
+              <span class="text-white font-bold text-sm">P</span>
+            </div>
+            <span class="font-bold text-xl text-white">ProService</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+            あなたのビジネスを次のステージへ。最先端のデジタル戦略と豊富な実績で、ビジネス成長を強力にサポートします。
+          </p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.
