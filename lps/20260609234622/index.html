@@ -1,0 +1,750 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>てすと | 公式サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#7C3AED',
+            accent: '#06B6D4',
+          },
+          fontFamily: {
+            sans: ['Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #06B6D4 100%);
+    }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #4F46E5, #06B6D4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-pattern {
+      background-image: radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+    }
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(90deg, #4F46E5, #7C3AED, #06B6D4);
+      border-radius: 2px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #4F46E5, #7C3AED);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #4338CA, #6D28D9);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+    }
+    .star {
+      color: #F59E0B;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- ナビゲーション -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">T</span>
+          </div>
+          <span class="font-bold text-xl text-gray-900">てすと</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#service" class="text-gray-600 hover:text-primary transition-colors text-sm font-medium">サービス</a>
+          <a href="#strength" class="text-gray-600 hover:text-primary transition-colors text-sm font-medium">強み</a>
+          <a href="#voice" class="text-gray-600 hover:text-primary transition-colors text-sm font-medium">お客様の声</a>
+          <a href="#contact" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">お問い合わせ</a>
+        </div>
+        <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMenu()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- モバイルメニュー -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+      <a href="#service" class="block text-gray-600 hover:text-primary py-2 text-sm font-medium">サービス</a>
+      <a href="#strength" class="block text-gray-600 hover:text-primary py-2 text-sm font-medium">強み</a>
+      <a href="#voice" class="block text-gray-600 hover:text-primary py-2 text-sm font-medium">お客様の声</a>
+      <a href="#contact" class="block btn-primary text-white px-6 py-2 rounded-full text-sm font-medium text-center">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section class="relative min-h-screen flex items-center justify-center hero-pattern bg-gray-50 pt-16 overflow-hidden">
+    <!-- 背景デコレーション -->
+    <div class="absolute top-20 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center fade-in">
+        <!-- バッジ -->
+        <div class="inline-flex items-center bg-primary/10 text-primary rounded-full px-4 py-2 text-sm font-medium mb-8">
+          <span class="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></span>
+          てすとサービス
+        </div>
+
+        <!-- メインヘッドライン -->
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight mb-6 text-gray-900">
+          <span class="text-gradient">てすと</span>で
+          <br class="hidden sm:block">
+          あなたの毎日が
+          <br>
+          <span class="text-gradient">変わります</span>
+        </h1>
+
+        <!-- サブヘッドライン -->
+        <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+          てすとのサービスで、あなたの課題を解決します。<br>
+          業界No.1の品質で、最高の体験をご提供いたします。
+        </p>
+
+        <!-- CTAボタン -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#contact" class="btn-primary text-white px-10 py-4 rounded-full text-lg font-bold shadow-lg w-full sm:w-auto text-center">
+            今すぐ無料相談する →
+          </a>
+          <a href="#service" class="bg-white text-primary border-2 border-primary px-10 py-4 rounded-full text-lg font-bold hover:bg-primary/5 transition-colors w-full sm:w-auto text-center">
+            サービスを見る
+          </a>
+        </div>
+
+        <!-- 実績数値 -->
+        <div class="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-black text-gradient">500+</div>
+            <div class="text-sm text-gray-500 mt-1">累計利用者数</div>
+          </div>
+          <div class="text-center border-x border-gray-200">
+            <div class="text-3xl sm:text-4xl font-black text-gradient">98%</div>
+            <div class="text-sm text-gray-500 mt-1">顧客満足度</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-black text-gradient">5年</div>
+            <div class="text-sm text-gray-500 mt-1">サービス実績</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- スクロールインジケーター -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 課題提起セクション -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          こんなお悩みはありませんか？
+        </h2>
+        <div class="section-divider w-20 mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {[
+          "時間が足りなくて困っている",
+          "コストを削減したいが方法がわからない",
+          "もっと効率的に作業を進めたい",
+          "専門家に相談したいが敷居が高い",
+        ].map((item, index) => `
+        <div class="flex items-start space-x-4 bg-red-50 border border-red-100 rounded-2xl p-6">
+          <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </div>
+          <p class="text-gray-700 font-medium">${item}</p>
+        </div>
+        `).join('')}
+      </div>
+
+      <div class="text-center mt-12">
+        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-white rounded-2xl px-8 py-6 text-xl font-bold shadow-lg">
+          そのお悩み、<span class="text-accent">てすと</span>が解決します！
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス説明セクション -->
+  <section id="service" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">SERVICE</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          提供サービス
+        </h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          てすとでは、お客様のニーズに合わせた最適なサービスを提供しています。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- サービスカード1 -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-hover">
+          <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">プランA</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            お客様のビジネスに最適な提案をご提供します。初めての方でも安心してご利用いただけます。
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              専任担当者によるサポート
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              24時間対応
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              無料トライアル付き
+            </li>
+          </ul>
+        </div>
+
+        <!-- サービスカード2 (人気) -->
+        <div class="bg-white rounded-3xl p-8 shadow-xl border-2 border-primary card-hover relative">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <span class="gradient-bg text-white text-xs font-bold px-4 py-1 rounded-full">人気No.1</span>
+          </div>
+          <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">プランB</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            最も人気のある標準プランです。必要な機能をすべて網羅し、コストパフォーマンスも抜群です。
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              全機能アクセス
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              優先サポート
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              月次レポート提供
+            </li>
+          </ul>
+        </div>
+
+        <!-- サービスカード3 -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-hover">
+          <div class="w-14 h-14 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">プランC</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            大規模なニーズに対応したエンタープライズ向けプランです。カスタマイズも承ります。
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              カスタマイズ対応
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              専属チームアサイン
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              SLA保証あり
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強みセクション -->
+  <section id="strength" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">STRENGTH</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          てすとが選ばれる理由
+        </h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          競合他社とは一線を画す、てすとならではの強みをご紹介します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 強み1 -->
+        <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-br from-indigo-50 to-white border border-indigo-100">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">業界最高水準の品質</h3>
+            <p class="text-gray-600 leading-relaxed">
+              てすとの独自技術により、業界トップクラスの品質を実現。お客様の期待を常に上回るサービスをお届けします。
+            </p>
+          </div>
+        </div>
+
+        <!-- 強み2 -->
+        <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-br from-purple-50 to-white border border-purple-100">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">スピーディな対応</h3>
+            <p class="text-gray-600 leading-relaxed">
+              お問い合わせから最短24時間以内に対応。迅速なレスポンスで、あなたのビジネスをスムーズに進めます。
+            </p>
+          </div>
+        </div>
+
+        <!-- 強み3 -->
+        <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-br from-cyan-50 to-white border border-cyan-100">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">専門家チームによるサポート</h3>
+            <p class="text-gray-600 leading-relaxed">
+              経験豊富な専門家チームが、あなたの課題を深く理解し、最適なソリューションを提案します。
+            </p>
+          </div>
+        </div>
+
+        <!-- 強み4 -->
+        <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-br from-green-50 to-white border border-green-100">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">明確な料金体系</h3>
+            <p class="text-gray-600 leading-relaxed">
+              隠れた費用は一切なし。明確でわかりやすい料金体系で、安心してご利用いただけます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声セクション -->
+  <section id="voice" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">VOICE</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          お客様の声
+        </h2>
+        <div class="section-divider w-20 mx-auto mb-6"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          実際にご利用いただいたお客様からのリアルな声をご紹介します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 口コミ1 -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-hover">
+          <div class="flex items-center mb-4">
+            <span class="star text-xl">★★★★★</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-6 italic">
+            「こんなに対応が早いとは思いませんでした。問い合わせから翌日には解決。本当に助かりました！」
+          </p>
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-lg">A</div>
+            <div>
+              <div class="font-semibold text-gray-900">山田 太郎 様</div>
+              <div class="text-sm text-gray-500">30代・会社員</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ2 -->
+        <div class="bg-white rounded-3xl p-8 shadow-xl border-2 border-primary card-hover">
+          <div class="flex items-center mb-4">
+            <span class="star text-xl">★★★★★</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-6 italic">
+            「他社と比較しましたが、てすとさんのサービスが圧倒的にコスパが良かったです。リピート確定です！」
+          </p>
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">B</div>
+            <div>
+              <div class="font-semibold text-gray-900">鈴木 花子 様</div>
+              <div class="text-sm text-gray-500">40代・経営者</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口コミ3 -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-hover">
+          <div class="flex items-center mb-4">
+            <span class="star text-xl">★★★★★</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-6 italic">
+            「専門的な内容も丁寧に説明してくれて、初心者の私でも安心して使えました。大満足です！」
+          </p>
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-lg">C</div>
+            <div>
+              <div class="font-semibold text-gray-900">佐藤 次郎 様</div>
+              <div class="text-sm text-gray-500">20代・フリーランス</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フロー説明セクション -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">FLOW</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          ご利用の流れ
+        </h2>
+        <div class="section-divider w-20 mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- ステップ1 -->
+        <div class="relative text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white font-black text-xl shadow-lg">1</div>
+          <h3 class="font-bold text-gray-900 mb-2">お問い合わせ</h3>
+          <p class="text-sm text-gray-600">フォームよりお気軽にご連絡ください</p>
+          <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary to-secondary transform -translate-x-1/2"></div>
+        </div>
+
+        <!-- ステップ2 -->
+        <div class="relative text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white font-black text-xl shadow-lg">2</div>
+          <h3 class="font-bold text-gray-900 mb-2">ヒアリング</h3>
+          <p class="text-sm text-gray-600">お客様のご要望を丁寧にお伺いします</p>
+          <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-secondary to-accent transform -translate-x-1/2"></div>
+        </div>
+
+        <!-- ステップ3 -->
+        <div class="relative text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white font-black text-xl shadow-lg">3</div>
+          <h3 class="font-bold text-gray-900 mb-2">ご提案</h3>
+          <p class="text-sm text-gray-600">最適なプランをご提案いたします</p>
+          <div class="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-accent to-primary transform -translate-x-1/2"></div>
+        </div>
+
+        <!-- ステップ4 -->
+        <div class="text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white font-black text-xl shadow-lg">4</div>
+          <h3 class="font-bold text-gray-900 mb-2">サービス開始</h3>
+          <p class="text-sm text-gray-600">スムーズにサービスをスタートします</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="contact" class="py-20 gradient-bg relative overflow-hidden">
+    <!-- 背景デコレーション -->
+    <div class="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+          今すぐ始めましょう
+        </h2>
+        <p class="text-white/80 text-lg">
+          まずは無料相談から。お気軽にお問い合わせください。
+        </p>
+      </div>
+
+      <!-- お問い合わせフォーム -->
+      <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-2xl">
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">お名前 <span class="text-red-500">*</span></label>
+              <input type="text" placeholder="山田 太郎" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">メールアドレス <span class="text-red-500">*</span></label>
+              <input type="email" placeholder="example@email.com" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">お電話番号</label>
+            <input type="tel" placeholder="090-0000-0000" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">お問い合わせ内容 <span class="text-red-500">*</span></label>
+            <textarea rows="4" placeholder="ご質問・ご相談内容をご記入ください" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none"></textarea>
+          </div>
+          <div class="flex items-start space-x-3">
+            <input type="checkbox" id="privacy" class="mt-1 w-4 h-4 text-primary rounded">
+            <label for="privacy" class="text-sm text-gray-600">
+              <a href="#" class="text-primary hover:underline">プライバシーポリシー</a>に同意する
+            </label>
+          </div>
+          <button type="submit" class="btn-primary text-white w-full py-4 rounded-xl text-lg font-bold shadow-lg">
+            無料で相談する →
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ セクション -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold text-sm uppercase tracking-wider">FAQ</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">
+          よくある質問
+        </h2>
+        <div class="section-divider w-20 mx-auto"></div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-medium text-gray-900 hover:bg-gray-50 transition-colors">
+            <span>初めて利用するのですが、大丈夫ですか？</span>
+            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-gray-600">
+            はい、もちろんです。初めての方でも安心してご利用いただけるよう、丁寧なサポートをご用意しています。お気軽にご相談ください。
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-medium text-gray-900 hover:bg-gray-50 transition-colors">
+            <span>料金はどのくらいかかりますか？</span>
+            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-gray-600">
+            料金はご利用のプランによって異なります。まずは無料相談でお気軽にご確認ください。お客様のご予算に合わせたプランをご提案いたします。
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-medium text-gray-900 hover:bg-gray-50 transition-colors">
+            <span>対応エリアはどこですか？</span>
+            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-gray-600">
+            オンラインでのサービス提供のため、全国どこでも対応可能です。海外からのご利用もお気軽にご相談ください。
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-medium text-gray-900 hover:bg-gray-50 transition-colors">
+            <span>解約はいつでもできますか？</span>
+            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-content hidden px-6 pb-5 text-gray-600">
+            はい、いつでも解約可能です。契約期間の縛りはありませんので、安心してご利用ください。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
+              <span class="text-white font-bold">T</span>
+            </div>
+            <span class="font-bold text-2xl">てすと</span>
+          </div>
+          <p class="text-gray-400 leading-relaxed max-w-sm">
+            てすとは、お客様のビジネスをサポートするための最高のサービスを提供しています。
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-lg mb-4">サービス</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#service" class="hover:text-white transition-colors">プランA</a></li>
+            <li><a href="#service" class="hover:text-white transition-colors">プランB</a></li>
+            <li><a href="#service" class="hover:text-white transition-colors">プランC</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-lg mb-4">お問い合わせ</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li class="flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <span class="text-sm">てすと</span>
+            </li>
+            <li>
+              <a href="#contact" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium inline-block mt-2">
+                無料相談する
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between">
+        <p class="text-gray-500 text-sm">© 2024 てすと. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">プライバシーポリシー</a>
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">利用規約</a>
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">特定商取引法</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- トップへ戻るボタン -->
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+    class="fixed bottom-8 right-8 w-12 h-12 gradient-bg rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-shadow z-50">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('svg');
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+
+    // スムーズスクロール
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // モバイルメニューを閉じる
+          document.getElementById('mobile-menu').classList.add('hidden');
+        }
+      });
+    });
+
+    // スクロールアニメーション
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.card-hover, .flex.items-start').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
+```
