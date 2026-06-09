@@ -1,0 +1,565 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新アニメ公開告知 | 大人の初恋ギャグコメディ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .title-font {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes slide-in-left {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slide-in-right {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .float-anim { animation: float 3s ease-in-out infinite; }
+    .sparkle-anim { animation: sparkle 2s ease-in-out infinite; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #ff6eb4, #ff9de2, #ffd6f0, #c8a8ff, #a8c8ff);
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #1a0533 0%, #2d1b69 30%, #1e3a8a 60%, #0f172a 100%);
+    }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255, 110, 180, 0.3);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #ff6eb4, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    .speech-bubble {
+      position: relative;
+      background: white;
+      border-radius: 16px;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 30px;
+      border-width: 15px 10px 0;
+      border-style: solid;
+      border-color: white transparent transparent;
+    }
+    .nav-glass {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .pink-glow {
+      box-shadow: 0 0 30px rgba(255, 110, 180, 0.5);
+    }
+    .scene-card {
+      background: linear-gradient(135deg, rgba(255,110,180,0.1), rgba(192,132,252,0.1));
+      border: 1px solid rgba(255,110,180,0.3);
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-white overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav class="nav-glass fixed top-0 left-0 right-0 z-50 border-b border-pink-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🌸</span>
+          <span class="title-font font-black text-lg bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">新アニメ公開</span>
+        </div>
+        <a href="#" class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition-opacity pink-glow">
+          🎬 公式HPへ
+        </a>
+        <button class="md:hidden text-pink-400">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+    <!-- Background Stars -->
+    <div class="star w-1 h-1" style="top:10%;left:15%;animation-delay:0s;"></div>
+    <div class="star w-2 h-2" style="top:20%;left:80%;animation-delay:0.5s;"></div>
+    <div class="star w-1 h-1" style="top:60%;left:10%;animation-delay:1s;"></div>
+    <div class="star w-1 h-1" style="top:75%;left:90%;animation-delay:1.5s;"></div>
+    <div class="star w-2 h-2" style="top:40%;left:5%;animation-delay:0.3s;"></div>
+    <div class="star w-1 h-1" style="top:85%;left:55%;animation-delay:0.8s;"></div>
+    <div class="star w-1 h-1" style="top:30%;left:45%;animation-delay:1.2s;"></div>
+    <div class="star w-2 h-2" style="top:50%;left:70%;animation-delay:0.6s;"></div>
+
+    <!-- Decorative Bubbles -->
+    <div class="bubble w-96 h-96 bg-pink-500" style="top:-100px;right:-100px;"></div>
+    <div class="bubble w-64 h-64 bg-purple-500" style="bottom:-50px;left:-50px;"></div>
+    <div class="bubble w-48 h-48 bg-blue-500" style="top:50%;left:20%;"></div>
+
+    <!-- Floating Emojis -->
+    <div class="absolute text-4xl float-anim" style="top:15%;left:8%;animation-delay:0s;">💕</div>
+    <div class="absolute text-3xl float-anim" style="top:25%;right:10%;animation-delay:1s;">✨</div>
+    <div class="absolute text-3xl float-anim" style="bottom:20%;left:12%;animation-delay:0.5s;">🌸</div>
+    <div class="absolute text-2xl float-anim" style="bottom:30%;right:8%;animation-delay:1.5s;">💫</div>
+    <div class="absolute text-2xl float-anim" style="top:60%;left:85%;animation-delay:2s;">🎭</div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-20">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-pink-500/20 border border-pink-400/50 text-pink-300 px-4 py-2 rounded-full text-sm font-bold mb-8 backdrop-blur-sm">
+        <span class="sparkle-anim">⭐</span>
+        <span>NEW ANIME 2026 公開決定！</span>
+        <span class="sparkle-anim">⭐</span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="title-font text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+        <span class="text-gradient">大人の初恋</span>
+        <br>
+        <span class="text-white">ギャグコメディ</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <div class="gradient-bg text-transparent bg-clip-text text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+        <span class="text-white">彩り豊かな世界で繰り広げられる</span>
+      </div>
+      <p class="text-pink-200 text-lg sm:text-xl md:text-2xl font-bold mb-4">
+        笑いと恋心が止まらない、テンポ爆速のラブコメ！
+      </p>
+      <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+        20代〜40代必見。あの頃の「ドキドキ」が、笑いと一緒に帰ってくる。<br>
+        大人だから分かる、不器用すぎる初恋の物語。
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#" class="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 py-5 rounded-full text-lg font-black hover:opacity-90 transition-all transform hover:scale-105 pink-glow">
+          <span>🎬</span>
+          <span>公式HPで詳細をチェック！</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+        <a href="#story" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-2 border-pink-400/60 text-pink-300 px-8 py-5 rounded-full text-lg font-bold hover:bg-pink-500/10 transition-all">
+          <span>📖</span>
+          <span>ストーリーを見る</span>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto">
+        <div class="text-center">
+          <div class="title-font text-3xl sm:text-4xl font-black text-pink-400">2026</div>
+          <div class="text-gray-400 text-xs sm:text-sm">年 放送予定</div>
+        </div>
+        <div class="text-center border-x border-pink-500/30">
+          <div class="title-font text-3xl sm:text-4xl font-black text-purple-400">∞</div>
+          <div class="text-gray-400 text-xs sm:text-sm">爆笑シーン数</div>
+        </div>
+        <div class="text-center">
+          <div class="title-font text-3xl sm:text-4xl font-black text-blue-400">100%</div>
+          <div class="text-gray-400 text-xs sm:text-sm">ときめき保証</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400">
+      <span class="text-xs">SCROLL</span>
+      <div class="w-px h-12 bg-gradient-to-b from-pink-400 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section id="story" class="py-20 sm:py-32 bg-gray-950 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-indigo-950/50 to-gray-950"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-400/30 text-purple-300 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          📖 STORY
+        </div>
+        <h2 class="title-font text-4xl sm:text-5xl font-black mb-6">
+          <span class="text-gradient">ストーリー紹介</span>
+        </h2>
+        <p class="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+          30代のサラリーマン・田中誠（たなか まこと）は、ある日突然、憧れの女性・松本あかりと同じプロジェクトチームに配属される。
+          鈍感な彼がドキドキしまくる、大人のラブコメが今始まる！
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <!-- Story Card Left -->
+        <div class="scene-card rounded-3xl p-8 card-hover">
+          <div class="text-6xl mb-4 text-center">💼❤️</div>
+          <h3 class="title-font text-2xl font-black text-pink-400 mb-4 text-center">職場に潜む恋心</h3>
+          <p class="text-gray-300 leading-relaxed text-center">
+            毎朝のコーヒータイム、ちょっとした会話のたびに動悸が止まらない。
+            でも、どう見ても「気づいてない顔」をし続ける田中。
+            その不器用さが、最大の笑いポイント！
+          </p>
+          <div class="mt-6 flex justify-center gap-3">
+            <span class="bg-pink-500/20 border border-pink-500/30 text-pink-300 px-3 py-1 rounded-full text-sm">#恋愛</span>
+            <span class="bg-purple-500/20 border border-purple-500/30 text-purple-300 px-3 py-1 rounded-full text-sm">#コメディ</span>
+          </div>
+        </div>
+
+        <!-- Story Card Right -->
+        <div class="scene-card rounded-3xl p-8 card-hover">
+          <div class="text-6xl mb-4 text-center">🎭😂</div>
+          <h3 class="title-font text-2xl font-black text-purple-400 mb-4 text-center">ギャグが炸裂する日常</h3>
+          <p class="text-gray-300 leading-relaxed text-center">
+            恋愛に鈍感なのに、ボケとツッコミのテンポは天下一品。
+            仕事中の珍事件、すれ違いのラブコメ展開、
+            テンポよく笑えるシーンが連続！目が離せない！
+          </p>
+          <div class="mt-6 flex justify-center gap-3">
+            <span class="bg-blue-500/20 border border-blue-500/30 text-blue-300 px-3 py-1 rounded-full text-sm">#ギャグ</span>
+            <span class="bg-green-500/20 border border-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm">#初恋</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features / Strengths Section -->
+  <section class="py-20 sm:py-32 bg-gradient-to-b from-gray-950 to-indigo-950 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-pink-500/10 border border-pink-400/30 text-pink-300 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          ✨ FEATURES
+        </div>
+        <h2 class="title-font text-4xl sm:text-5xl font-black mb-6">
+          <span class="text-white">このアニメが</span>
+          <span class="text-gradient">選ばれる理由</span>
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+          他のラブコメとは一線を画す、3つのこだわり
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature 1 -->
+        <div class="card-hover bg-gradient-to-br from-pink-500/10 to-rose-500/5 border border-pink-500/30 rounded-3xl p-8 text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg">
+            🎨
+          </div>
+          <h3 class="title-font text-xl font-black text-white mb-3">彩り鮮やかな映像美</h3>
+          <p class="text-gray-400 leading-relaxed text-sm">
+            キャラクターの感情を色彩で表現。喜怒哀楽がビビッドな色使いで画面から飛び出してくる。毎シーン、壁紙にしたくなるクオリティ！
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card-hover bg-gradient-to-br from-purple-500/10 to-indigo-500/5 border border-purple-500/30 rounded-3xl p-8 text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg">
+            ⚡
+          </div>
+          <h3 class="title-font text-xl font-black text-white mb-3">息つく間もない爆速テンポ</h3>
+          <p class="text-gray-400 leading-relaxed text-sm">
+            1話に笑えるシーン何十回？テンポの良い掛け合いと予測不能な展開が連続。「月刊少女野崎くん」を愛した方に絶対刺さる！
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card-hover bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border border-blue-500/30 rounded-3xl p-8 text-center sm:col-span-2 lg:col-span-1">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg">
+            💕
+          </div>
+          <h3 class="title-font text-xl font-black text-white mb-3">大人だから分かる恋の甘酸っぱさ</h3>
+          <p class="text-gray-400 leading-relaxed text-sm">
+            20〜40代の視聴者がリアルに共感できる「大人の初恋」を描写。仕事の悩みも絡んだ複雑な恋心が、笑いとともにじんわり刺さる。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Characters Section -->
+  <section class="py-20 sm:py-32 bg-indigo-950 relative overflow-hidden">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-400/30 text-yellow-300 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          👥 CHARACTERS
+        </div>
+        <h2 class="title-font text-4xl sm:text-5xl font-black mb-6">
+          <span class="text-gradient">登場キャラクター</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <!-- Character 1 -->
+        <div class="card-hover bg-gradient-to-br from-blue-900/50 to-indigo-900/50 border border-blue-500/30 rounded-3xl p-8">
+          <div class="text-center mb-4">
+            <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-5xl mx-auto mb-4">
+              👔
+            </div>
+            <h3 class="title-font text-xl font-black text-white">田中 誠（32歳）</h3>
+            <p class="text-blue-300 text-sm font-bold">主人公 / 会社員</p>
+          </div>
+          <p class="text-gray-400 text-sm text-center leading-relaxed">
+            仕事はできるが恋愛偏差値が絶望的に低い。好きな人の前では挙動不審になるが、本人は「平常運転」だと思っている天然ボケ男子。
+          </p>
+        </div>
+
+        <!-- Character 2 -->
+        <div class="card-hover bg-gradient-to-br from-pink-900/50 to-rose-900/50 border border-pink-500/30 rounded-3xl p-8">
+          <div class="text-center mb-4">
+            <div class="w-24 h-24 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-5xl mx-auto mb-4">
+              🌸
+            </div>
+            <h3 class="title-font text-xl font-black text-white">松本 あかり（29歳）</h3>
+            <p class="text-pink-300 text-sm font-bold">ヒロイン / 企画担当</p>
+          </div>
+          <p class="text-gray-400 text-sm text-center leading-relaxed">
+            明るくてツッコミ上手な才女。田中の天然ボケに毎回振り回されながらも、なぜか気になって仕方ない。心の声がうるさいタイプ。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews / Testimonials -->
+  <section class="py-20 sm:py-32 bg-gray-950 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-400/30 text-green-300 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          💬 VOICES
+        </div>
+        <h2 class="title-font text-4xl sm:text-5xl font-black mb-6">
+          <span class="text-white">視聴者の</span>
+          <span class="text-gradient">反響・声</span>
+        </h2>
+        <p class="text-gray-400 text-lg">先行試写会・PV公開後のリアルな反応</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="card-hover bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-3xl p-6">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <div class="speech-bubble bg-gray-800 rounded-2xl p-4 mb-6 border border-gray-700">
+            <p class="text-gray-200 text-sm leading-relaxed">
+              「野崎くん大好きだったので、同じテンポ感で超刺さりました！田中くんの天然ボケが毎回予想を超えてくる笑 続きが楽しみすぎる！」
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-lg">👩</div>
+            <div>
+              <div class="text-white font-bold text-sm">A.S さん（32歳・女性）</div>
+              <div class="text-gray-500 text-xs">アニメファン歴15年</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="card-hover bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-3xl p-6">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <div class="bg-gray-800 rounded-2xl p-4 mb-6 border border-gray-700">
+            <p class="text-gray-200 text-sm leading-relaxed">
+              「色使いが本当に綺麗！キャラの感情が色でわかる演出最高でした。大人向けラブコメってなんか背伸び感あったけど、これは自然に入ってこれる！」
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-lg">👨</div>
+            <div>
+              <div class="text-white font-bold text-sm">K.M さん（38歳・男性）</div>
+              <div class="text-gray-500 text-xs">週刊誌ライター</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="card-hover bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-3xl p-6 sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <div class="bg-gray-800 rounded-2xl p-4 mb-6 border border-gray-700">
+            <p class="text-gray-200 text-sm leading-relaxed">
+              「仕事帰りに観たら疲れが吹っ飛んだ！テンポが速くてダレる場面ゼロ。あかりちゃんのリアクションが毎回秀逸すぎて声出して笑いました笑」
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center text-lg">👩</div>
+            <div>
+              <div class="text-white font-bold text-sm">Y.T さん（25歳・女性）</div>
+              <div class="text-gray-500 text-xs">OL / ラブコメ好き</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Broadcast Info Section -->
+  <section class="py-20 sm:py-32 bg-gradient-to-b from-gray-950 to-indigo-950 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-400/30 text-blue-300 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          📅 INFO
+        </div>
+        <h2 class="title-font text-4xl sm:text-5xl font-black mb-6">
+          <span class="text-gradient">放送情報</span>
+        </h2>
+      </div>
+
+      <div class="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 border border-indigo-500/30 rounded-3xl p-8 sm:p-12">
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10">
+            <div class="text-4xl mb-3">📺</div>
+            <div class="text-gray-400 text-sm mb-1">放送予定</div>
+            <div class="title-font text-2xl font-black text-white">2026年 放送開始</div>
+          </div>
+          <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10">
+            <div class="text-4xl mb-3">🎯</div>
+            <div class="text-gray-400 text-sm mb-1">対象視聴者</div>
+            <div class="title-font text-2xl font-black text-white">20代〜40代</div>
+          </div>
+          <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10">
+            <div class="text-4xl mb-3">🎨</div>
+            <div class="text-gray-400 text-sm mb-1">ジャンル</div>
+            <div class="title-font text-xl font-black text-white">ラブコメ・ギャグ</div>
+          </div>
+          <div class="text-center p-6 bg-white/5 rounded-2xl border border-white/10">
+            <div class="text-4xl mb-3">🏢</div>
+            <div class="text-gray-400 text-sm mb-1">制作</div>
+            <div class="title-font text-xl font-black text-white">アニメ制作スタジオ</div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-gray-300 text-lg leading-relaxed">
+            詳細な放送局・配信サービスは公式HPにて順次公開予定！<br>
+            今すぐ公式HPをブックマークして、最新情報をチェック！
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-24 sm:py-40 relative overflow-hidden">
+    <div class="absolute inset-0 gradient-bg opacity-20"></div>
+    <div class="absolute inset-0 hero-gradient"></div>
+
+    <!-- Stars Background -->
+    <div class="star w-2 h-2" style="top:20%;left:10%;animation-delay:0s;"></div>
+    <div class="star w-1 h-1" style="top:40%;left:90%;animation-delay:0.7s;"></div>
+    <div class="star w-2 h-2" style="top:70%;left:20%;animation-delay:1.3s;"></div>
+    <div class="star w-1 h-1" style="top:60%;right:15%;animation-delay:0.3s;"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <!-- Floating emojis -->
+      <div class="flex justify-center gap-4 mb-8">
+        <span class="float-anim text-4xl" style="animation-delay:0s;">💕</span>
+        <span class="float-anim text-4xl" style="animation-delay:0.5s;">✨</span>
+        <span class="float-anim text-4xl" style="animation-delay:1s;">🌸</span>
+        <span class="float-anim text-4xl" style="animation-delay:1.5s;">💫</span>
+        <span class="float-anim text-4xl" style="animation-delay:2s;">🎭</span>
+      </div>
+
+      <h2 class="title-font text-4xl sm:text-6xl font-black mb-6 leading-tight">
+        <span class="text-white">あなたの「初恋」が</span>
+        <br>
+        <span class="text-gradient">もう一度動き出す</span>
+      </h2>
+      <p class="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+        笑いとときめきが止まらない、大人のラブコメアニメ。<br>
+        公式HPで最新情報・キャスト情報・PV動画をチェックしよう！
+      </p>
+
+      <!-- Main CTA -->
+      <a href="#" class="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white px-12 py-6 rounded-full text-xl font-black hover:opacity-90 transition-all transform hover:scale-105 shadow-2xl pink-glow mb-6">
+        <span>🎬</span>
+        <span>公式HPで続きを見る！</span>
+        <span class="group-hover:translate-x-2 transition-transform">→</span>
+      </a>
+
+      <p class="text-gray-500 text-sm">
+        公式HPでは最新情報・PV・キャスト情報を随時更新中
+      </p>
+
+      <!-- Bottom tags -->
+      <div class="flex flex-wrap justify-center gap-3 mt-10">
+        <span class="bg-pink-500/10 border border-pink-500/20 text-pink-300 px-4 py-2 rounded-full text-sm">#大人の初恋</span>
+        <span class="bg-purple-500/10 border border-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm">#ギャグコメディ</span>
+        <span class="bg-blue-500/10 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm">#2026年アニメ</span>
+        <span class="bg-green-500/10 border border-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm">#ラブコメ</span>
+        <span class="bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 px-4 py-2 rounded-full text-sm">#テンポ最高</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 border-t border-gray-800 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">🌸</span>
+          <div>
+            <div class="title-font font-black text-xl text-gradient">新アニメ 2026</div>
+            <div class="text-gray-500 text-sm">大人の初恋ギャグコメディ</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
+          <a href="#" class="hover:text-pink-400 transition-colors">公式HP</a>
+          <a href="#story" class="hover:text-pink-400 transition-colors">ストーリー</a>
+          <a href="#" class="hover:text-pink-400 transition-colors">キャラクター</a>
+          <a href="#" class="hover:text-pink-400 transition-colors">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p class="text-gray-600 text-sm">
+          © 2026 アニメ制作スタジオ. All Rights Reserved. | お問い合わせ: pskyq321@gmail.com
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+```
