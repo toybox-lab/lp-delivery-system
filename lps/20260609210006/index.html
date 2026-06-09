@@ -1,0 +1,827 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lujack | ラグジュアリーゴルフコンシェルジュ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #A07830;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark-2: #1A1A1A;
+      --dark-3: #222222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--black);
+      color: #e8e0d0;
+      font-family: 'Noto Sans JP', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-serif {
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #C9A84C, #E8C97A, #A07830, #C9A84C);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gold-border {
+      border-color: var(--gold);
+    }
+
+    .gold-bg {
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+    }
+
+    .hero-bg {
+      background: radial-gradient(ellipse at 50% 0%, #2a1f00 0%, #1a1200 30%, #0A0A0A 70%);
+      position: relative;
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .divider-gold {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .card-dark {
+      background: linear-gradient(145deg, #1a1a1a, #111111);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      transition: all 0.4s ease;
+    }
+
+    .card-dark:hover {
+      border-color: rgba(201, 168, 76, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(201, 168, 76, 0.1);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #C9A84C, #E8C97A, #C9A84C);
+      background-size: 200% 200%;
+      color: #0A0A0A;
+      font-weight: 700;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gold:hover {
+      background-position: right center;
+      box-shadow: 0 0 40px rgba(201, 168, 76, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-gold:hover::after {
+      left: 100%;
+    }
+
+    .btn-outline-gold {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: #0A0A0A;
+    }
+
+    .section-dark {
+      background-color: var(--dark);
+    }
+
+    .section-darker {
+      background-color: var(--dark-2);
+    }
+
+    .number-gold {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 1;
+      background: linear-gradient(135deg, #C9A84C, #E8C97A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.3;
+    }
+
+    .glow-gold {
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+    }
+
+    .nav-scroll {
+      transition: all 0.3s ease;
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--gold);
+      opacity: 0.3;
+    }
+
+    .star {
+      color: var(--gold);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .golf-icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      position: relative;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .shimmer-text {
+      background: linear-gradient(90deg, #C9A84C 0%, #E8C97A 25%, #C9A84C 50%, #E8C97A 75%, #C9A84C 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    .hero-line {
+      position: absolute;
+      width: 1px;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      left: 50%;
+      bottom: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .float-anim {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.3em;
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .luxury-line {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .luxury-line::before,
+    .luxury-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .luxury-line::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-scroll" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="font-playfair text-2xl tracking-widest shimmer-text">LUJACK</div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#service" class="text-sm text-gray-400 hover:text-yellow-400 transition-colors tracking-wider">SERVICE</a>
+        <a href="#strength" class="text-sm text-gray-400 hover:text-yellow-400 transition-colors tracking-wider">STRENGTH</a>
+        <a href="#voice" class="text-sm text-gray-400 hover:text-yellow-400 transition-colors tracking-wider">VOICE</a>
+        <a href="#register" class="btn-gold px-6 py-2 text-sm font-bold tracking-widest">会員登録</a>
+      </div>
+      <button class="md:hidden text-yellow-400" onclick="toggleMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-black border-t border-yellow-900 px-6 py-4">
+      <div class="flex flex-col gap-4">
+        <a href="#service" class="text-gray-400 hover:text-yellow-400 transition-colors tracking-wider" onclick="toggleMenu()">SERVICE</a>
+        <a href="#strength" class="text-gray-400 hover:text-yellow-400 transition-colors tracking-wider" onclick="toggleMenu()">STRENGTH</a>
+        <a href="#voice" class="text-gray-400 hover:text-yellow-400 transition-colors tracking-wider" onclick="toggleMenu()">VOICE</a>
+        <a href="#register" class="btn-gold px-6 py-3 text-sm font-bold tracking-widest text-center" onclick="toggleMenu()">会員登録</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-screen flex flex-col items-center justify-center text-center relative px-6 pt-20">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-5" style="background: radial-gradient(circle, #C9A84C, transparent); filter: blur(60px);"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-5" style="background: radial-gradient(circle, #C9A84C, transparent); filter: blur(40px);"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <div class="section-label mb-8 tracking-widest">LUXURY GOLF CONCIERGE</div>
+
+      <div class="luxury-line mb-8">
+        <span class="font-playfair text-yellow-500 text-lg tracking-widest">LUJACK</span>
+      </div>
+
+      <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-light leading-tight mb-8">
+        <span class="block text-gray-200 mb-2">至高のゴルフ接待を、</span>
+        <span class="block shimmer-text font-semibold">すべてお任せください。</span>
+      </h1>
+
+      <div class="divider-gold max-w-xs mx-auto mb-8"></div>
+
+      <p class="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-12 font-light">
+        ラグジュアリーゴルフコンシェルジュ「Lujack」は、<br class="hidden md:block">
+        40代・50代の成功されたビジネスパーソンのために、<br class="hidden md:block">
+        格式ある接待ゴルフを一気通貫でプロデュースします。
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#register" class="btn-gold px-10 py-4 text-base font-bold tracking-widest w-full sm:w-auto">
+          無料会員登録はこちら
+        </a>
+        <a href="#service" class="btn-outline-gold px-10 py-4 text-base tracking-widest w-full sm:w-auto text-center">
+          サービスを見る
+        </a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+        <div class="text-center">
+          <div class="font-playfair text-3xl gold-text mb-1">500+</div>
+          <div class="text-xs text-gray-500 tracking-wider">接待実績</div>
+        </div>
+        <div class="text-center border-x border-yellow-900">
+          <div class="font-playfair text-3xl gold-text mb-1">100%</div>
+          <div class="text-xs text-gray-500 tracking-wider">満足度</div>
+        </div>
+        <div class="text-center">
+          <div class="font-playfair text-3xl gold-text mb-1">24h</div>
+          <div class="text-xs text-gray-500 tracking-wider">サポート</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 float-anim">
+      <div class="flex flex-col items-center gap-2">
+        <span class="text-xs text-gray-600 tracking-widest">SCROLL</span>
+        <svg class="w-4 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concept Section -->
+  <section class="section-darker py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center fade-in">
+      <div class="section-label mb-6">CONCEPT</div>
+      <h2 class="font-serif text-2xl md:text-4xl font-light text-gray-200 mb-8 leading-relaxed">
+        「接待ゴルフ」は、あなたの<br>
+        <span class="gold-gradient font-semibold">ビジネスの格を高める</span>舞台です。
+      </h2>
+      <div class="divider-gold max-w-xs mx-auto mb-8"></div>
+      <p class="text-gray-400 leading-loose text-base md:text-lg max-w-2xl mx-auto">
+        コース選びから送迎、ラウンド中のケア、食事・ギフトの手配まで。<br>
+        Lujackは、すべての「手間」を引き受け、<br>
+        あなたと大切なゲストのための<span class="gold-text">特別な時間</span>を創り出します。
+      </p>
+    </div>
+  </section>
+
+  <!-- Service Section -->
+  <section id="service" class="section-dark py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-label mb-4">SERVICE</div>
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-gray-100 mb-4">
+          <span class="shimmer-text">一気通貫</span>のサービス
+        </h2>
+        <p class="text-gray-500 text-sm tracking-wider">すべての工程を、Lujackが責任を持って担います</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Service 1 -->
+        <div class="card-dark p-8 fade-in">
+          <div class="number-gold mb-4">01</div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg gold-text mb-3 tracking-wide">コース厳選・手配</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">ゲストの格・目的に応じた最高峰のゴルフコースを厳選。予約から当日の準備まで完全代行します。</p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="card-dark p-8 fade-in">
+          <div class="number-gold mb-4">02</div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg gold-text mb-3 tracking-wide">送迎・ロジスティクス</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">ゲストの送迎手配、荷物管理、移動ルートの最適化。すべての移動をエレガントにプロデュース。</p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="card-dark p-8 fade-in">
+          <div class="number-gold mb-4">03</div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg gold-text mb-3 tracking-wide">ギフト・演出手配</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">接待に相応しい高品質なゴルフギフト、記念品の選定・手配。感動的な演出をご提案します。</p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="card-dark p-8 fade-in">
+          <div class="number-gold mb-4">04</div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg gold-text mb-3 tracking-wide">会食・レストラン手配</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">ラウンド後の会食も含めた一日のプランニング。格式あるレストランの予約からメニュー提案まで。</p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="card-dark p-8 fade-in">
+          <div class="number-gold mb-4">05</div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg gold-text mb-3 tracking-wide">専属コンシェルジュ対応</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">担当コンシェルジュが24時間サポート。当日のイレギュラー対応も迅速に。あなたは接待に専念できます。</p>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="card-dark p-8 fade-in">
+          <div class="number-gold mb-4">06</div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);">
+            <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg gold-text mb-3 tracking-wide">アフターフォロー</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">接待後のお礼状作成・送付サポートなど、関係構築を継続的にサポート。ビジネス成果に貢献します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strength Section -->
+  <section id="strength" class="section-darker py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-label mb-4">STRENGTH</div>
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-gray-100 mb-4">
+          Lujackを選ぶ<span class="shimmer-text">3つの理由</span>
+        </h2>
+        <p class="text-gray-500 text-sm tracking-wider">他にはない、圧倒的な差別化</p>
+      </div>
+
+      <div class="space-y-8">
+
+        <!-- Strength 1 -->
+        <div class="card-dark p-8 md:p-12 fade-in">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center glow-gold" style="background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);">
+                <span class="font-playfair text-2xl gold-text">1</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-serif text-xl md:text-2xl text-gray-100 mb-4">
+                <span class="gold-text">手間ゼロ</span>で高級感を演出
+              </h3>
+              <p class="text-gray-400 leading-relaxed mb-4">
+                コース探し、予約、送迎手配、ギフト選び、会食の予約…通常これらにかかる膨大な時間と労力をLujackが完全に代行。あなたはただ、大切なゲストと向き合うだけでいい。
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">完全代行</span>
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">時間の節約</span>
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">ストレスフリー</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strength 2 -->
+        <div class="card-dark p-8 md:p-12 fade-in">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center glow-gold" style="background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);">
+                <span class="font-playfair text-2xl gold-text">2</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-serif text-xl md:text-2xl text-gray-100 mb-4">
+                一気通貫の<span class="gold-text">プロフェッショナル</span>対応
+              </h3>
+              <p class="text-gray-400 leading-relaxed mb-4">
+                複数の業者に依頼する手間なし。Lujackひとつですべてが完結します。専属コンシェルジュが全行程を管理し、当日に至るまでの細部までを丁寧にコーディネート。
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">ワンストップ</span>
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">専属担当</span>
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">細部へのこだわり</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strength 3 -->
+        <div class="card-dark p-8 md:p-12 fade-in">
+          <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="flex-shrink-0">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center glow-gold" style="background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);">
+                <span class="font-playfair text-2xl gold-text">3</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-serif text-xl md:text-2xl text-gray-100 mb-4">
+                <span class="gold-text">ビジネスの格</span>を高めるブランド力
+              </h3>
+              <p class="text-gray-400 leading-relaxed mb-4">
+                Lujackが演出する接待は、ただのゴルフではありません。あなたのビジネスパーソンとしての品格、センス、そして信頼感を相手に伝える最高の舞台です。
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">ブランド演出</span>
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">信頼構築</span>
+                <span class="px-3 py-1 text-xs tracking-wider rounded-full" style="border: 1px solid rgba(201,168,76,0.3); color: #C9A84C;">差別化</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Who Section -->
+  <section class="section-dark py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-label mb-4">FOR YOU</div>
+        <h2 class="font-serif text-3xl md:text-4xl font-light text-gray-100">
+          こんな方に選ばれています
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 fade-in">
+        <div class="flex items-start gap-4 p-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+          <div class="text-yellow-500 flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">重要な商談相手を接待したいが、何から始めればいいか分からない</p>
+        </div>
+        <div class="flex items-start gap-4 p-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+          <div class="text-yellow-500 flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">これまでの接待では物足りず、もっと印象に残る体験を提供したい</p>
+        </div>
+        <div class="flex items-start gap-4 p-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+          <div class="text-yellow-500 flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">ゴルフ接待の手配に時間を取られ、本来の業務に集中できていない</p>
+        </div>
+        <div class="flex items-start gap-4 p-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+          <div class="text-yellow-500 flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">会社の品格・センスを接待を通じてゲストに伝えたい</p>
+        </div>
+        <div class="flex items-start gap-4 p-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+          <div class="text-yellow-500 flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">ゴルフのキャリアは浅いが、相手への配慮は最高のものにしたい</p>
+        </div>
+        <div class="flex items-start gap-4 p-6" style="border-left: 2px solid rgba(201,168,76,0.4);">
+          <div class="text-yellow-500 flex-shrink-0 mt-1">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">役員・経営者レベルの接待に見合う、上質なサービスを求めている</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Voice Section -->
+  <section id="voice" class="section-darker py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-label mb-4">VOICE</div>
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-gray-100">
+          お客様の<span class="shimmer-text">ご感想</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Voice 1 -->
+        <div class="card-dark p-8 fade-in relative">
+          <div class="quote-mark mb-4">"</div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-8">
+            手配の手間が一切なく、接待当日は相手との会話に集中できました。ゲストからも「素晴らしい一日だった」と後日連絡が。商談もスムーズに進み、本当に頼んで良かったです。
+          </p>
+          <div class="border-t border-yellow-900 pt-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-playfair text-sm" style="background: rgba(201,168,76,0.2); color: #C9A84C; border: 1px solid rgba(201,168,76,0.3);">T</div>
+              <div>
+                <div class="text-sm text-gray-200 font-medium">T.K. 様</div>
+                <div class="text-xs text-gray-500">製造業 / 取締役 / 52歳</div>
+              </div>
+            </div>
+            <div class="flex gap-1 mt-3">
+              <span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice 2 -->
+        <div class="card-dark p-8 fade-in relative">
+          <div class="quote-mark mb-4">"</div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-8">
+            以前は自分で全部手配していましたが、Lujackを使い始めてから接待の質が格段に上がりました。コース選びのセンスが素晴らしく、毎回ゲストに驚いていただいています。
+          </p>
+          <div class="border-t border-yellow-900 pt-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-playfair text-sm" style="background: rgba(201,168,76,0.2); color: #C9A84C; border: 1px solid rgba(201,168,76,0.3);">S</div>
+              <div>
+                <div class="text-sm text-gray-200 font-medium">S.M. 様</div>
+                <div class="text-xs text-gray-500">金融業 / 代表取締役 / 47歳</div>
+              </div>
+            </div>
+            <div class="flex gap-1 mt-3">
+              <span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice 3 -->
+        <div class="card-dark p-8 fade-in relative">
+          <div class="quote-mark mb-4">"</div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-8">
+            担当の方が非常に細やかで、ゲストの好みや健康上の配慮まで気を配ってくれました。ゴルフ後の会食の演出も完璧で、まるで自分がとても気が利く人間に見えました（笑）。
+          </p>
+          <div class="border-t border-yellow-900 pt-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-playfair text-sm" style="background: rgba(201,168,76,0.2); color: #C9A84C; border: 1px solid rgba(201,168,76,0.3);">H</div>
+              <div>
+                <div class="text-sm text-gray-200 font-medium">H.Y. 様</div>
+                <div class="text-xs text-gray-500">不動産業 / 営業本部長 / 44歳</div>
+              </div>
+            </div>
+            <div class="flex gap-1 mt-3">
+              <span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flow Section -->
+  <section class="section-dark py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-label mb-4">FLOW</div>
+        <h2 class="font-serif text-3xl md:text-4xl font-light text-gray-100">
+          ご利用の<span class="shimmer-text">流れ</span>
+        </h2>
+      </div>
+
+      <div class="relative">
+        <div class="absolute left-8 top-0 bottom-0 w-px hidden md:block" style="background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.5), transparent);"></div>
+
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start fade-in">
+            <div class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center relative z-10 glow-gold" style="background: #1a1200; border: 1px solid rgba(201,168,76,0.6);">
+              <span class="font-playfair text-xl gold-text">01</span>
+            </div>
+            <div class="card-dark p-6 flex-1">
+              <h3 class="text-gray-100 font-medium mb-2 tracking-wide">会員登録（無料）</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">まずは無料で会員登録。専属コンシェルジュがご挨拶のご連絡を差し上げます。</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start fade-in">
+            <div class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center relative z-10 glow-gold" style="background: #1a1200; border: 1px solid rgba(201,168,76,0.6);">
+              <span class="font-playfair text-xl gold-text">02</span>
+            </div>
+            <div class="card-dark p-6 flex-1">
+              <h3 class="text-gray-100 font-medium mb-2 tracking-wide">ヒアリング・ご提案</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">接待の目的、ゲストのご状況、ご予算などをお伺いし、最適なプランをご提案します。</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start fade-in">
+            <div class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center relative z-10 glow-gold" style="background: #1a1200; border: 1px solid rgba(201,168,76,0.6);">
+              <span class="font-playfair text-xl gold-text">03</span>
+            </div>
+            <div class="card-dark p-6 flex-1">
+              <h3 class="text-gray-100 font-medium mb-2 tracking-wide">全手配・コーディネート</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">コース予約から送迎、ギフト、会食まで、すべてLujackが手配・管理します。</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start fade-in">
+            <div class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center relative z-10 glow-gold" style="background: #1a1200; border: 1px solid rgba(201,168,76,0.6);">
+              <span class="font-playfair text-xl gold-text">04</span>
+            </div>
+            <div class="card-dark p-6 flex-1">
+              <h3 class="text-gray-100 font-medium mb-2 tracking-wide">接待当日</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">あなたはゲストとの時間に集中するだけ。コンシェルジュが裏方として全力でサポートします。</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start fade-in">
+            <div class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center relative z-10 glow-gold" style="background: #1a1200; border: 1px solid rgba(201,168,76,0.6);">
+              <span class="font-playfair text-xl gold-text">05</span>
+            </div>
+            <div class="card-dark p-6 flex-1">
+              <h3 class="text-gray-100 font-medium mb-2 tracking-wide">アフターサポート</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">接待後のフォロー提案、次回の接待に向けたご提案など継続的にサポートします。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="register" class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #0A0A0A 0%, #1a1200 50%, #0A0A0A 100%);">
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);"></div>
+    </div>
+    <div class="absolute top-1/4 right-10 w-64 h-64 rounded-full opacity-5" style="background: radial-gradient(circle, #C9A84C, transparent); filter: blur(40px);"></div>
+    <div class="absolute bottom-1/4 left-10 w-48 h-48 rounded-full opacity-5" style="background: radial-gradient(circle, #C9A84C, transparent); filter: blur(30px);"></div>
+
+    <div class="max-w-2xl mx-auto text-center relative z-10 fade-in">
+      <div class="section-label mb-6">MEMBERSHIP</div>
+      <h2 class="font-serif text-3xl md:text-5xl font-light text-gray-100 mb-4 leading-tight">
+        今すぐ、<span class="shimmer-text">無料会員登録</span>を。
+      </h2>
+      <div class="divider-gold max-w-xs mx-auto mb-6"></div>
+      <p class="text-gray-400 leading-relaxed mb-10">
+        登録後、専属コンシェルジュよりご連絡いたします。<br>
+        まずはお気軽にご相談ください。
+      </p>
+
+      <form class="space-y-4 mb-8 text-left">
+        <div>
+          <label class="block text-xs text-gray-500 mb-2 tracking-wider">お名前 <span class="text-yellow-600">*</span></label>
+          <input type="text" placeholder="山田 太郎" class="w-full px-4 py-3 text-gray-200 text-sm outline-none transition-all" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2); focus:border-color: rgba(201,168,76,0.6);" onfocus="this.style.borderColor='rgba(201,168,76,0.6)'" onblur="this.style.borderColor='rgba(201,168,76,0.2)'">
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-2 tracking-wider">会社名</label>
+          <input type="text" placeholder="株式会社〇〇" class="w-full px-4 py-3 text-gray-200 text-sm outline-none transition-all" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2);" onfocus="this.style.borderColor='rgba(201,168,76,0.6)'" onblur="this.style.borderColor='rgba(201,168,76,0.2)'">
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-2 tracking-wider">メールアドレス <span class="text-yellow-600">*</span></label>
+          <input type="email" placeholder="example@company.com" class="w-full px-4 py-3 text-gray-200 text-sm outline-none transition-all" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2);" onfocus="this.style.borderColor='rgba(201,168,76,0.6)'" onblur="this.style.borderColor='rgba(201,168,76,0.2)'">
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-2 tracking-wider">お電話番号</label>
+          <input type="tel" placeholder="090-0000-0000" class="w-full px-4 py-3 text-gray-200 text-sm outline-none transition-all" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2);" onfocus="this.style.borderColor='rgba(201,168,76,0.6)'" onblur="this.style.borderColor='rgba(201,168,76,0.2)'">
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-2 tracking-wider">ご相談内容（任意）</label>
+          <textarea rows="3" placeholder="接待の目的やご希望などをお気軽にご記入ください" class="w-full px-4 py-3 text-gray-200 text-sm outline-none transition-all resize-none" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2);" onfocus="this.style.borderColor='rgba(201,168,76,0.6)'" onblur="this.style.borderColor='rgba(201,168,76,0.2)'"></textarea>
+        </div>
+        <button type="submit" class="btn-gold w-full py-4 text-base font-bold tracking-widest mt-4">
+          無料会員登録する
+        </button>
+      </form>
+
+      <p class="text-xs text-gray-600">
+        ご登録いただいた情報は、サービスの提供のみに使用いたします。<br>
+        プライバシーポリシーに同意の上ご登録ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-darker py-24 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <div class="section-label mb-4">FAQ</div>
+        <h2 class="font-serif text-3xl font-light text-gray-100">よくあるご質問</h2>
+      </div>
+
+      <div class="space-y-4 fade-in">
+        <div class="card-dark overflow-hidden">
+          <button class="w-full px-8 py-6 text-left flex justify-between items-center" onclick="toggleFaq(this)">
+            <span class="text-gray-200 text-sm tracking-wide">会員登録は本当に無料ですか？</span>
+            <span class="gold-text text-xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer hidden px-8 pb-6">
+            <p class="text-gray-400 text-sm leading-relaxed">はい、会員登録は完全無料です。登録後、専属コンシェルジュよりご連絡し、詳細なサービスのご説明とお見積りをいたします。</p>
+          </div>
+        </div>
+
+        <div class="card-dark overflow-hidden">
+          <button class="w-full px-8 py-6 text-left flex justify-between items-center" onclick="toggleFaq(this)">
+            <span class="text-gray-200 text-sm tracking-wide">どのような規模・予算に対応していますか？</span>
+            <span class="gold-text text-xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer hidden px-8 pb-6">
+            <p class="text-gray-400 text-sm leading-relaxed">お客様のご予算・ご要望に応じた柔軟なプランをご用意しております。まずはコンシェルジュにご相談ください。</p>
+          </div>
+        </div>
+
+        <div class="card-dark overflow-hidden">
+          <button class="w-full px-8 py-6 text-left flex justify-between items-center" onclick="toggleFaq(this)">
+            <span class="text-gray-200 text-sm tracking-wide">ゴルフが得意でなくても利用できますか？</span>
+            <span class="gold-text text-xl transition-transform">+</span>
+          </button>
+          <div class="faq-answer hidden px-8 pb-
