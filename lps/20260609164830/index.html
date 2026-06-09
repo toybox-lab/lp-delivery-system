@@ -1,0 +1,502 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テスト | 公式サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    .hero-gradient {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    }
+    .accent-gradient {
+      background: linear-gradient(90deg, #e94560, #f5a623);
+    }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .btn-main {
+      background: linear-gradient(90deg, #e94560, #f5a623);
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+    .btn-main:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+    .section-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .section-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .star { color: #f5a623; }
+    .nav-blur {
+      backdrop-filter: blur(10px);
+      background: rgba(26, 26, 46, 0.85);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- ナビゲーション -->
+  <nav class="fixed top-0 left-0 w-full z-50 nav-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="text-white font-black text-2xl tracking-wider">
+        テスト
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-white/80">
+        <a href="#service" class="hover:text-white transition">サービス</a>
+        <a href="#strength" class="hover:text-white transition">強み</a>
+        <a href="#voice" class="hover:text-white transition">お客様の声</a>
+        <a href="#contact" class="btn-main text-white px-5 py-2 rounded-full font-bold text-sm">お問い合わせ</a>
+      </div>
+      <button class="md:hidden text-white" onclick="toggleMenu()">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- モバイルメニュー -->
+    <div id="mobileMenu" class="hidden md:hidden bg-gray-900 px-4 pb-4">
+      <a href="#service" class="block text-white/80 py-2 hover:text-white" onclick="toggleMenu()">サービス</a>
+      <a href="#strength" class="block text-white/80 py-2 hover:text-white" onclick="toggleMenu()">強み</a>
+      <a href="#voice" class="block text-white/80 py-2 hover:text-white" onclick="toggleMenu()">お客様の声</a>
+      <a href="#contact" class="block mt-2 btn-main text-white px-5 py-2 rounded-full font-bold text-sm text-center" onclick="toggleMenu()">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section class="hero-gradient min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden">
+    <!-- 装飾円 -->
+    <div class="absolute top-20 right-0 w-96 h-96 rounded-full opacity-10" style="background: radial-gradient(circle, #e94560, transparent);"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-10" style="background: radial-gradient(circle, #f5a623, transparent);"></div>
+
+    <div class="max-w-6xl mx-auto px-4 w-full">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 text-center md:text-left">
+          <div class="inline-block px-4 py-1 rounded-full text-sm font-bold mb-6 accent-gradient text-white">
+            テスト業界のプロフェッショナル
+          </div>
+          <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
+            テストで<br>
+            <span class="text-transparent bg-clip-text" style="background: linear-gradient(90deg, #e94560, #f5a623);">あなたの悩みを</span><br>
+            解決します
+          </h1>
+          <p class="text-white/70 text-lg mb-8 leading-relaxed max-w-xl">
+            テストのサービスが提供する最高の体験を。あなたのニーズに合わせた最適なソリューションをご提案します。まずはお気軽にご相談ください。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="#contact" class="btn-main text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg">
+              無料相談はこちら →
+            </a>
+            <a href="#service" class="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition">
+              サービスを見る
+            </a>
+          </div>
+          <div class="flex items-center gap-6 mt-10 justify-center md:justify-start">
+            <div class="text-center">
+              <div class="text-3xl font-black text-white">500<span class="text-red-400">+</span></div>
+              <div class="text-white/60 text-xs mt-1">累計実績</div>
+            </div>
+            <div class="w-px h-12 bg-white/20"></div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-white">98<span class="text-red-400">%</span></div>
+              <div class="text-white/60 text-xs mt-1">顧客満足度</div>
+            </div>
+            <div class="w-px h-12 bg-white/20"></div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-white">10<span class="text-red-400">年</span></div>
+              <div class="text-white/60 text-xs mt-1">業界経験</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 flex justify-center">
+          <div class="relative">
+            <div class="w-72 h-72 md:w-96 md:h-96 rounded-3xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(233,69,96,0.3), rgba(245,166,35,0.2)); border: 1px solid rgba(255,255,255,0.1);">
+              <div class="text-center">
+                <div class="text-8xl mb-4">🚀</div>
+                <div class="text-white font-bold text-xl">テスト</div>
+                <div class="text-white/60 text-sm mt-2">Professional Service</div>
+              </div>
+            </div>
+            <div class="absolute -top-4 -right-4 bg-yellow-400 text-gray-900 text-xs font-black px-3 py-1 rounded-full">
+              ✓ 実績No.1
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 課題提起セクション -->
+  <section class="bg-gray-900 py-16">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-black text-white mb-4">こんなお悩みはありませんか？</h2>
+      <p class="text-white/60 mb-10">テストのお客様が抱える代表的な課題</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
+          <div class="text-3xl mb-3">😰</div>
+          <p class="text-white font-bold mb-2">時間が足りない</p>
+          <p class="text-white/60 text-sm">毎日忙しくて、なかなか理想の状態に近づけない…</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
+          <div class="text-3xl mb-3">😟</div>
+          <p class="text-white font-bold mb-2">何から始めればいい？</p>
+          <p class="text-white/60 text-sm">情報が多すぎて、どれが本当に正しいか分からない…</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
+          <div class="text-3xl mb-3">😣</div>
+          <p class="text-white font-bold mb-2">結果が出ない</p>
+          <p class="text-white/60 text-sm">いろいろ試してみたけど、なかなか成果につながらない…</p>
+        </div>
+      </div>
+      <div class="mt-10 text-white/80 text-lg">
+        そのお悩み、<span class="text-yellow-400 font-black">テストが解決します！</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス説明セクション -->
+  <section id="service" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 section-fade">
+        <div class="inline-block px-4 py-1 rounded-full text-sm font-bold mb-4 accent-gradient text-white">SERVICE</div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">提供サービス</h2>
+        <p class="text-gray-500 max-w-xl mx-auto">テストが提供する充実したサービスラインナップをご紹介します</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 rounded-3xl p-8 card-hover section-fade">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background: linear-gradient(135deg, #e94560, #f5a623);">
+            🎯
+          </div>
+          <h3 class="text-xl font-black text-gray-900 mb-3">サービス01</h3>
+          <p class="text-gray-500 leading-relaxed text-sm">
+            テストのサービスについての詳細な説明文です。お客様のニーズに合わせた最適なプランをご提案します。
+          </p>
+          <div class="mt-6 text-sm font-bold" style="color: #e94560;">詳しく見る →</div>
+        </div>
+        <div class="bg-gray-50 rounded-3xl p-8 card-hover section-fade" style="transition-delay: 0.1s;">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background: linear-gradient(135deg, #e94560, #f5a623);">
+            💡
+          </div>
+          <h3 class="text-xl font-black text-gray-900 mb-3">サービス02</h3>
+          <p class="text-gray-500 leading-relaxed text-sm">
+            専門知識と豊富な経験を活かし、お客様の課題を根本から解決するサービスを提供します。
+          </p>
+          <div class="mt-6 text-sm font-bold" style="color: #e94560;">詳しく見る →</div>
+        </div>
+        <div class="bg-gray-50 rounded-3xl p-8 card-hover section-fade" style="transition-delay: 0.2s;">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl" style="background: linear-gradient(135deg, #e94560, #f5a623);">
+            🤝
+          </div>
+          <h3 class="text-xl font-black text-gray-900 mb-3">サービス03</h3>
+          <p class="text-gray-500 leading-relaxed text-sm">
+            継続的なサポートと丁寧なアフターケアで、長期的な成果を実現します。
+          </p>
+          <div class="mt-6 text-sm font-bold" style="color: #e94560;">詳しく見る →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強みセクション -->
+  <section id="strength" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 section-fade">
+        <div class="inline-block px-4 py-1 rounded-full text-sm font-bold mb-4 accent-gradient text-white">STRENGTH</div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">選ばれる理由</h2>
+        <p class="text-gray-500 max-w-xl mx-auto">テストが他社と違う、4つの理由</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl p-8 flex gap-6 items-start card-hover section-fade">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-black text-lg" style="background: linear-gradient(135deg, #e94560, #f5a623);">01</div>
+          <div>
+            <h3 class="text-lg font-black text-gray-900 mb-2">強み・特徴その１</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">テストの一番の強みについての説明文です。競合他社との差別化ポイントを分かりやすくお伝えします。</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl p-8 flex gap-6 items-start card-hover section-fade" style="transition-delay: 0.1s;">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-black text-lg" style="background: linear-gradient(135deg, #e94560, #f5a623);">02</div>
+          <div>
+            <h3 class="text-lg font-black text-gray-900 mb-2">強み・特徴その２</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">豊富な実績と専門知識で、お客様のご要望に素早く・的確に対応します。</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl p-8 flex gap-6 items-start card-hover section-fade" style="transition-delay: 0.2s;">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-black text-lg" style="background: linear-gradient(135deg, #e94560, #f5a623);">03</div>
+          <div>
+            <h3 class="text-lg font-black text-gray-900 mb-2">強み・特徴その３</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">業界最高水準の品質を、リーズナブルな価格でご提供。コストパフォーマンスには自信があります。</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl p-8 flex gap-6 items-start card-hover section-fade" style="transition-delay: 0.3s;">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-black text-lg" style="background: linear-gradient(135deg, #e94560, #f5a623);">04</div>
+          <div>
+            <h3 class="text-lg font-black text-gray-900 mb-2">強み・特徴その４</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">充実したアフターサポートで、ご利用後も安心。お客様の成功にコミットします。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実績数字セクション -->
+  <section class="py-16 accent-gradient">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+        <div class="section-fade">
+          <div class="text-4xl md:text-5xl font-black mb-2">500<span class="text-2xl">+</span></div>
+          <div class="text-white/80 text-sm font-medium">累計顧客数</div>
+        </div>
+        <div class="section-fade" style="transition-delay: 0.1s;">
+          <div class="text-4xl md:text-5xl font-black mb-2">98<span class="text-2xl">%</span></div>
+          <div class="text-white/80 text-sm font-medium">顧客満足度</div>
+        </div>
+        <div class="section-fade" style="transition-delay: 0.2s;">
+          <div class="text-4xl md:text-5xl font-black mb-2">10<span class="text-2xl">年</span></div>
+          <div class="text-white/80 text-sm font-medium">業界経験</div>
+        </div>
+        <div class="section-fade" style="transition-delay: 0.3s;">
+          <div class="text-4xl md:text-5xl font-black mb-2">24<span class="text-2xl">h</span></div>
+          <div class="text-white/80 text-sm font-medium">サポート対応</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声セクション -->
+  <section id="voice" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14 section-fade">
+        <div class="inline-block px-4 py-1 rounded-full text-sm font-bold mb-4 accent-gradient text-white">VOICE</div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">お客様の声</h2>
+        <p class="text-gray-500 max-w-xl mx-auto">実際にご利用いただいたお客様からの喜びの声</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 声1 -->
+        <div class="bg-gray-50 rounded-3xl p-8 card-hover section-fade">
+          <div class="flex mb-4">
+            <span class="star text-xl">★★★★★</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed text-sm mb-6">
+            「テストのサービスを利用してから、悩みが解消されました。担当者の方も丁寧に対応してくださり、安心してお任せできました。また利用したいと思います！」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, #e94560, #f5a623);">A</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">Aさん（30代・女性）</div>
+              <div class="text-gray-400 text-xs">フリーランス</div>
+            </div>
+          </div>
+        </div>
+        <!-- 声2 -->
+        <div class="bg-gray-50 rounded-3xl p-8 card-hover section-fade" style="transition-delay: 0.1s;">
+          <div class="flex mb-4">
+            <span class="star text-xl">★★★★★</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed text-sm mb-6">
+            「初めて利用しましたが、スタッフの対応がとても親切で好印象でした。サービスの質も高く、コストパフォーマンスも抜群です。友人にも紹介しました！」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, #e94560, #f5a623);">B</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">Bさん（40代・男性）</div>
+              <div class="text-gray-400 text-xs">会社員</div>
+            </div>
+          </div>
+        </div>
+        <!-- 声3 -->
+        <div class="bg-gray-50 rounded-3xl p-8 card-hover section-fade" style="transition-delay: 0.2s;">
+          <div class="flex mb-4">
+            <span class="star text-xl">★★★★★</span>
+          </div>
+          <p class="text-gray-600 leading-relaxed text-sm mb-6">
+            「結果が出るまで不安でしたが、丁寧なサポートのおかげで最後までやり遂げることができました。本当におすすめのサービスです！」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, #e94560, #f5a623);">C</div>
+            <div>
+              <div class="font-bold text-gray-900 text-sm">Cさん（20代・女性）</div>
+              <div class="text-gray-400 text-xs">学生</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-14 section-fade">
+        <div class="inline-block px-4 py-1 rounded-full text-sm font-bold mb-4 accent-gradient text-white">FAQ</div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">よくある質問</h2>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-2xl overflow-hidden section-fade">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-bold text-gray-900">
+            <span>Q. 初めてでも安心して利用できますか？</span>
+            <span class="text-2xl font-light transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+            はい、もちろんです。初めてのお客様にも丁寧にご説明しながら進めますので、安心してご利用ください。
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden section-fade" style="transition-delay: 0.1s;">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-bold text-gray-900">
+            <span>Q. 料金はいくらくらいかかりますか？</span>
+            <span class="text-2xl font-light transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+            お客様のご要望やプランにより異なります。まずは無料相談にてご希望をお聞かせください。最適なプランをご提案いたします。
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden section-fade" style="transition-delay: 0.2s;">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-bold text-gray-900">
+            <span>Q. 対応エリアはどこですか？</span>
+            <span class="text-2xl font-light transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+            全国対応しております。オンラインでもご利用可能ですので、お気軽にご相談ください。
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden section-fade" style="transition-delay: 0.3s;">
+          <button onclick="toggleFaq(this)" class="w-full text-left px-6 py-5 flex items-center justify-between font-bold text-gray-900">
+            <span>Q. 相談だけでもできますか？</span>
+            <span class="text-2xl font-light transition-transform duration-300">+</span>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+            はい、もちろんです。まずはお気軽にご相談ください。無理な勧誘等は一切行いません。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="contact" class="py-20 hero-gradient relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-80 h-80 rounded-full opacity-10" style="background: radial-gradient(circle, #f5a623, transparent);"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-10" style="background: radial-gradient(circle, #e94560, transparent);"></div>
+    <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+      <div class="section-fade">
+        <div class="inline-block px-4 py-1 rounded-full text-sm font-bold mb-6 accent-gradient text-white">CONTACT</div>
+        <h2 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+          まずはお気軽に<br>
+          <span class="text-transparent bg-clip-text" style="background: linear-gradient(90deg, #e94560, #f5a623);">無料相談</span>してみませんか？
+        </h2>
+        <p class="text-white/70 mb-10 text-lg leading-relaxed">
+          テストのプロが、あなたのお悩みに合わせた<br class="hidden md:block">最適なプランをご提案します。
+        </p>
+        <div class="bg-white/10 border border-white/20 rounded-3xl p-8 md:p-10 backdrop-blur-sm">
+          <form class="space-y-5" onsubmit="handleSubmit(event)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <input type="text" placeholder="お名前 *" required
+                class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/60 transition">
+              <input type="email" placeholder="メールアドレス *" required
+                class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/60 transition">
+            </div>
+            <input type="tel" placeholder="電話番号"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/60 transition">
+            <textarea rows="4" placeholder="お問い合わせ内容をご記入ください"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/60 transition resize-none"></textarea>
+            <button type="submit" class="w-full btn-main text-white py-4 rounded-xl font-black text-lg shadow-xl">
+              無料相談を申し込む →
+            </button>
+          </form>
+          <p class="text-white/50 text-xs mt-4">※ 24時間以内にご返信いたします。無理な勧誘は一切行いません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-gray-900 py-10">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <div class="text-white font-black text-2xl mb-2">テスト</div>
+          <div class="text-gray-500 text-sm">テスト業界のプロフェッショナル</div>
+        </div>
+        <div class="flex gap-8 text-sm text-gray-500">
+          <a href="#service" class="hover:text-white transition">サービス</a>
+          <a href="#strength" class="hover:text-white transition">強み</a>
+          <a href="#voice" class="hover:text-white transition">お客様の声</a>
+          <a href="#contact" class="hover:text-white transition">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-600 text-sm">
+        <p>© 2024 テスト. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 固定CTA（スマホ） -->
+  <div class="fixed bottom-0 left-0 w-full md:hidden z-40 p-4 bg-gray-900/95 backdrop-blur-sm border-t border-white/10">
+    <a href="#contact" class="btn-main block text-center text-white py-3 rounded-xl font-black shadow-xl">
+      無料相談はこちら →
+    </a>
+  </div>
+
+  <script>
+    // スクロールアニメーション
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-fade').forEach(el => {
+      observer.observe(el);
+    });
+
+    // モバイルメニュー
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // FAQ
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector('span:last-child');
+      answer.classList.toggle('hidden');
+      icon.textContent = answer.classList.contains('hidden') ? '+' : '−';
+    }
+
+    // フォーム送信
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = '✓ 送信しました！ありがとうございます';
+      btn.style.background = 'linear-gradient(90deg, #22c55e, #16a34a)';
+      btn.disabled = true;
+    }
+
+    // スムーススクロール
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+```
