@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tesuto | 公式サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#7C3AED',
+            accent: '#06B6D4',
+          },
+          fontFamily: {
+            sans: ['Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #06B6D4 100%);
+    }
+    .glass {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(79,70,229,0.2);
+    }
+    .hero-text {
+      background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-bg {
+      background: linear-gradient(180deg, #f8f7ff 0%, #ffffff 100%);
+    }
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .pulse-btn {
+      animation: pulse-glow 2s infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(79,70,229,0.4); }
+      50% { box-shadow: 0 0 40px rgba(79,70,229,0.8), 0 0 60px rgba(124,58,237,0.4); }
+    }
+    .noise-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.05;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+  <!-- ナビゲーション -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+            <span class="text-white font-black text-sm">T</span>
+          </div>
+          <span class="font-black text-xl text-gray-900">tesuto</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#service" class="text-gray-600 hover:text-primary transition-colors font-medium">サービス</a>
+          <a href="#strength" class="text-gray-600 hover:text-primary transition-colors font-medium">強み</a>
+          <a href="#voice" class="text-gray-600 hover:text-primary transition-colors font-medium">お客様の声</a>
+          <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-full font-bold hover:bg-secondary transition-all hover:shadow-lg">お問い合わせ</a>
+        </div>
+        <button class="md:hidden text-gray-700" id="menuBtn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- モバイルメニュー -->
+    <div class="md:hidden hidden bg-white border-t border-gray-100 px-4 py-4" id="mobileMenu">
+      <div class="flex flex-col gap-4">
+        <a href="#service" class="text-gray-600 font-medium py-2">サービス</a>
+        <a href="#strength" class="text-gray-600 font-medium py-2">強み</a>
+        <a href="#voice" class="text-gray-600 font-medium py-2">お客様の声</a>
+        <a href="#contact" class="bg-primary text-white px-5 py-3 rounded-full font-bold text-center">お問い合わせ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section class="relative gradient-bg noise-bg min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <!-- 背景の装飾 -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8">
+        <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+        <span class="text-white/90 text-sm font-medium">tesuto の新しい体験へ</span>
+      </div>
+      
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+        <span class="hero-text">tesuto</span>
+        <br>
+        <span class="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 block">
+          あなたの未来を、<br class="sm:hidden">ともに創る
+        </span>
+      </h1>
+      
+      <p class="text-white/80 text-lg sm:text-xl lg:text-2xl font-light mb-10 max-w-3xl mx-auto leading-relaxed">
+        tesuto が提供する最高品質のサービスで、<br class="hidden sm:block">あなたのビジネスを次のステージへ。
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#contact" class="pulse-btn bg-white text-primary font-black px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition-all shadow-2xl w-full sm:w-auto">
+          無料でお問い合わせ →
+        </a>
+        <a href="#service" class="glass text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-white/20 transition-all w-full sm:w-auto">
+          サービスを見る
+        </a>
+      </div>
+      
+      <!-- スタッツ -->
+      <div class="mt-16 grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+        <div class="glass rounded-2xl p-4">
+          <div class="text-white font-black text-3xl sm:text-4xl">98<span class="text-accent">%</span></div>
+          <div class="text-white/70 text-sm mt-1">顧客満足度</div>
+        </div>
+        <div class="glass rounded-2xl p-4">
+          <div class="text-white font-black text-3xl sm:text-4xl">500<span class="text-accent">+</span></div>
+          <div class="text-white/70 text-sm mt-1">導入実績</div>
+        </div>
+        <div class="glass rounded-2xl p-4">
+          <div class="text-white font-black text-3xl sm:text-4xl">10<span class="text-accent">年</span></div>
+          <div class="text-white/70 text-sm mt-1">業界経験</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 波形装飾 -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" class="w-full fill-white">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 課題提起セクション -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 scroll-fade">
+        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-3">こんなお悩みはありませんか？</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900">多くの方が抱える<span class="text-primary">3つの課題</span></h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card-hover bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl p-8 border border-red-100 scroll-fade">
+          <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-black text-xl text-gray-900 mb-3">時間が足りない</h3>
+          <p class="text-gray-600 leading-relaxed">日々の業務に追われ、本来やるべきことに集中できていない状況が続いていませんか？</p>
+        </div>
+        
+        <div class="card-hover bg-gradient-to-br from-yellow-50 to-amber-50 rounded-3xl p-8 border border-yellow-100 scroll-fade">
+          <div class="w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="font-black text-xl text-gray-900 mb-3">成果が出ない</h3>
+          <p class="text-gray-600 leading-relaxed">努力しているのに思ったような結果が得られず、何が問題なのかも分からない状態が続いている。</p>
+        </div>
+        
+        <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 border border-blue-100 scroll-fade">
+          <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-black text-xl text-gray-900 mb-3">相談できる相手がいない</h3>
+          <p class="text-gray-600 leading-relaxed">専門的なアドバイスをもらえる信頼できるパートナーがおらず、一人で抱え込んでしまっている。</p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12 scroll-fade">
+        <div class="inline-flex items-center gap-3 bg-primary/5 border border-primary/20 rounded-full px-6 py-3">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span class="text-primary font-bold">これらすべて、tesuto が解決します</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス説明セクション -->
+  <section id="service" class="py-20 section-bg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 scroll-fade">
+        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-3">Our Service</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">tesuto の<span class="text-primary">サービス</span></h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">お客様のニーズに合わせた最適なソリューションを提供します</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- サービス1 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 scroll-fade">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="font-black text-xl text-gray-900 mb-3">コンサルティング</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">専門家がお客様のビジネス課題を深く分析し、最適な戦略を立案・実行まで伴走サポートします。</p>
+          <div class="flex items-center gap-2 text-primary font-bold text-sm">
+            <span>詳しく見る</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- サービス2 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 scroll-fade">
+          <div class="w-16 h-16 bg-gradient-to-br from-accent to-blue-500 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="font-black text-xl text-gray-900 mb-3">スピード対応</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">お問い合わせから最短24時間以内にご対応。迅速かつ丁寧なサービス提供を約束します。</p>
+          <div class="flex items-center gap-2 text-primary font-bold text-sm">
+            <span>詳しく見る</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- サービス3 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 scroll-fade">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-black text-xl text-gray-900 mb-3">安心のサポート</h3>
+          <p class="text-gray-500 leading-relaxed mb-4">導入後も継続的なサポートを提供。お客様が安心して使い続けられる環境を整えます。</p>
+          <div class="flex items-center gap-2 text-primary font-bold text-sm">
+            <span>詳しく見る</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強みセクション -->
+  <section id="strength" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 scroll-fade">
+        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-3">Why Choose Us</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">選ばれる<span class="text-primary">4つの理由</span></h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">tesuto が多くのお客様から選ばれ続ける理由をご紹介します</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 強み1 -->
+        <div class="flex gap-6 items-start scroll-fade">
+          <div class="flex-shrink-0 w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+            <span class="text-white font-black text-2xl">01</span>
+          </div>
+          <div>
+            <h3 class="font-black text-xl text-gray-900 mb-2">圧倒的な実績と経験</h3>
+            <p class="text-gray-500 leading-relaxed">10年以上の業界経験と500社以上の導入実績。豊富なノウハウをもとに、お客様に最適なソリューションを提供します。</p>
+          </div>
+        </div>
+        
+        <!-- 強み2 -->
+        <div class="flex gap-6 items-start scroll-fade">
+          <div class="flex-shrink-0 w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+            <span class="text-white font-black text-2xl">02</span>
+          </div>
+          <div>
+            <h3 class="font-black text-xl text-gray-900 mb-2">完全オーダーメイド</h3>
+            <p class="text-gray-500 leading-relaxed">お客様のビジネスに合わせた完全カスタマイズ対応。テンプレートではなく、真に必要なものだけをご提供します。</p>
+          </div>
+        </div>
+        
+        <!-- 強み3 -->
+        <div class="flex gap-6 items-start scroll-fade">
+          <div class="flex-shrink-0 w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+            <span class="text-white font-black text-2xl">03</span>
+          </div>
+          <div>
+            <h3 class="font-black text-xl text-gray-900 mb-2">透明性の高い料金体系</h3>
+            <p class="text-gray-500 leading-relaxed">隠れたコストは一切なし。明確な料金体系でお客様が安心してご利用いただける環境を整えています。</p>
+          </div>
+        </div>
+        
+        <!-- 強み4 -->
+        <div class="flex gap-6 items-start scroll-fade">
+          <div class="flex-shrink-0 w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center shadow-lg">
+            <span class="text-white font-black text-2xl">04</span>
+          </div>
+          <div>
+            <h3 class="font-black text-xl text-gray-900 mb-2">充実したアフターサポート</h3>
+            <p class="text-gray-500 leading-relaxed">サービス提供後も専任担当者がサポート。長期的なパートナーとして、お客様の成功を共に目指します。</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 差別化バナー -->
+      <div class="mt-16 gradient-bg rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden scroll-fade">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative z-10">
+          <h3 class="text-white font-black text-2xl sm:text-3xl mb-4">他社との決定的な違い</h3>
+          <p class="text-white/80 text-lg max-w-2xl mx-auto mb-6">tesuto は単なるサービス提供者ではなく、お客様のビジネスパートナーとして共に成長することをコミットしています。</p>
+          <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto">
+            <div class="glass rounded-2xl p-4">
+              <div class="text-white font-black text-2xl">✓</div>
+              <div class="text-white/80 text-sm">専任担当</div>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <div class="text-white font-black text-2xl">✓</div>
+              <div class="text-white/80 text-sm">24h対応</div>
+            </div>
+            <div class="glass rounded-2xl p-4">
+              <div class="text-white font-black text-2xl">✓</div>
+              <div class="text-white/80 text-sm">成果保証</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声セクション -->
+  <section id="voice" class="py-20 section-bg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 scroll-fade">
+        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-3">Customer Voice</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">お客様の<span class="text-primary">声</span></h2>
+        <p class="text-gray-500 text-lg">実際にご利用いただいたお客様からの喜びの声</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- 声1 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 scroll-fade">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6 text-sm">「導入から1ヶ月で売上が30%アップしました。担当者の方が親身になって相談に乗ってくださり、本当に心強かったです。これほど丁寧なサポートは他社では経験したことがありません。」</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+              <span class="text-white font-bold text-lg">A</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">田中 明子 様</div>
+              <div class="text-gray-400 text-sm">株式会社〇〇 代表取締役</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 声2 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 scroll-fade">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6 text-sm">「以前は何社かに相談しましたが、どこも画一的な提案ばかり。tesuto さんは私たちのビジネスをしっかり理解した上でオーダーメイドの提案をしてくれました。結果、顧客獲得コストが50%削減できました。」</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-gradient-to-br from-accent to-blue-600 rounded-full flex items-center justify-center">
+              <span class="text-white font-bold text-lg">S</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">佐藤 健一 様</div>
+              <div class="text-gray-400 text-sm">個人事業主・フリーランス</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 声3 -->
+        <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100 scroll-fade">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-gray-600 leading-relaxed mb-6 text-sm">「初めての利用で不安でしたが、丁寧な説明とスピーディな対応に感動しました。問い合わせから翌日には具体的なプランを提示してもらえ、スムーズに進められました。また必ず依頼します！」</p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center">
+              <span class="text-white font-bold text-lg">Y</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">山田 裕子 様</div>
+              <div class="text-gray-400 text-sm">飲食店オーナー</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フロー・ステップセクション -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 scroll-fade">
+        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-3">How It Works</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-4">ご利用の<span class="text-primary">流れ</span></h2>
+        <p class="text-gray-500 text-lg">シンプルな4ステップで始められます</p>
+      </div>
+      
+      <div class="relative">
+        <!-- 繋ぎ線（PC） -->
+        <div class="hidden md:block absolute top-16 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary to-accent" style="width: calc(100% - 200px); left: 100px;"></div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="text-center scroll-fade">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg relative z-10">
+              <span class="text-white font-black text-xl">1</span>
+            </div>
+            <h3 class="font-black text-gray-900 mb-2">お問い合わせ</h3>
+            <p class="text-gray-400 text-sm">フォームまたはメールでお気軽にご連絡ください</p>
+          </div>
+          
+          <div class="text-center scroll-fade">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg relative z-10">
+              <span class="text-white font-black text-xl">2</span>
+            </div>
+            <h3 class="font-black text-gray-900 mb-2">ヒアリング</h3>
+            <p class="text-gray-400 text-sm">お客様のニーズと課題を詳しくお伺いします</p>
+          </div>
+          
+          <div class="text-center scroll-fade">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg relative z-10">
+              <span class="text-white font-black text-xl">3</span>
+            </div>
+            <h3 class="font-black text-gray-900 mb-2">ご提案</h3>
+            <p class="text-gray-400 text-sm">最適なプランをカスタマイズしてご提案します</p>
+          </div>
+          
+          <div class="text-center scroll-fade">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg relative z-10">
+              <span class="text-white font-black text-xl">4</span>
+            </div>
+            <h3 class="font-black text-gray-900 mb-2">スタート</h3>
+            <p class="text-gray-400 text-sm">サービス開始後も継続的にサポートします</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="contact" class="py-20 gradient-bg relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 scroll-fade">
+        <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 leading-tight">
+          まずは無料で<br>ご相談ください
+        </h2>
+        <p class="text-white/80 text-xl mb-8">お問い合わせから24時間以内にご返信いたします。<br class="hidden sm:block">どんな小さなご質問でもお気軽にどうぞ。</p>
+      </div>
+      
+      <div class="glass rounded-3xl p-8 sm:p-12 scroll-fade">
+        <form class="space-y-6">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-white/90 font-bold mb-2 text-sm">お名前 <span class="text-red-300">*</span></label>
+              <input type="text" placeholder="山田 太郎" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/60 transition-all">
+            </div>
+            <div>
+              <label class="block text-white/90 font-bold mb-2 text-sm">メールアドレス <span class="text-red-300">*</span></label>
+              <input type="email" placeholder="example@email.com" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/60 transition-all">
+            </div>
+          </div>
+          <div>
+            <label class="block text-white/90 font-bold mb-2 text-sm">電話番号</label>
+            <input type="tel" placeholder="090-1234-5678" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/60 transition-all">
+          </div>
+          <div>
+            <label class="block text-white/90 font-bold mb-2 text-sm">お問い合わせ内容 <span class="text-red-300">*</span></label>
+            <textarea rows="4" placeholder="ご質問やご相談内容をお書きください..." class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/60 transition-all resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-white text-primary font-black text-lg py-4 rounded-xl hover:bg-gray-100 transition-all shadow-2xl hover:shadow-white/20 hover:scale-[1.02]">
+            無料でお問い合わせする →
+          </button>
+          <p class="text-center text-white/60 text-sm">※ スパムメールは送りません。個人情報は厳重に管理します。</p>
+        </form>
+      </div>
+      
+      <div class="mt-8 flex flex-col sm:flex-row gap-6 justify-center items-center scroll-fade">
+        <div class="flex items-center gap-3 text-white/80">
+          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <span>ym.toybox@gmail.com</span>
+        </div>
+        <div class="flex items-center gap-3 text-white/80">
+          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>平日 9:00 〜 18:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+              <span class="text-white font-black text-sm">T</span>
+            </div>
+            <span class="font-black text-xl">tesuto</span>
+          </div>
+          <p class="text-gray-400 text-sm max-w-xs leading-relaxed">あなたのビジネスの成長を全力でサポートします。お気軽にご相談ください。</p>
+          <p class="text-gray-500 text-sm mt-4">📧 ym.toybox@gmail.com</p>
+        </div>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div>
+            <h4 class="font-bold text-sm text-gray-300 uppercase tracking-widest mb-4">サービス</h4>
+            <ul class="space-y-2">
+              <li><a href="#service" class="text-gray-400 hover:text-white transition-colors text-sm">サービス内容</a></li>
+              <li><a href="#strength" class="text-gray-400 hover:text-white transition-colors text-sm">強み・特徴</a></li>
+              <li><a href="#voice" class="text-gray-400 hover:text-white transition-colors text-sm">お客様の声</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-gray-300 uppercase tracking-widest mb-4">会社情報</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">会社概要</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">お問い合わせ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-gray-300 uppercase tracking-widest mb-4">法的情報</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">プライバシーポリシー</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">利用規約</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">© 2024 tesuto. All rights reserved.</p>
+        <p class="text-gray-600 text-xs">Designed with ❤️</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- スクロールトップボタン -->
+  <button id="scrollTop" class
