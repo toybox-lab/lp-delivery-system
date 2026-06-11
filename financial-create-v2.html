@@ -490,39 +490,70 @@
     }
 
     /* ─── COMPARISON ─── */
+    .comparison-wrap {
+      margin-top: 48px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(15,37,65,0.10);
+    }
+
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 48px;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
     }
 
     .comparison-table th {
       background: var(--navy);
-      color: var(--teal-light);
-      padding: 16px 20px;
+      color: rgba(255,255,255,0.6);
+      padding: 20px 24px;
       text-align: center;
       font-weight: 500;
       letter-spacing: 0.1em;
     }
 
     .comparison-table th:first-child {
-      background: var(--off-white);
+      background: #E8EDF3;
       color: var(--text-light);
       font-size: 12px;
+      width: 30%;
+    }
+
+    /* 債券列を強調 */
+    .comparison-table th.col-bond {
+      background: var(--teal);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .bond-badge {
+      display: inline-block;
+      background: #FFD700;
+      color: var(--navy);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
     }
 
     .comparison-table td {
-      padding: 16px 20px;
+      padding: 16px 24px;
       border-bottom: 1px solid var(--border);
       color: var(--text-mid);
       vertical-align: middle;
     }
 
+    .comparison-table tr:last-child td { border-bottom: none; }
+
     .comparison-table td:first-child {
-      background: var(--off-white);
-      font-weight: 500;
+      background: #F0F4F8;
+      font-weight: 600;
       color: var(--text-dark);
       font-size: 13px;
     }
@@ -531,9 +562,45 @@
       text-align: center;
     }
 
-    .good { color: #2D7A3A; font-weight: 700; }
-    .neutral { color: var(--text-light); }
-    .bad { color: #B03A2E; }
+    /* 債券列のセル */
+    .comparison-table td.col-bond {
+      background: rgba(14,126,114,0.06);
+      border-left: 2px solid var(--teal);
+      border-right: 2px solid var(--teal);
+      font-weight: 500;
+    }
+
+    .comparison-table tr:last-child td.col-bond {
+      border-bottom: 2px solid var(--teal);
+    }
+
+    .good {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .good::before {
+      content: '◎ ';
+      font-size: 12px;
+    }
+
+    .neutral {
+      color: var(--text-light);
+    }
+
+    .neutral::before {
+      content: '△ ';
+      font-size: 12px;
+    }
+
+    .bad {
+      color: #C0392B;
+    }
+
+    .bad::before {
+      content: '✕ ';
+      font-size: 11px;
+    }
 
     /* ─── FLOW ─── */
     .flow-steps {
@@ -1308,50 +1375,52 @@
   <section class="bg-off-white">
     <div class="container">
       <span class="section-label">COMPARISON</span>
-      <h2 class="section-title">貯蓄型保険との比較</h2>
+      <h2 class="section-title">債券投資と貯蓄型保険との比較</h2>
       <div class="divider"></div>
       <p class="section-lead">同じ「守りの資産」として検討されることの多い貯蓄型保険と、債券の特徴を比較しました。</p>
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>債券投資</th>
-            <th>貯蓄型保険</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>利回り・収益性</td>
-            <td class="good">市場金利に連動・比較的高め</td>
-            <td class="neutral">固定・契約時点で確定</td>
-          </tr>
-          <tr>
-            <td>定期的な収入</td>
-            <td class="good">利金（クーポン）として受け取り可</td>
-            <td class="neutral">基本的に満期一括</td>
-          </tr>
-          <tr>
-            <td>流動性（換金性）</td>
-            <td class="neutral">市場で売却可能（時価変動あり）</td>
-            <td class="bad">解約返戻金が元本を下回ることが多い</td>
-          </tr>
-          <tr>
-            <td>保険機能</td>
-            <td class="neutral">なし</td>
-            <td class="good">死亡保障などが付帯</td>
-          </tr>
-          <tr>
-            <td>透明性</td>
-            <td class="good">価格・利率が市場で公開</td>
-            <td class="neutral">手数料構造がわかりにくい場合も</td>
-          </tr>
-          <tr>
-            <td>最低投資額</td>
-            <td class="neutral">商品によって異なる（100万円〜が目安）</td>
-            <td class="neutral">商品によって異なる</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="comparison-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-bond">債券投資<span class="bond-badge">おすすめ</span></th>
+              <th>貯蓄型保険</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>利回り・収益性</td>
+              <td class="col-bond good">市場金利に連動・比較的高め</td>
+              <td class="neutral">固定・契約時点で確定</td>
+            </tr>
+            <tr>
+              <td>定期的な収入</td>
+              <td class="col-bond good">利金（クーポン）として受け取り可</td>
+              <td class="neutral">基本的に満期一括</td>
+            </tr>
+            <tr>
+              <td>流動性（換金性）</td>
+              <td class="col-bond neutral">市場で売却可能（時価変動あり）</td>
+              <td class="bad">解約返戻金が元本を下回ることが多い</td>
+            </tr>
+            <tr>
+              <td>保険機能</td>
+              <td class="col-bond neutral">なし</td>
+              <td class="good">死亡保障などが付帯</td>
+            </tr>
+            <tr>
+              <td>透明性</td>
+              <td class="col-bond good">価格・利率が市場で公開</td>
+              <td class="neutral">手数料構造がわかりにくい場合も</td>
+            </tr>
+            <tr>
+              <td>最低投資額</td>
+              <td class="col-bond neutral">商品によって異なる（100万円〜が目安）</td>
+              <td class="neutral">商品によって異なる</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p style="margin-top: 16px; font-family: 'Noto Sans JP', sans-serif; font-size: 12px; color: var(--text-light);">
         ※ 上記はあくまで一般的な傾向です。具体的な内容は商品によって異なります。詳細はご相談時にご説明します。
       </p>
