@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>老後のお金、増やすだけで本当に大丈夫ですか？ | フィナンシャルクリエイト</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --surface: #111014;
+      --gold: #C9A84C;
+      --gold-light: rgba(201,168,76,0.15);
+      --bordeaux: #7A001E;
+      --text: #c8c8c8;
+      --text-muted: #777;
+      --white: #ffffff;
+      --border: rgba(201,168,76,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      line-height: 1.9;
+      letter-spacing: 0.08em;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+    .gold { color: var(--gold); }
+    .white { color: var(--white); }
+
+    /* ─── FV ─── */
+    .fv {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(to bottom, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,1) 100%),
+        url('https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .fv-eyebrow {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .fv-title {
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: 28px;
+    }
+
+    .fv-sub {
+      font-size: clamp(15px, 2vw, 19px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 52px;
+      line-height: 1.8;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 20px 60px;
+      background: var(--bordeaux);
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover { background: #950025; }
+
+    .fv-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* ─── STORY ─── */
+    .story {
+      padding: 140px 0 120px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .story-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .story-title {
+      font-size: clamp(24px, 3.5vw, 38px);
+      color: var(--white);
+      line-height: 1.6;
+      margin-bottom: 52px;
+    }
+
+    .story-body {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 2.1;
+      font-weight: 300;
+      max-width: 680px;
+    }
+
+    .story-body p + p { margin-top: 28px; }
+
+    .story-quote {
+      margin: 60px 0;
+      padding: 40px 44px;
+      border-left: 3px solid var(--gold);
+      background: var(--gold-light);
+    }
+
+    .story-quote p {
+      font-size: 20px;
+      color: var(--white);
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    /* ─── WORRY ─── */
+    .worry { padding: 120px 0; }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 34px);
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      margin-bottom: 70px;
+      letter-spacing: 0.12em;
+      font-weight: 300;
+    }
+
+    .worry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .worry-item {
+      background: var(--surface);
+      padding: 40px 32px;
+      border: 1px solid #1a1a1a;
+    }
+
+    .worry-item .num {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+
+    .worry-item h3 {
+      font-size: 17px;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .worry-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ─── CTA MID ─── */
+    .cta-mid {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #0e0810 0%, #130008 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta-mid p {
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 36px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ─── SERVICE ─── */
+    .service { padding: 130px 0; background: var(--surface); }
+
+    .service-cards { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 0; }
+
+    .service-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .service-card-img {
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-card-body {
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .service-card-body .tag {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    .service-card-body h3 {
+      font-size: 20px;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .service-card-body p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ─── RISK ─── */
+    .risk { padding: 120px 0; }
+
+    .risk-items { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 70px; }
+
+    .risk-item {
+      padding: 36px 40px;
+      border-left: 3px solid var(--bordeaux);
+      background: var(--surface);
+    }
+
+    .risk-item h3 {
+      font-size: 17px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .risk-item .risk-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    .risk-item .risk-sol {
+      font-size: 14px;
+      color: var(--gold);
+      line-height: 1.85;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+    }
+
+    /* ─── VOICE ─── */
+    .voice {
+      padding: 120px 0;
+      background: var(--surface);
+    }
+
+    .voice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 70px;
+    }
+
+    .voice-card {
+      padding: 36px 28px;
+      background: var(--black);
+      border: 1px solid #1c1c1c;
+      position: relative;
+    }
+
+    .voice-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 52px;
+      color: var(--gold);
+      opacity: 0.35;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .voice-card p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+      margin-top: 24px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    .voice-card .voice-name {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--gold);
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* ─── MISSION ─── */
+    .mission {
+      padding: 140px 0;
+      text-align: center;
+    }
+
+    .mission-title {
+      font-size: clamp(26px, 4vw, 44px);
+      color: var(--white);
+      line-height: 1.6;
+      margin-bottom: 50px;
+    }
+
+    .mission-body {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 2.1;
+      font-weight: 300;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .profile {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80') center/cover;
+      border: 2px solid var(--gold);
+      margin: 0 auto 48px;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final {
+      padding: 120px 0;
+      background: linear-gradient(180deg, #0e0810 0%, #080808 100%);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(22px, 3vw, 34px);
+      color: var(--white);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .cta-final .cta-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 56px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    .cta-final .cta-note {
+      margin-top: 36px;
+      font-size: 12px;
+      color: #444;
+      font-family: 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+    }
+
+    /* ─── FAQ ─── */
+    .faq { padding: 100px 0; background: var(--surface); }
+
+    .faq-items { margin-top: 60px; }
+
+    .faq-item {
+      border-bottom: 1px solid #1c1c1c;
+      padding: 32px 0;
+    }
+
+    .faq-item:first-child { border-top: 1px solid #1c1c1c; }
+
+    .faq-q {
+      font-size: 16px;
+      color: var(--white);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .faq-q .q-mark {
+      color: var(--gold);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-top: 16px;
+      padding-left: 38px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid #161616;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #333;
+      font-family: 'Noto Sans JP', sans-serif;
+      line-height: 2;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .worry-grid { grid-template-columns: 1fr; }
+      .service-card { grid-template-columns: 1fr; }
+      .service-card-img { height: 220px; }
+      .voice-grid { grid-template-columns: 1fr; }
+      .section-padding { padding: 80px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ① FV -->
+  <section class="fv">
+    <div class="container">
+      <p class="fv-eyebrow">FINANCIAL CREATE — BOND INVESTMENT ADVISORY</p>
+      <h1 class="fv-title">
+        老後のお金、<br>増やすだけで<br>本当に大丈夫ですか？
+      </h1>
+      <p class="fv-sub">
+        守る・受け取るという選択肢を、<br>あなたの資産設計に。
+      </p>
+      <a href="#cta" class="btn-primary">無料個別相談を申し込む</a>
+      <p class="fv-note">強引な勧誘は一切ございません</p>
+    </div>
+  </section>
+
+  <!-- ② STORY -->
+  <section class="story">
+    <div class="container">
+      <p class="story-label">OUR STORY</p>
+      <h2 class="story-title">
+        「増やすこと」に必死になりすぎて、<br>
+        「守ること」を忘れていませんか。
+      </h2>
+      <div class="story-body">
+        <p>新NISAが広まり、投資を始める人が増えました。それは素晴らしいことです。しかし私たちは、あるお客様の言葉が忘れられません。</p>
+        <p>「株が下がるたびに、夜眠れなくなってきた。増やさなきゃと思うほど、不安が増える気がする」</p>
+        <p>資産を育てる時期があります。そして、育てた資産を守りながら活用する時期があります。その両方を知り、選択できる人は、まだ多くありません。</p>
+        <p>フィナンシャルクリエイトは、独立系アドバイザー（IFA）として、どの金融機関にも属さない中立な立場から、あなたにとって本当に必要な資産設計をご提案します。</p>
+      </div>
+      <div class="story-quote">
+        <p>「増やす運用」と「守る運用」の両方を知ってはじめて、<br>人生を通じたお金の安心が生まれる。</p>
+      </div>
+      <a href="#cta" class="btn-primary">まず話を聞いてみる（無料）</a>
+    </div>
+  </section>
+
+  <!-- ③ WORRY -->
+  <section class="worry">
+    <div class="container">
+      <h2 class="section-title">こんなお悩み、ありませんか？</h2>
+      <p class="section-sub">多くのお客様が、同じ不安を抱えてご相談に来られます</p>
+      <div class="worry-grid">
+        <div class="worry-item">
+          <p class="num">01</p>
+          <h3>退職金の使い道が<br>決まらない</h3>
+          <p>まとまったお金が入ったけれど、銀行口座に置いたままで具体的な活用法が分からない。</p>
+        </div>
+        <div class="worry-item">
+          <p class="num">02</p>
+          <h3>株の値動きで<br>眠れない夜がある</h3>
+          <p>投資は始めたものの、相場の乱高下が気になって、心が落ち着かない。</p>
+        </div>
+        <div class="worry-item">
+          <p class="num">03</p>
+          <h3>NISAで増えたお金を<br>どう守るか分からない</h3>
+          <p>ここまで育てた資産を、これから先どう守ればいいか、誰にも聞けずにいる。</p>
+        </div>
+        <div class="worry-item">
+          <p class="num">04</p>
+          <h3>年金だけでは<br>少し心細い</h3>
+          <p>公的年金に加えて、毎月安定して受け取れる収入が欲しいと思っている。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA MID 1 -->
+  <div class="cta-mid">
+    <div class="container">
+      <p>一人で悩まず、まずは話してみてください。<br>あなたの状況に合わせた選択肢を、一緒に考えます。</p>
+      <a href="#cta" class="btn-primary">無料相談を予約する</a>
+    </div>
+  </div>
+
+  <!-- ④ SERVICE -->
+  <section class="service">
+    <div class="container">
+      <h2 class="section-title">こんな方に選ばれています</h2>
+      <p class="section-sub">ライフステージに合わせた、3つの活用場面</p>
+      <div class="service-cards">
+
+        <div class="service-card">
+          <div class="service-card-img" style="background-image:url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80')"></div>
+          <div class="service-card-body">
+            <p class="tag">CASE 01 — 退職金の運用</p>
+            <h3>まとまった資金を、<br>第二の年金に変える</h3>
+            <p>退職金を一括で運用するのではなく、定期的に利金を受け取る仕組みへ。資産を守りながら、毎月の安心を手に入れます。</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-img" style="background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80')"></div>
+          <div class="service-card-body">
+            <p class="tag">CASE 02 — NISA後の資産設計</p>
+            <h3>育てた資産を、<br>今度は守りに回す</h3>
+            <p>株式投資で増やした資産の一部を債券へ移すことで、リスクを抑えた安定運用へとシフトします。</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-img" style="background-image:url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&w=800&q=80')"></div>
+          <div class="service-card-body">
+            <p class="tag">CASE 03 — 教育・老後資金の確保</p>
+            <h3>使う時期が決まっている<br>お金を計画的に</h3>
+            <p>「この資金は絶対に減らしたくない」という方へ。値動きを抑えながら、目的に合わせた資金設計をご提案します。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ RISK -->
+  <section class="risk">
+    <div class="container">
+      <h2 class="section-title">リスクに、誠実に向き合う</h2>
+      <p class="section-sub">投資にはリスクがあります。だからこそ、正しく理解することが大切です</p>
+      <div class="risk-items">
+        <div class="risk-item">
+          <h3>価格変動リスク（金利変動リスク）</h3>
+          <p class="risk-desc">途中売却の場合は市場価格での取引となり、元本を割り込む可能性があります。ただし満期まで保有すれば、原則として額面金額が償還されます。</p>
+          <p class="risk-sol">→ お客様のライフプランを丁寧にヒアリングし、「満期まで保有できる資金の範囲」で計画的なポートフォリオを設計します。</p>
+        </div>
+        <div class="risk-item">
+          <h3>信用リスク（デフォルトリスク）</h3>
+          <p class="risk-desc">発行体の財務悪化により、利金の支払いや元本返済が滞るリスクです。</p>
+          <p class="risk-sol">→ 世界的な格付け機関で認められた信用度の高い発行体のみを、独立した視点で厳選してご提案します。</p>
+        </div>
+        <div class="risk-item">
+          <h3>流動性リスク（中途換金リスク）</h3>
+          <p class="risk-desc">市場混乱時には、希望の価格ですぐに売却できないケースがあります。</p>
+          <p class="risk-sol">→ 流通量の多いメジャーな債券を中心に選定し、資産全体の流動性バランスも考慮した提案を行います。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ VOICE -->
+  <section class="voice">
+    <div class="container">
+      <h2 class="section-title">ご相談いただいたお客様の声</h2>
+      <p class="section-sub">実際に資産設計を見直された方々からのメッセージ</p>
+      <div class="voice-grid">
+        <div class="voice-card">
+          <p>退職金をどうするか、ずっと悩んでいました。相談してみたら、自分でも気づいていなかった「守る視点」が大切だと分かりました。今は毎月利金が入る安心感があります。</p>
+          <p class="voice-name">60代・男性 / 元会社員</p>
+        </div>
+        <div class="voice-card">
+          <p>NISAで増やすことしか考えていなかったのですが、「増やした後」の設計が大事だと教えてもらいました。ポートフォリオのバランスが取れて、夜ぐっすり眠れるようになりました。</p>
+          <p class="voice-name">50代・女性 / 主婦</p>
+        </div>
+        <div class="voice-card">
+          <p>強引に何かを勧めるわけでなく、私の状況を丁寧に聞いてくれた上で、いくつかの選択肢を提示してくれました。自分で納得して決めた感覚があります。</p>
+          <p class="voice-name">65代・男性 / 自営業</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ MISSION -->
+  <section class="mission">
+    <div class="container">
+      <div class="profile"></div>
+      <h2 class="mission-title">
+        日本に、お金の教育を。<br>
+        守る選択肢を、すべての人に。
+      </h2>
+      <p class="mission-body">
+        増やすことを教えてくれる人は増えました。でも、守り方・受け取り方を教えてくれる人は、まだ少ない。フィナンシャルクリエイトは、その「もう一つの資産設計」を、中立な立場から丁寧に伝えていきます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ⑧ CTA FINAL -->
+  <section class="cta-final" id="cta">
+    <div class="container">
+      <h2>「私の場合はどうすればいい？」<br>まずは、話してみてください。</h2>
+      <p class="cta-sub">60分の無料個別相談。強引な勧誘は一切ありません。</p>
+      <a href="#" class="btn-primary">無料個別相談を申し込む</a>
+      <p class="cta-note">
+        ※ 株式会社フィナンシャルクリエイト<br>
+        ※ 投資にはリスクが伴います。詳細はご相談時にご説明いたします。
+      </p>
+    </div>
+  </section>
+
+  <!-- ⑨ FAQ -->
+  <section class="faq">
+    <div class="container">
+      <h2 class="section-title">よくあるご質問</h2>
+      <div class="faq-items">
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q</span><span>相談は本当に無料ですか？</span></div>
+          <p class="faq-a">はい、初回の個別相談は完全無料です。相談後に無理な勧誘をすることは一切ありません。まずはお気軽にお話しください。</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q</span><span>資産がそれほど多くないのですが、相談できますか？</span></div>
+          <p class="faq-a">もちろんです。金額の大小にかかわらず、あなたの状況に合った資産設計のご提案をいたします。</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q</span><span>投資の知識がなくても大丈夫ですか？</span></div>
+          <p class="faq-a">まったく問題ありません。専門用語を使わず、分かりやすい言葉でご説明することを大切にしています。</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="q-mark">Q</span><span>なぜ銀行や証券会社ではなくIFAに相談するのですか？</span></div>
+          <p class="faq-a">銀行や証券会社は自社の商品を販売する立場です。IFAはどの金融機関にも属さない独立した立場から、あなたにとって最適な選択肢をご提案できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Financial Create Inc. All rights reserved.<br>金融商品の取引には元本割れ等のリスクが伴います。</p>
+    </div>
+  </footer>
+
+</body>
+</html>
