@@ -707,7 +707,7 @@
     /* ─── CTA SECTION ─── */
     .cta-section {
       background: var(--navy);
-      padding: 120px 0;
+      padding: 100px 0;
       text-align: center;
     }
 
@@ -729,34 +729,225 @@
       margin-bottom: 48px;
     }
 
-    .cta-menu {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-
-    .cta-menu-item {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .cta-menu-item::before {
-      content: '□';
-      color: var(--teal);
-    }
-
     .cta-note {
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 12px;
       color: rgba(255,255,255,0.35);
       margin-top: 24px;
       line-height: 2;
+    }
+
+    /* ─── CONSULTATION FORM ─── */
+    .consultation-form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 48px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .form-section-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--teal-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .form-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* チェックボックスグループ */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      user-select: none;
+    }
+
+    .checkbox-label:hover {
+      border-color: var(--teal-light);
+      background: rgba(14,126,114,0.1);
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-custom {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom::after {
+      content: '✓';
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked ~ span:last-child {
+      color: var(--white);
+    }
+
+    .checkbox-label:has(input:checked) {
+      border-color: var(--teal);
+      background: rgba(14,126,114,0.12);
+    }
+
+    /* 入力フィールド */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-row.full { grid-template-columns: 1fr; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+    }
+
+    .form-label .required {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 13px 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: var(--white);
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-input::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-input:focus {
+      border-color: var(--teal-light);
+      background: rgba(14,126,114,0.08);
+    }
+
+    .form-select {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 13px 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      width: 100%;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233AA99E' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      transition: border-color 0.2s;
+    }
+
+    .form-select:focus { border-color: var(--teal-light); }
+
+    .form-select option { background: var(--navy); color: var(--white); }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit-area {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .form-privacy {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .form-privacy a {
+      color: var(--teal-light);
+      text-decoration: underline;
+    }
+
+    /* 送信完了メッセージ */
+    .form-success {
+      display: none;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .form-success h3 {
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
     }
 
     /* ─── FAQ ─── */
@@ -871,7 +1062,9 @@
       .risk-items { grid-template-columns: 1fr; }
       .target-card { grid-template-columns: 1fr; gap: 16px; }
       .flow-step { grid-template-columns: 1fr; gap: 12px; }
-      .cta-menu { flex-direction: column; align-items: center; }
+      .checkbox-group { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .consultation-form { padding: 28px 20px; }
 
       .comparison-table { font-size: 12px; }
       .comparison-table th, .comparison-table td { padding: 12px 10px; }
@@ -1401,18 +1594,156 @@
         まずは、話してみてください。
       </h2>
       <p class="cta-sub">60分の無料個別相談。強引な勧誘は一切ありません。</p>
-      <div class="cta-menu">
-        <span class="cta-menu-item">退職金運用相談</span>
-        <span class="cta-menu-item">老後資金シミュレーション</span>
-        <span class="cta-menu-item">債券投資個別相談</span>
+
+      <!-- 相談申込フォーム
+           将来的にWebhook連携予定。
+           data-webhook-url 属性にURLを設定するか、
+           action属性にGoogle FormsのエンドポイントURLを設定する。
+      -->
+      <form
+        class="consultation-form"
+        id="consultationForm"
+        data-webhook-url=""
+        novalidate
+      >
+
+        <!-- STEP 1: 相談内容（チェックボックス） -->
+        <div class="form-section-title">STEP 01 — ご相談内容をお選びください（複数選択可）</div>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="consultation_type" value="退職金運用相談">
+            <span class="checkbox-custom"></span>
+            <span>退職金運用相談</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="consultation_type" value="老後資金シミュレーション">
+            <span class="checkbox-custom"></span>
+            <span>老後資金シミュレーション</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="consultation_type" value="債券投資個別相談">
+            <span class="checkbox-custom"></span>
+            <span>債券投資個別相談</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: お客様情報 -->
+        <div class="form-section-title">STEP 02 — お客様情報</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">お名前<span class="required">必須</span></label>
+            <input type="text" name="name" class="form-input" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">年代</label>
+            <select name="age_group" class="form-select">
+              <option value="">選択してください</option>
+              <option value="40代">40代</option>
+              <option value="50代">50代</option>
+              <option value="60代">60代</option>
+              <option value="70代以上">70代以上</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">メールアドレス<span class="required">必須</span></label>
+            <input type="email" name="email" class="form-input" placeholder="example@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">電話番号</label>
+            <input type="tel" name="phone" class="form-input" placeholder="090-0000-0000">
+          </div>
+        </div>
+
+        <!-- STEP 3: ご希望・ご質問 -->
+        <div class="form-section-title">STEP 03 — ご希望・ご質問（任意）</div>
+        <div class="form-row full">
+          <div class="form-group">
+            <label class="form-label">ご相談の背景・お気持ちをお聞かせください</label>
+            <textarea name="message" class="form-input form-textarea" placeholder="例：退職金の運用先を考えています。株式は不安なので、安定した方法を探しています。"></textarea>
+          </div>
+        </div>
+
+        <!-- 隠しフィールド（Webhook連携用・将来のシステム統合に使用） -->
+        <input type="hidden" name="form_id" value="financial-create-consultation-v1">
+        <input type="hidden" name="source_page" value="financial-create-lp-v2">
+        <input type="hidden" name="submitted_at" id="submittedAt">
+
+        <div class="form-submit-area">
+          <button type="submit" class="btn-primary" style="font-size: 16px; padding: 20px 56px; border: none; cursor: pointer; width: 100%; max-width: 420px;">
+            無料個別相談を申し込む
+          </button>
+          <p class="form-privacy">
+            送信いただいた情報は、相談対応の目的のみに使用します。<br>
+            <a href="#">プライバシーポリシー</a>に同意のうえ送信してください。
+          </p>
+        </div>
+      </form>
+
+      <!-- 送信完了メッセージ（JS で表示切替） -->
+      <div class="form-success" id="formSuccess">
+        <h3>お申し込みありがとうございます</h3>
+        <p>担当者より2営業日以内にご連絡いたします。<br>しばらくお待ちください。</p>
       </div>
-      <a href="#" class="btn-primary" style="font-size: 16px; padding: 20px 56px;">無料個別相談を申し込む</a>
+
       <p class="cta-note">
         ※ 株式会社フィナンシャルクリエイト<br>
         ※ 投資にはリスクが伴います。詳細はご相談時にご説明いたします。
       </p>
     </div>
   </section>
+
+  <script>
+    // 相談申込フォーム送信処理
+    // Webhook連携準備済み。data-webhook-url 属性にURLを設定すると自動でPOSTする。
+    document.getElementById('consultationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const webhookUrl = form.getAttribute('data-webhook-url');
+
+      // 送信日時をセット
+      document.getElementById('submittedAt').value = new Date().toISOString();
+
+      // フォームデータ収集
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        if (data[key]) {
+          // 複数チェックボックスを配列で収集
+          data[key] = [].concat(data[key], value);
+        } else {
+          data[key] = value;
+        }
+      });
+
+      // バリデーション
+      if (!data.name || !data.email) {
+        alert('お名前とメールアドレスは必須です。');
+        return;
+      }
+
+      // Webhook送信（URLが設定されている場合）
+      if (webhookUrl) {
+        try {
+          await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+        } catch (err) {
+          console.error('Webhook error:', err);
+        }
+      }
+
+      // 送信完了表示
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
 
   <!-- DISCLAIMER -->
   <section style="padding: 48px 0; background: var(--off-white);">
