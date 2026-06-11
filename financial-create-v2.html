@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日本中に、債券投資を。| フィナンシャルクリエイト</title>
+  <title>日本にもっと、債券投資を。| フィナンシャルクリエイト</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -11,17 +11,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #0D1B2A;
-      --navy-mid: #1A2E44;
-      --gold: #B8973C;
-      --gold-light: #D4AF6A;
+      --navy: #0F2541;
+      --navy-mid: #1B3A5C;
+      --teal: #0E7E72;
+      --teal-light: #3AA99E;
+      --teal-pale: #E8F5F4;
       --white: #FFFFFF;
-      --off-white: #F7F5F0;
-      --cream: #FAF8F3;
-      --text-dark: #1A1A1A;
-      --text-mid: #4A4A4A;
-      --text-light: #7A7A7A;
-      --border: #E5E0D5;
+      --off-white: #F5F7FA;
+      --cream: #F0F4F8;
+      --text-dark: #1A1A2E;
+      --text-mid: #3D3D5C;
+      --text-light: #7A7A96;
+      --border: #D8E2EE;
     }
 
     html { scroll-behavior: smooth; }
@@ -55,27 +56,27 @@
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.2em;
-      color: var(--gold-light);
+      color: var(--teal-light);
     }
 
     .header-cta {
       display: inline-block;
       padding: 8px 20px;
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
+      border: 1px solid var(--teal);
+      color: var(--teal-light);
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 12px;
       letter-spacing: 0.15em;
       text-decoration: none;
       transition: all 0.3s;
     }
-    .header-cta:hover { background: var(--gold); color: var(--navy); }
+    .header-cta:hover { background: var(--teal); color: var(--navy); }
 
     /* ─── FV ─── */
     .fv {
       min-height: 100vh;
       background:
-        linear-gradient(160deg, rgba(13,27,42,0.88) 0%, rgba(13,27,42,0.72) 60%, rgba(26,46,68,0.85) 100%),
+        linear-gradient(160deg, rgba(15,37,65,0.90) 0%, rgba(14,126,114,0.55) 70%, rgba(15,37,65,0.80) 100%),
         url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       display: flex;
       flex-direction: column;
@@ -89,7 +90,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.35em;
-      color: var(--gold-light);
+      color: var(--teal-light);
       margin-bottom: 28px;
       opacity: 0.85;
     }
@@ -104,7 +105,7 @@
     }
 
     .fv-catch span {
-      color: var(--gold-light);
+      color: var(--teal-light);
     }
 
     .fv-sub {
@@ -119,22 +120,23 @@
     .btn-primary {
       display: inline-block;
       padding: 18px 48px;
-      background: var(--gold);
-      color: var(--navy);
+      background: var(--teal);
+      color: var(--white);
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-decoration: none;
+      border-radius: 2px;
       transition: all 0.3s;
     }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,151,60,0.35); }
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,126,114,0.4); }
 
     .btn-outline {
       display: inline-block;
       padding: 15px 40px;
-      border: 1.5px solid var(--gold);
-      color: var(--gold);
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
       font-weight: 500;
@@ -143,7 +145,7 @@
       transition: all 0.3s;
       background: transparent;
     }
-    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+    .btn-outline:hover { background: var(--teal); color: var(--navy); }
 
     .fv-note {
       margin-top: 20px;
@@ -163,7 +165,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.4em;
-      color: var(--gold);
+      color: var(--teal);
       margin-bottom: 16px;
       display: block;
     }
@@ -190,7 +192,7 @@
     .divider {
       width: 40px;
       height: 2px;
-      background: var(--gold);
+      background: var(--teal);
       margin: 24px 0 40px;
     }
 
@@ -226,14 +228,14 @@
       gap: 18px;
       padding: 24px 28px;
       background: var(--white);
-      border-left: 3px solid var(--gold);
+      border-left: 3px solid var(--teal);
     }
 
     .trouble-check {
       flex-shrink: 0;
       width: 24px;
       height: 24px;
-      border: 1.5px solid var(--gold);
+      border: 1.5px solid var(--teal);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -244,7 +246,7 @@
     .trouble-check::after {
       content: '✓';
       font-size: 13px;
-      color: var(--gold);
+      color: var(--teal);
       font-weight: 700;
     }
 
@@ -282,7 +284,7 @@
 
     .bond-flow-arrow {
       text-align: center;
-      color: var(--gold);
+      color: var(--teal);
       font-size: 20px;
       margin: 0 0 0 28px;
       line-height: 1;
@@ -292,7 +294,7 @@
       width: 36px;
       height: 36px;
       background: var(--navy);
-      color: var(--gold-light);
+      color: var(--teal-light);
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
       font-weight: 700;
@@ -345,7 +347,7 @@
 
     .case-card {
       background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(184,151,60,0.25);
+      border: 1px solid rgba(14,126,114,0.25);
       padding: 36px 28px;
     }
 
@@ -353,7 +355,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.3em;
-      color: var(--gold);
+      color: var(--teal);
       display: block;
       margin-bottom: 14px;
     }
@@ -394,7 +396,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.3em;
-      color: var(--gold);
+      color: var(--teal);
       text-align: center;
       padding-top: 4px;
     }
@@ -446,7 +448,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 12px;
       letter-spacing: 0.3em;
-      color: var(--gold);
+      color: var(--teal);
       margin-bottom: 20px;
       display: flex;
       align-items: center;
@@ -457,7 +459,7 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: rgba(184,151,60,0.3);
+      background: rgba(14,126,114,0.3);
     }
 
     .md-list {
@@ -481,7 +483,7 @@
 
     .md-list li::before {
       content: '◆';
-      color: var(--gold);
+      color: var(--teal);
       flex-shrink: 0;
       margin-top: 2px;
       font-size: 10px;
@@ -498,7 +500,7 @@
 
     .comparison-table th {
       background: var(--navy);
-      color: var(--gold-light);
+      color: var(--teal-light);
       padding: 16px 20px;
       text-align: center;
       font-weight: 500;
@@ -562,7 +564,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.3em;
-      color: var(--gold);
+      color: var(--teal);
     }
 
     .flow-step-num strong {
@@ -597,16 +599,16 @@
 
     .risk-item {
       padding: 32px 28px;
-      border: 1px solid rgba(184,151,60,0.2);
+      border: 1px solid rgba(14,126,114,0.2);
       background: rgba(255,255,255,0.04);
     }
 
     .risk-item h3 {
       font-size: 15px;
-      color: var(--gold-light);
+      color: var(--teal-light);
       margin-bottom: 14px;
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(184,151,60,0.2);
+      border-bottom: 1px solid rgba(14,126,114,0.2);
       font-weight: 500;
     }
 
@@ -621,7 +623,7 @@
     .risk-sol {
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 13px;
-      color: var(--gold-light);
+      color: var(--teal-light);
       line-height: 1.8;
       opacity: 0.8;
     }
@@ -645,7 +647,7 @@
       content: '"';
       font-family: Georgia, serif;
       font-size: 64px;
-      color: var(--gold);
+      color: var(--teal);
       opacity: 0.3;
       position: absolute;
       top: 12px;
@@ -718,7 +720,7 @@
       margin-bottom: 20px;
     }
 
-    .cta-big-title span { color: var(--gold-light); }
+    .cta-big-title span { color: var(--teal-light); }
 
     .cta-sub {
       font-family: 'Noto Sans JP', sans-serif;
@@ -746,7 +748,7 @@
 
     .cta-menu-item::before {
       content: '□';
-      color: var(--gold);
+      color: var(--teal);
     }
 
     .cta-note {
@@ -786,7 +788,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
       font-weight: 700;
-      color: var(--gold);
+      color: var(--teal);
       flex-shrink: 0;
       margin-top: 1px;
     }
@@ -828,32 +830,34 @@
 
     /* ─── INLINE CTA BAR ─── */
     .cta-bar {
-      background: var(--gold);
-      padding: 32px;
+      background: var(--navy);
+      border-top: 3px solid var(--teal);
+      padding: 40px 32px;
       text-align: center;
     }
 
     .cta-bar p {
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 14px;
-      color: var(--navy);
-      margin-bottom: 16px;
-      font-weight: 500;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 20px;
+      font-weight: 400;
     }
 
     .btn-navy {
       display: inline-block;
       padding: 14px 40px;
-      background: var(--navy);
-      color: var(--gold-light);
+      background: var(--teal);
+      color: var(--white);
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-decoration: none;
+      border-radius: 2px;
       transition: all 0.3s;
     }
-    .btn-navy:hover { background: var(--navy-mid); }
+    .btn-navy:hover { background: var(--teal-light); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
@@ -889,7 +893,7 @@
   <section class="fv">
     <p class="fv-eyebrow">FINANCIAL CREATE — BOND INVESTMENT</p>
     <h1 class="fv-catch">
-      日本中に、<span>債券投資</span>を。
+      日本にもっと、<span>債券投資</span>を。
     </h1>
     <p class="fv-sub">
       増やすだけではなく、守る・受け取るという<br>
@@ -985,13 +989,13 @@
   <!-- ⑤ WHY NOW -->
   <section class="bg-navy">
     <div class="container-narrow">
-      <span class="section-label" style="color: var(--gold-light);">WHY NOW</span>
+      <span class="section-label" style="color: var(--teal-light);">WHY NOW</span>
       <h2 class="section-title white">いま、日本では<br>「攻める運用」が注目されています</h2>
       <div class="divider"></div>
       <p class="section-lead white">
         新NISAの普及により、投資信託や株式を活用した長期資産形成は一般的になりました。<br><br>
         しかし、人生の資産運用には<br>
-        <strong style="color: var(--gold-light); font-size: 1.1em;">「増やすお金」だけでなく「守るお金」も必要です。</strong>
+        <strong style="color: var(--teal-light); font-size: 1.1em;">「増やすお金」だけでなく「守るお金」も必要です。</strong>
       </p>
       <br><br>
       <p class="section-lead white">
@@ -1004,7 +1008,7 @@
   <!-- ⑥ USE CASES -->
   <section class="bg-navy" style="padding-top: 0;">
     <div class="container">
-      <span class="section-label" style="color: var(--gold-light);">USE CASE</span>
+      <span class="section-label" style="color: var(--teal-light);">USE CASE</span>
       <h2 class="section-title white">こんな場面で活用されています</h2>
       <div class="divider"></div>
       <div class="case-cards">
@@ -1333,7 +1337,7 @@
   <!-- ⑭ RISK -->
   <section class="bg-navy">
     <div class="container">
-      <span class="section-label" style="color: var(--gold-light);">RISK DISCLOSURE</span>
+      <span class="section-label" style="color: var(--teal-light);">RISK DISCLOSURE</span>
       <h2 class="section-title white">リスクに、誠実に向き合う</h2>
       <div class="divider"></div>
       <p class="section-lead white">投資にはリスクがあります。だからこそ、正しく理解することが大切です</p>
