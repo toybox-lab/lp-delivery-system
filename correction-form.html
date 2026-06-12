@@ -20,97 +20,31 @@
       padding: 40px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 8px;
-      color: #111;
+    h1 { font-size: 22px; margin-bottom: 8px; color: #111; }
+    .subtitle { font-size: 14px; color: #888; margin-bottom: 32px; }
+    .form-group { margin-bottom: 28px; }
+    label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 10px; color: #222; }
+    .required { color: #e53e3e; margin-left: 4px; }
+    .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+    .radio-group label, .checkbox-group label { font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .section { background: #f9f9f9; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+    .section-title { font-size: 14px; font-weight: 600; color: #555; margin-bottom: 14px; }
+    textarea, input[type="datetime-local"] {
+      width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+      font-size: 14px; font-family: inherit;
     }
-    .subtitle {
-      font-size: 14px;
-      color: #888;
-      margin-bottom: 32px;
-    }
-    .form-group {
-      margin-bottom: 28px;
-    }
-    label {
-      display: block;
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #222;
-    }
-    .required {
-      color: #e53e3e;
-      margin-left: 4px;
-    }
-    .radio-group, .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .radio-group label, .checkbox-group label {
-      font-weight: normal;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-    .section {
-      background: #f9f9f9;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #555;
-      margin-bottom: 14px;
-    }
-    textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 14px;
-      resize: vertical;
-      min-height: 100px;
-      font-family: inherit;
-    }
-    textarea:focus {
-      outline: none;
-      border-color: #4a90e2;
-    }
+    textarea { resize: vertical; min-height: 100px; }
+    textarea:focus, input[type="datetime-local"]:focus { outline: none; border-color: #4a90e2; }
     .hidden { display: none; }
     button[type="submit"] {
-      width: 100%;
-      padding: 16px;
-      background: #111;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
+      width: 100%; padding: 16px; background: #111; color: #fff;
+      border: none; border-radius: 8px; font-size: 16px; font-weight: 600;
+      cursor: pointer; margin-top: 8px;
     }
-    button[type="submit"]:hover {
-      background: #333;
-    }
-    .success {
-      text-align: center;
-      padding: 40px;
-      display: none;
-    }
-    .success h2 {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-    .success p {
-      color: #666;
-      font-size: 14px;
-    }
+    button[type="submit"]:hover { background: #333; }
+    .success { text-align: center; padding: 40px; display: none; }
+    .success h2 { font-size: 20px; margin-bottom: 12px; }
+    .success p { color: #666; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -178,8 +112,16 @@
 
           <div id="scheduleSection" class="hidden">
             <div class="form-group">
-              <label>ご希望の日時を教えてください</label>
-              <textarea name="schedule" placeholder="例：平日10時〜18時、土曜午前など"></textarea>
+              <label>第1希望の日時</label>
+              <input type="datetime-local" name="schedule1">
+            </div>
+            <div class="form-group">
+              <label>第2希望の日時（任意）</label>
+              <input type="datetime-local" name="schedule2">
+            </div>
+            <div class="form-group">
+              <label>備考（任意）</label>
+              <textarea name="scheduleNote" placeholder="例：午後が希望、30分程度で大丈夫です など"></textarea>
             </div>
           </div>
 
@@ -196,7 +138,6 @@
   </div>
 
   <script>
-    // URLパラメータからWebhookURLを取得
     const params = new URLSearchParams(window.location.search);
     const WEBHOOK_URL = params.get('webhook') || '';
 
