@@ -6,20 +6,8 @@
   <title>LP修正ヒアリングフォーム</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #f5f5f5;
-      color: #333;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 640px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f5f5f5; color: #333; padding: 40px 20px; }
+    .container { max-width: 640px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
     h1 { font-size: 22px; margin-bottom: 8px; color: #111; }
     .subtitle { font-size: 14px; color: #888; margin-bottom: 32px; }
     .form-group { margin-bottom: 28px; }
@@ -29,18 +17,11 @@
     .radio-group label, .checkbox-group label { font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .section { background: #f9f9f9; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
     .section-title { font-size: 14px; font-weight: 600; color: #555; margin-bottom: 14px; }
-    textarea, input[type="datetime-local"] {
-      width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
-      font-size: 14px; font-family: inherit;
-    }
+    textarea, input[type="datetime-local"] { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; font-family: inherit; }
     textarea { resize: vertical; min-height: 100px; }
     textarea:focus, input[type="datetime-local"]:focus { outline: none; border-color: #4a90e2; }
     .hidden { display: none; }
-    button[type="submit"] {
-      width: 100%; padding: 16px; background: #111; color: #fff;
-      border: none; border-radius: 8px; font-size: 16px; font-weight: 600;
-      cursor: pointer; margin-top: 8px;
-    }
+    button[type="submit"] { width: 100%; padding: 16px; background: #111; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; }
     button[type="submit"]:hover { background: #333; }
     .success { text-align: center; padding: 40px; display: none; }
     .success h2 { font-size: 20px; margin-bottom: 12px; }
@@ -51,9 +32,11 @@
   <div class="container">
     <div id="formArea">
       <h1>LP確認・修正ヒアリング</h1>
-      <p class="subtitle">LPをご確認いただきありがとうございます。以下にご記入ください。</p>
+      <p class="subtitle"><span id="clientGreeting"></span>LPをご確認いただきありがとうございます。以下にご記入ください。</p>
 
       <form id="correctionForm">
+
+        <input type="hidden" name="clientName" id="clientName">
 
         <div class="form-group">
           <label>修正はありますか？<span class="required">*</span></label>
@@ -140,6 +123,11 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const WEBHOOK_URL = params.get('webhook') || '';
+    const clientName = params.get('clientName') || '';
+    document.getElementById('clientName').value = clientName;
+    if (clientName) {
+      document.getElementById('clientGreeting').textContent = clientName + '様、';
+    }
 
     const form = document.getElementById('correctionForm');
     const correctionDetails = document.getElementById('correctionDetails');
