@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スモールアイス | 全部、好きでいい。</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --cream: #FBF7F0;
+      --rose: #E8B4B8;
+      --sage: #8BAF8D;
+      --gold: #C8A96E;
+      --dark: #2C2421;
+      --light-rose: #F5E4E7;
+      --light-sage: #E4EFE5;
+      --soft-gold: #F0E6D0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      background-color: var(--cream);
+      color: var(--dark);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+    }
+    .font-display { font-family: 'Playfair Display', serif; }
+    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    @keyframes floatAlt {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(-2deg); }
+    }
+    .float-1 { animation: float 4s ease-in-out infinite; animation-delay: 0s; }
+    .float-2 { animation: floatAlt 3.5s ease-in-out infinite; animation-delay: 0.5s; }
+    .float-3 { animation: float 5s ease-in-out infinite; animation-delay: 1s; }
+    .float-4 { animation: floatAlt 4.2s ease-in-out infinite; animation-delay: 0.3s; }
+    .float-5 { animation: float 3.8s ease-in-out infinite; animation-delay: 0.8s; }
+
+    .gold-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+    }
+    .gold-line::before,
+    .gold-line::after {
+      content: '';
+      display: inline-block;
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .flavor-card {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .flavor-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #E8B4B8 0%, #C8A96E 100%);
+      color: white;
+      padding: 16px 52px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 6px 24px rgba(232, 180, 184, 0.45);
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(232, 180, 184, 0.55);
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Illustrated scoop in CSS */
+    .scoop-wrap { display: inline-flex; flex-direction: column; align-items: center; }
+    .scoop {
+      border-radius: 50%;
+      box-shadow: inset -5px -5px 12px rgba(0,0,0,0.12), 2px 4px 10px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .scoop::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 18%;
+      width: 25%;
+      height: 25%;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+    .cone-svg {
+      margin-top: -6px;
+      filter: drop-shadow(1px 4px 6px rgba(0,0,0,0.1));
+    }
+
+    /* Decorative ornament */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      height: 1px;
+      width: 40px;
+      background: var(--gold);
+    }
+
+    /* Paris vintage pattern */
+    .paris-bg {
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(232,180,184,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139,175,141,0.08) 0%, transparent 50%);
+    }
+
+    /* Diagonal stripe */
+    .stripe-overlay {
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 14px,
+        rgba(200,169,110,0.06) 14px,
+        rgba(200,169,110,0.06) 28px
+      );
+    }
+
+    @media (max-width: 640px) {
+      .btn-primary { padding: 14px 36px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/92 backdrop-blur-md" style="border-bottom: 1px solid rgba(200,169,110,0.2)">
+  <div class="max-w-5xl mx-auto px-5 py-3 flex justify-between items-center">
+    <div class="font-cormorant text-2xl italic tracking-wide" style="color: var(--dark)">
+      ⚜ Small Ice
+    </div>
+    <a href="#cta" class="btn-primary" style="padding: 10px 28px; font-size: 0.85rem">今すぐ購入</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden paris-bg" style="padding-top: 80px">
+  <div class="absolute inset-0 stripe-overlay pointer-events-none"></div>
+
+  <!-- Floating decorative dots -->
+  <div class="absolute top-28 left-8 w-3 h-3 rounded-full opacity-40" style="background: var(--rose)"></div>
+  <div class="absolute top-40 right-16 w-5 h-5 rounded-full opacity-30" style="background: var(--sage)"></div>
+  <div class="absolute bottom-32 left-16 w-4 h-4 rounded-full opacity-30" style="background: var(--gold)"></div>
+
+  <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto">
+    <!-- Label -->
+    <div class="ornament">
+      <span class="font-cormorant italic text-base" style="color: var(--gold)">Petit Plaisir — Paris</span>
+    </div>
+
+    <!-- Ice cream CSS illustrations -->
+    <div class="flex justify-center items-end gap-3 md:gap-6 mb-8 flex-wrap">
+      <!-- Strawberry -->
+      <div class="scoop-wrap float-1">
+        <div class="scoop w-16 h-16 md:w-20 md:h-20" style="background: radial-gradient(circle at 40% 35%, #F5A8B8, #E06880)"></div>
+        <svg class="cone-svg" width="40" height="56" viewBox="0 0 40 56">
+          <polygon points="20,56 2,4 38,4" fill="#C8A96E" opacity="0.9"/>
+          <line x1="20" y1="56" x2="10" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="20" y1="56" x2="28" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="6" y1="22" x2="34" y2="22" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="4" y1="35" x2="36" y2="35" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        </svg>
+      </div>
+      <!-- Matcha -->
+      <div class="scoop-wrap float-2" style="margin-bottom: 16px">
+        <div class="scoop w-20 h-20 md:w-24 md:h-24" style="background: radial-gradient(circle at 40% 35%, #A8C5A0, #6B9E73)"></div>
+        <svg class="cone-svg" width="48" height="68" viewBox="0 0 48 68">
+          <polygon points="24,68 2,4 46,4" fill="#C8A96E" opacity="0.9"/>
+          <line x1="24" y1="68" x2="12" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="24" y1="68" x2="34" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="5" y1="26" x2="43" y2="26" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="3" y1="42" x2="45" y2="42" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        </svg>
+      </div>
+      <!-- Vanilla -->
+      <div class="scoop-wrap float-3">
+        <div class="scoop w-16 h-16 md:w-20 md:h-20" style="background: radial-gradient(circle at 40% 35%, #FFF5D8, #EDD89A)"></div>
+        <svg class="cone-svg" width="40" height="56" viewBox="0 0 40 56">
+          <polygon points="20,56 2,4 38,4" fill="#C8A96E" opacity="0.9"/>
+          <line x1="20" y1="56" x2="10" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="20" y1="56" x2="28" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="6" y1="22" x2="34" y2="22" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="4" y1="35" x2="36" y2="35" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        </svg>
+      </div>
+      <!-- Lavender -->
+      <div class="scoop-wrap float-4" style="margin-bottom: 12px">
+        <div class="scoop w-14 h-14 md:w-18 md:h-18" style="background: radial-gradient(circle at 40% 35%, #D0B8E8, #A078C8); width: 56px; height: 56px;"></div>
+        <svg class="cone-svg" width="36" height="50" viewBox="0 0 36 50">
+          <polygon points="18,50 2,4 34,4" fill="#C8A96E" opacity="0.9"/>
+          <line x1="18" y1="50" x2="9" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <line x1="18" y1="50" x2="26" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <line x1="5" y1="20" x2="31" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="3" y1="32" x2="33" y2="32" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        </svg>
+      </div>
+      <!-- Blueberry -->
+      <div class="scoop-wrap float-5">
+        <div class="scoop w-16 h-16 md:w-20 md:h-20" style="background: radial-gradient(circle at 40% 35%, #9AA8D8, #5868A8)"></div>
+        <svg class="cone-svg" width="40" height="56" viewBox="0 0 40 56">
+          <polygon points="20,56 2,4 38,4" fill="#C8A96E" opacity="0.9"/>
+          <line x1="20" y1="56" x2="10" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="20" y1="56" x2="28" y2="10" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+          <line x1="6" y1="22" x2="34" y2="22" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <line x1="4" y1="35" x2="36" y2="35" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main copy -->
+    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl mb-4 leading-tight" style="color: var(--dark); letter-spacing: -0.02em">
+      全部、好きでいい。
+    </h1>
+    <p class="font-cormorant italic text-xl md:text-2xl mb-2" style="color: var(--gold)">Tout ce que tu aimes.</p>
+    <p class="text-base md:text-lg mb-10 font-light" style="color: #6B5B52; letter-spacing: 0.06em">
+      ひとつに選べないあなたへ、小さくて豊かなしあわせを。
+    </p>
+
+    <a href="#cta" class="btn-primary text-base">フレーバーを見る</a>
+
+    <!-- Price badge -->
+    <div class="mt-8 inline-flex items-center gap-2 px-5 py-2 rounded-full" style="background: white; border: 1px solid rgba(200,169,110,0.3)">
+      <span class="font-cormorant italic text-lg" style="color: var(--gold)">1つ</span>
+      <span class="font-display text-2xl font-bold" style="color: var(--dark)">110円〜</span>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 opacity-50">
+    <span class="text-xs tracking-widest" style="color: var(--gold)">SCROLL</span>
+    <div style="width:1px; height:32px; background: linear-gradient(to bottom, var(--gold), transparent)"></div>
+  </div>
+</section>
+
+<!-- ========== PHOTO MOSAIC ========== -->
+<section>
+  <div class="grid grid-cols-3 gap-0.5">
+    <img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?w=600&auto=format&fit=crop&q=80"
+         alt="ジェラート" class="w-full object-cover" style="height: clamp(140px, 22vw, 280px)">
+    <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=600&auto=format&fit=crop&q=80"
+         alt="カラフルアイス" class="w-full object-cover" style="height: clamp(140px, 22vw, 280px)">
+    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&auto=format&fit=crop&q=80"
+         alt="アイスクリーム" class="w-full object-cover" style="height: clamp(140px, 22vw, 280px)">
+  </div>
+</section>
+
+<!-- ========== THE PROBLEM ========== -->
+<section class="py-20 px-4" style="background: white">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="section-label">The Story</span>
+      <h2 class="font-display text-3xl md:text-4xl" style="color: var(--dark)">
+        「どれにしようか…」<br>
+        <span class="italic" style="color: var(--rose)">その迷い、全部正解。</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl p-7" style="background: var(--light-rose)">
+        <div class="text-5xl mb-4">😩</div>
+        <h3 class="font-medium text-lg mb-2" style="font-weight: 500">いつも1つに絞れない</h3>
+        <p class="text-sm leading-loose" style="color: #7A6158">ストロベリーか抹茶か、チョコかバニラか。どれも食べたくて毎回悩む。</p>
+      </div>
+      <div class="rounded-2xl p-7" style="background: var(--light-sage)">
+        <div class="text-5xl mb-4">🌸</div>
+        <h3 class="font-medium text-lg mb-2" style="font-weight: 500">全部食べてOK</h3>
+        <p class="text-sm leading-loose" style="color: #7A6158">スモールサイズだから、気になるフレーバーを1つずつ。全種類制覇だって夢じゃない。</p>
+      </div>
+      <div class="rounded-2xl p-7" style="background: var(--soft-gold)">
+        <div class="text-5xl mb-4">✨</div>
+        <h3 class="font-medium text-lg mb-2" style="font-weight: 500">選ぶ時間がしあわせ</h3>
+        <p class="text-sm leading-loose" style="color: #7A6158">「今日は何にしよう？」その迷う時間ごと、小さな贅沢になる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARIS VISUAL ========== -->
+<section class="relative overflow-hidden py-24 px-4" style="background: var(--dark)">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1400&auto=format&fit=crop&q=60"
+         alt="パリ" class="w-full h-full object-cover opacity-25">
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(44,36,33,0.5), rgba(44,36,33,0.8))"></div>
+  </div>
+
+  <div class="relative z-10 max-w-3xl mx-auto text-center">
+    <span class="section-label" style="color: var(--gold)">Paris × Gelato</span>
+    <h2 class="font-display text-4xl md:text-6xl text-white mb-6 leading-tight">
+      パリの街角で出会った、<br>
+      <em style="color: var(--rose)">小さな自由。</em>
+    </h2>
+    <p class="text-white/70 text-base md:text-lg leading-loose max-w-xl mx-auto mb-6">
+      ひとつじゃ選べないから、全部食べる。<br>
+      それがスモールアイスの哲学。
+    </p>
+    <!-- Divider ornament -->
+    <div class="flex items-center justify-center gap-4 mb-6">
+      <div style="width: 40px; height: 1px; background: var(--gold); opacity: 0.6"></div>
+      <span style="color: var(--gold); font-size: 1.3rem; opacity: 0.8">⚜</span>
+      <div style="width: 40px; height: 1px; background: var(--gold); opacity: 0.6"></div>
+    </div>
+    <p class="font-cormorant italic text-2xl" style="color: var(--gold)">"Tout petit, tout parfait."</p>
+    <p class="text-white/40 text-sm mt-1">小さくても、完璧に。</p>
+  </div>
+</section>
+
+<!-- ========== FLAVORS ========== -->
+<section id="flavors" class="py-20 px-4" style="background: var(--cream)">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="section-label">Flavors</span>
+      <h2 class="font-display text-3xl md:text-4xl" style="color: var(--dark)">今日のお気に入りを探して</h2>
+      <p class="text-sm mt-3" style="color: #9A8880">全部試せる、うれしい価格。</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Flavor Card Component -->
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #F5A8B8, #E06880)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">ストロベリー</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">110 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #A8C5A0, #6B9E73)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">抹茶</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">120 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #FFF5D8, #EDD89A)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">バニラ</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">110 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #D0B8E8, #A078C8)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">ラベンダー</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">120 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #9AA8D8, #5868A8)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">ブルーベリー</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">110 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #F0C8A0, #D89060)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">キャラメル</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">120 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #D0A8D8, #A070A8)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">ぶどう</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">110 yen</p>
+      </div>
+      <div class="flavor-card bg-white rounded-2xl p-5 text-center shadow-sm cursor-pointer">
+        <div class="scoop-wrap">
+          <div class="scoop w-14 h-14 mx-auto mb-2" style="background: radial-gradient(circle at 40% 35%, #C0E0B0, #88C070)"></div>
+        </div>
+        <h3 class="font-medium text-sm mb-1">メロン</h3>
+        <p class="text-xs font-cormorant italic" style="color: var(--gold)">130 yen</p>
+      </div>
+    </div>
+    <p class="text-center mt-6 text-xs" style="color: #B0A098">※ フレーバーは季節によって変わります</p>
+  </div>
+</section>
+
+<!-- ========== LIFESTYLE PHOTO ========== -->
+<section class="py-0">
+  <div class="grid grid-cols-2 gap-0.5">
+    <div class="relative overflow-hidden" style="height: clamp(180px, 30vw, 380px)">
+      <img src="https://images.unsplash.com/photo-1576506295286-5cda18df43e7?w=700&auto=format&fit=crop&q=80"
+           alt="カラフルアイス" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <p class="absolute bottom-4 left-4 text-white font-cormorant italic text-lg">Colorful &amp; Cute</p>
+    </div>
+    <div class="relative overflow-hidden" style="height: clamp(180px, 30vw, 380px)">
+      <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=700&auto=format&fit=crop&q=80"
+           alt="アイスクリーム" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <p class="absolute bottom-4 left-4 text-white font-cormorant italic text-lg">All Yours</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICE & CTA ========== -->
+<section id="cta" class="py-24 px-4" style="background: var(--light-rose)">
+  <div class="max-w-3xl mx-auto text-center">
+    <span class="section-label">Price</span>
+    <h2 class="font-display text-3xl md:text-4xl mb-10" style="color: var(--dark)">全部試せる、うれしい価格。</h2>
+
+    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-md mb-10">
+      <!-- Price display -->
+      <div class="flex items-center justify-center gap-6 md:gap-12 mb-6 flex-wrap">
+        <div>
+          <div class="font-display text-6xl md:text-7xl" style="color: var(--rose)">
+            110<span class="text-2xl">円</span>
+          </div>
+          <p class="text-xs mt-1" style="color: #B0A098">定番フレーバー</p>
+        </div>
+        <div class="font-cormorant text-3xl italic" style="color: var(--gold)">〜</div>
+        <div>
+          <div class="font-display text-6xl md:text-7xl" style="color: var(--sage)">
+            130<span class="text-2xl">円</span>
+          </div>
+          <p class="text-xs mt-1" style="color: #B0A098">プレミアムフレーバー</p>
+        </div>
+      </div>
+
+      <div style="height: 1px; background: rgba(200,169,110,0.2); margin: 24px 0"></div>
+
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div>
+          <p class="font-cormorant italic text-2xl" style="color: var(--gold)">8+</p>
+          <p class="text-xs mt-1" style="color: #9A8880">フレーバー</p>
+        </div>
+        <div>
+          <p class="font-cormorant italic text-2xl" style="color: var(--rose)">110円〜</p>
+          <p class="text-xs mt-1" style="color: #9A8880">1つから購入</p>
+        </div>
+        <div>
+          <p class="font-cormorant italic text-2xl" style="color: var(--sage)">全種</p>
+          <p class="text-xs mt-1" style="color: #9A8880">試し買いOK</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="btn-primary text-base mb-4 block w-fit mx-auto">今すぐ注文する</a>
+    <p class="text-sm" style="color: #B0A098">配送対応 / まとめ買い割引あり</p>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="py-20 px-4 text-center" style="background: var(--dark)">
+  <div class="ornament" style="justify-content: center">
+    <span class="font-cormorant italic text-lg" style="color: var(--gold)">⚜</span>
+  </div>
+  <h2 class="font-display text-3xl md:text-5xl text-white mb-3 italic">
+    "全部、好きでいい。"
+  </h2>
+  <p class="font-cormorant italic text-xl mb-10" style="color: var(--gold)">Tout ce que tu aimes.</p>
+  <a href="#" class="btn-primary text-base">スモールアイスを購入する</a>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="py-10 px-4 text-center" style="background: var(--cream); border-top: 1px solid rgba(200,169,110,0.15)">
+  <div class="font-cormorant text-2xl italic mb-2" style="color: var(--dark)">⚜ Small Ice</div>
+  <p class="text-xs" style="color: #C0B8B0">© 2026 ToyBox. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
