@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>春の抹茶とイチゴのラテ | HAMcafe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --matcha: #7AAE6E;
+      --matcha-dark: #5A8E50;
+      --strawberry: #E87B9A;
+      --strawberry-light: #F9D5E2;
+      --cream: #F8F5F0;
+      --warm-brown: #7A5C45;
+      --text-main: #3D3035;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--cream); color: var(--text-main); margin: 0; padding: 0; }
+    .serif { font-family: 'Noto Serif JP', serif; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--strawberry), #D4567A);
+      color: white;
+      border-radius: 50px;
+      padding: 18px 48px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232, 123, 154, 0.4); }
+    .section-tag {
+      display: inline-block;
+      background: var(--strawberry-light);
+      color: var(--strawberry);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--matcha), var(--strawberry));
+      margin: 16px auto;
+      border-radius: 2px;
+    }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr !important; }
+      .hero-title { font-size: 2rem !important; }
+      .btn-primary { padding: 16px 36px !important; font-size: 1rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header style="background: rgba(248,245,240,0.97); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #EDE9E4;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center;">
+    <div class="serif" style="font-size: 1.4rem; font-weight: 700; color: var(--warm-brown); letter-spacing: 0.12em;">HAMcafe</div>
+    <a href="#order" class="btn-primary" style="padding: 10px 28px; font-size: 0.9rem;">今すぐ注文する</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="position: relative; overflow: hidden; min-height: 88vh; display: flex; align-items: center;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(249,213,226,0.6) 0%, rgba(232,243,229,0.55) 60%, rgba(248,245,240,0.8) 100%);"></div>
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&auto=format&fit=crop&q=80"
+       alt="春の抹茶とイチゴのラテ"
+       style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.22;">
+  <div style="position: relative; max-width: 1100px; margin: 0 auto; padding: 100px 24px; width: 100%;">
+    <div style="max-width: 640px;">
+      <p class="section-tag" style="font-size: 0.8rem;">Spring Limited 2026</p>
+      <h1 class="serif hero-title" style="font-size: 3.4rem; font-weight: 700; line-height: 1.4; margin-bottom: 24px; color: var(--text-main); letter-spacing: 0.1em;">
+        5分の休憩を、<br>
+        <span style="color: var(--strawberry);">春色のしあわせ</span>に。
+      </h1>
+      <p style="font-size: 1.05rem; color: #6B5A5A; margin-bottom: 20px; line-height: 2; max-width: 500px;">
+        忙しいランチタイムでも、罪悪感ゼロで<br>
+        デザートを楽しめる。<br>
+        HAMcafe が贈る、春だけの特別なラテ。
+      </p>
+      <p style="font-size: 1rem; color: var(--matcha-dark); font-weight: 500; margin-bottom: 40px; letter-spacing: 0.05em; background: rgba(232,243,229,0.7); display: inline-block; padding: 10px 20px; border-radius: 8px;">
+        S: 420円 ／ M: 610円 ／ L: 720円（税込）
+      </p>
+      <br>
+      <a href="#order" class="btn-primary" style="font-size: 1.1rem;">春のラテを注文する →</a>
+      <p style="margin-top: 16px; font-size: 0.82rem; color: #9A8080;">テイクアウト対応 ・ 短時間提供 ・ 数量限定</p>
+    </div>
+  </div>
+</section>
+
+<!-- 共感セクション -->
+<section style="background: white; padding: 90px 24px;">
+  <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+    <p class="section-tag">こんな悩み、ありませんか？</p>
+    <h2 class="serif" style="font-size: 2rem; font-weight: 700; margin-bottom: 16px; line-height: 1.6; letter-spacing: 0.08em;">
+      「甘いものが欲しいのに、<br>
+      カロリーも時間も気になる…」
+    </h2>
+    <p style="color: #8A7575; margin-bottom: 48px; line-height: 1.9; font-size: 0.95rem;">忙しい毎日、そんなジレンマを感じたことはありませんか？</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; text-align: left;">
+      <div style="background: var(--cream); border-radius: 20px; padding: 28px;">
+        <div style="font-size: 2rem; margin-bottom: 14px;">⏰</div>
+        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-main); font-size: 0.95rem;">ランチ後5分しかない</p>
+        <p style="font-size: 0.88rem; color: #8A7575; line-height: 1.8;">デザートを頼みたいのに、すぐオフィスに戻らなければならない。</p>
+      </div>
+      <div style="background: var(--cream); border-radius: 20px; padding: 28px;">
+        <div style="font-size: 2rem; margin-bottom: 14px;">🌿</div>
+        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-main); font-size: 0.95rem;">カロリーが罪悪感に</p>
+        <p style="font-size: 0.88rem; color: #8A7575; line-height: 1.8;">甘いものを飲んだ後、午後の仕事にひびくのが気になる。</p>
+      </div>
+      <div style="background: var(--cream); border-radius: 20px; padding: 28px;">
+        <div style="font-size: 2rem; margin-bottom: 14px;">🌸</div>
+        <p style="font-weight: 600; margin-bottom: 8px; color: var(--text-main); font-size: 0.95rem;">季節を味わいたい</p>
+        <p style="font-size: 0.88rem; color: #8A7575; line-height: 1.8;">仕事の合間に、ちょっとした春の特別感を味わいたい。</p>
+      </div>
+    </div>
+    <div class="divider" style="margin-top: 48px;"></div>
+    <p class="serif" style="font-size: 1.4rem; color: var(--strawberry); margin-top: 32px; font-weight: 600; letter-spacing: 0.1em;">
+      そのすべてを、HAMcafeが解決しました。
+    </p>
+  </div>
+</section>
+
+<!-- 商品紹介 -->
+<section style="padding: 90px 24px; background: var(--cream);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <p class="section-tag">Product</p>
+      <h2 class="serif" style="font-size: 2.2rem; font-weight: 700; letter-spacing: 0.12em; line-height: 1.5;">
+        春の抹茶とイチゴのラテ
+      </h2>
+      <div class="divider"></div>
+      <p style="color: #8A7575; font-size: 0.95rem; max-width: 440px; margin: 0 auto; line-height: 1.8;">HAMcafe の春限定シグネチャードリンク</p>
+    </div>
+    <div class="two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+      <div>
+        <img src="https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=700&auto=format&fit=crop&q=80"
+             alt="抹茶ラテ"
+             style="width: 100%; border-radius: 28px; box-shadow: 0 24px 64px rgba(0,0,0,0.12); object-fit: cover; height: 440px;">
+      </div>
+      <div>
+        <p style="font-size: 0.85rem; color: var(--matcha-dark); font-weight: 500; letter-spacing: 0.15em; margin-bottom: 20px; text-transform: uppercase;">HAMcafe Signature Spring</p>
+        <h3 class="serif" style="font-size: 1.7rem; font-weight: 700; margin-bottom: 24px; line-height: 1.6; letter-spacing: 0.06em;">
+          さっぱりイチゴ×<br>ほんのり甘い抹茶の<br>至福のハーモニー
+        </h3>
+        <p style="color: #6B5A5A; line-height: 2; margin-bottom: 32px; font-size: 0.95rem;">
+          さっぱりとしたイチゴの酸味と、ほんのり甘い上品な抹茶が絶妙に重なり合う、春だけの特別なラテ。カロリーも控えめで、午後の仕事中でも罪悪感ゼロで楽しめます。
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 36px;">
+          <div style="text-align: center; background: var(--strawberry-light); border-radius: 16px; padding: 18px 12px;">
+            <p style="font-size: 0.72rem; color: var(--strawberry); letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 500;">Small</p>
+            <p class="serif" style="font-size: 1.6rem; font-weight: 700; color: var(--text-main); line-height: 1;">420<span style="font-size: 0.85rem;">円</span></p>
+          </div>
+          <div style="text-align: center; background: #E8F3E5; border-radius: 16px; padding: 18px 12px; border: 2px solid var(--matcha); position: relative;">
+            <p style="font-size: 0.72rem; color: var(--matcha-dark); letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Medium ★人気</p>
+            <p class="serif" style="font-size: 1.6rem; font-weight: 700; color: var(--text-main); line-height: 1;">610<span style="font-size: 0.85rem;">円</span></p>
+          </div>
+          <div style="text-align: center; background: #F5F0EA; border-radius: 16px; padding: 18px 12px;">
+            <p style="font-size: 0.72rem; color: var(--warm-brown); letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 500;">Large</p>
+            <p class="serif" style="font-size: 1.6rem; font-weight: 700; color: var(--text-main); line-height: 1;">720<span style="font-size: 0.85rem;">円</span></p>
+          </div>
+        </div>
+        <a href="#order" class="btn-primary">注文ページへ進む →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- こだわり -->
+<section style="background: white; padding: 90px 24px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <p class="section-tag">Our Promise</p>
+      <h2 class="serif" style="font-size: 2.2rem; font-weight: 700; letter-spacing: 0.12em;">
+        HAMcafe 3つのこだわり
+      </h2>
+      <div class="divider"></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+      <div style="border-radius: 24px; overflow: hidden; box-shadow: 0 6px 32px rgba(0,0,0,0.08);">
+        <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=500&auto=format&fit=crop&q=80"
+             alt="抹茶のこだわり"
+             style="width: 100%; height: 220px; object-fit: cover;">
+        <div style="padding: 28px; background: white;">
+          <div style="display: inline-block; background: #E8F3E5; color: var(--matcha-dark); font-size: 0.72rem; letter-spacing: 0.18em; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; font-weight: 600;">01</div>
+          <h3 class="serif" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.06em; line-height: 1.5;">さっぱり感と満足感を両立</h3>
+          <p style="color: #6B5A5A; line-height: 1.9; font-size: 0.9rem;">イチゴのさっぱりした酸味と抹茶のコクが絶妙に調和。飲んだ後も重くならず、デザートを楽しんだ充実感だけが残ります。</p>
+        </div>
+      </div>
+      <div style="border-radius: 24px; overflow: hidden; box-shadow: 0 6px 32px rgba(0,0,0,0.08);">
+        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&auto=format&fit=crop&q=80"
+             alt="スピーディな提供"
+             style="width: 100%; height: 220px; object-fit: cover;">
+        <div style="padding: 28px; background: white;">
+          <div style="display: inline-block; background: var(--strawberry-light); color: var(--strawberry); font-size: 0.72rem; letter-spacing: 0.18em; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; font-weight: 600;">02</div>
+          <h3 class="serif" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.06em; line-height: 1.5;">5分でもデザートタイムに</h3>
+          <p style="color: #6B5A5A; line-height: 1.9; font-size: 0.9rem;">お昼休憩があと5分しかなくても大丈夫。スピーディな提供にこだわり、テイクアウトでオフィスへそのままお持ち帰りいただけます。</p>
+        </div>
+      </div>
+      <div style="border-radius: 24px; overflow: hidden; box-shadow: 0 6px 32px rgba(0,0,0,0.08);">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=500&auto=format&fit=crop&q=80"
+             alt="春の季節感"
+             style="width: 100%; height: 220px; object-fit: cover;">
+        <div style="padding: 28px; background: white;">
+          <div style="display: inline-block; background: #FFF3E0; color: #C9965E; font-size: 0.72rem; letter-spacing: 0.18em; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; font-weight: 600;">03</div>
+          <h3 class="serif" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.06em; line-height: 1.5;">春だけの特別な一杯</h3>
+          <p style="color: #6B5A5A; line-height: 1.9; font-size: 0.9rem;">季節の移ろいを感じられる、春限定のメニュー。日常の小さな幸せを、ちょっとだけ特別にしてくれる一杯です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 利用シーン -->
+<section style="padding: 90px 24px; background: linear-gradient(135deg, rgba(249,213,226,0.25) 0%, rgba(232,243,229,0.25) 100%);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <p class="section-tag">Scene</p>
+      <h2 class="serif" style="font-size: 2.2rem; font-weight: 700; letter-spacing: 0.12em;">
+        こんなシーンにぴったり
+      </h2>
+      <div class="divider"></div>
+    </div>
+    <div class="two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+      <div>
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700&auto=format&fit=crop&q=80"
+             alt="オフィスでのティータイム"
+             style="width: 100%; border-radius: 28px; box-shadow: 0 20px 60px rgba(0,0,0,0.10); object-fit: cover; height: 400px;">
+      </div>
+      <div>
+        <div style="display: flex; flex-direction: column; gap: 28px;">
+          <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="width: 48px; height: 48px; background: var(--strawberry-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem;">🌸</div>
+            <div>
+              <p style="font-weight: 600; margin-bottom: 6px; font-size: 1rem;">ランチ後のデザートタイムに</p>
+              <p style="font-size: 0.9rem; color: #8A7575; line-height: 1.8;">食後の甘みが欲しい時も、テイクアウトでデスクに持ち帰って楽しめます。ランチのシメに最適。</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="width: 48px; height: 48px; background: #E8F3E5; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem;">☕</div>
+            <div>
+              <p style="font-weight: 600; margin-bottom: 6px; font-size: 1rem;">午後の仕事前のリフレッシュに</p>
+              <p style="font-size: 0.9rem; color: #8A7575; line-height: 1.8;">抹茶の程よいカフェインで、午後の集中力もアップ。仕事への切り替えに最適な一杯。</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="width: 48px; height: 48px; background: #FFF3E0; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem;">🎁</div>
+            <div>
+              <p style="font-weight: 600; margin-bottom: 6px; font-size: 1rem;">自分へのご褒美に</p>
+              <p style="font-size: 0.9rem; color: #8A7575; line-height: 1.8;">頑張った自分に、春の特別な一杯を。毎日のちょっとした贅沢として楽しんでください。</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="width: 48px; height: 48px; background: #F5F0EA; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem;">👜</div>
+            <div>
+              <p style="font-weight: 600; margin-bottom: 6px; font-size: 1rem;">そのままオフィスへ</p>
+              <p style="font-size: 0.9rem; color: #8A7575; line-height: 1.8;">テイクアウト専用カップでご提供。こぼれにくい設計でオフィスへそのまま持ち帰れます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA #1 -->
+<section id="order" style="background: linear-gradient(135deg, #F9D5E2 0%, #E8F3E5 100%); padding: 90px 24px; text-align: center;">
+  <div style="max-width: 600px; margin: 0 auto;">
+    <p class="section-tag" style="font-size: 0.8rem;">Order Now</p>
+    <h2 class="serif" style="font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.1em; line-height: 1.5;">
+      春のラテを、今日楽しむ。
+    </h2>
+    <p style="color: #6B5A5A; line-height: 1.9; margin-bottom: 12px; font-size: 0.95rem;">HAMcafe 春の抹茶とイチゴのラテ</p>
+    <p style="font-size: 1rem; font-weight: 600; margin-bottom: 36px; background: white; display: inline-block; padding: 12px 24px; border-radius: 12px; color: var(--text-main);">
+      S: 420円 ／ M: 610円 ／ L: 720円（税込）
+    </p>
+    <br>
+    <a href="#" class="btn-primary" style="font-size: 1.15rem; padding: 22px 60px;">今すぐ購入する →</a>
+    <p style="font-size: 0.82rem; color: #8A7575; margin-top: 20px;">テイクアウト対応 ・ 短時間提供 ・ 春限定メニュー</p>
+  </div>
+</section>
+
+<!-- よくある質問 -->
+<section style="background: white; padding: 90px 24px;">
+  <div style="max-width: 720px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <p class="section-tag">FAQ</p>
+      <h2 class="serif" style="font-size: 2rem; font-weight: 700; letter-spacing: 0.1em;">よくあるご質問</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <details style="background: var(--cream); border-radius: 18px; padding: 22px 28px; cursor: pointer;">
+        <summary style="font-weight: 500; font-size: 1rem; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+          <span>テイクアウトに対応していますか？</span>
+          <span style="color: var(--strawberry); font-size: 1.4rem; flex-shrink: 0;">＋</span>
+        </summary>
+        <p style="color: #6B5A5A; margin-top: 14px; line-height: 1.9; font-size: 0.92rem;">はい、テイクアウト対応しております。専用カップでご提供しますので、そのままオフィスへお持ち帰りいただけます。</p>
+      </details>
+      <details style="background: var(--cream); border-radius: 18px; padding: 22px 28px; cursor: pointer;">
+        <summary style="font-weight: 500; font-size: 1rem; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+          <span>どのくらい時間がかかりますか？</span>
+          <span style="color: var(--strawberry); font-size: 1.4rem; flex-shrink: 0;">＋</span>
+        </summary>
+        <p style="color: #6B5A5A; margin-top: 14px; line-height: 1.9; font-size: 0.92rem;">通常3〜5分程度でご提供可能です。お昼休憩が短い方でも、安心してお楽しみいただけます。</p>
+      </details>
+      <details style="background: var(--cream); border-radius: 18px; padding: 22px 28px; cursor: pointer;">
+        <summary style="font-weight: 500; font-size: 1rem; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+          <span>カロリーはどのくらいですか？</span>
+          <span style="color: var(--strawberry); font-size: 1.4rem; flex-shrink: 0;">＋</span>
+        </summary>
+        <p style="color: #6B5A5A; margin-top: 14px; line-height: 1.9; font-size: 0.92rem;">Sサイズで約120kcal程度（目安）。抹茶の自然な甘みを活かし、砂糖は控えめに仕上げています。罪悪感なくデザートを楽しんでいただけます。</p>
+      </details>
+      <details style="background: var(--cream); border-radius: 18px; padding: 22px 28px; cursor: pointer;">
+        <summary style="font-weight: 500; font-size: 1rem; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+          <span>いつまで販売していますか？</span>
+          <span style="color: var(--strawberry); font-size: 1.4rem; flex-shrink: 0;">＋</span>
+        </summary>
+        <p style="color: #6B5A5A; margin-top: 14px; line-height: 1.9; font-size: 0.92rem;">春限定メニューのため、販売期間終了後はご注文いただけなくなります。この春のうちにお楽しみください。</p>
+      </details>
+      <details style="background: var(--cream); border-radius: 18px; padding: 22px 28px; cursor: pointer;">
+        <summary style="font-weight: 500; font-size: 1rem; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+          <span>Sサイズはどのくらいの量ですか？</span>
+          <span style="color: var(--strawberry); font-size: 1.4rem; flex-shrink: 0;">＋</span>
+        </summary>
+        <p style="color: #6B5A5A; margin-top: 14px; line-height: 1.9; font-size: 0.92rem;">Sサイズは約240ml、Mサイズは約350ml、Lサイズは約480mlとなっております。お昼のデザート用ならMサイズが人気です。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Footer CTA -->
+<section style="background: linear-gradient(135deg, #3D3035 0%, #5A3D4A 100%); padding: 90px 24px; text-align: center; color: white;">
+  <div style="max-width: 600px; margin: 0 auto;">
+    <p style="font-size: 0.82rem; letter-spacing: 0.22em; color: #C9A0B8; margin-bottom: 20px;">SPRING LIMITED 2026</p>
+    <h2 class="serif" style="font-size: 2rem; font-weight: 700; margin-bottom: 20px; line-height: 1.7; color: white;">
+      この春のうちに、<br>一度飲んでみてください。
+    </h2>
+    <p style="color: #C0B0C4; line-height: 2; margin-bottom: 44px; font-size: 0.95rem;">
+      忙しい毎日のランチタイムに、<br>ほんの少しの春色のしあわせを。
+    </p>
+    <a href="#order" class="btn-primary" style="font-size: 1.1rem; padding: 20px 52px;">今すぐ購入する →</a>
+    <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 0.75rem; color: #7A6A80;">© 2026 HAMcafe. All rights reserved.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
