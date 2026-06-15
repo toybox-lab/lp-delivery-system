@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>スモールアイス | 全部、好きでいい。</title>
+  <title>スモールアイス | あなたと溶ける、時間とわたし。</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -64,25 +64,31 @@
       box-shadow: 0 24px 48px rgba(0,0,0,0.12);
     }
 
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 8px 32px rgba(232,180,184,0.6), 0 0 0 0 rgba(232,180,184,0.3); }
+      50% { box-shadow: 0 12px 40px rgba(232,180,184,0.8), 0 0 0 10px rgba(232,180,184,0); }
+    }
     .btn-primary {
       background: linear-gradient(135deg, #E8B4B8 0%, #C8A96E 100%);
       color: white;
-      padding: 16px 52px;
+      padding: 20px 64px;
       border-radius: 999px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       cursor: pointer;
-      border: none;
-      box-shadow: 0 6px 24px rgba(232, 180, 184, 0.45);
+      border: 2.5px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 32px rgba(232, 180, 184, 0.6), 0 2px 0 rgba(255,255,255,0.2) inset;
+      animation: pulse-glow 2.5s ease-in-out infinite;
       transition: all 0.3s ease;
       display: inline-block;
       text-decoration: none;
     }
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 36px rgba(232, 180, 184, 0.55);
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 20px 50px rgba(232, 180, 184, 0.75), 0 0 0 6px rgba(232,180,184,0.15);
+      animation: none;
     }
 
     .section-label {
@@ -138,6 +144,15 @@
         radial-gradient(circle at 20% 50%, rgba(232,180,184,0.08) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(139,175,141,0.08) 0%, transparent 50%);
     }
+    .paris-illustration {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      pointer-events: none;
+      opacity: 0.13;
+    }
 
     /* Diagonal stripe */
     .stripe-overlay {
@@ -170,6 +185,114 @@
 <!-- ========== HERO ========== -->
 <section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden paris-bg" style="padding-top: 80px">
   <div class="absolute inset-0 stripe-overlay pointer-events-none"></div>
+
+  <!-- Paris hand-drawn illustration -->
+  <svg class="paris-illustration" viewBox="0 0 1400 500" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:#C8A96E;stroke-linecap:round;stroke-linejoin:round;">
+    <!-- Ground line -->
+    <line x1="0" y1="490" x2="1400" y2="490" stroke-width="1.5"/>
+    <!-- Building 1 -->
+    <polyline points="0,490 0,185 40,125 80,105 120,125 160,185 160,490" stroke-width="1.5"/>
+    <line x1="40" y1="125" x2="80" y2="85" stroke-width="1"/><line x1="120" y1="125" x2="80" y2="85" stroke-width="1"/>
+    <rect x="58" y="90" width="44" height="26" rx="2" stroke-width="1"/>
+    <rect x="14" y="205" width="32" height="42" rx="2" stroke-width="1"/><rect x="114" y="205" width="32" height="42" rx="2" stroke-width="1"/>
+    <rect x="14" y="268" width="32" height="42" rx="2" stroke-width="1"/><rect x="114" y="268" width="32" height="42" rx="2" stroke-width="1"/>
+    <rect x="14" y="331" width="32" height="42" rx="2" stroke-width="1"/><rect x="114" y="331" width="32" height="42" rx="2" stroke-width="1"/>
+    <rect x="14" y="394" width="32" height="42" rx="2" stroke-width="1"/><rect x="114" y="394" width="32" height="42" rx="2" stroke-width="1"/>
+    <line x1="5" y1="268" x2="155" y2="268" stroke-width="1.2"/><line x1="5" y1="331" x2="155" y2="331" stroke-width="1.2"/>
+    <rect x="60" y="430" width="40" height="60" rx="2" stroke-width="1.2"/>
+    <!-- Building 2 -->
+    <polyline points="160,490 160,235 200,195 240,178 280,195 320,235 320,490" stroke-width="1.5"/>
+    <line x1="200" y1="195" x2="240" y2="155" stroke-width="1"/><line x1="280" y1="195" x2="240" y2="155" stroke-width="1"/>
+    <rect x="218" y="158" width="44" height="26" rx="2" stroke-width="1"/>
+    <rect x="168" y="162" width="11" height="30" stroke-width="1"/><rect x="301" y="160" width="11" height="32" stroke-width="1"/>
+    <rect x="173" y="255" width="28" height="38" rx="2" stroke-width="1"/><rect x="279" y="255" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="173" y="313" width="28" height="38" rx="2" stroke-width="1"/><rect x="279" y="313" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="173" y="371" width="28" height="38" rx="2" stroke-width="1"/><rect x="279" y="371" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="173" y="430" width="28" height="38" rx="2" stroke-width="1"/><rect x="279" y="430" width="28" height="38" rx="2" stroke-width="1"/>
+    <!-- Building 3 (tall) -->
+    <polyline points="320,490 320,165 365,125 410,108 455,125 500,165 500,490" stroke-width="1.5"/>
+    <line x1="365" y1="125" x2="410" y2="85" stroke-width="1"/><line x1="455" y1="125" x2="410" y2="85" stroke-width="1"/>
+    <rect x="388" y="88" width="44" height="26" rx="2" stroke-width="1"/>
+    <rect x="328" y="108" width="11" height="34" stroke-width="1"/>
+    <rect x="333" y="185" width="28" height="38" rx="2" stroke-width="1"/><rect x="383" y="185" width="28" height="38" rx="2" stroke-width="1"/><rect x="459" y="185" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="333" y="243" width="28" height="38" rx="2" stroke-width="1"/><rect x="383" y="243" width="28" height="38" rx="2" stroke-width="1"/><rect x="459" y="243" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="333" y="301" width="28" height="38" rx="2" stroke-width="1"/><rect x="383" y="301" width="28" height="38" rx="2" stroke-width="1"/><rect x="459" y="301" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="333" y="359" width="28" height="38" rx="2" stroke-width="1"/><rect x="383" y="359" width="28" height="38" rx="2" stroke-width="1"/><rect x="459" y="359" width="28" height="38" rx="2" stroke-width="1"/>
+    <rect x="333" y="417" width="28" height="38" rx="2" stroke-width="1"/><rect x="383" y="417" width="28" height="38" rx="2" stroke-width="1"/><rect x="459" y="417" width="28" height="38" rx="2" stroke-width="1"/>
+    <!-- Street lamp left -->
+    <line x1="512" y1="490" x2="512" y2="328" stroke-width="2"/>
+    <path d="M512,328 Q534,308 554,320" stroke-width="2"/>
+    <circle cx="558" cy="316" r="9" stroke-width="1.5"/>
+    <!-- Building 4 -->
+    <polyline points="572,490 572,205 615,165 655,148 695,165 735,205 735,490" stroke-width="1.5"/>
+    <line x1="615" y1="165" x2="655" y2="128" stroke-width="1"/><line x1="695" y1="165" x2="655" y2="128" stroke-width="1"/>
+    <rect x="633" y="132" width="44" height="26" rx="2" stroke-width="1"/>
+    <rect x="580" y="158" width="10" height="30" stroke-width="1"/><rect x="720" y="155" width="10" height="32" stroke-width="1"/>
+    <rect x="582" y="225" width="26" height="36" rx="2" stroke-width="1"/><rect x="638" y="225" width="26" height="36" rx="2" stroke-width="1"/><rect x="698" y="225" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="582" y="282" width="26" height="36" rx="2" stroke-width="1"/><rect x="638" y="282" width="26" height="36" rx="2" stroke-width="1"/><rect x="698" y="282" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="582" y="339" width="26" height="36" rx="2" stroke-width="1"/><rect x="638" y="339" width="26" height="36" rx="2" stroke-width="1"/><rect x="698" y="339" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="582" y="396" width="26" height="36" rx="2" stroke-width="1"/><rect x="638" y="396" width="26" height="36" rx="2" stroke-width="1"/><rect x="698" y="396" width="26" height="36" rx="2" stroke-width="1"/>
+    <!-- Café awning -->
+    <polyline points="735,490 735,435 758,422 810,422 810,490" stroke-width="1.5"/>
+    <path d="M735,435 Q773,450 810,435" stroke-width="1.5"/>
+    <line x1="750" y1="426" x2="750" y2="450" stroke-width="0.8"/><line x1="765" y1="423" x2="765" y2="450" stroke-width="0.8"/><line x1="780" y1="422" x2="780" y2="450" stroke-width="0.8"/><line x1="795" y1="423" x2="795" y2="450" stroke-width="0.8"/>
+    <rect x="758" y="452" width="32" height="38" rx="3" stroke-width="1.5"/>
+    <!-- Building 5 -->
+    <polyline points="810,490 810,248 855,208 895,192 935,208 975,248 975,490" stroke-width="1.5"/>
+    <line x1="855" y1="208" x2="895" y2="172" stroke-width="1"/><line x1="935" y1="208" x2="895" y2="172" stroke-width="1"/>
+    <rect x="820" y="160" width="10" height="30" stroke-width="1"/>
+    <rect x="820" y="268" width="26" height="36" rx="2" stroke-width="1"/><rect x="876" y="268" width="26" height="36" rx="2" stroke-width="1"/><rect x="934" y="268" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="820" y="325" width="26" height="36" rx="2" stroke-width="1"/><rect x="876" y="325" width="26" height="36" rx="2" stroke-width="1"/><rect x="934" y="325" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="820" y="382" width="26" height="36" rx="2" stroke-width="1"/><rect x="876" y="382" width="26" height="36" rx="2" stroke-width="1"/><rect x="934" y="382" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="820" y="440" width="26" height="36" rx="2" stroke-width="1"/><rect x="876" y="440" width="26" height="36" rx="2" stroke-width="1"/><rect x="934" y="440" width="26" height="36" rx="2" stroke-width="1"/>
+    <!-- Eiffel Tower -->
+    <path d="M1000,490 Q1012,440 1025,415" stroke-width="1.5"/>
+    <path d="M1120,490 Q1108,440 1095,415" stroke-width="1.5"/>
+    <path d="M1010,490 Q1020,430 1040,310 L1035,210 L1060,210 L1055,310 Q1075,430 1085,490" stroke-width="0"/>
+    <!-- Left outer leg -->
+    <path d="M985,490 Q998,420 1040,305" stroke-width="1.5"/>
+    <!-- Right outer leg -->
+    <path d="M1135,490 Q1122,420 1080,305" stroke-width="1.5"/>
+    <!-- First floor platform -->
+    <line x1="995" y1="415" x2="1125" y2="415" stroke-width="1.5"/>
+    <!-- Lattice first section -->
+    <line x1="990" y1="465" x2="1060" y2="415" stroke-width="0.8"/><line x1="1010" y1="490" x2="1060" y2="415" stroke-width="0.8"/>
+    <line x1="1130" y1="465" x2="1060" y2="415" stroke-width="0.8"/><line x1="1110" y1="490" x2="1060" y2="415" stroke-width="0.8"/>
+    <line x1="992" y1="455" x2="1128" y2="455" stroke-width="0.6"/>
+    <!-- Second level -->
+    <path d="M1025,415 L1040,310 L1060,310 L1075,415" stroke-width="1.5"/>
+    <line x1="1040" y1="310" x2="1060" y2="310" stroke-width="1.5"/>
+    <line x1="1030" y1="380" x2="1070" y2="380" stroke-width="0.8"/>
+    <line x1="1028" y1="345" x2="1072" y2="345" stroke-width="0.8"/>
+    <line x1="1030" y1="380" x2="1050" y2="310" stroke-width="0.7"/><line x1="1070" y1="380" x2="1050" y2="310" stroke-width="0.7"/>
+    <!-- Third level -->
+    <path d="M1042,308 L1046,210 L1054,210 L1058,308" stroke-width="1.5"/>
+    <line x1="1046" y1="210" x2="1054" y2="210" stroke-width="1.2"/>
+    <line x1="1044" y1="260" x2="1056" y2="260" stroke-width="0.8"/>
+    <!-- Spire -->
+    <line x1="1050" y1="208" x2="1050" y2="72" stroke-width="1.8"/>
+    <line x1="1042" y1="95" x2="1058" y2="95" stroke-width="1"/>
+    <line x1="1045" y1="82" x2="1055" y2="82" stroke-width="1"/>
+    <circle cx="1050" cy="68" r="3" stroke-width="1.5"/>
+    <!-- Street lamp right -->
+    <line x1="1168" y1="490" x2="1168" y2="328" stroke-width="2"/>
+    <path d="M1168,328 Q1146,308 1126,320" stroke-width="2"/>
+    <circle cx="1122" cy="316" r="9" stroke-width="1.5"/>
+    <!-- Building 6 -->
+    <polyline points="1200,490 1200,222 1242,182 1282,168 1322,182 1362,222 1362,490" stroke-width="1.5"/>
+    <line x1="1242" y1="182" x2="1282" y2="145" stroke-width="1"/><line x1="1322" y1="182" x2="1282" y2="145" stroke-width="1"/>
+    <rect x="1260" y="148" width="44" height="26" rx="2" stroke-width="1"/>
+    <rect x="1350" y="165" width="10" height="30" stroke-width="1"/>
+    <rect x="1210" y="242" width="26" height="36" rx="2" stroke-width="1"/><rect x="1268" y="242" width="26" height="36" rx="2" stroke-width="1"/><rect x="1328" y="242" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="1210" y="299" width="26" height="36" rx="2" stroke-width="1"/><rect x="1268" y="299" width="26" height="36" rx="2" stroke-width="1"/><rect x="1328" y="299" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="1210" y="356" width="26" height="36" rx="2" stroke-width="1"/><rect x="1268" y="356" width="26" height="36" rx="2" stroke-width="1"/><rect x="1328" y="356" width="26" height="36" rx="2" stroke-width="1"/>
+    <rect x="1210" y="413" width="26" height="36" rx="2" stroke-width="1"/><rect x="1268" y="413" width="26" height="36" rx="2" stroke-width="1"/><rect x="1328" y="413" width="26" height="36" rx="2" stroke-width="1"/>
+    <!-- Stars -->
+    <circle cx="250" cy="48" r="2" stroke-width="1"/><circle cx="450" cy="28" r="1.5" stroke-width="1"/>
+    <circle cx="650" cy="42" r="2" stroke-width="1"/><circle cx="870" cy="22" r="1.5" stroke-width="1"/>
+    <circle cx="1220" cy="38" r="2" stroke-width="1"/><circle cx="1380" cy="55" r="1.5" stroke-width="1"/>
+    <circle cx="350" cy="65" r="1.5" stroke-width="0.8"/><circle cx="750" cy="35" r="1.5" stroke-width="0.8"/>
+  </svg>
 
   <!-- Floating decorative dots -->
   <div class="absolute top-28 left-8 w-3 h-3 rounded-full opacity-40" style="background: var(--rose)"></div>
@@ -242,12 +365,13 @@
     </div>
 
     <!-- Main copy -->
-    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl mb-4 leading-tight" style="color: var(--dark); letter-spacing: -0.02em">
-      全部、好きでいい。
+    <h1 class="font-display text-4xl md:text-6xl lg:text-7xl mb-4 leading-tight" style="color: var(--dark); letter-spacing: -0.02em">
+      あなたと溶ける、<br>
+      <em style="color: var(--rose)">時間とわたし。</em>
     </h1>
-    <p class="font-cormorant italic text-xl md:text-2xl mb-2" style="color: var(--gold)">Tout ce que tu aimes.</p>
+    <p class="font-cormorant italic text-xl md:text-2xl mb-2" style="color: var(--gold)">Le temps fond avec toi.</p>
     <p class="text-base md:text-lg mb-10 font-light" style="color: #6B5B52; letter-spacing: 0.06em">
-      ひとつに選べないあなたへ、小さくて豊かなしあわせを。
+      溶けていく甘さとともに、時間までもが柔らかくなる。
     </p>
 
     <a href="#cta" class="btn-primary text-base">フレーバーを見る</a>
@@ -482,9 +606,9 @@
     <span class="font-cormorant italic text-lg" style="color: var(--gold)">⚜</span>
   </div>
   <h2 class="font-display text-3xl md:text-5xl text-white mb-3 italic">
-    "全部、好きでいい。"
+    "あなたと溶ける、時間とわたし。"
   </h2>
-  <p class="font-cormorant italic text-xl mb-10" style="color: var(--gold)">Tout ce que tu aimes.</p>
+  <p class="font-cormorant italic text-xl mb-10" style="color: var(--gold)">Le temps fond avec toi.</p>
   <a href="#" class="btn-primary text-base">スモールアイスを購入する</a>
 </section>
 
