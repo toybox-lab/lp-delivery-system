@@ -292,14 +292,13 @@
         <div class="form-group">
           <label class="field-label">公開URLについて<span class="required">*</span></label>
           <div class="radio-group">
-            <label><input type="radio" name="domainType" value="none" required> URLはどうでもいい（確認用URLで納品・無料）</label>
-            <label><input type="radio" name="domainType" value="existing"> 既存のドメインを使いたい（無料）</label>
-            <label><input type="radio" name="domainType" value="new"> 新しくドメインを取得したい（+3,000円）</label>
+            <label><input type="radio" name="domainType" value="none" required> 確認用URLで納品（無料・サーバー維持費0円）</label>
+            <label><input type="radio" name="domainType" value="existing"> お持ちのドメインで公開したい（独自ドメイン設定 +3,000円）</label>
           </div>
           <div class="domain-input-area" id="domainInputArea">
-            <input type="text" name="domainName" placeholder="例：ham-cafe.com（既存）または希望のドメイン名">
+            <input type="text" name="domainName" placeholder="例：ham-cafe.com（お持ちのドメイン名）">
           </div>
-          <p class="hint">※既存・新規ドメインをご選択の場合は別途ドメイン名をご記入ください</p>
+          <p class="hint">※お持ちのドメインで公開する場合のみ、ドメイン名をご記入ください（ドメインはお客様ご自身で取得・所有いただく形です）</p>
         </div>
 
         <button type="submit">送信する</button>
@@ -316,7 +315,7 @@
           <a id="expressLink" href="#" target="_blank" style="display:inline-block; padding:10px 20px; background:#111; color:#fff; border-radius:6px; font-size:13px; text-decoration:none;">cocoanalaで特急オプションを購入する →</a>
         </div>
         <div id="domainNotice" style="display:none;">
-          <p style="font-size:14px; margin-bottom:8px;">✅ ドメイン取得代行（+3,000円）</p>
+          <p style="font-size:14px; margin-bottom:8px;">✅ 独自ドメイン設定（+3,000円）</p>
           <a id="domainLink" href="#" target="_blank" style="display:inline-block; padding:10px 20px; background:#111; color:#fff; border-radius:6px; font-size:13px; text-decoration:none;">cocoanalaでドメインオプションを購入する →</a>
         </div>
         <p style="font-size:12px; color:#999; margin-top:12px;">※ご購入が確認できてから作業を開始します</p>
@@ -341,7 +340,7 @@
     document.querySelectorAll('input[name="domainType"]').forEach(radio => {
       radio.addEventListener('change', e => {
         document.getElementById('domainInputArea').style.display =
-          (e.target.value === 'existing' || e.target.value === 'new') ? 'block' : 'none';
+          (e.target.value === 'existing') ? 'block' : 'none';
       });
     });
 
@@ -363,7 +362,7 @@
 
       // 追加オプション誘導の表示
       const hasExpress = data.express === 'yes';
-      const hasDomain = data.domainType === 'new';
+      const hasDomain = data.domainType === 'existing';
       if (hasExpress || hasDomain) {
         document.getElementById('optionNotice').style.display = 'block';
         if (hasExpress) {
