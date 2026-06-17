@@ -87,16 +87,11 @@
   <!-- ===== HERO（原則1：実画像フルスクリーン背景＋オーバーレイ） ===== -->
   <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=80&auto=format&fit=crop"
-           class="w-full h-full object-cover" alt="イベント会場の光">
-      <div class="img-overlay" style="background:linear-gradient(180deg, rgba(11,11,20,0.55) 0%, rgba(11,11,20,0.72) 55%, rgba(11,11,20,0.92) 100%);"></div>
+      <img src="toybubble_hero.webp"
+           class="w-full h-full object-cover" alt="夕暮れの空に舞うシャボン玉とイベントの光">
+      <!-- 画像が美しいので軽めのオーバーレイ（上は星空を活かし、中央〜下は文字可読性を確保） -->
+      <div class="img-overlay" style="background:linear-gradient(180deg, rgba(11,11,20,0.25) 0%, rgba(11,11,20,0.35) 45%, rgba(11,11,20,0.62) 100%);"></div>
     </div>
-
-    <!-- 浮遊する泡（控えめ） -->
-    <div class="bubble" style="width:90px;height:90px;top:18%;left:8%;"></div>
-    <div class="bubble" style="width:50px;height:50px;top:30%;right:12%;animation-delay:1.5s;"></div>
-    <div class="bubble" style="width:120px;height:120px;bottom:18%;left:18%;animation-delay:2.5s;"></div>
-    <div class="bubble" style="width:40px;height:40px;top:62%;right:26%;animation-delay:1s;"></div>
 
     <div class="relative z-10 text-center max-w-4xl mx-auto reveal">
       <p class="text-purple-200 text-sm font-medium tracking-widest uppercase mb-6 opacity-90">Soap Bubble Performance</p>
