@@ -110,7 +110,7 @@
       <div class="img-overlay" style="background:linear-gradient(180deg, rgba(11,11,20,0.25) 0%, rgba(11,11,20,0.35) 45%, rgba(11,11,20,0.62) 100%);"></div>
     </div>
 
-    <div class="relative z-10 text-center max-w-4xl mx-auto reveal">
+    <div id="heroContent" class="relative z-10 text-center max-w-4xl mx-auto reveal">
       <p class="text-purple-200 text-sm font-medium tracking-widest uppercase mb-6 opacity-90">Soap Bubble Performance</p>
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" style="text-shadow:0 4px 30px rgba(0,0,0,0.5);">
         空に舞う、<span class="gradient-text">光の魔法</span>。
@@ -371,6 +371,28 @@
       entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('show'); io.unobserve(en.target); } });
     }, { threshold:0.15 });
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // ヒーローのフェイドアウト（スクロールで美しく消える）
+    const heroContent = document.getElementById('heroContent');
+    const heroImg = document.querySelector('section img.bg-anim');
+    let ticking = false;
+    function onScroll(){
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+      const p = Math.min(y / (vh * 0.85), 1); // 0→1
+      if (heroContent){
+        heroContent.style.opacity = (1 - p).toFixed(3);
+        heroContent.style.transform = `translateY(${(p * 60).toFixed(1)}px)`;
+      }
+      if (heroImg){
+        // 背景はゆっくり下へ＋少し拡大（パララックス）
+        heroImg.style.transform = `translateY(${(y * 0.25).toFixed(1)}px) scale(${(1.05 + p*0.1).toFixed(3)})`;
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', ()=>{
+      if (!ticking){ window.requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive:true });
   </script>
 </body>
 </html>
