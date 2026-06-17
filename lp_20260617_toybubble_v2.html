@@ -93,6 +93,12 @@
 </head>
 <body class="overflow-x-hidden bg-[#0b0b14]">
 
+  <!-- ファーストビュー固定背景（スクロールでしばらく留まってフェードアウト） -->
+  <div id="heroBg" class="fixed inset-0 -z-10" style="will-change:opacity,transform;">
+    <img src="toybubble_hero.webp" class="w-full h-full object-cover bg-anim" alt="夕暮れの空に舞うシャボン玉とイベントの光">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(11,11,20,0.25) 0%, rgba(11,11,20,0.35) 45%, rgba(11,11,20,0.62) 100%);"></div>
+  </div>
+
   <!-- ナビゲーション -->
   <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -102,14 +108,7 @@
   </nav>
 
   <!-- ===== HERO（原則1：実画像フルスクリーン背景＋オーバーレイ） ===== -->
-  <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
-    <div class="absolute inset-0">
-      <img src="toybubble_hero.webp"
-           class="w-full h-full object-cover bg-anim" alt="夕暮れの空に舞うシャボン玉とイベントの光">
-      <!-- 画像が美しいので軽めのオーバーレイ（上は星空を活かし、中央〜下は文字可読性を確保） -->
-      <div class="img-overlay" style="background:linear-gradient(180deg, rgba(11,11,20,0.25) 0%, rgba(11,11,20,0.35) 45%, rgba(11,11,20,0.62) 100%);"></div>
-    </div>
-
+  <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16">
     <div id="heroContent" class="relative z-10 text-center max-w-4xl mx-auto reveal">
       <p class="text-purple-200 text-sm font-medium tracking-widest uppercase mb-6 opacity-90">Soap Bubble Performance</p>
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" style="text-shadow:0 4px 30px rgba(0,0,0,0.5);">
@@ -372,21 +371,25 @@
     }, { threshold:0.15 });
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // ヒーローのフェイドアウト（スクロールで美しく消える）
+    // ファーストビュー固定背景：スクロールしてもしばらく留まり、ゆっくりフェードアウト
     const heroContent = document.getElementById('heroContent');
-    const heroImg = document.querySelector('section img.bg-anim');
+    const heroBg = document.getElementById('heroBg');
     let ticking = false;
     function onScroll(){
       const y = window.scrollY;
       const vh = window.innerHeight;
-      const p = Math.min(y / (vh * 0.85), 1); // 0→1
-      if (heroContent){
-        heroContent.style.opacity = (1 - p).toFixed(3);
-        heroContent.style.transform = `translateY(${(p * 60).toFixed(1)}px)`;
+      // 1.4画面分かけてゆっくり消える＝「しばらく背景がついてくる」
+      const pBg = Math.min(y / (vh * 1.4), 1);
+      const pTx = Math.min(y / (vh * 0.85), 1);
+      if (heroBg){
+        heroBg.style.opacity = (1 - pBg).toFixed(3);
+        heroBg.style.transform = `scale(${(1 + pBg * 0.08).toFixed(3)})`;
+        // 完全に消えたら描画負荷を下げる
+        heroBg.style.visibility = pBg >= 1 ? 'hidden' : 'visible';
       }
-      if (heroImg){
-        // 背景はゆっくり下へ＋少し拡大（パララックス）
-        heroImg.style.transform = `translateY(${(y * 0.25).toFixed(1)}px) scale(${(1.05 + p*0.1).toFixed(3)})`;
+      if (heroContent){
+        heroContent.style.opacity = (1 - pTx).toFixed(3);
+        heroContent.style.transform = `translateY(${(pTx * 60).toFixed(1)}px)`;
       }
       ticking = false;
     }
