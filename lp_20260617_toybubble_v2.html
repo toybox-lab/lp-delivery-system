@@ -72,6 +72,13 @@
     /* 原則2：スクロール連動アニメーション */
     .reveal { opacity:0; transform:translateY(34px); transition:opacity .8s ease, transform .8s ease; }
     .reveal.show { opacity:1; transform:translateY(0); }
+
+    /* 背景画像にゆっくり動きをつける（ケンバーンズ効果・静止画を生かす） */
+    .bg-anim { animation: kenburns 26s ease-in-out infinite alternate; will-change: transform; }
+    @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.12); } }
+    /* 透過の光の粒はふわっと漂わせる */
+    .particle-drift { animation: drift 30s ease-in-out infinite alternate; will-change: transform; }
+    @keyframes drift { from { transform: translate(0,0) scale(1.05); } to { transform: translate(-2%,1.5%) scale(1.12); } }
   </style>
 </head>
 <body class="overflow-x-hidden bg-[#0b0b14]">
@@ -88,11 +95,11 @@
   <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
     <div class="absolute inset-0">
       <img src="toybubble_hero.webp"
-           class="w-full h-full object-cover" alt="夕暮れの空に舞うシャボン玉とイベントの光">
+           class="w-full h-full object-cover bg-anim" alt="夕暮れの空に舞うシャボン玉とイベントの光">
       <!-- 画像が美しいので軽めのオーバーレイ（上は星空を活かし、中央〜下は文字可読性を確保） -->
       <div class="img-overlay" style="background:linear-gradient(180deg, rgba(11,11,20,0.25) 0%, rgba(11,11,20,0.35) 45%, rgba(11,11,20,0.62) 100%);"></div>
       <!-- 透過の光の粒を重ねて層・奥行きを作る（素材主義の細分化） -->
-      <img src="toybubble_particles.png" class="img-overlay w-full h-full object-cover mix-blend-screen opacity-70" alt="">
+      <img src="toybubble_particles.png" class="img-overlay w-full h-full object-cover mix-blend-screen opacity-70 particle-drift" alt="">
     </div>
 
     <div class="relative z-10 text-center max-w-4xl mx-auto reveal">
@@ -152,7 +159,7 @@
   <section class="relative py-24 px-6 overflow-hidden">
     <div class="absolute inset-0">
       <img src="toybubble_strength.png"
-           class="w-full h-full object-cover" alt="虹色に輝くシャボン玉のクローズアップ">
+           class="w-full h-full object-cover bg-anim" alt="虹色に輝くシャボン玉のクローズアップ">
       <div class="img-overlay" style="background:linear-gradient(135deg, rgba(13,13,26,0.82) 0%, rgba(26,10,46,0.74) 100%);"></div>
     </div>
     <div class="max-w-5xl mx-auto relative z-10">
@@ -213,7 +220,7 @@
   <section class="relative py-24 px-6 overflow-hidden">
     <div class="absolute inset-0">
       <img src="toybubble_calm.png"
-           class="w-full h-full object-cover" alt="夜のイベント会場に漂うシャボン玉">
+           class="w-full h-full object-cover bg-anim" alt="夜のイベント会場に漂うシャボン玉">
       <div class="img-overlay" style="background:linear-gradient(180deg, rgba(17,24,39,0.85) 0%, rgba(17,12,30,0.9) 100%);"></div>
     </div>
     <div class="max-w-4xl mx-auto relative z-10">
@@ -282,7 +289,7 @@
   <section id="contact" class="relative py-28 px-6 overflow-hidden">
     <div class="absolute inset-0">
       <img src="toybubble_hero.webp"
-           class="w-full h-full object-cover" alt="夕暮れの空に舞うシャボン玉">
+           class="w-full h-full object-cover bg-anim" alt="夕暮れの空に舞うシャボン玉">
       <div class="img-overlay" style="background:linear-gradient(135deg, rgba(13,13,26,0.82) 0%, rgba(26,10,46,0.78) 50%, rgba(10,26,46,0.82) 100%);"></div>
     </div>
     <div class="bubble" style="width:100px;height:100px;top:10%;left:5%;"></div>
