@@ -374,6 +374,7 @@
     // ファーストビュー固定背景：スクロールしてもしばらく留まり、ゆっくりフェードアウト
     const heroContent = document.getElementById('heroContent');
     const heroBg = document.getElementById('heroBg');
+    const aboutSec = document.getElementById('about');
     let ticking = false;
     function onScroll(){
       const y = window.scrollY;
@@ -384,18 +385,25 @@
       if (heroBg){
         heroBg.style.opacity = (1 - pBg).toFixed(3);
         heroBg.style.transform = `scale(${(1 + pBg * 0.08).toFixed(3)})`;
-        // 完全に消えたら描画負荷を下げる
         heroBg.style.visibility = pBg >= 1 ? 'hidden' : 'visible';
       }
       if (heroContent){
         heroContent.style.opacity = (1 - pTx).toFixed(3);
         heroContent.style.transform = `translateY(${(pTx * 60).toFixed(1)}px)`;
       }
+      // 2ページ目（about）をふわっとフェードイン＋少し下から
+      if (aboutSec){
+        const top = aboutSec.getBoundingClientRect().top;
+        const ap = Math.min(Math.max((vh - top) / (vh * 0.75), 0), 1);
+        aboutSec.style.opacity = ap.toFixed(3);
+        aboutSec.style.transform = `translateY(${((1 - ap) * 50).toFixed(1)}px)`;
+      }
       ticking = false;
     }
     window.addEventListener('scroll', ()=>{
       if (!ticking){ window.requestAnimationFrame(onScroll); ticking = true; }
     }, { passive:true });
+    onScroll(); // 初期状態を反映
   </script>
 </body>
 </html>
