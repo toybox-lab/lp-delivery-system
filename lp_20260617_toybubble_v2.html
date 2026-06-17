@@ -169,45 +169,51 @@
       <p class="text-purple-500 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">WHY TOYBUBBLE</p>
       <h2 class="text-3xl md:text-5xl font-black text-gray-900 text-center mb-20 reveal">選ばれる<span class="gradient-text">3つ</span>の理由</h2>
 
-      <!-- 01：挿絵 左 / テキスト 右 -->
-      <div class="grid md:grid-cols-2 gap-6 md:gap-14 items-center mb-16 md:mb-28">
-        <div class="reveal">
-          <img src="illust_attract.png" class="w-full max-w-lg mx-auto object-contain" alt="人が集まるイメージ">
+      <!-- 01：PC=挿絵左/テキスト右　スマホ=挿絵背景＋テキスト左寄せ重ね -->
+      <div class="relative md:grid md:grid-cols-2 md:gap-14 md:items-center min-h-[340px] md:min-h-0 mb-10 md:mb-28 reveal">
+        <div class="absolute inset-0 md:static md:inset-auto md:order-1 flex items-center justify-center">
+          <img src="illust_attract.png" class="w-full h-full object-cover opacity-40 md:opacity-100 md:h-auto md:object-contain md:max-w-lg" alt="人が集まるイメージ">
         </div>
-        <div class="reveal">
-          <div class="flex items-end gap-3 mb-4">
-            <span class="text-5xl md:text-6xl font-black gradient-text leading-none">01</span>
-            <h3 class="text-gray-900 text-2xl md:text-3xl font-bold">集客力が違う</h3>
+        <div class="relative z-10 md:order-2 max-w-[82%] mr-auto md:max-w-none md:mr-0">
+          <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:bg-transparent md:backdrop-blur-0 md:p-0">
+            <div class="flex items-end gap-3 mb-4">
+              <span class="text-5xl md:text-6xl font-black gradient-text leading-none">01</span>
+              <h3 class="text-gray-900 text-2xl md:text-3xl font-bold">集客力が違う</h3>
+            </div>
+            <p class="text-gray-600 leading-relaxed">チラシや看板と違い、シャボン玉は「動く」「光る」「儚い」。人は思わず立ち止まり、足を運びたくなります。当日の飛び込み来場者数が増加する実績があります。</p>
           </div>
-          <p class="text-gray-600 leading-relaxed">チラシや看板と違い、シャボン玉は「動く」「光る」「儚い」。人は思わず立ち止まり、足を運びたくなります。当日の飛び込み来場者数が増加する実績があります。</p>
         </div>
       </div>
 
-      <!-- 02：テキスト 左 / 挿絵 右（スマホは挿絵が上） -->
-      <div class="grid md:grid-cols-2 gap-6 md:gap-14 items-center mb-16 md:mb-28">
-        <div class="reveal order-2 md:order-1">
-          <div class="flex items-end gap-3 mb-4">
-            <span class="text-5xl md:text-6xl font-black gradient-text leading-none">02</span>
-            <h3 class="text-gray-900 text-2xl md:text-3xl font-bold">滞在率が上がる</h3>
-          </div>
-          <p class="text-gray-600 leading-relaxed">花火大会に屋台が生まれるのと同じ原理。メインコンテンツが儚く限定的だからこそ、周辺への滞在と消費が生まれます。賑わいが賑わいを呼び、会場全体が活気づきます。</p>
+      <!-- 02：PC=テキスト左/挿絵右　スマホ=挿絵背景＋テキスト右寄せ重ね -->
+      <div class="relative md:grid md:grid-cols-2 md:gap-14 md:items-center min-h-[340px] md:min-h-0 mb-10 md:mb-28 reveal">
+        <div class="absolute inset-0 md:static md:inset-auto md:order-2 flex items-center justify-center">
+          <img src="illust_stay.png" class="w-full h-full object-cover opacity-40 md:opacity-100 md:h-auto md:object-contain md:max-w-lg" alt="会場でくつろぐイメージ">
         </div>
-        <div class="reveal order-1 md:order-2">
-          <img src="illust_stay.png" class="w-full max-w-lg mx-auto object-contain" alt="会場でくつろぐイメージ">
+        <div class="relative z-10 md:order-1 max-w-[82%] ml-auto text-right md:max-w-none md:ml-0 md:text-left">
+          <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:bg-transparent md:backdrop-blur-0 md:p-0">
+            <div class="flex items-end justify-end gap-3 mb-4 md:justify-start">
+              <span class="text-5xl md:text-6xl font-black gradient-text leading-none">02</span>
+              <h3 class="text-gray-900 text-2xl md:text-3xl font-bold">滞在率が上がる</h3>
+            </div>
+            <p class="text-gray-600 leading-relaxed">花火大会に屋台が生まれるのと同じ原理。メインコンテンツが儚く限定的だからこそ、周辺への滞在と消費が生まれます。賑わいが賑わいを呼び、会場全体が活気づきます。</p>
+          </div>
         </div>
       </div>
 
-      <!-- 03：挿絵 左 / テキスト 右 -->
-      <div class="grid md:grid-cols-2 gap-6 md:gap-14 items-center">
-        <div class="reveal">
-          <img src="illust_safe.png" class="w-full max-w-lg mx-auto object-contain" alt="子どもが安心して楽しむイメージ">
+      <!-- 03：PC=挿絵左/テキスト右　スマホ=挿絵背景＋テキスト左寄せ重ね -->
+      <div class="relative md:grid md:grid-cols-2 md:gap-14 md:items-center min-h-[340px] md:min-h-0 reveal">
+        <div class="absolute inset-0 md:static md:inset-auto md:order-1 flex items-center justify-center">
+          <img src="illust_safe.png" class="w-full h-full object-cover opacity-40 md:opacity-100 md:h-auto md:object-contain md:max-w-lg" alt="子どもが安心して楽しむイメージ">
         </div>
-        <div class="reveal">
-          <div class="flex items-end gap-3 mb-4">
-            <span class="text-5xl md:text-6xl font-black gradient-text leading-none">03</span>
-            <h3 class="text-gray-900 text-2xl md:text-3xl font-bold">安全・環境にやさしい</h3>
+        <div class="relative z-10 md:order-2 max-w-[82%] mr-auto md:max-w-none md:mr-0">
+          <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:bg-transparent md:backdrop-blur-0 md:p-0">
+            <div class="flex items-end gap-3 mb-4">
+              <span class="text-5xl md:text-6xl font-black gradient-text leading-none">03</span>
+              <h3 class="text-gray-900 text-2xl md:text-3xl font-bold">安全・環境にやさしい</h3>
+            </div>
+            <p class="text-gray-600 leading-relaxed">火薬や大型機材不要で許認可手続きなし。シャボン玉液は安全成分を使用。子どもから高齢者まで、誰もが安心して楽しめます。</p>
           </div>
-          <p class="text-gray-600 leading-relaxed">火薬や大型機材不要で許認可手続きなし。シャボン玉液は安全成分を使用。子どもから高齢者まで、誰もが安心して楽しめます。</p>
         </div>
       </div>
     </div>
