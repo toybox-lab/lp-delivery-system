@@ -391,10 +391,11 @@
         heroContent.style.opacity = (1 - pTx).toFixed(3);
         heroContent.style.transform = `translateY(${(pTx * 60).toFixed(1)}px)`;
       }
-      // 2ページ目（about）をふわっとフェードイン＋少し下から
+      // 2ページ目（about）をかなり遅く・ゆっくりフェードイン＋下から
       if (aboutSec){
         const top = aboutSec.getBoundingClientRect().top;
-        const ap = Math.min(Math.max((vh - top) / (vh * 0.75), 0), 1);
+        // top が 0.45画面まで上がってからフェード開始、0.9画面分かけてゆっくり完成
+        const ap = Math.min(Math.max((vh * 0.45 - top) / (vh * 0.9), 0), 1);
         aboutSec.style.opacity = ap.toFixed(3);
         aboutSec.style.transform = `translateY(${((1 - ap) * 50).toFixed(1)}px)`;
       }
