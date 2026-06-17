@@ -79,6 +79,16 @@
     /* 透過の光の粒はふわっと漂わせる */
     .particle-drift { animation: drift 30s ease-in-out infinite alternate; will-change: transform; }
     @keyframes drift { from { transform: translate(0,0) scale(1.05); } to { transform: translate(-2%,1.5%) scale(1.12); } }
+
+    /* アイコンチップ（淡いアイコンを濃い丸に乗せてコントラストを出す） */
+    .icon-chip {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg,#2a1a4a,#13294a);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(80,60,160,0.18);
+      flex-shrink: 0;
+    }
+    .icon-chip img { width: 64%; height: 64%; object-fit: contain; }
   </style>
 </head>
 <body class="overflow-x-hidden bg-[#0b0b14]">
@@ -137,17 +147,17 @@
       </p>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="card-glow bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal">
-          <div class="text-4xl mb-4">🫧</div>
+          <div class="icon-chip mb-4"><img src="icon_bubble.png" alt="シャボン玉"></div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">割れにくい特殊シャボン玉</h3>
           <p class="text-gray-600 text-sm leading-relaxed">通常のシャボン玉とは違う特殊な液体を使用。長時間・広範囲に舞い、幻想的な空間を演出します。</p>
         </div>
         <div class="card-glow bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal" style="transition-delay:.12s;">
-          <div class="text-4xl mb-4">✨</div>
+          <div class="icon-chip mb-4"><img src="icon_sparkle.png" alt="きらめき"></div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">花火級の感動を手軽に</h3>
           <p class="text-gray-600 text-sm leading-relaxed">一公演5万円〜。許可申請・安全管理コスト不要。屋内・屋外問わず、あらゆるイベントに対応可能。</p>
         </div>
         <div class="card-glow bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal" style="transition-delay:.24s;">
-          <div class="text-4xl mb-4">📢</div>
+          <div class="icon-chip mb-4"><img src="icon_megaphone.png" alt="拡声器"></div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">認知が自然に広がる</h3>
           <p class="text-gray-600 text-sm leading-relaxed">風に乗って漂うシャボン玉は、会場外の通行人にも届く生きた広告。SNS映えで来場者の投稿が宣伝になります。</p>
         </div>
@@ -158,9 +168,8 @@
   <!-- ===== 3 STRENGTHS（原則1：実画像背景＋オーバーレイ） ===== -->
   <section class="relative py-24 px-6 overflow-hidden">
     <div class="absolute inset-0">
-      <img src="toybubble_strength.png"
-           class="w-full h-full object-cover bg-anim" alt="虹色に輝くシャボン玉のクローズアップ">
-      <div class="img-overlay" style="background:linear-gradient(135deg, rgba(13,13,26,0.82) 0%, rgba(26,10,46,0.74) 100%);"></div>
+      <div class="img-overlay" style="background:linear-gradient(135deg,#0d0d1a 0%,#1a0a2e 50%,#0a1a2e 100%);"></div>
+      <img src="toybubble_particles.png" class="img-overlay w-full h-full object-cover mix-blend-screen opacity-60 particle-drift" alt="">
     </div>
     <div class="max-w-5xl mx-auto relative z-10">
       <p class="text-purple-200 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">WHY TOYBUBBLE</p>
@@ -193,22 +202,22 @@
       <p class="text-gray-500 text-center mb-16 reveal">地方自治体から企業・商業施設まで幅広く対応しています</p>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal">
-          <div class="text-3xl flex-shrink-0">🏛️</div>
+          <div class="icon-chip"><img src="icon_government.png" alt="自治体"></div>
           <div><h3 class="font-bold text-gray-900 mb-1">地方自治体・行政主催イベント</h3>
           <p class="text-gray-600 text-sm leading-relaxed">まちおこしフェス・市民祭り・観光PRイベントの演出に。少ない予算で最大のインパクトを。</p></div>
         </div>
         <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal" style="transition-delay:.1s;">
-          <div class="text-3xl flex-shrink-0">🎪</div>
+          <div class="icon-chip"><img src="icon_tent.png" alt="イベントテント"></div>
           <div><h3 class="font-bold text-gray-900 mb-1">商業施設・ショッピングモール</h3>
           <p class="text-gray-600 text-sm leading-relaxed">週末集客イベント・周年記念・季節イベントの目玉に。SNS投稿を誘発し口コミ拡散も期待。</p></div>
         </div>
         <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal" style="transition-delay:.2s;">
-          <div class="text-3xl flex-shrink-0">🎵</div>
+          <div class="icon-chip"><img src="icon_music.png" alt="音楽"></div>
           <div><h3 class="font-bold text-gray-900 mb-1">音楽フェス・ライブイベント</h3>
           <p class="text-gray-600 text-sm leading-relaxed">開演前・転換時間の演出として。オーロラカラーのシャボン玉が幻想的な雰囲気を演出します。</p></div>
         </div>
         <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal" style="transition-delay:.3s;">
-          <div class="text-3xl flex-shrink-0">🏢</div>
+          <div class="icon-chip"><img src="icon_office.png" alt="企業"></div>
           <div><h3 class="font-bold text-gray-900 mb-1">企業イベント・展示会</h3>
           <p class="text-gray-600 text-sm leading-relaxed">ブース前の集客・記念式典・製品発表会の演出に。ブランドカラーに合わせた演出も相談可能。</p></div>
         </div>
