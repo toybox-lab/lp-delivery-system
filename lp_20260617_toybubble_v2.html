@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToyBubble | シャボン玉パフォーマンスでイベントを主役に</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    h1, h2, h3 { font-family: 'Noto Serif JP', serif; }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #c084fc, #60a5fa, #34d399, #f472b6, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .aurora-btn {
+      background: linear-gradient(135deg, #9b59b6, #3498db, #1abc9c);
+      background-size: 200% 200%;
+      animation: btn-gradient 3s ease infinite;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .aurora-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(155,89,182,0.5); }
+    @keyframes btn-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 原則1：実画像背景の上に重ねるオーバーレイ */
+    .img-overlay { position:absolute; inset:0; }
+
+    /* 原則4：手書き風マーカー下線 */
+    .marker {
+      background: linear-gradient(transparent 60%, rgba(251,191,36,0.45) 60%);
+      padding: 0 .1em;
+    }
+
+    /* 浮遊する泡（テーマ装飾・控えめに） */
+    .bubble {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), rgba(155,89,182,0.15) 40%, transparent 75%);
+      border: 1px solid rgba(255,255,255,0.25);
+      animation: float 7s ease-in-out infinite; pointer-events: none;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); opacity: .75; }
+      50% { transform: translateY(-22px) scale(1.04); opacity: 1; }
+    }
+
+    .card-glow { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-glow:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(155,89,182,0.25); }
+
+    .scroll-indicator { animation: bounce 2s ease-in-out infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    .timeline-item { position: relative; padding-left: 60px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: -40px; width: 2px;
+      background: linear-gradient(to bottom, #9b59b6, #3498db, #1abc9c);
+    }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-dot {
+      position: absolute; left: 8px; top: 4px; width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg, #9b59b6, #3498db);
+      display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 700;
+    }
+
+    /* 原則2：スクロール連動アニメーション */
+    .reveal { opacity:0; transform:translateY(34px); transition:opacity .8s ease, transform .8s ease; }
+    .reveal.show { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body class="overflow-x-hidden bg-[#0b0b14]">
+
+  <!-- ナビゲーション -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="text-white font-bold text-xl tracking-widest gradient-text" style="font-family:'Noto Serif JP',serif;">ToyBubble</div>
+      <a href="#contact" class="aurora-btn text-white text-sm font-medium px-5 py-2 rounded-full no-underline">お問い合わせ</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO（原則1：実画像フルスクリーン背景＋オーバーレイ） ===== -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=80&auto=format&fit=crop"
+           class="w-full h-full object-cover" alt="イベント会場の光">
+      <div class="img-overlay" style="background:linear-gradient(180deg, rgba(11,11,20,0.55) 0%, rgba(11,11,20,0.72) 55%, rgba(11,11,20,0.92) 100%);"></div>
+    </div>
+
+    <!-- 浮遊する泡（控えめ） -->
+    <div class="bubble" style="width:90px;height:90px;top:18%;left:8%;"></div>
+    <div class="bubble" style="width:50px;height:50px;top:30%;right:12%;animation-delay:1.5s;"></div>
+    <div class="bubble" style="width:120px;height:120px;bottom:18%;left:18%;animation-delay:2.5s;"></div>
+    <div class="bubble" style="width:40px;height:40px;top:62%;right:26%;animation-delay:1s;"></div>
+
+    <div class="relative z-10 text-center max-w-4xl mx-auto reveal">
+      <p class="text-purple-200 text-sm font-medium tracking-widest uppercase mb-6 opacity-90">Soap Bubble Performance</p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" style="text-shadow:0 4px 30px rgba(0,0,0,0.5);">
+        空に舞う、<span class="gradient-text">光の魔法</span>。
+      </h1>
+      <p class="text-white/85 text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed">
+        シャボン玉パフォーマンスが、<br>あなたのイベントを<strong class="text-white marker">主役</strong>にする。
+      </p>
+      <p class="text-white/60 text-sm md:text-base max-w-xl mx-auto mb-10">
+        花火より手軽・チラシより効果的。<br class="md:hidden">地方自治体・イベント運営チームに選ばれるパフォーマンス。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#contact" class="aurora-btn text-white font-bold px-8 py-4 rounded-full text-base no-underline inline-block">無料でお問い合わせ</a>
+        <a href="#about" class="text-white/80 hover:text-white text-sm underline transition-colors">ToyBubbleとは →</a>
+      </div>
+      <div class="mt-14 scroll-indicator text-white/40">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mx-auto"><path d="M12 16l-6-6h12z"/></svg>
+        <p class="text-xs mt-1">SCROLL</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IS TOYBUBBLE（白・呼吸セクション） ===== -->
+  <section id="about" class="bg-white py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-purple-500 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">WHAT IS TOYBUBBLE</p>
+      <h2 class="text-3xl md:text-5xl font-black text-gray-900 text-center mb-6 reveal">
+        イベントのメインを、<br>もっと<span class="marker">輝かせる</span>。
+      </h2>
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-16 leading-relaxed reveal">
+        ToyBubbleは、割れにくい特殊シャボン玉を使ったパフォーマンスサービスです。
+        花火大会に屋台が集客を後押しするように、シャボン玉パフォーマンスはイベントの<strong>滞在率と認知拡散</strong>を同時に高めます。
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-glow bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal">
+          <div class="text-4xl mb-4">🫧</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">割れにくい特殊シャボン玉</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">通常のシャボン玉とは違う特殊な液体を使用。長時間・広範囲に舞い、幻想的な空間を演出します。</p>
+        </div>
+        <div class="card-glow bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal" style="transition-delay:.12s;">
+          <div class="text-4xl mb-4">✨</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">花火級の感動を手軽に</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">一公演5万円〜。許可申請・安全管理コスト不要。屋内・屋外問わず、あらゆるイベントに対応可能。</p>
+        </div>
+        <div class="card-glow bg-white rounded-2xl p-8 border border-gray-100 shadow-sm reveal" style="transition-delay:.24s;">
+          <div class="text-4xl mb-4">📢</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">認知が自然に広がる</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">風に乗って漂うシャボン玉は、会場外の通行人にも届く生きた広告。SNS映えで来場者の投稿が宣伝になります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 STRENGTHS（原則1：実画像背景＋オーバーレイ） ===== -->
+  <section class="relative py-24 px-6 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&q=80&auto=format&fit=crop"
+           class="w-full h-full object-cover" alt="盛り上がるイベント会場">
+      <div class="img-overlay" style="background:linear-gradient(135deg, rgba(13,13,26,0.88) 0%, rgba(26,10,46,0.82) 100%);"></div>
+    </div>
+    <div class="max-w-5xl mx-auto relative z-10">
+      <p class="text-purple-200 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">WHY TOYBUBBLE</p>
+      <h2 class="text-3xl md:text-5xl font-black text-white text-center mb-16 reveal">選ばれる<span class="gradient-text">3つ</span>の理由</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 card-glow reveal">
+          <div class="text-5xl font-black gradient-text mb-4">01</div>
+          <h3 class="text-white text-xl font-bold mb-3">集客力が違う</h3>
+          <p class="text-white/70 text-sm leading-relaxed">チラシや看板と違い、シャボン玉は「動く」「光る」「儚い」。人は思わず立ち止まり、足を運びたくなります。当日の飛び込み来場者数が増加する実績があります。</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 card-glow reveal" style="transition-delay:.12s;">
+          <div class="text-5xl font-black gradient-text mb-4">02</div>
+          <h3 class="text-white text-xl font-bold mb-3">滞在率が上がる</h3>
+          <p class="text-white/70 text-sm leading-relaxed">花火大会に屋台が生まれるのと同じ原理。メインコンテンツが儚く限定的だからこそ、周辺への滞在と消費が生まれます。</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 card-glow reveal" style="transition-delay:.24s;">
+          <div class="text-5xl font-black gradient-text mb-4">03</div>
+          <h3 class="text-white text-xl font-bold mb-3">安全・環境にやさしい</h3>
+          <p class="text-white/70 text-sm leading-relaxed">火薬や大型機材不要で許認可手続きなし。シャボン玉液は安全成分を使用。子どもから高齢者まで安心して楽しめます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== こんなイベントに（白） ===== -->
+  <section class="bg-gray-50 py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-purple-500 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">USE CASES</p>
+      <h2 class="text-3xl md:text-5xl font-black text-gray-900 text-center mb-4 reveal">こんなイベントに</h2>
+      <p class="text-gray-500 text-center mb-16 reveal">地方自治体から企業・商業施設まで幅広く対応しています</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal">
+          <div class="text-3xl flex-shrink-0">🏛️</div>
+          <div><h3 class="font-bold text-gray-900 mb-1">地方自治体・行政主催イベント</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">まちおこしフェス・市民祭り・観光PRイベントの演出に。少ない予算で最大のインパクトを。</p></div>
+        </div>
+        <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal" style="transition-delay:.1s;">
+          <div class="text-3xl flex-shrink-0">🎪</div>
+          <div><h3 class="font-bold text-gray-900 mb-1">商業施設・ショッピングモール</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">週末集客イベント・周年記念・季節イベントの目玉に。SNS投稿を誘発し口コミ拡散も期待。</p></div>
+        </div>
+        <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal" style="transition-delay:.2s;">
+          <div class="text-3xl flex-shrink-0">🎵</div>
+          <div><h3 class="font-bold text-gray-900 mb-1">音楽フェス・ライブイベント</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">開演前・転換時間の演出として。オーロラカラーのシャボン玉が幻想的な雰囲気を演出します。</p></div>
+        </div>
+        <div class="bg-white rounded-2xl p-7 flex items-start gap-5 shadow-sm card-glow reveal" style="transition-delay:.3s;">
+          <div class="text-3xl flex-shrink-0">🏢</div>
+          <div><h3 class="font-bold text-gray-900 mb-1">企業イベント・展示会</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">ブース前の集客・記念式典・製品発表会の演出に。ブランドカラーに合わせた演出も相談可能。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICE（原則1：実画像背景＋濃いオーバーレイ） ===== -->
+  <section class="relative py-24 px-6 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80&auto=format&fit=crop"
+           class="w-full h-full object-cover" alt="夜のお祝いイベント">
+      <div class="img-overlay" style="background:linear-gradient(180deg, rgba(17,24,39,0.9) 0%, rgba(17,12,30,0.92) 100%);"></div>
+    </div>
+    <div class="max-w-4xl mx-auto relative z-10">
+      <p class="text-purple-200 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">PRICING</p>
+      <h2 class="text-3xl md:text-5xl font-black text-white text-center mb-4 reveal">料金プラン</h2>
+      <p class="text-white/60 text-center mb-16 reveal">内容・規模・時間によってご相談いただけます</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-glow reveal">
+          <p class="text-purple-200 text-xs font-medium tracking-widest uppercase mb-2">BASIC</p>
+          <p class="text-white text-3xl font-black mb-1">¥50,000<span class="text-base font-normal text-white/50">〜</span></p>
+          <p class="text-white/40 text-sm mb-6">一公演あたり</p>
+          <ul class="space-y-2 text-white/75 text-sm"><li>✓ 30分パフォーマンス</li><li>✓ 1名出演</li><li>✓ 屋外・屋内対応</li><li>✓ 機材一式持込</li></ul>
+        </div>
+        <div class="relative overflow-hidden rounded-2xl card-glow reveal" style="transition-delay:.12s;">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#9b59b6,#3498db,#1abc9c);opacity:.85;"></div>
+          <div class="relative p-8">
+            <div class="absolute top-3 right-3"><span class="text-white text-xs font-bold bg-yellow-400/30 border border-yellow-400/50 rounded-full px-3 py-1">人気</span></div>
+            <p class="text-yellow-200 text-xs font-medium tracking-widest uppercase mb-2">STANDARD</p>
+            <p class="text-white text-3xl font-black mb-1">¥80,000<span class="text-base font-normal text-white/60">〜</span></p>
+            <p class="text-white/60 text-sm mb-6">一公演あたり</p>
+            <ul class="space-y-2 text-white/90 text-sm"><li>✓ 60分パフォーマンス</li><li>✓ 2名出演</li><li>✓ 演出プランニング</li><li>✓ 機材一式持込</li><li>✓ 事前リハーサル</li></ul>
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-glow reveal" style="transition-delay:.24s;">
+          <p class="text-blue-200 text-xs font-medium tracking-widest uppercase mb-2">PREMIUM</p>
+          <p class="text-white text-3xl font-black mb-1">応相談</p>
+          <p class="text-white/40 text-sm mb-6">規模・内容次第</p>
+          <ul class="space-y-2 text-white/75 text-sm"><li>✓ 大型イベント対応</li><li>✓ 複数名出演</li><li>✓ 音楽・照明連動</li><li>✓ 特殊演出カスタマイズ</li><li>✓ 専属プロデュース</li></ul>
+        </div>
+      </div>
+      <p class="text-white/40 text-xs text-center mt-8">※交通費・宿泊費は別途。詳細はお問い合わせください。</p>
+    </div>
+  </section>
+
+  <!-- ===== FLOW（白） ===== -->
+  <section class="bg-white py-24 px-6">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-purple-500 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">HOW IT WORKS</p>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 text-center mb-16 reveal">ご依頼の流れ</h2>
+      <div class="space-y-10">
+        <div class="timeline-item reveal"><div class="timeline-dot">1</div><div class="pb-10"><h3 class="text-gray-900 font-bold text-lg mb-1">お問い合わせ・ヒアリング</h3><p class="text-gray-600 text-sm leading-relaxed">フォームよりお問い合わせください。イベントの概要・日程・規模・ご予算をお聞かせいただき、最適なプランをご提案します。</p></div></div>
+        <div class="timeline-item reveal"><div class="timeline-dot">2</div><div class="pb-10"><h3 class="text-gray-900 font-bold text-lg mb-1">演出プランのご提案</h3><p class="text-gray-600 text-sm leading-relaxed">イベントのテーマ・会場・対象層に合わせたパフォーマンス内容をご提案。内容のカスタマイズも歓迎です。</p></div></div>
+        <div class="timeline-item reveal"><div class="timeline-dot">3</div><div class="pb-10"><h3 class="text-gray-900 font-bold text-lg mb-1">ご契約・入金</h3><p class="text-gray-600 text-sm leading-relaxed">内容・料金にご納得いただいたらご契約。開催1ヶ月前を目安に手付金をお支払いいただきます。</p></div></div>
+        <div class="timeline-item reveal"><div class="timeline-dot">4</div><div class="pb-10"><h3 class="text-gray-900 font-bold text-lg mb-1">事前打ち合わせ・リハーサル</h3><p class="text-gray-600 text-sm leading-relaxed">開催2週間前を目安に最終確認。必要に応じて現地での事前リハーサルにも対応します。</p></div></div>
+        <div class="timeline-item reveal"><div class="timeline-dot">5</div><div><h3 class="text-gray-900 font-bold text-lg mb-1">当日パフォーマンス</h3><p class="text-gray-600 text-sm leading-relaxed">機材一式を持参し、設営から撤収まで対応。スタッフが全力でイベントを盛り上げます。</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ（白・落ち着き） ===== -->
+  <section class="bg-gray-50 py-24 px-6">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-purple-500 text-sm font-medium tracking-widest uppercase text-center mb-3 reveal">FAQ</p>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 text-center mb-16 reveal">よくある質問</h2>
+      <div class="space-y-4">
+        <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group reveal"><summary class="p-6 cursor-pointer text-gray-900 font-medium flex items-center justify-between list-none">屋内でもできますか？<span class="text-purple-500 text-xl group-open:rotate-45 transition-transform">+</span></summary><p class="px-6 pb-6 text-gray-600 text-sm leading-relaxed">はい、屋内・屋外どちらにも対応しています。ただし屋内の場合は換気や床材の素材によって対応内容が変わる場合がありますので、事前にご相談ください。</p></details>
+        <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group reveal"><summary class="p-6 cursor-pointer text-gray-900 font-medium flex items-center justify-between list-none">子どもがいても安全ですか？<span class="text-purple-500 text-xl group-open:rotate-45 transition-transform">+</span></summary><p class="px-6 pb-6 text-gray-600 text-sm leading-relaxed">シャボン玉液は安全な成分を使用しており、子どもが触れても問題ありません。目に入った場合は水で洗い流してください。安全を最優先にパフォーマンスを行います。</p></details>
+        <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group reveal"><summary class="p-6 cursor-pointer text-gray-900 font-medium flex items-center justify-between list-none">雨天・強風の場合はどうなりますか？<span class="text-purple-500 text-xl group-open:rotate-45 transition-transform">+</span></summary><p class="px-6 pb-6 text-gray-600 text-sm leading-relaxed">強風・雨天の場合は屋内へ変更するか、内容を調整して対応します。中止の場合のキャンセルポリシーについては事前にご案内いたします。</p></details>
+        <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group reveal"><summary class="p-6 cursor-pointer text-gray-900 font-medium flex items-center justify-between list-none">どのくらい前に予約が必要ですか？<span class="text-purple-500 text-xl group-open:rotate-45 transition-transform">+</span></summary><p class="px-6 pb-6 text-gray-600 text-sm leading-relaxed">1ヶ月以上前のご予約を推奨しています。急なご依頼も可能な限り対応しますので、まずはお気軽にお問い合わせください。</p></details>
+        <details class="bg-white border border-gray-200 rounded-xl overflow-hidden group reveal"><summary class="p-6 cursor-pointer text-gray-900 font-medium flex items-center justify-between list-none">遠方でも来てもらえますか？<span class="text-purple-500 text-xl group-open:rotate-45 transition-transform">+</span></summary><p class="px-6 pb-6 text-gray-600 text-sm leading-relaxed">全国対応しています。交通費・宿泊費は実費でご負担いただきます。詳細は個別にご相談ください。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA（原則1：実画像背景＋オーバーレイ） ===== -->
+  <section id="contact" class="relative py-28 px-6 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600&q=80&auto=format&fit=crop"
+           class="w-full h-full object-cover" alt="シャボン玉">
+      <div class="img-overlay" style="background:linear-gradient(135deg, rgba(13,13,26,0.85) 0%, rgba(26,10,46,0.8) 50%, rgba(10,26,46,0.85) 100%);"></div>
+    </div>
+    <div class="bubble" style="width:100px;height:100px;top:10%;left:5%;"></div>
+    <div class="bubble" style="width:60px;height:60px;bottom:15%;right:8%;animation-delay:2s;"></div>
+    <div class="bubble" style="width:45px;height:45px;top:60%;left:30%;animation-delay:1s;"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto text-center reveal">
+      <p class="text-purple-200 text-sm font-medium tracking-widest uppercase mb-4">CONTACT</p>
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-6" style="text-shadow:0 4px 30px rgba(0,0,0,0.5);">あなたのイベントを<br><span class="gradient-text">主役</span>にしませんか？</h2>
+      <p class="text-white/75 mb-10 leading-relaxed">まずはお気軽にご相談ください。<br>日程・規模・ご予算をお聞かせいただき、<br>最適なプランをご提案します。</p>
+      <form class="space-y-4 text-left" onsubmit="handleSubmit(event)">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="text-white/70 text-xs block mb-1">お名前 <span class="text-red-400">*</span></label><input type="text" required placeholder="山田 太郎" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-purple-400 backdrop-blur-sm"></div>
+          <div><label class="text-white/70 text-xs block mb-1">会社・団体名</label><input type="text" placeholder="○○市役所" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-purple-400 backdrop-blur-sm"></div>
+        </div>
+        <div><label class="text-white/70 text-xs block mb-1">メールアドレス <span class="text-red-400">*</span></label><input type="email" required placeholder="example@email.com" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-purple-400 backdrop-blur-sm"></div>
+        <div><label class="text-white/70 text-xs block mb-1">イベント予定日（わかれば）</label><input type="text" placeholder="例：2026年10月15日" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-purple-400 backdrop-blur-sm"></div>
+        <div><label class="text-white/70 text-xs block mb-1">お問い合わせ内容</label><textarea rows="4" placeholder="イベントの概要・規模・ご要望などをお聞かせください" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/30 text-sm focus:outline-none focus:border-purple-400 backdrop-blur-sm resize-none"></textarea></div>
+        <button type="submit" class="aurora-btn w-full text-white font-bold py-4 rounded-full text-base">送信する</button>
+      </form>
+      <p class="text-white/40 text-xs mt-4">通常2〜3営業日以内にご返信いたします</p>
+    </div>
+  </section>
+
+  <footer class="py-8 px-6 text-center" style="background:#080810;border-top:1px solid rgba(255,255,255,0.05);">
+    <p class="gradient-text font-bold text-lg mb-1" style="font-family:'Noto Serif JP',serif;">ToyBubble</p>
+    <p class="text-white/30 text-xs">by ToyBox | シャボン玉パフォーマンスサービス</p>
+    <p class="text-white/20 text-xs mt-4">© 2026 ToyBox. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = '送信しました！ありがとうございます';
+      btn.style.background = 'linear-gradient(135deg, #1abc9c, #3498db)';
+      btn.disabled = true;
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    // 原則2：スクロール連動アニメーション
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('show'); io.unobserve(en.target); } });
+    }, { threshold:0.15 });
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
