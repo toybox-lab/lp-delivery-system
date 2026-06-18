@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LP制作ラボ | ToyBox — 最短3日、2.7万円からプロのLPを</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pop: {
+              yellow: '#FFD93D',
+              coral: '#FF6B6B',
+              mint: '#6BCB77',
+              blue: '#4D96FF',
+              purple: '#C77DFF',
+              dark: '#1A1A2E',
+            }
+          },
+          fontFamily: {
+            nunito: ['Nunito', 'sans-serif'],
+            noto: ['Noto Sans JP', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    h1, h2, h3, .font-display { font-family: 'Nunito', 'Noto Sans JP', sans-serif; }
+    .zigzag-border {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+    }
+    .wobble {
+      animation: wobble 3s ease-in-out infinite;
+    }
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .float {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .badge {
+      display: inline-block;
+      background: #FFD93D;
+      border: 3px solid #1A1A2E;
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-weight: 900;
+      box-shadow: 4px 4px 0 #1A1A2E;
+    }
+    .card-pop {
+      border: 3px solid #1A1A2E;
+      border-radius: 16px;
+      box-shadow: 6px 6px 0 #1A1A2E;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card-pop:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 #1A1A2E;
+    }
+    .btn-pop {
+      display: inline-block;
+      background: #FF6B6B;
+      color: white;
+      border: 3px solid #1A1A2E;
+      border-radius: 50px;
+      padding: 16px 48px;
+      font-weight: 900;
+      font-size: 1.2rem;
+      box-shadow: 5px 5px 0 #1A1A2E;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-pop:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 #1A1A2E;
+    }
+    .btn-pop:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #1A1A2E;
+    }
+    .section-title-line::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 5px;
+      background: #FFD93D;
+      border-radius: 10px;
+      margin: 12px auto 0;
+    }
+    .noise-bg {
+      background-color: #FFFDF0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23FFD93D' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    }
+    .stripe-bg {
+      background: repeating-linear-gradient(
+        45deg,
+        #FFD93D,
+        #FFD93D 10px,
+        #FFE97D 10px,
+        #FFE97D 20px
+      );
+    }
+  </style>
+</head>
+<body class="bg-white overflow-x-hidden">
+
+  <!-- ヘッダー -->
+  <header class="bg-white border-b-4 border-pop-dark sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="bg-pop-yellow border-3 border-pop-dark rounded-xl px-3 py-1 font-nunito font-900 text-xl text-pop-dark border-2">
+          🎨 ToyBox
+        </div>
+        <span class="text-sm font-bold text-gray-500 hidden sm:block">LP制作ラボ</span>
+      </div>
+      <a href="#cta" class="btn-pop text-sm py-2 px-6 text-white">無料相談を予約する →</a>
+    </div>
+  </header>
+
+  <!-- ヒーローセクション -->
+  <section class="noise-bg py-16 md:py-24 relative overflow-hidden">
+    <!-- デコ要素 -->
+    <div class="absolute top-10 right-10 w-24 h-24 bg-pop-coral rounded-full opacity-20 float"></div>
+    <div class="absolute bottom-10 left-10 w-16 h-16 bg-pop-mint rounded-full opacity-30 float" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/2 right-1/4 w-10 h-10 bg-pop-purple rounded-full opacity-20 float" style="animation-delay: 2s;"></div>
+
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 text-center md:text-left">
+          <div class="badge text-pop-dark text-sm mb-6 wobble inline-block">🚀 最短3日で完成</div>
+          <h1 class="font-nunito font-900 text-4xl md:text-6xl text-pop-dark leading-tight mb-6">
+            はじめてでも<br>
+            <span class="relative inline-block">
+              <span class="relative z-10">迷わない。</span>
+              <span class="absolute bottom-1 left-0 w-full h-4 bg-pop-yellow opacity-60 -z-0 rounded"></span>
+            </span><br>
+            <span class="text-pop-coral">安く、早く、</span>プロのLP。
+          </h1>
+          <p class="text-gray-600 text-lg mb-8 font-noto">
+            「どこに頼めばいいかわからない」<br>
+            そんな悩みを、<strong class="text-pop-dark">ToyBoxが丸ごと解決</strong>します。<br>
+            業界最安水準 <strong class="text-pop-coral text-2xl">¥27,000〜</strong> で、あなたのサービスを輝かせるLPを制作。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="#cta" class="btn-pop">無料相談を予約する →</a>
+            <a href="#price" class="inline-block border-3 border-pop-dark rounded-full px-8 py-4 font-bold text-pop-dark hover:bg-gray-50 transition border-2">料金を見る</a>
+          </div>
+          <p class="mt-4 text-sm text-gray-500">✅ 相談無料　✅ 修正2回まで無料　✅ 最短3日納品</p>
+        </div>
+        <div class="flex-1 flex justify-center">
+          <div class="relative w-full max-w-sm">
+            <div class="card-pop bg-white p-4 rounded-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&auto=format&fit=crop&q=80"
+                alt="LP制作イメージ"
+                class="rounded-xl w-full object-cover h-64"
+                loading="lazy"
+              />
+              <div class="mt-4 p-3 bg-pop-yellow rounded-xl border-2 border-pop-dark">
+                <p class="font-nunito font-900 text-pop-dark text-sm">🎉 先月の制作実績</p>
+                <p class="font-nunito font-900 text-pop-dark text-2xl">12本 完成！</p>
+                <p class="text-xs text-gray-600">平均納期 2.8日 / 満足度 ★4.9</p>
+              </div>
+            </div>
+            <!-- デコシール -->
+            <div class="absolute -top-4 -right-4 bg-pop-coral text-white border-2 border-pop-dark rounded-full w-20 h-20 flex items-center justify-center font-nunito font-900 text-xs text-center leading-tight rotate-12 wobble">
+              最安<br>¥27,000〜
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 共感セクション：悩み -->
+  <section class="bg-pop-dark py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-nunito font-900 text-3xl md:text-4xl text-white mb-4 section-title-line">こんな悩み、ありませんか？</h2>
+      <p class="text-gray-400 mb-10">はじめてのLP制作、不安だらけですよね。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-pop bg-white p-6 text-left">
+          <div class="text-4xl mb-3">😵</div>
+          <h3 class="font-bold text-pop-dark text-lg mb-2">どこに頼めばいい？</h3>
+          <p class="text-gray-600 text-sm">会社がたくさんあって比較するだけで疲れる。どこが信頼できるか全然わからない…</p>
+        </div>
+        <div class="card-pop bg-white p-6 text-left">
+          <div class="text-4xl mb-3">💸</div>
+          <h3 class="font-bold text-pop-dark text-lg mb-2">高いお金を払って失敗したくない</h3>
+          <p class="text-gray-600 text-sm">相場がわからないから不安。安すぎても怖いし、高い保証もないし…</p>
+        </div>
+        <div class="card-pop bg-white p-6 text-left">
+          <div class="text-4xl mb-3">⏰</div>
+          <h3 class="font-bold text-pop-dark text-lg mb-2">いつ完成するか不安</h3>
+          <p class="text-gray-600 text-sm">サービスのオープンが迫っているのに、納期が読めない制作会社は困る…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 解決策 -->
+  <section class="noise-bg py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="badge text-pop-dark mb-6">ToyBox LP制作ラボなら</div>
+      <h2 class="font-nunito font-900 text-3xl md:text-4xl text-pop-dark mb-4 section-title-line">
+        全部、解決できます。
+      </h2>
+      <p class="text-gray-600 mb-12">安さ・速さ・クオリティ。<br>全部あきらめなくていい。</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-pop bg-pop-yellow p-6 text-left">
+          <div class="text-4xl mb-3 float" style="display:inline-block;">⚡</div>
+          <h3 class="font-nunito font-900 text-pop-dark text-xl mb-2">最短3日で納品</h3>
+          <p class="text-pop-dark text-sm">AIと人間のハイブリッドで超高速制作。急ぎのオープンにも対応できます。</p>
+        </div>
+        <div class="card-pop bg-pop-coral p-6 text-left">
+          <div class="text-4xl mb-3 float" style="display:inline-block; animation-delay:0.5s;">💰</div>
+          <h3 class="font-nunito font-900 text-white text-xl mb-2">業界最安¥27,000〜</h3>
+          <p class="text-white text-sm">他社なら10〜30万のLPが、驚きの価格で。追加料金なし、修正2回まで無料。</p>
+        </div>
+        <div class="card-pop bg-pop-mint p-6 text-left">
+          <div class="text-4xl mb-3 float" style="display:inline-block; animation-delay:1s;">🎨</div>
+          <h3 class="font-nunito font-900 text-pop-dark text-xl mb-2">世界観を最大限に</h3>
+          <p class="text-pop-dark text-sm">ヒアリングであなたのサービスの魅力を引き出し、見た瞬間に「これだ！」と思えるLPを。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 制作フロー -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-nunito font-900 text-3xl md:text-4xl text-pop-dark mb-4 section-title-line">制作の流れ</h2>
+      <p class="text-gray-500 mb-12">ヒアリングから納品まで、わかりやすくシンプル。</p>
+      <div class="flex flex-col md:flex-row items-start gap-4">
+        <div class="flex-1 card-pop bg-white p-6 text-center">
+          <div class="w-12 h-12 bg-pop-yellow border-2 border-pop-dark rounded-full flex items-center justify-center font-nunito font-900 text-xl mx-auto mb-4">1</div>
+          <h3 class="font-bold text-pop-dark mb-2">無料相談・ヒアリング</h3>
+          <p class="text-gray-500 text-sm">フォームに記入するだけ。難しいことは何もありません。</p>
+        </div>
+        <div class="flex items-center justify-center text-3xl pt-8 md:pt-6 hidden md:block">→</div>
+        <div class="flex-1 card-pop bg-white p-6 text-center">
+          <div class="w-12 h-12 bg-pop-coral border-2 border-pop-dark rounded-full flex items-center justify-center font-nunito font-900 text-xl mx-auto mb-4 text-white">2</div>
+          <h3 class="font-bold text-pop-dark mb-2">LP制作・初稿提出</h3>
+          <p class="text-gray-500 text-sm">最短1〜3日で初稿を提出。イメージに近いLPをお届け。</p>
+        </div>
+        <div class="flex items-center justify-center text-3xl pt-8 md:pt-6 hidden md:block">→</div>
+        <div class="flex-1 card-pop bg-white p-6 text-center">
+          <div class="w-12 h-12 bg-pop-mint border-2 border-pop-dark rounded-full flex items-center justify-center font-nunito font-900 text-xl mx-auto mb-4">3</div>
+          <h3 class="font-bold text-pop-dark mb-2">修正・納品</h3>
+          <p class="text-gray-500 text-sm">修正2回まで無料。完成したLPをそのまま公開できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 価格セクション -->
+  <section id="price" class="bg-pop-dark py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-nunito font-900 text-3xl md:text-4xl text-white mb-4 section-title-line">シンプルな料金体系</h2>
+      <p class="text-gray-400 mb-12">隠れた費用は一切ありません。</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <div class="card-pop bg-white p-8 text-left">
+          <div class="badge text-pop-dark text-xs mb-4">スタンダード</div>
+          <div class="font-nunito font-900 text-4xl text-pop-dark mb-2">¥27,000</div>
+          <p class="text-gray-500 text-sm mb-6">税込</p>
+          <ul class="space-y-3 text-gray-700 text-sm">
+            <li class="flex items-center gap-2">✅ LP制作（1ページ）</li>
+            <li class="flex items-center gap-2">✅ レスポンシブ対応</li>
+            <li class="flex items-center gap-2">✅ 修正2回まで無料</li>
+            <li class="flex items-center gap-2">✅ 納期 最短3日</li>
+            <li class="flex items-center gap-2">✅ HTMLファイル納品</li>
+          </ul>
+        </div>
+        <div class="card-pop bg-pop-yellow p-8 text-left relative">
+          <div class="absolute -top-4 -right-4 bg-pop-coral text-white border-2 border-pop-dark rounded-full px-3 py-1 text-xs font-bold wobble">人気No.1</div>
+          <div class="badge text-pop-dark text-xs mb-4">プレミアム</div>
+          <div class="font-nunito font-900 text-4xl text-pop-dark mb-2">¥48,000</div>
+          <p class="text-gray-600 text-sm mb-6">税込</p>
+          <ul class="space-y-3 text-gray-700 text-sm">
+            <li class="flex items-center gap-2">✅ LP制作（1ページ）</li>
+            <li class="flex items-center gap-2">✅ レスポンシブ対応</li>
+            <li class="flex items-center gap-2">✅ 修正<strong>5回</strong>まで無料</li>
+            <li class="flex items-center gap-2">✅ 納期 最短<strong>2日</strong></li>
+            <li class="flex items-center gap-2">✅ アニメーション追加</li>
+            <li class="flex items-center gap-2">✅ コピーライティング込み</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-gray-500 mt-8 text-sm">※ 追加修正は1回¥5,000〜。複数ページは別途お見積り。</p>
+    </div>
+  </section>
+
+  <!-- 実績バナー -->
+  <section class="stripe-bg py-8 border-y-4 border-pop-dark">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-8 items-center">
+        <div class="text-center">
+          <div class="font-nunito font-900 text-4xl text-pop-dark">50+</div>
+          <div class="text-pop-dark font-bold text-sm">制作実績</div>
+        </div>
+        <div class="text-center">
+          <div class="font-nunito font-900 text-4xl text-pop-dark">2.8日</div>
+          <div class="text-pop-dark font-bold text-sm">平均納期</div>
+        </div>
+        <div class="text-center">
+          <div class="font-nunito font-900 text-4xl text-pop-dark">★4.9</div>
+          <div class="text-pop-dark font-bold text-sm">顧客満足度</div>
+        </div>
+        <div class="text-center">
+          <div class="font-nunito font-900 text-4xl text-pop-dark">100%</div>
+          <div class="text-pop-dark font-bold text-sm">修正対応率</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="noise-bg py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-nunito font-900 text-3xl md:text-4xl text-pop-dark mb-4 section-title-line">お客様の声</h2>
+      <p class="text-gray-500 mb-12">はじめてでも安心と言っていただいています。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-pop bg-white p-6 text-left">
+          <div class="text-pop-yellow text-xl mb-2">★★★★★</div>
+          <p class="text-gray-700 text-sm mb-4">「LP制作が初めてで不安でしたが、ヒアリングフォームが丁寧で迷わず進められました。3日で完成して感動！」</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-pop-coral rounded-full flex items-center justify-center text-white font-bold text-xs">A</div>
+            <div>
+              <p class="font-bold text-pop-dark text-sm">Aさん</p>
+              <p class="text-gray-400 text-xs">カフェ経営</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-pop bg-white p-6 text-left">
+          <div class="text-pop-yellow text-xl mb-2">★★★★★</div>
+          <p class="text-gray-700 text-sm mb-4">「他社で見積もりしたら20万と言われ、ToyBoxさんで同じクオリティで3万円以下。コスパが信じられない！」</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-pop-mint rounded-full flex items-center justify-center text-white font-bold text-xs">B</div>
+            <div>
+              <p class="font-bold text-pop-dark text-sm">Bさん</p>
+              <p class="text-gray-400 text-xs">ハンドメイド作家</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-pop bg-white p-6 text-left">
+          <div class="text-pop-yellow text-xl mb-2">★★★★★</div>
+          <p class="text-gray-700 text-sm mb-4">「自分のサービスの世界観をこんなに上手く表現してくれるとは思いませんでした。お任せして本当によかったです！」</p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-pop-purple rounded-full flex items-center justify-center text-white font-bold text-xs">C</div>
+            <div>
+              <p class="font-bold text-pop-dark text-sm">Cさん</p>
+              <p class="text-gray-400 text-xs">オンラインスクール</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section id="cta" class="bg-pop-coral py-20">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="text-6xl mb-6 float" style="display:inline-block;">🎨</div>
+      <h2 class="font-nunito font-900 text-3xl md:text-5xl text-white mb-4">
+        まずは無料相談から。
+      </h2>
+      <p class="text-white text-opacity-90 text-lg mb-8">
+        フォームに記入するだけで予約完了。<br>
+        あなたのサービスを、世界にとどける第一歩を踏み出しましょう。
+      </p>
+      <div class="card-pop bg-white p-8 rounded-2xl max-w-md mx-auto">
+        <h3 class="font-nunito font-900 text-pop-dark text-xl mb-6">無料相談を予約する</h3>
+        <form class="space-y-4" onsubmit="return false;">
+          <div class="text-left">
+            <label class="block text-sm font-bold text-pop-dark mb-1">お名前 <span class="text-pop-coral">*</span></label>
+            <input type="text" placeholder="例：山田 太郎" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-pop-coral focus:outline-none transition">
+          </div>
+          <div class="text-left">
+            <label class="block text-sm font-bold text-pop-dark mb-1">メールアドレス <span class="text-pop-coral">*</span></label>
+            <input type="email" placeholder="例：info@example.com" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-pop-coral focus:outline-none transition">
+          </div>
+          <div class="text-left">
+            <label class="block text-sm font-bold text-pop-dark mb-1">サービス・業種</label>
+            <input type="text" placeholder="例：カフェ、ハンドメイドなど" class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:border-pop-coral focus:outline-none transition">
+          </div>
+          <button type="submit" class="btn-pop w-full text-center justify-center bg-pop-coral text-white">
+            無料で相談を予約する 🚀
+          </button>
+        </form>
+        <p class="text-gray-400 text-xs mt-4">✅ 相談料0円　✅ 24時間以内にご連絡　✅ しつこい営業なし</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-pop-dark py-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="font-nunito font-900 text-pop-yellow text-2xl mb-2">🎨 ToyBox</div>
+      <p class="text-gray-500 text-sm">LP制作ラボ — クライアントの世界観を最大限に引き出す、スピード制作チーム</p>
+      <p class="text-gray-600 text-xs mt-4">© 2026 ToyBox. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

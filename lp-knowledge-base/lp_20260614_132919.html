@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAMcafe｜春の抹茶とイチゴのラテ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --matcha: #3D5A39;
+      --matcha-light: #7A9E78;
+      --strawberry: #B8445F;
+      --cream: #FAF8F4;
+      --off-white: #FEFDFB;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--off-white);
+      color: #2a2a2a;
+      font-weight: 300;
+    }
+    .serif { font-family: 'Noto Serif JP', serif; }
+    .playfair { font-family: 'Playfair Display', serif; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes floatPetal {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; }
+      50%  { transform: translateY(-22px) rotate(15deg) scale(1.05); opacity: 1; }
+      100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; }
+    }
+    @keyframes ripple {
+      0%   { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
+    @keyframes steamRise {
+      0%   { transform: translateY(0) scaleX(1); opacity: 0.55; }
+      50%  { transform: translateY(-22px) scaleX(1.3); opacity: 0.25; }
+      100% { transform: translateY(-40px) scaleX(0.8); opacity: 0; }
+    }
+    @keyframes letterReveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes lineGrow {
+      from { width: 0; }
+      to   { width: 50px; }
+    }
+    @keyframes heroScale {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes colorPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(184,68,95,0); transform: scale(1); }
+      50%       { box-shadow: 0 0 40px 20px rgba(100,140,95,0.18); transform: scale(1.02); }
+    }
+    @keyframes floatWord {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); opacity: 0.45; }
+      50% { transform: translateY(-18px) rotate(2deg); opacity: 0.8; }
+    }
+    @keyframes floatWord2 {
+      0%, 100% { transform: translateY(0px) rotate(1.5deg); opacity: 0.35; }
+      50% { transform: translateY(-14px) rotate(-1.5deg); opacity: 0.65; }
+    }
+    @keyframes floatWord3 {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.3; }
+      50% { transform: translateY(-10px) rotate(3deg) scale(1.05); opacity: 0.55; }
+    }
+    @keyframes textSlideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes orbitDot {
+      from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+    }
+    @keyframes orbitDot2 {
+      from { transform: rotate(120deg) translateX(70px) rotate(-120deg); }
+      to   { transform: rotate(480deg) translateX(70px) rotate(-480deg); }
+    }
+    @keyframes orbitDot3 {
+      from { transform: rotate(240deg) translateX(60px) rotate(-240deg); }
+      to   { transform: rotate(600deg) translateX(60px) rotate(-600deg); }
+    }
+    .orbit-container {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0; height: 0;
+      pointer-events: none;
+    }
+    .orbit-dot {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin: -4px 0 0 -4px;
+    }
+    .orbit-dot:nth-child(1) { background: rgba(184,68,95,0.55); animation: orbitDot 6s linear infinite; }
+    .orbit-dot:nth-child(2) { background: rgba(100,140,95,0.55); animation: orbitDot2 6s linear infinite; }
+    .orbit-dot:nth-child(3) { background: rgba(255,220,160,0.7); animation: orbitDot3 6s linear infinite; }
+
+    .anim-fade-up   { animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .anim-fade-in   { animation: fadeIn 1.4s ease forwards; }
+    .delay-100 { animation-delay: 0.1s; opacity: 0; }
+    .delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .delay-400 { animation-delay: 0.4s; opacity: 0; }
+    .delay-600 { animation-delay: 0.6s; opacity: 0; }
+    .delay-800 { animation-delay: 0.8s; opacity: 0; }
+    .delay-1000 { animation-delay: 1.0s; opacity: 0; }
+    .delay-1200 { animation-delay: 1.2s; opacity: 0; }
+
+    .petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      animation: floatPetal ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(254,253,251,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--matcha);
+    }
+    .btn-cta {
+      background: var(--strawberry);
+      color: white;
+      padding: 0.65rem 1.9rem;
+      border-radius: 1px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      transition: all 0.3s;
+    }
+    .btn-cta:hover { background: #9A3650; letter-spacing: 0.22em; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=1800&q=95');
+      background-size: cover;
+      background-position: center 30%;
+      animation: heroScale 8s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(170deg,
+        rgba(20,20,20,0.35) 0%,
+        rgba(30,30,30,0.60) 50%,
+        rgba(40,30,30,0.72) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 10;
+      text-align: center;
+      color: white;
+      padding: 0 2rem;
+      max-width: 680px;
+    }
+
+    /* Letter split animation */
+    .split-title span {
+      display: inline-block;
+      opacity: 0;
+      animation: letterReveal 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* Animated line */
+    .hero-line {
+      width: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.5);
+      margin: 1.8rem auto;
+      animation: lineGrow 1s 1.4s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* LATTE ILLUSTRATION (CSS) */
+    .latte-illustration {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 200px;
+      animation: fadeUp 1.2s 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+      opacity: 0;
+    }
+    .latte-float {
+      animation: floatUp 5s ease-in-out infinite;
+    }
+    @media (max-width: 768px) { .latte-illustration { right: 2%; width: 110px; } }
+
+    .steam-line {
+      position: absolute;
+      width: 3px;
+      height: 28px;
+      background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
+      border-radius: 3px;
+      animation: steamRise 2.8s ease-in-out infinite;
+    }
+    .steam-1 { left: 42px; top: -30px; animation-delay: 0s; }
+    .steam-2 { left: 60px; top: -35px; animation-delay: 0.9s; }
+    .steam-3 { left: 78px; top: -28px; animation-delay: 1.8s; }
+
+    /* ===== PRODUCT HIGHLIGHT ===== */
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .product-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.22,1,0.36,1);
+    }
+    .product-card:hover img { transform: scale(1.05); }
+
+    /* ===== SPLIT SECTION ===== */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+    @media (max-width: 768px) { .split-section { grid-template-columns: 1fr; } }
+    .split-img {
+      width: 100%; height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.22,1,0.36,1);
+    }
+    .split-img-wrap { overflow: hidden; }
+    .split-img-wrap:hover .split-img { transform: scale(1.04); }
+    .split-text {
+      padding: 5rem 4.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    @media (max-width: 768px) { .split-text { padding: 3.5rem 2rem; } }
+
+    /* ===== PRICE SECTION ===== */
+    .size-item {
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding: 2.2rem 0;
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .size-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .size-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--matcha);
+      letter-spacing: -0.02em;
+    }
+
+    /* ===== MAP / ACCESS SECTION ===== */
+    .map-container {
+      background: #EDE9E2;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-pin {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -60%);
+    }
+    .map-pin-dot {
+      width: 22px; height: 22px;
+      background: var(--strawberry);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .map-pin-dot::after {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border: 2px solid var(--strawberry);
+      border-radius: 50%;
+      opacity: 0.35;
+      animation: ripple 2.2s ease-out infinite;
+    }
+    .map-grid {
+      position: absolute; inset: 0;
+      opacity: 0.1;
+      background-image:
+        linear-gradient(#777 1px, transparent 1px),
+        linear-gradient(90deg, #777 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    .map-road-h {
+      position: absolute;
+      height: 14px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 2px;
+    }
+    .map-road-v {
+      position: absolute;
+      width: 14px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 2px;
+    }
+
+    /* ===== CTA BUTTON ===== */
+    .btn-main {
+      display: inline-block;
+      background: var(--strawberry);
+      color: white;
+      padding: 1.1rem 3.5rem;
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      transition: all 0.3s;
+      border-radius: 1px;
+    }
+    .btn-main:hover { background: #9A3650; letter-spacing: 0.24em; }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--matcha);
+      color: var(--matcha);
+      padding: 1rem 3rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      transition: all 0.3s;
+      border-radius: 1px;
+    }
+    .btn-outline:hover { background: var(--matcha); color: white; }
+
+    /* ===== DIVIDER ===== */
+    .line-deco {
+      width: 40px; height: 1px;
+      background: var(--strawberry);
+      margin: 0 auto 2.5rem;
+    }
+    .line-deco-left {
+      width: 40px; height: 1px;
+      background: var(--strawberry);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ===== TAG LABEL ===== */
+    .tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      padding: 4px 14px;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ===== SCROLL REVEAL (JS) ===== */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <div class="logo">HAMcafe</div>
+  <a href="#reserve" class="btn-cta">席を予約する</a>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- 花びら装飾 -->
+  <div class="petal" style="width:16px;height:16px;background:rgba(212,150,170,0.55);left:8%;top:28%;animation-duration:4.5s;animation-delay:0s;"></div>
+  <div class="petal" style="width:10px;height:10px;background:rgba(212,150,170,0.45);left:14%;top:58%;animation-duration:5.8s;animation-delay:1.5s;"></div>
+  <div class="petal" style="width:20px;height:20px;background:rgba(170,212,150,0.45);left:86%;top:22%;animation-duration:5s;animation-delay:0.7s;"></div>
+  <div class="petal" style="width:13px;height:13px;background:rgba(212,150,170,0.38);left:82%;top:68%;animation-duration:6.2s;animation-delay:2.2s;"></div>
+  <div class="petal" style="width:8px;height:8px;background:rgba(212,160,180,0.5);left:22%;top:75%;animation-duration:4s;animation-delay:3s;"></div>
+
+  <!-- CSS ラテイラスト -->
+  <div class="latte-illustration">
+    <!-- 周回ドット -->
+    <div class="orbit-container" style="top:60%;left:50%;">
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+      <div class="orbit-dot"></div>
+    </div>
+    <div class="latte-float" style="animation: floatUp 5s ease-in-out infinite, colorPulse 4s ease-in-out infinite;">
+      <div style="position:relative;height:44px;margin-bottom:6px;">
+        <div class="steam-line steam-1"></div>
+        <div class="steam-line steam-2"></div>
+        <div class="steam-line steam-3"></div>
+      </div>
+      <svg width="130" height="152" viewBox="0 0 130 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- グロー -->
+        <ellipse cx="65" cy="140" rx="42" ry="6" fill="rgba(0,0,0,0.18)"/>
+        <!-- カップ本体 -->
+        <path d="M22 32 L15 142 Q15 148 22 148 L108 148 Q115 148 115 142 L108 32 Z" fill="rgba(255,255,255,0.94)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        <!-- 抹茶レイヤー -->
+        <path d="M24 74 L106 74 L102 148 Q102 148 65 148 Q28 148 28 148 Z" fill="rgba(100,140,95,0.88)"/>
+        <!-- イチゴレイヤー -->
+        <path d="M24 52 Q44 46 65 52 Q86 58 106 52 L108 76 Q86 82 65 76 Q44 70 24 76 Z" fill="rgba(185,68,92,0.85)"/>
+        <!-- フォーム/クリーム -->
+        <ellipse cx="65" cy="34" rx="44" ry="11" fill="rgba(255,255,255,0.97)"/>
+        <ellipse cx="44" cy="29" rx="14" ry="9" fill="rgba(255,255,255,0.92)"/>
+        <ellipse cx="86" cy="29" rx="14" ry="9" fill="rgba(255,255,255,0.92)"/>
+        <!-- ハイライト -->
+        <path d="M32 38 Q38 34 44 38" stroke="rgba(255,255,255,0.65)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- ハンドル -->
+        <path d="M108 62 Q128 62 128 84 Q128 106 108 106" stroke="rgba(255,255,255,0.45)" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <!-- イチゴトッピング -->
+        <g transform="translate(51,22)">
+          <path d="M14 0 Q19 -2 21 5 Q26 2 26 9 Q26 18 14 22 Q2 18 2 9 Q2 2 7 5 Q9 -2 14 0Z" fill="rgba(196,83,107,0.95)"/>
+          <line x1="14" y1="0" x2="14" y2="-7" stroke="rgba(61,90,57,0.85)" stroke-width="2.5"/>
+          <line x1="12" y1="-2" x2="9" y2="-8" stroke="rgba(61,90,57,0.85)" stroke-width="1.5"/>
+          <line x1="16" y1="-2" x2="19" y2="-8" stroke="rgba(61,90,57,0.85)" stroke-width="1.5"/>
+        </g>
+        <!-- ラテアート線 -->
+        <path d="M40 58 Q55 54 65 58 Q75 62 90 58" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.6rem;letter-spacing:0.28em;text-align:center;margin-top:0.8rem;">MATCHA × STRAWBERRY</p>
+    </div>
+  </div>
+
+  <!-- Hero コンテンツ -->
+  <div class="hero-content">
+    <div class="tag anim-fade-up delay-100">2026 SPRING LIMITED</div>
+    <h1 class="split-title serif" style="font-size:clamp(3rem,8vw,6rem);font-weight:200;line-height:1.1;margin-bottom:0;letter-spacing:0.05em;">
+      <span style="animation-delay:0.3s;">飲</span><span style="animation-delay:0.42s;">む</span><span style="animation-delay:0.54s;color:rgba(200,220,195,0.9);">、</span><span style="animation-delay:0.66s;">春</span><span style="animation-delay:0.78s;">。</span>
+    </h1>
+    <div class="hero-line"></div>
+    <p class="anim-fade-up delay-800" style="font-size:0.88rem;font-weight:300;letter-spacing:0.12em;margin-bottom:2.8rem;opacity:0;color:rgba(255,255,255,0.78);">
+      テイクアウトOK &nbsp;·&nbsp; 約3分でお渡し
+    </p>
+    <div class="anim-fade-up delay-1000" style="opacity:0;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#reserve" class="btn-main">席を予約する</a>
+      <a href="#product" class="btn-outline" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.45);">商品をみる</a>
+    </div>
+    <p class="anim-fade-up delay-1200" style="margin-top:2rem;font-size:0.75rem;letter-spacing:0.14em;color:rgba(255,255,255,0.55);opacity:0;">
+      S ¥420 &nbsp;/&nbsp; M ¥610 &nbsp;/&nbsp; L ¥720（税込）
+    </p>
+  </div>
+</section>
+
+<!-- ========== INTRO STATEMENT ========== -->
+<section style="padding:6.5rem 2rem;background:var(--off-white);text-align:center;">
+  <div class="reveal" style="max-width:500px;margin:0 auto;">
+    <div class="line-deco"></div>
+    <p class="serif" style="font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:200;line-height:1.9;color:#2a2a2a;letter-spacing:0.1em;">
+      三分で届く、春。
+    </p>
+  </div>
+</section>
+
+<!-- ========== PRODUCT SHOWCASE（Häagen-Dazs風 全幅ビジュアル） ========== -->
+<section style="position:relative;height:80vh;min-height:500px;overflow:hidden;">
+  <img
+    src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=1800&q=95"
+    alt="抹茶とイチゴのラテ"
+    style="width:100%;height:100%;object-fit:cover;object-position:center;"
+  >
+  <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(20,20,20,0.72) 0%, rgba(20,20,20,0.1) 60%, transparent 100%);"></div>
+  <div class="reveal-left" style="position:absolute;left:8%;top:50%;transform:translateY(-50%);max-width:420px;">
+    <p style="font-size:0.65rem;letter-spacing:0.35em;color:rgba(255,255,255,0.65);margin-bottom:1.2rem;">HAMcafe SIGNATURE</p>
+    <h2 class="serif" style="font-size:clamp(2rem,4vw,3rem);font-weight:200;color:white;line-height:1.4;letter-spacing:0.06em;margin-bottom:1.5rem;">
+      春の抹茶と<br>イチゴのラテ
+    </h2>
+    <p style="font-size:0.88rem;line-height:2;color:rgba(255,255,255,0.72);font-weight:300;max-width:300px;">
+      さっぱりしたイチゴの甘さと<br>
+      抹茶の清々しい苦み。<br>
+      飲み終わった後も、軽やか。
+    </p>
+  </div>
+  <!-- 浮かぶテキスト＆イラストエフェクト -->
+  <div style="position:absolute;right:5%;bottom:12%;text-align:right;" class="reveal-right">
+    <p class="playfair" style="font-size:clamp(4rem,8vw,7rem);font-weight:400;color:rgba(255,255,255,0.06);letter-spacing:-0.02em;line-height:1;">Spring</p>
+  </div>
+  <!-- 浮遊ワード群 -->
+  <div style="position:absolute;top:14%;left:58%;animation:floatWord 4.2s ease-in-out infinite;animation-delay:0.3s;pointer-events:none;">
+    <p class="playfair" style="color:rgba(255,255,255,0.22);font-size:0.82rem;letter-spacing:0.4em;font-style:italic;">MATCHA</p>
+  </div>
+  <div style="position:absolute;top:28%;right:9%;animation:floatWord2 5.5s ease-in-out infinite;animation-delay:1s;pointer-events:none;">
+    <p class="playfair" style="color:rgba(184,68,95,0.4);font-size:0.7rem;letter-spacing:0.38em;">STRAWBERRY</p>
+  </div>
+  <div style="position:absolute;bottom:28%;left:54%;animation:floatWord3 3.8s ease-in-out infinite;animation-delay:1.8s;pointer-events:none;">
+    <p class="serif" style="color:rgba(255,255,255,0.25);font-size:1rem;letter-spacing:0.22em;">抹茶 × 苺</p>
+  </div>
+  <div style="position:absolute;top:58%;right:12%;animation:floatWord 4.8s ease-in-out infinite;animation-delay:0.7s;pointer-events:none;">
+    <p style="color:rgba(255,255,255,0.18);font-size:0.65rem;letter-spacing:0.32em;font-weight:300;">TAKEOUT OK</p>
+  </div>
+  <div style="position:absolute;top:42%;left:60%;animation:floatWord2 6s ease-in-out infinite;animation-delay:2.4s;pointer-events:none;">
+    <p style="color:rgba(170,210,160,0.35);font-size:0.7rem;letter-spacing:0.28em;font-weight:300;">¥420〜</p>
+  </div>
+  <!-- 浮遊 SVG 花びら -->
+  <div style="position:absolute;top:20%;right:22%;animation:floatWord3 5s ease-in-out infinite;animation-delay:0.5s;pointer-events:none;">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><ellipse cx="11" cy="11" rx="6" ry="10" fill="rgba(184,68,95,0.28)" transform="rotate(-30 11 11)"/><ellipse cx="11" cy="11" rx="6" ry="10" fill="rgba(100,140,95,0.22)" transform="rotate(60 11 11)"/></svg>
+  </div>
+  <div style="position:absolute;bottom:22%;right:28%;animation:floatWord 4s ease-in-out infinite;animation-delay:2s;pointer-events:none;">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="8" rx="4" ry="7" fill="rgba(212,150,170,0.38)" transform="rotate(20 8 8)"/></svg>
+  </div>
+  <div style="position:absolute;top:65%;left:58%;animation:floatWord2 5.2s ease-in-out infinite;animation-delay:1.4s;pointer-events:none;">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" fill="rgba(255,255,255,0.2)"/></svg>
+  </div>
+</section>
+
+<!-- ========== SPLIT: テイクアウト ========== -->
+<section class="split-section">
+  <div class="split-img-wrap">
+    <img
+      src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=90"
+      alt="テイクアウトラテ"
+      class="split-img"
+    >
+  </div>
+  <div class="split-text" style="background:var(--cream);">
+    <div class="reveal-left">
+      <div class="line-deco-left"></div>
+      <p style="font-size:0.65rem;letter-spacing:0.35em;color:var(--matcha);margin-bottom:1.2rem;">TAKEOUT & SPEED</p>
+      <h2 class="serif" style="font-size:1.9rem;font-weight:300;line-height:1.6;margin-bottom:1.8rem;letter-spacing:0.04em;">
+        注文から3分。<br>
+        そのまま、オフィスへ。
+      </h2>
+      <p style="font-size:0.88rem;line-height:2.1;color:#666;font-weight:300;">
+        テイクアウトカップでそのままお渡し。<br>
+        ふたを閉めて、歩きながら飲んでもいい。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="split-section">
+  <div class="split-text reveal" style="background:var(--off-white);">
+    <div>
+      <div class="line-deco-left"></div>
+      <p style="font-size:0.65rem;letter-spacing:0.35em;color:var(--strawberry);margin-bottom:1.2rem;">LIGHT & SATISFYING</p>
+      <h2 class="serif" style="font-size:1.9rem;font-weight:300;line-height:1.6;margin-bottom:1.8rem;letter-spacing:0.04em;">
+        甘い。でも、<br>後味はさっぱり。
+      </h2>
+      <p style="font-size:0.88rem;line-height:2.1;color:#666;font-weight:300;">
+        抹茶の苦みがイチゴの甘さを引き立て、<br>
+        ケーキより気軽に、でも満足できる一杯。
+      </p>
+    </div>
+  </div>
+  <div class="split-img-wrap">
+    <img
+      src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=900&q=90"
+      alt="抹茶ラテ"
+      class="split-img"
+    >
+  </div>
+</section>
+
+<!-- ========== PRODUCT / PRICE ========== -->
+<section id="product" style="padding:8rem 2rem;background:var(--cream);">
+  <div style="max-width:680px;margin:0 auto;" class="reveal">
+    <div class="line-deco"></div>
+    <h2 class="playfair" style="text-align:center;font-size:1.3rem;font-weight:400;letter-spacing:0.22em;margin-bottom:0.6rem;">SPRING MATCHA LATTE</h2>
+    <p style="text-align:center;font-size:0.75rem;color:#aaa;letter-spacing:0.12em;margin-bottom:4rem;">春の抹茶とイチゴのラテ</p>
+
+    <div class="size-item">
+      <div class="size-label">S</div>
+      <div>
+        <p style="font-size:0.85rem;color:#555;margin-bottom:0.3rem;">240ml &nbsp;·&nbsp; ちょっと甘いものが欲しい時</p>
+        <p style="font-size:0.72rem;color:#bbb;">カロリーを抑えたい方に</p>
+      </div>
+      <div style="text-align:right;">
+        <p class="playfair" style="font-size:1.8rem;font-weight:400;color:var(--strawberry);">¥420</p>
+        <p style="font-size:0.68rem;color:#bbb;">税込</p>
+      </div>
+    </div>
+    <div class="size-item" style="background:rgba(184,68,95,0.03);padding-left:1rem;padding-right:1rem;margin:0 -1rem;position:relative;">
+      <div style="position:absolute;top:1.4rem;right:1rem;background:var(--strawberry);color:white;font-size:0.6rem;letter-spacing:0.12em;padding:3px 12px;">POPULAR</div>
+      <div class="size-label">M</div>
+      <div>
+        <p style="font-size:0.85rem;color:#555;margin-bottom:0.3rem;">360ml &nbsp;·&nbsp; 食後のデザート感覚に</p>
+        <p style="font-size:0.72rem;color:#bbb;">午後の集中力アップにも</p>
+      </div>
+      <div style="text-align:right;">
+        <p class="playfair" style="font-size:1.8rem;font-weight:400;color:var(--strawberry);">¥610</p>
+        <p style="font-size:0.68rem;color:#bbb;">税込</p>
+      </div>
+    </div>
+    <div class="size-item">
+      <div class="size-label">L</div>
+      <div>
+        <p style="font-size:0.85rem;color:#555;margin-bottom:0.3rem;">480ml &nbsp;·&nbsp; がっつり満足したい時</p>
+        <p style="font-size:0.72rem;color:#bbb;">長い午後のお供に</p>
+      </div>
+      <div style="text-align:right;">
+        <p class="playfair" style="font-size:1.8rem;font-weight:400;color:var(--strawberry);">¥720</p>
+        <p style="font-size:0.68rem;color:#bbb;">税込</p>
+      </div>
+    </div>
+
+    <div id="reserve" style="margin-top:4rem;text-align:center;">
+      <a href="#" class="btn-main">席を予約する</a>
+      <p style="margin-top:1.2rem;font-size:0.72rem;color:#bbb;letter-spacing:0.12em;">テイクアウトOK &nbsp;·&nbsp; 約3分でお渡し &nbsp;·&nbsp; 店内飲食も可</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FULL BLEED IMAGE（Häagen-Dazs風） ========== -->
+<section style="height:65vh;overflow:hidden;position:relative;">
+  <img
+    src="https://images.unsplash.com/photo-1516901121982-4ba240ab7845?w=1800&q=95"
+    alt="春のラテ"
+    style="width:100%;height:100%;object-fit:cover;"
+  >
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.28);display:flex;align-items:center;justify-content:center;">
+    <div class="reveal" style="text-align:center;">
+      <p class="playfair" style="color:rgba(255,255,255,0.2);font-size:clamp(5rem,12vw,10rem);font-weight:400;letter-spacing:-0.02em;line-height:0.9;display:block;">Spring</p>
+      <p class="serif" style="color:white;font-size:clamp(1.6rem,4vw,3rem);font-weight:200;letter-spacing:0.2em;margin-top:-1rem;">飲む、春。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STORY ========== -->
+<section style="padding:8rem 2rem;background:var(--off-white);">
+  <div style="max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="reveal">
+    <div class="product-card" style="height:400px;">
+      <img
+        src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=700&q=90"
+        alt="カフェシーン"
+      >
+    </div>
+    <div>
+      <div class="line-deco-left"></div>
+      <p style="font-size:0.65rem;letter-spacing:0.35em;color:var(--matcha);margin-bottom:1.5rem;">OUR STORY</p>
+      <p class="serif" style="font-size:1.05rem;font-weight:300;line-height:1.9;margin-bottom:1.5rem;color:#2a2a2a;">
+        「後5分でオフィスに戻らなきゃ…<br>でもデザート食べたい」
+      </p>
+      <p style="font-size:0.86rem;line-height:2.1;color:#777;font-weight:300;">
+        忙しく働く女性が、短い休憩でも「ちょっと贅沢した」という満足感を持って午後を迎えてほしい。
+      </p>
+      <p class="playfair" style="margin-top:2.5rem;font-size:1rem;color:var(--matcha);letter-spacing:0.25em;font-style:italic;">— HAMcafe</p>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 768px) {
+    section > div[style*="grid-template-columns:1fr 1fr;gap:5rem"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<!-- ========== FAQ ========== -->
+<section style="padding:7rem 2rem;background:var(--cream);">
+  <div style="max-width:580px;margin:0 auto;" class="reveal">
+    <div class="line-deco"></div>
+    <h2 class="playfair" style="text-align:center;font-size:1rem;letter-spacing:0.35em;margin-bottom:3.5rem;font-weight:400;">FAQ</h2>
+
+    <div style="border-top:1px solid rgba(0,0,0,0.08);padding:1.8rem 0;">
+      <p style="font-size:0.84rem;font-weight:500;margin-bottom:0.7rem;color:var(--matcha);letter-spacing:0.06em;">テイクアウトはできますか？</p>
+      <p style="font-size:0.8rem;color:#777;line-height:1.9;font-weight:300;">はい、全サイズ対応しています。専用の持ち運び袋もお渡しできます。</p>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,0.08);padding:1.8rem 0;">
+      <p style="font-size:0.84rem;font-weight:500;margin-bottom:0.7rem;color:var(--matcha);letter-spacing:0.06em;">何分で受け取れますか？</p>
+      <p style="font-size:0.8rem;color:#777;line-height:1.9;font-weight:300;">通常、約3〜5分でお渡し。混雑時でも最大10分以内を目安にしています。</p>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,0.08);padding:1.8rem 0;">
+      <p style="font-size:0.84rem;font-weight:500;margin-bottom:0.7rem;color:var(--matcha);letter-spacing:0.06em;">アレルギー成分は？</p>
+      <p style="font-size:0.8rem;color:#777;line-height:1.9;font-weight:300;">乳成分・大豆を含みます。豆乳・オーツミルクへの変更も可能（+50円）。</p>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,0.08);padding:1.8rem 0;">
+      <p style="font-size:0.84rem;font-weight:500;margin-bottom:0.7rem;color:var(--matcha);letter-spacing:0.06em;">いつまで販売していますか？</p>
+      <p style="font-size:0.8rem;color:#777;line-height:1.9;font-weight:300;">2026年春限定メニューです（〜5月末予定）。早めのご来店をおすすめします。</p>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08);padding:1.8rem 0;">
+      <p style="font-size:0.84rem;font-weight:500;margin-bottom:0.7rem;color:var(--matcha);letter-spacing:0.06em;">甘さの調整はできますか？</p>
+      <p style="font-size:0.8rem;color:#777;line-height:1.9;font-weight:300;">「あまめ・ふつう・ひかえめ」の3段階からお選びいただけます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ACCESS / MAP ========== -->
+<section style="padding:7rem 2rem;background:var(--off-white);">
+  <div style="max-width:820px;margin:0 auto;" class="reveal">
+    <div class="line-deco"></div>
+    <h2 class="playfair" style="text-align:center;font-size:1rem;letter-spacing:0.35em;margin-bottom:0.75rem;font-weight:400;">ACCESS</h2>
+    <p style="text-align:center;font-size:0.75rem;color:#bbb;letter-spacing:0.12em;margin-bottom:3.5rem;">店舗アクセス</p>
+
+    <!-- Google Maps埋め込み -->
+    <div style="width:100%;height:340px;border-radius:2px;overflow:hidden;margin-bottom:3rem;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.6891394579456!2d139.7618!3d35.6795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd80b8d69%3A0xa6ad7e8c29045781!2sKITTE!5e0!3m2!1sja!2sjp!4v1234567890"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:start;">
+      <div>
+        <p style="font-size:0.6rem;letter-spacing:0.3em;color:var(--strawberry);margin-bottom:0.6rem;">STORE</p>
+        <p class="playfair" style="font-size:1.1rem;font-weight:400;margin-bottom:0.2rem;">HAMcafe</p>
+        <p style="font-size:0.78rem;color:#999;font-weight:300;">春の抹茶とイチゴのラテ</p>
+      </div>
+      <div>
+        <p style="font-size:0.6rem;letter-spacing:0.3em;color:var(--matcha);margin-bottom:0.6rem;">ADDRESS</p>
+        <p style="font-size:0.84rem;line-height:1.9;color:#555;font-weight:300;">
+          〒100-0005<br>
+          東京都千代田区丸の内<br>
+          KITTE丸の内 地下1階
+        </p>
+      </div>
+      <div>
+        <p style="font-size:0.6rem;letter-spacing:0.3em;color:var(--matcha);margin-bottom:0.6rem;">HOURS</p>
+        <p style="font-size:0.84rem;line-height:1.9;color:#555;font-weight:300;">
+          月〜金 &nbsp;11:00 – 21:00<br>
+          土日祝 &nbsp;10:00 – 21:00
+        </p>
+        <p style="font-size:0.72rem;color:#bbb;margin-top:0.8rem;line-height:1.7;">
+          JR東京駅 丸の内南口より<br>
+          徒歩すぐ（地下通路直結）
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 768px) {
+    section > div[style*="grid-template-columns:1fr 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<!-- ========== FINAL CTA ========== -->
+<section style="padding:9rem 2rem;background:var(--matcha);text-align:center;position:relative;overflow:hidden;">
+  <!-- 背景装飾 -->
+  <div class="playfair" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(12rem,25vw,22rem);font-weight:400;color:rgba(255,255,255,0.03);letter-spacing:-0.04em;pointer-events:none;white-space:nowrap;">Spring</div>
+  <div class="reveal" style="position:relative;z-index:1;">
+    <p style="font-size:0.65rem;letter-spacing:0.4em;color:rgba(255,255,255,0.5);margin-bottom:2.5rem;">2026 SPRING LIMITED</p>
+    <h2 class="serif" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:200;color:white;line-height:1.5;margin-bottom:1.8rem;letter-spacing:0.1em;">
+      今日も、特別に。
+    </h2>
+    <p style="font-size:0.82rem;color:rgba(255,255,255,0.6);margin-bottom:3rem;letter-spacing:0.14em;">
+      S ¥420 &nbsp;/&nbsp; M ¥610 &nbsp;/&nbsp; L ¥720（税込）
+    </p>
+    <a href="#reserve" style="display:inline-block;background:white;color:var(--matcha);padding:1.1rem 4rem;font-size:0.85rem;font-weight:400;letter-spacing:0.22em;border-radius:1px;transition:all 0.3s;" onmouseover="this.style.background='var(--cream)';this.style.letterSpacing='0.28em'" onmouseout="this.style.background='white';this.style.letterSpacing='0.22em'">
+      席を予約する
+    </a>
+    <p style="margin-top:1.8rem;font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.12em;">テイクアウトOK &nbsp;·&nbsp; 数量限定</p>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer style="background:#141414;color:rgba(255,255,255,0.4);padding:3rem 2rem;text-align:center;">
+  <p class="playfair" style="font-size:1.1rem;letter-spacing:0.3em;margin-bottom:0.5rem;color:rgba(255,255,255,0.75);">HAMcafe</p>
+  <p style="font-size:0.68rem;margin-bottom:1.2rem;letter-spacing:0.12em;">春の抹茶とイチゴのラテ</p>
+  <p style="font-size:0.62rem;letter-spacing:0.06em;">© 2026 HAMcafe All Rights Reserved.</p>
+</footer>
+
+<!-- ========== SCROLL REVEAL JS ========== -->
+<script>
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

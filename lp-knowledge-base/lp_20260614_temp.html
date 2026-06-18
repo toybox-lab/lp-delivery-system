@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>春の抹茶とイチゴのラテ | HAMcafe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --matcha: #5C7A4E;
+      --matcha-light: #EEF4EA;
+      --matcha-mid: #8FAF7E;
+      --strawberry: #C4546A;
+      --strawberry-light: #FDF0F3;
+      --strawberry-mid: #E8A0B4;
+      --cream: #FAFAF6;
+    }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--cream); }
+    .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--strawberry), #A8334B);
+      color: white;
+      border-radius: 50px;
+      padding: 16px 48px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+      display: inline-block;
+      box-shadow: 0 4px 20px rgba(196,84,106,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(196,84,106,0.45);
+    }
+    .btn-secondary {
+      border: 2px solid var(--matcha);
+      color: var(--matcha);
+      border-radius: 50px;
+      padding: 14px 48px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    .btn-secondary:hover {
+      background: var(--matcha);
+      color: white;
+    }
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      margin: 0 auto 24px;
+    }
+    .review-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 36px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-4px); }
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px 24px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.8s ease forwards; }
+    .animate-delay-1 { animation-delay: 0.2s; opacity: 0; }
+    .animate-delay-2 { animation-delay: 0.4s; opacity: 0; }
+    .animate-delay-3 { animation-delay: 0.6s; opacity: 0; }
+    .fv-gradient {
+      background: linear-gradient(135deg, #F8F4F0 0%, #FDEEF1 40%, #EEF4EA 100%);
+    }
+    .scene-gradient {
+      background: linear-gradient(180deg, var(--strawberry-light) 0%, var(--cream) 100%);
+    }
+    .story-gradient {
+      background: linear-gradient(180deg, var(--matcha-light) 0%, var(--cream) 100%);
+    }
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .faq-q {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-a {
+      padding: 0 24px 20px;
+      color: #666;
+      line-height: 1.8;
+    }
+    pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- ===================== FV ===================== -->
+  <section class="fv-gradient min-h-screen flex items-center relative overflow-hidden">
+    <!-- 装飾円 -->
+    <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-20" style="background: var(--strawberry-mid);"></div>
+    <div class="absolute -bottom-20 -left-20 w-96 h-96 rounded-full opacity-15" style="background: var(--matcha-mid);"></div>
+    <!-- 桜の花びら風装飾 -->
+    <div class="absolute top-16 right-12 text-6xl opacity-10 font-serif-jp" style="color:var(--strawberry);">✿</div>
+    <div class="absolute bottom-24 left-16 text-4xl opacity-10 font-serif-jp" style="color:var(--matcha);">✿</div>
+
+    <div class="max-w-6xl mx-auto px-6 py-24 w-full">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- テキスト -->
+        <div>
+          <div class="mb-6 animate-fade-in">
+            <span class="tag text-white" style="background:var(--strawberry);">HAMcafe 春限定</span>
+            <span class="tag ml-2 text-white" style="background:var(--matcha);">TAKEOUT OK</span>
+          </div>
+          <h1 class="font-serif-jp text-5xl md:text-6xl font-light leading-tight mb-6 animate-fade-in animate-delay-1" style="letter-spacing:0.05em; color:#2C2C2C;">
+            5分で<br>
+            <span style="color:var(--strawberry);">春を、</span><br>
+            <span style="color:var(--matcha);">あじわう。</span>
+          </h1>
+          <p class="text-lg text-gray-600 leading-relaxed mb-3 animate-fade-in animate-delay-2" style="letter-spacing:0.05em;">
+            お昼休憩、あと5分しかない。<br>
+            それでも、甘いものが食べたい。
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed mb-8 animate-fade-in animate-delay-2">
+            HAMcafeの<strong class="font-serif-jp" style="color:var(--matcha);">春の抹茶とイチゴのラテ</strong>は、<br>
+            罪悪感ゼロで、心を満たしてくれます。
+          </p>
+          <div class="animate-fade-in animate-delay-3 flex flex-col sm:flex-row gap-4 items-start">
+            <a href="#reserve" class="btn-primary">予約する →</a>
+            <div class="text-sm text-gray-500 mt-2">
+              <p>🌸 テイクアウト対応</p>
+              <p>💚 720円〜</p>
+            </div>
+          </div>
+        </div>
+        <!-- 画像 -->
+        <div class="relative animate-fade-in animate-delay-2">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1515823662972-da6a2e4d3002?w=800&q=80"
+                 alt="春の抹茶とイチゴのラテ"
+                 class="w-full h-96 md:h-[500px] object-cover">
+          </div>
+          <!-- フロートバッジ -->
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3">
+            <span class="text-3xl">🌸</span>
+            <div>
+              <p class="text-xs text-gray-400">春限定メニュー</p>
+              <p class="font-bold text-sm" style="color:var(--matcha);">今だけの特別な一杯</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ブランドストーリー ===================== -->
+  <section class="story-gradient py-24 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--matcha);">STORY</p>
+      <div class="section-divider" style="background:var(--matcha);"></div>
+      <h2 class="font-serif-jp text-3xl md:text-4xl font-light mb-10 leading-relaxed" style="color:#2C2C2C; letter-spacing:0.08em;">
+        デザートの時間は、<br>たった5分でいい。
+      </h2>
+      <div class="text-left bg-white rounded-3xl p-8 md:p-12 shadow-lg max-w-2xl mx-auto">
+        <p class="text-gray-600 leading-relaxed text-lg mb-6">
+          「お昼に甘いものを頼むと、時間がかかるから諦めてしまう。」
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          そんな声を聞いて、HAMcafeは動きました。後5分でオフィスに戻らなきゃいけない人でも、ちゃんとデザートを楽しんでほしい。
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-8">
+          だから私たちは、<strong style="color:var(--strawberry);">スピーディに提供すること</strong>と、<strong style="color:var(--matcha);">満足感のある一杯</strong>を両立しました。テイクアウトできるから、歩きながらでもオフィスに戻りながらでも楽しめます。
+        </p>
+        <p class="font-serif-jp text-xl text-center italic" style="color:var(--matcha); letter-spacing:0.1em;">
+          "お昼の5分を、至福の時間に。"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA（中盤） ===================== -->
+  <section class="py-12 px-6 text-center" style="background:var(--cream);">
+    <a href="#reserve" class="btn-primary">🌸 予約して春を先取りする</a>
+    <p class="text-sm text-gray-400 mt-4">テイクアウトOK・スムーズにお渡しします</p>
+  </section>
+
+  <!-- ===================== 商品紹介 ===================== -->
+  <section class="py-24 px-6" style="background:#FAFAF6;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--strawberry);">PRODUCT</p>
+        <div class="section-divider" style="background:var(--strawberry);"></div>
+        <h2 class="font-serif-jp text-3xl md:text-4xl font-light" style="letter-spacing:0.08em; color:#2C2C2C;">
+          春の抹茶とイチゴのラテ
+        </h2>
+        <p class="text-gray-500 mt-4 text-lg">さっぱり × ほんのり甘い × 大満足</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="feature-card text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl" style="background:var(--strawberry-light);">
+            🍓
+          </div>
+          <h3 class="font-serif-jp text-xl font-medium mb-3" style="color:var(--strawberry);">さっぱりイチゴ</h3>
+          <p class="text-gray-600 leading-relaxed text-sm">
+            甘すぎない、爽やかなイチゴの風味。ランチ後でも罪悪感ゼロで楽しめるさっぱり感。
+          </p>
+        </div>
+        <div class="feature-card text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl" style="background:var(--matcha-light);">
+            🍵
+          </div>
+          <h3 class="font-serif-jp text-xl font-medium mb-3" style="color:var(--matcha);">ほんのり抹茶</h3>
+          <p class="text-gray-600 leading-relaxed text-sm">
+            苦みと甘みのバランスが絶妙。じわっと広がる満足感で、ちょっとした贅沢を演出。
+          </p>
+        </div>
+        <div class="feature-card text-center">
+          <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl" style="background:#FFF9E6;">
+            ⚡
+          </div>
+          <h3 class="font-serif-jp text-xl font-medium mb-3" style="color:#B8860B;">スピード提供</h3>
+          <p class="text-gray-600 leading-relaxed text-sm">
+            注文からお渡しまでスムーズ。残り5分の休憩でも間に合う、HAMcafeのこだわり。
+          </p>
+        </div>
+      </div>
+
+      <!-- 価格 -->
+      <div class="mt-12 bg-white rounded-3xl p-8 shadow-md max-w-sm mx-auto text-center">
+        <p class="text-sm tracking-widest text-gray-400 mb-2">PRICE</p>
+        <p class="font-serif-jp text-5xl font-light" style="color:var(--matcha);">¥720<span class="text-2xl text-gray-400">〜</span></p>
+        <p class="text-gray-500 text-sm mt-2">税込 · テイクアウト対応</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== こだわり ===================== -->
+  <section class="py-24 px-6" style="background:var(--matcha-light);">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--matcha);">COMMITMENT</p>
+        <div class="section-divider" style="background:var(--matcha);"></div>
+        <h2 class="font-serif-jp text-3xl md:text-4xl font-light" style="letter-spacing:0.08em; color:#2C2C2C;">
+          HAMcafeの<span style="color:var(--matcha);">こだわり</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=700&q=80"
+               alt="カフェのラテアート"
+               class="rounded-3xl shadow-xl w-full h-72 object-cover">
+        </div>
+        <div class="space-y-6">
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="background:var(--matcha);">01</div>
+            <div>
+              <h3 class="font-semibold mb-1" style="color:var(--matcha);">素材の質にこだわる</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">さっぱりとしたイチゴ味でありながら、ほんのり甘い抹茶の満足感。バランスを徹底的に追求しました。</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="background:var(--strawberry);">02</div>
+            <div>
+              <h3 class="font-semibold mb-1" style="color:var(--strawberry);">罪悪感ゼロの設計</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">甘いものが食べたいけどカロリーが気になる。そのジレンマに応えるよう、素材と配合を工夫しています。</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="background:#B8860B;">03</div>
+            <div>
+              <h3 class="font-semibold mb-1" style="color:#B8860B;">テイクアウト品質</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">持ち歩いても崩れない。オフィスに戻っても美味しい。テイクアウト前提の温度・容器設計。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 利用シーン ===================== -->
+  <section class="scene-gradient py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--strawberry);">SCENE</p>
+        <div class="section-divider" style="background:var(--strawberry);"></div>
+        <h2 class="font-serif-jp text-3xl md:text-4xl font-light" style="letter-spacing:0.08em; color:#2C2C2C;">
+          こんな時に、HAMcafe
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=80"
+               alt="オフィスランチ"
+               class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="font-serif-jp text-lg font-medium mb-2" style="color:var(--strawberry);">ランチ後のデザートに</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">お昼休憩の締めくくりに。テイクアウトでオフィスに戻りながら楽しんで。</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md">
+          <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?w=500&q=80"
+               alt="カフェでひと息"
+               class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="font-serif-jp text-lg font-medium mb-2" style="color:var(--matcha);">ちょっとしたご褒美に</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">頑張った自分へのご褒美。春限定の特別な一杯で、気持ちをリフレッシュ。</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md">
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=500&q=80"
+               alt="友達とカフェ"
+               class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="font-serif-jp text-lg font-medium mb-2" style="color:#B8860B;">友人と春カフェに</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">春らしいビジュアルで映える一杯。写真に撮って、SNSでシェアしたくなる。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== お客様の声 ===================== -->
+  <section class="py-24 px-6" style="background:#FAFAF6;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--matcha);">REVIEW</p>
+        <div class="section-divider" style="background:var(--matcha);"></div>
+        <h2 class="font-serif-jp text-3xl md:text-4xl font-light" style="letter-spacing:0.08em; color:#2C2C2C;">
+          お客様の声
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="review-card">
+          <p class="text-yellow-400 text-xl mb-3">★★★★★</p>
+          <p class="text-gray-600 leading-relaxed text-sm mb-4">
+            「ランチ後にデザートは重いかなと思ってたけど、このラテはさっぱりしてて全然罪悪感なし！抹茶の香りとイチゴの甘さが絶妙です。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:var(--strawberry);">K</div>
+            <div>
+              <p class="font-medium text-sm">かなこさん</p>
+              <p class="text-xs text-gray-400">30代・会社員</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <p class="text-yellow-400 text-xl mb-3">★★★★★</p>
+          <p class="text-gray-600 leading-relaxed text-sm mb-4">
+            「テイクアウトでオフィスまで持って帰ったけど、ちゃんと美味しかった！渡してもらうのもすごく早くて、お昼の限られた時間でも余裕でした。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:var(--matcha);">M</div>
+            <div>
+              <p class="font-medium text-sm">みきさん</p>
+              <p class="text-xs text-gray-400">30代・デザイナー</p>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <p class="text-yellow-400 text-xl mb-3">★★★★☆</p>
+          <p class="text-gray-600 leading-relaxed text-sm mb-4">
+            「春らしい見た目が可愛くて思わず写真撮りました！味も想像以上に美味しくて、また来ます。次は友達も連れてきたいな。」
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold" style="background:#B8860B;">Y</div>
+            <div>
+              <p class="font-medium text-sm">ゆいさん</p>
+              <p class="text-xs text-gray-400">20代・営業職</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA（最終） ===================== -->
+  <section id="reserve" class="py-24 px-6 text-center" style="background: linear-gradient(135deg, #FDEEF1 0%, #EEF4EA 100%);">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--strawberry);">RESERVATION</p>
+      <div class="section-divider" style="background:var(--strawberry);"></div>
+      <h2 class="font-serif-jp text-3xl md:text-4xl font-light mb-6 leading-relaxed" style="color:#2C2C2C; letter-spacing:0.08em;">
+        春の一杯を、<br>あなたのお昼に。
+      </h2>
+      <p class="text-gray-600 leading-relaxed mb-10 text-lg">
+        忙しいランチタイムに、ほっとひと息つける場所。<br>
+        HAMcafeで予約して、スムーズに受け取れます。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+        <a href="#" class="btn-primary text-lg px-16 py-5">🌸 予約する</a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mt-4">
+        <span>🟢 テイクアウト対応</span>
+        <span>⚡ スピーディにお渡し</span>
+        <span>🌸 春限定メニュー</span>
+        <span>💚 720円〜</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="py-24 px-6" style="background:#FAFAF6;">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-sm font-semibold tracking-widest mb-4" style="color:var(--matcha);">FAQ</p>
+        <div class="section-divider" style="background:var(--matcha);"></div>
+        <h2 class="font-serif-jp text-3xl font-light" style="color:#2C2C2C;">よくある質問</h2>
+      </div>
+
+      <div class="space-y-3">
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="flex items-start gap-3">
+              <span class="font-bold text-lg flex-shrink-0" style="color:var(--strawberry);">Q.</span>
+              <p class="font-medium">テイクアウトはできますか？</p>
+            </div>
+            <span style="color:var(--matcha);">▼</span>
+          </div>
+          <div class="faq-a">
+            <span class="font-bold" style="color:var(--matcha);">A.</span>
+            はい、テイクアウト対応しております。持ち運びやすい容器でお渡しするので、オフィスや外でも楽しんでいただけます。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="flex items-start gap-3">
+              <span class="font-bold text-lg flex-shrink-0" style="color:var(--strawberry);">Q.</span>
+              <p class="font-medium">受け取りまでどのくらい時間がかかりますか？</p>
+            </div>
+            <span style="color:var(--matcha);">▼</span>
+          </div>
+          <div class="faq-a">
+            <span class="font-bold" style="color:var(--matcha);">A.</span>
+            予約いただくと、ご来店後すぐにお渡しできるようご準備します。お昼休憩の限られた時間でもご安心ください。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="flex items-start gap-3">
+              <span class="font-bold text-lg flex-shrink-0" style="color:var(--strawberry);">Q.</span>
+              <p class="font-medium">この商品はいつまで販売していますか？</p>
+            </div>
+            <span style="color:var(--matcha);">▼</span>
+          </div>
+          <div class="faq-a">
+            <span class="font-bold" style="color:var(--matcha);">A.</span>
+            春限定メニューのため、季節の終わりとともに販売終了となります。お早めにお楽しみください。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="flex items-start gap-3">
+              <span class="font-bold text-lg flex-shrink-0" style="color:var(--strawberry);">Q.</span>
+              <p class="font-medium">カロリーはどのくらいですか？</p>
+            </div>
+            <span style="color:var(--matcha);">▼</span>
+          </div>
+          <div class="faq-a">
+            <span class="font-bold" style="color:var(--matcha);">A.</span>
+            甘さ控えめで罪悪感の少ない配合を心がけています。詳細はご来店時にお気軽にスタッフへお尋ねください。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="flex items-start gap-3">
+              <span class="font-bold text-lg flex-shrink-0" style="color:var(--strawberry);">Q.</span>
+              <p class="font-medium">予約方法を教えてください。</p>
+            </div>
+            <span style="color:var(--matcha);">▼</span>
+          </div>
+          <div class="faq-a">
+            <span class="font-bold" style="color:var(--matcha);">A.</span>
+            このページ上部または下部の「予約する」ボタンからお進みいただけます。ご来店日時をお知らせください。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== フッター ===================== -->
+  <footer class="py-12 px-6 text-center" style="background:#2C2C2C; color:white;">
+    <p class="font-serif-jp text-2xl tracking-widest mb-2" style="letter-spacing:0.2em;">HAMcafe</p>
+    <p class="text-gray-400 text-sm mb-6">春の抹茶とイチゴのラテ</p>
+    <div class="flex justify-center gap-8 text-sm text-gray-400">
+      <a href="#" class="hover:text-white transition-colors">予約する</a>
+      <a href="#" class="hover:text-white transition-colors">メニュー</a>
+      <a href="#" class="hover:text-white transition-colors">アクセス</a>
+    </div>
+    <p class="text-gray-600 text-xs mt-8">© 2026 HAMcafe. All rights reserved.</p>
+  </footer>
+
+  <!-- ===================== スティッキーCTA（スマホ） ===================== -->
+  <div class="sticky-cta md:hidden pb-safe">
+    <a href="#reserve" class="btn-primary text-base flex-1 text-center py-4">🌸 予約する</a>
+  </div>
+
+  <script>
+    // FAQ アコーディオン
+    document.querySelectorAll('.faq-q').forEach(q => {
+      const a = q.nextElementSibling;
+      a.style.display = 'none';
+      q.querySelector('span:last-child').textContent = '▼';
+      q.addEventListener('click', () => {
+        const isOpen = a.style.display !== 'none';
+        document.querySelectorAll('.faq-a').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.faq-q span:last-child').forEach(el => el.textContent = '▼');
+        if (!isOpen) {
+          a.style.display = 'block';
+          q.querySelector('span:last-child').textContent = '▲';
+        }
+      });
+    });
+
+    // スクロールアニメーション
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.7s ease forwards';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.feature-card, .review-card, .faq-item').forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>写真・画像の送付フォーム</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    h1 { font-size: 22px; margin-bottom: 8px; color: #111; }
+    .subtitle { font-size: 14px; color: #888; margin-bottom: 32px; line-height: 1.8; }
+    .case-badge {
+      display: inline-block;
+      background: #f0f0f0;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 24px; }
+    label.field-label {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+    }
+    .required { color: #e53e3e; margin-left: 4px; }
+    .upload-area {
+      border: 2px dashed #ddd;
+      border-radius: 8px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .upload-area:hover { border-color: #4a90e2; }
+    .upload-area input[type="file"] { display: none; }
+    .upload-label {
+      display: block;
+      cursor: pointer;
+    }
+    .upload-icon { font-size: 32px; margin-bottom: 8px; }
+    .upload-text { font-size: 14px; color: #666; }
+    .upload-hint { font-size: 12px; color: #aaa; margin-top: 6px; }
+    .file-list { margin-top: 12px; }
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #f9f9f9;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 80px;
+    }
+    textarea:focus { outline: none; border-color: #4a90e2; }
+    button[type="submit"] {
+      width: 100%;
+      padding: 16px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    button[type="submit"]:hover { background: #333; }
+    button[type="submit"]:disabled { background: #aaa; cursor: not-allowed; }
+    .success { text-align: center; padding: 40px; display: none; }
+    .success h2 { font-size: 20px; margin-bottom: 12px; }
+    .success p { color: #666; font-size: 14px; line-height: 1.8; }
+    .progress { display: none; margin-top: 12px; }
+    .progress-bar {
+      height: 6px;
+      background: #eee;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #111;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .progress-text { font-size: 12px; color: #888; margin-top: 6px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="formArea">
+      <h1>写真・画像の送付フォーム</h1>
+      <p class="subtitle">LPに使用する写真・画像をこちらからお送りください。<br>複数枚送っていただいても構いません。</p>
+
+      <div class="case-badge" id="caseBadge" style="display:none">案件番号：<span id="caseIdDisplay"></span></div>
+
+      <form id="photoForm">
+        <input type="hidden" name="caseId" id="caseId">
+        <input type="hidden" name="clientName" id="clientName">
+
+        <div class="form-group">
+          <label class="field-label">写真・画像ファイル<span class="required">*</span></label>
+          <div class="upload-area" id="uploadArea">
+            <label class="upload-label" for="fileInput">
+              <div class="upload-icon">📷</div>
+              <div class="upload-text">クリックして写真を選ぶ</div>
+              <div class="upload-hint">JPG・PNG・HEIC対応・複数枚OK（1枚10MBまで）</div>
+            </label>
+            <input type="file" id="fileInput" accept="image/*" multiple>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="field-label">写真についての補足（任意）</label>
+          <textarea name="photoNote" placeholder="例：一番上の写真をメインに使ってください。右から2番目は商品のアップです。"></textarea>
+        </div>
+
+        <div class="progress" id="progressArea">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-text" id="progressText">アップロード中...</div>
+        </div>
+
+        <button type="submit" id="submitBtn">送信する</button>
+      </form>
+    </div>
+
+    <div class="success" id="successArea">
+      <h2>送信完了しました！</h2>
+      <p>写真をお送りいただきありがとうございます。<br>内容を確認後、LPに反映してお送りします。<br><br>しばらくお待ちください。</p>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const caseId = params.get('caseId') || '';
+    const clientName = params.get('clientName') || '';
+    const WEBHOOK_URL = params.get('webhook') || 'https://toibox.app.n8n.cloud/webhook/photo-form';
+
+    document.getElementById('caseId').value = caseId;
+    document.getElementById('clientName').value = clientName;
+
+    if (caseId) {
+      document.getElementById('caseIdDisplay').textContent = caseId;
+      document.getElementById('caseBadge').style.display = 'inline-block';
+    }
+
+    let selectedFiles = [];
+
+    document.getElementById('fileInput').addEventListener('change', e => {
+      selectedFiles = Array.from(e.target.files);
+      renderFileList();
+    });
+
+    function renderFileList() {
+      const list = document.getElementById('fileList');
+      list.innerHTML = selectedFiles.map((f, i) =>
+        `<div class="file-item">📎 ${f.name} <span style="color:#aaa;font-size:11px;">(${(f.size/1024/1024).toFixed(1)}MB)</span></div>`
+      ).join('');
+    }
+
+    document.getElementById('photoForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      if (selectedFiles.length === 0) {
+        alert('写真を1枚以上選択してください。');
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      document.getElementById('progressArea').style.display = 'block';
+
+      const note = e.target.querySelector('[name="photoNote"]').value;
+
+      // ファイルをBase64に変換してWebhookへ送信
+      const filesData = [];
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file = selectedFiles[i];
+        document.getElementById('progressText').textContent = `変換中... ${i + 1}/${selectedFiles.length}枚`;
+        document.getElementById('progressFill').style.width = `${((i + 1) / selectedFiles.length) * 80}%`;
+
+        const base64 = await toBase64(file);
+        filesData.push({ name: file.name, type: file.type, data: base64 });
+      }
+
+      document.getElementById('progressText').textContent = '送信中...';
+      document.getElementById('progressFill').style.width = '90%';
+
+      const payload = {
+        caseId,
+        clientName,
+        photoNote: note,
+        files: filesData,
+        submittedAt: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
+      };
+
+      if (WEBHOOK_URL) {
+        try {
+          await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch(err) {}
+      }
+
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successArea').style.display = 'block';
+    });
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</body>
+</html>

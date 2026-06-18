@@ -117,9 +117,12 @@
   <div class="container">
     <div id="formArea">
       <h1>LP確認・修正ヒアリング</h1>
-      <p class="subtitle">LPをご確認いただきありがとうございます。以下にご記入ください。</p>
+      <p class="subtitle"><span id="clientGreeting"></span>LPをご確認いただきありがとうございます。以下にご記入ください。</p>
 
       <form id="correctionForm">
+
+        <input type="hidden" name="clientName" id="clientName">
+        <input type="hidden" name="lpFile" id="lpFile">
 
         <div class="form-group">
           <label>修正はありますか？<span class="required">*</span></label>
@@ -207,6 +210,12 @@
     // URLパラメータからWebhookURLを取得
     const params = new URLSearchParams(window.location.search);
     const WEBHOOK_URL = params.get('webhook') || '';
+    const clientName = params.get('clientName') || '';
+    document.getElementById('clientName').value = clientName;
+    if (clientName) {
+      document.getElementById('clientGreeting').textContent = clientName + '様、';
+    }
+    document.getElementById('lpFile').value = params.get('lpFile') || '';
 
     const form = document.getElementById('correctionForm');
     const correctionDetails = document.getElementById('correctionDetails');

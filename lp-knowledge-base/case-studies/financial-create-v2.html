@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本にもっと、債券投資を。| フィナンシャルクリエイト</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F2541;
+      --navy-mid: #1B3A5C;
+      --teal: #0E7E72;
+      --teal-light: #3AA99E;
+      --teal-pale: #E8F5F4;
+      --white: #FFFFFF;
+      --off-white: #F5F7FA;
+      --cream: #F0F4F8;
+      --text-dark: #1A1A2E;
+      --text-mid: #3D3D5C;
+      --text-light: #7A7A96;
+      --border: #D8E2EE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text-dark);
+      font-family: 'Noto Serif JP', serif;
+      line-height: 1.9;
+      letter-spacing: 0.06em;
+    }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+    .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(8px);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--teal-light);
+    }
+
+    .header-cta {
+      display: inline-block;
+      padding: 8px 20px;
+      border: 1px solid var(--teal);
+      color: var(--teal-light);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .header-cta:hover { background: var(--teal); color: var(--navy); }
+
+    /* ─── FV ─── */
+    .fv {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(15,37,65,0.90) 0%, rgba(14,126,114,0.55) 70%, rgba(15,37,65,0.80) 100%),
+        url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 32px 80px;
+    }
+
+    .fv-eyebrow {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--teal-light);
+      margin-bottom: 28px;
+      opacity: 0.85;
+    }
+
+    .fv-catch {
+      font-size: clamp(36px, 7vw, 68px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      letter-spacing: 0.06em;
+      margin-bottom: 24px;
+    }
+
+    .fv-catch span {
+      color: var(--teal-light);
+    }
+
+    .fv-sub {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 2.2vw, 18px);
+      color: rgba(255,255,255,0.82);
+      line-height: 1.9;
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 18px 48px;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,126,114,0.4); }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: all 0.3s;
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--teal); color: var(--navy); }
+
+    .fv-note {
+      margin-top: 20px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 100px 0; }
+    section.bg-cream { background: var(--cream); }
+    section.bg-navy { background: var(--navy); }
+    section.bg-off-white { background: var(--off-white); }
+
+    .section-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--teal);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+
+    .section-title.white { color: var(--white); }
+
+    .section-lead {
+      font-size: 16px;
+      color: var(--text-mid);
+      line-height: 2;
+      max-width: 620px;
+    }
+
+    .section-lead.white { color: rgba(255,255,255,0.78); }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--teal);
+      margin: 24px 0 40px;
+    }
+
+    .divider.center { margin: 24px auto 40px; }
+
+    /* ─── ABOUT / MISSION ─── */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .mission-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80') center/cover;
+    }
+
+    /* ─── TROUBLE ─── */
+    .trouble-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .trouble-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 24px 28px;
+      background: var(--white);
+      border-left: 3px solid var(--teal);
+    }
+
+    .trouble-check {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .trouble-check::after {
+      content: '✓';
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .trouble-item p {
+      font-size: 15px;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* ─── WHAT IS BOND ─── */
+    .bond-intro {
+      margin-top: 56px;
+    }
+
+    .bond-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 48px 0;
+      max-width: 480px;
+    }
+
+    .bond-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+
+    .bond-flow-step + .bond-flow-step {
+      border-top: none;
+    }
+
+    .bond-flow-arrow {
+      text-align: center;
+      color: var(--teal);
+      font-size: 20px;
+      margin: 0 0 0 28px;
+      line-height: 1;
+    }
+
+    .bond-flow-num {
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      color: var(--teal-light);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .bond-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .bond-card {
+      padding: 36px 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .bond-card-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .bond-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .bond-card p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* ─── USE CASES ─── */
+    .case-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+
+    .case-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(14,126,114,0.25);
+      padding: 36px 28px;
+    }
+
+    .case-tag {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--teal);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .case-card h3 {
+      font-size: 18px;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .case-card p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.85;
+    }
+
+    /* ─── WHO IS IT FOR ─── */
+    .target-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .target-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      padding: 36px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .target-num {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--teal);
+      text-align: center;
+      padding-top: 4px;
+    }
+
+    .target-num span {
+      display: block;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--navy);
+      letter-spacing: 0;
+      margin-bottom: 4px;
+    }
+
+    .target-card h3 {
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .target-card p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.85;
+    }
+
+    /* ─── MERIT / DEMERIT ─── */
+    .md-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .merit-box {
+      padding: 36px;
+      background: var(--navy);
+    }
+
+    .demerit-box {
+      padding: 36px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+    }
+
+    .md-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .md-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(14,126,114,0.3);
+    }
+
+    .md-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .md-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .demerit-box .md-list li {
+      color: var(--text-mid);
+    }
+
+    .md-list li::before {
+      content: '◆';
+      color: var(--teal);
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 10px;
+    }
+
+    /* ─── COMPARISON ─── */
+    .comparison-wrap {
+      margin-top: 48px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(15,37,65,0.10);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+    }
+
+    .comparison-table th {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 20px 24px;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+
+    .comparison-table th:first-child {
+      background: #E8EDF3;
+      color: var(--text-light);
+      font-size: 12px;
+      width: 30%;
+    }
+
+    /* 債券列を強調 */
+    .comparison-table th.col-bond {
+      background: var(--teal);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .bond-badge {
+      display: inline-block;
+      background: #FFD700;
+      color: var(--navy);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
+
+    .comparison-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-mid);
+      vertical-align: middle;
+    }
+
+    .comparison-table tr:last-child td { border-bottom: none; }
+
+    .comparison-table td:first-child {
+      background: #F0F4F8;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 13px;
+    }
+
+    .comparison-table td:not(:first-child) {
+      text-align: center;
+    }
+
+    /* 債券列のセル */
+    .comparison-table td.col-bond {
+      background: rgba(14,126,114,0.06);
+      border-left: 2px solid var(--teal);
+      border-right: 2px solid var(--teal);
+      font-weight: 500;
+    }
+
+    .comparison-table tr:last-child td.col-bond {
+      border-bottom: 2px solid var(--teal);
+    }
+
+    .good {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .good::before {
+      content: '◎ ';
+      font-size: 12px;
+    }
+
+    .neutral {
+      color: var(--text-light);
+    }
+
+    .neutral::before {
+      content: '△ ';
+      font-size: 12px;
+    }
+
+    .bad {
+      color: #C0392B;
+    }
+
+    .bad::before {
+      content: '✕ ';
+      font-size: 11px;
+    }
+
+    /* ─── FLOW ─── */
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 56px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      position: relative;
+    }
+
+    .flow-step:last-child { border-bottom: none; }
+
+    .flow-step-num {
+      text-align: center;
+    }
+
+    .flow-step-num span {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--teal);
+    }
+
+    .flow-step-num strong {
+      display: block;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .flow-step-body h3 {
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .flow-step-body p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.85;
+    }
+
+    /* ─── RISK ─── */
+    .risk-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .risk-item {
+      padding: 32px 28px;
+      border: 1px solid rgba(14,126,114,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .risk-item h3 {
+      font-size: 15px;
+      color: var(--teal-light);
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(14,126,114,0.2);
+      font-weight: 500;
+    }
+
+    .risk-desc {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .risk-sol {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: var(--teal-light);
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+
+    /* ─── VOICE ─── */
+    .voice-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .voice-card {
+      padding: 36px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .voice-card::before {
+      content: '"';
+      font-family: Georgia, serif;
+      font-size: 64px;
+      color: var(--teal);
+      opacity: 0.3;
+      position: absolute;
+      top: 12px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .voice-card p {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text-dark);
+      padding-left: 28px;
+    }
+
+    .voice-meta {
+      margin-top: 20px;
+      padding-left: 28px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .voice-meta span {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .voice-meta strong {
+      font-size: 13px;
+      color: var(--text-mid);
+    }
+
+    /* ─── MEDIA ─── */
+    .media-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 56px;
+      text-align: left;
+    }
+
+    .media-block-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--teal);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .media-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .media-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--teal);
+      padding: 16px 20px;
+    }
+
+    .media-card-station {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: var(--teal);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .media-card-program {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .media-card-detail {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .platform-card {
+      background: var(--navy);
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .platform-logo-text {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--teal-light);
+      letter-spacing: 0.08em;
+    }
+
+    .platform-desc {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    /* 実績数字 */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .stat-item {
+      padding: 32px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .stat-unit {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: var(--text-mid);
+      margin-top: 4px;
+    }
+
+    .stat-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .media-section-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: var(--navy);
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .cta-section .section-label { justify-content: center; display: flex; }
+
+    .cta-big-title {
+      font-size: clamp(26px, 4vw, 42px);
+      color: var(--white);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .cta-big-title span { color: var(--teal-light); }
+
+    .cta-sub {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 48px;
+    }
+
+    .cta-note {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 24px;
+      line-height: 2;
+    }
+
+    /* ─── CONSULTATION FORM ─── */
+    .consultation-form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 48px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .form-section-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--teal-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .form-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* チェックボックスグループ */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      user-select: none;
+    }
+
+    .checkbox-label:hover {
+      border-color: var(--teal-light);
+      background: rgba(14,126,114,0.1);
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-custom {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 2px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .checkbox-label input[type="checkbox"]:checked ~ .checkbox-custom::after {
+      content: '✓';
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked ~ span:last-child {
+      color: var(--white);
+    }
+
+    .checkbox-label:has(input:checked) {
+      border-color: var(--teal);
+      background: rgba(14,126,114,0.12);
+    }
+
+    /* 入力フィールド */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-row.full { grid-template-columns: 1fr; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+    }
+
+    .form-label .required {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 13px 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: var(--white);
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-input::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-input:focus {
+      border-color: var(--teal-light);
+      background: rgba(14,126,114,0.08);
+    }
+
+    .form-select {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 13px 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      width: 100%;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233AA99E' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      transition: border-color 0.2s;
+    }
+
+    .form-select:focus { border-color: var(--teal-light); }
+
+    .form-select option { background: var(--navy); color: var(--white); }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit-area {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .form-privacy {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .form-privacy a {
+      color: var(--teal-light);
+      text-decoration: underline;
+    }
+
+    /* 送信完了メッセージ */
+    .form-success {
+      display: none;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .form-success h3 {
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+
+    .faq-q {
+      padding: 24px 28px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .faq-q::before {
+      content: 'Q';
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .faq-a {
+      padding: 0 28px 24px 64px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.85;
+    }
+
+    /* ─── DISCLAIMER ─── */
+    .disclaimer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .disclaimer p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 2;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      line-height: 2;
+    }
+
+    /* ─── INLINE CTA BAR ─── */
+    .cta-bar {
+      background: var(--navy);
+      border-top: 3px solid var(--teal);
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .cta-bar p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .btn-navy {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .btn-navy:hover { background: var(--teal-light); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      section { padding: 72px 0; }
+      .container, .container-narrow { padding: 0 20px; }
+
+      .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+      .bond-cards { grid-template-columns: 1fr; }
+      .case-cards { grid-template-columns: 1fr; }
+      .md-grid { grid-template-columns: 1fr; }
+      .risk-items { grid-template-columns: 1fr; }
+      .target-card { grid-template-columns: 1fr; gap: 16px; }
+      .flow-step { grid-template-columns: 1fr; gap: 12px; }
+      .checkbox-group { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .consultation-form { padding: 28px 20px; }
+
+      .comparison-table { font-size: 12px; }
+      .comparison-table th, .comparison-table td { padding: 12px 10px; }
+
+      header { padding: 12px 20px; }
+      .header-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">FINANCIAL CREATE</div>
+    <a href="#cta" class="header-cta">無料相談を申し込む</a>
+  </header>
+
+  <!-- ① FV -->
+  <section class="fv">
+    <p class="fv-eyebrow">FINANCIAL CREATE — BOND INVESTMENT</p>
+    <h1 class="fv-catch">
+      日本にもっと、<span>債券投資</span>を。
+    </h1>
+    <p class="fv-sub">
+      増やすだけではなく、守る・受け取るという<br>
+      資産運用の選択肢を。
+    </p>
+    <a href="#cta" class="btn-primary">無料個別相談を申し込む</a>
+    <p class="fv-note">強引な勧誘は一切ありません ／ 相談時間：約60分</p>
+  </section>
+
+  <!-- ② TROUBLE -->
+  <section class="bg-cream">
+    <div class="container-narrow">
+      <span class="section-label">YOUR CONCERN</span>
+      <h2 class="section-title">こんなお悩みはありませんか？</h2>
+      <div class="divider"></div>
+      <div class="trouble-list">
+        <div class="trouble-item">
+          <div class="trouble-check"></div>
+          <p>退職金を銀行に預けたままになっている</p>
+        </div>
+        <div class="trouble-item">
+          <div class="trouble-check"></div>
+          <p>株式投資は値動きが気になって落ち着かない</p>
+        </div>
+        <div class="trouble-item">
+          <div class="trouble-check"></div>
+          <p>老後の収入源を増やしたい</p>
+        </div>
+        <div class="trouble-item">
+          <div class="trouble-check"></div>
+          <p>NISAで増えた資産をどう守ればよいかわからない</p>
+        </div>
+        <div class="trouble-item">
+          <div class="trouble-check"></div>
+          <p>毎月の年金だけでは将来が不安</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ MISSION -->
+  <section>
+    <div class="container">
+      <div class="mission-grid">
+        <div>
+          <span class="section-label">OUR MISSION</span>
+          <h2 class="section-title">日本にもっと、<br>お金の教育を。</h2>
+          <div class="divider"></div>
+          <p class="section-lead">
+            私たちのミッションは「日本にもっとお金の教育を。」<br><br>
+            金融リテラシーの向上によって、一人でも多くの方が自分らしい人生を実現できる社会を目指しています。<br><br>
+            新NISAの普及により、株式や投資信託による資産形成は広く知られるようになりました。
+            一方で、資産を<strong>守ること</strong>、<strong>定期的な収入を得ること</strong>についてはまだ十分に知られていません。<br><br>
+            私たちは今、「債券投資」というテーマを伝えていきたいと考えています。
+          </p>
+        </div>
+        <div class="mission-img"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ WHAT IS BOND -->
+  <section class="bg-off-white">
+    <div class="container">
+      <span class="section-label">ABOUT BOND</span>
+      <h2 class="section-title">債券投資とは？</h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        債券とは、国や企業が資金調達のために発行する「借用証書」のようなものです。<br>
+        購入すると定期的に<strong>利金（クーポン）</strong>を受け取ることができ、満期になると原則として<strong>元本が返ってきます</strong>。
+      </p>
+
+      <div class="bond-cards">
+        <div class="bond-card">
+          <div class="bond-card-icon">📈</div>
+          <h3>安定した利金収入</h3>
+          <p>定期的に利金（クーポン）を受け取ることができます。第2の年金として活用する方も多くいます。</p>
+        </div>
+        <div class="bond-card">
+          <div class="bond-card-icon">🛡️</div>
+          <h3>元本の保全性</h3>
+          <p>満期まで保有すれば、原則として額面金額が返ってきます。株式のように大きく価値が変動しません。</p>
+        </div>
+        <div class="bond-card">
+          <div class="bond-card-icon">⚖️</div>
+          <h3>ポートフォリオの安定化</h3>
+          <p>株式や投資信託と組み合わせることで、資産全体のリスクを抑えた分散投資が可能になります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ WHY NOW -->
+  <section class="bg-navy">
+    <div class="container-narrow">
+      <span class="section-label" style="color: var(--teal-light);">WHY NOW</span>
+      <h2 class="section-title white">いま、日本では<br>「攻める運用」が注目されています</h2>
+      <div class="divider"></div>
+      <p class="section-lead white">
+        新NISAの普及により、投資信託や株式を活用した長期資産形成は一般的になりました。<br><br>
+        しかし、人生の資産運用には<br>
+        <strong style="color: var(--teal-light); font-size: 1.1em;">「増やすお金」だけでなく「守るお金」も必要です。</strong>
+      </p>
+      <br><br>
+      <p class="section-lead white">
+        人生には資産を育てる時期があります。そして、資産を守りながら活用する時期があります。<br>
+        その両方を知り、選択できる社会をフィナンシャルクリエイトは目指します。
+      </p>
+    </div>
+  </section>
+
+  <!-- ⑥ USE CASES -->
+  <section class="bg-navy" style="padding-top: 0;">
+    <div class="container">
+      <span class="section-label" style="color: var(--teal-light);">USE CASE</span>
+      <h2 class="section-title white">こんな場面で活用されています</h2>
+      <div class="divider"></div>
+      <div class="case-cards">
+        <div class="case-card">
+          <span class="case-tag">CASE 01</span>
+          <h3>退職金の運用</h3>
+          <p>退職後の資産を守りながら、利金収入を受け取る。まとまった資金を、第2の年金づくりに活かします。</p>
+        </div>
+        <div class="case-card">
+          <span class="case-tag">CASE 02</span>
+          <h3>株式資産の一部移転</h3>
+          <p>資産形成で増やしたお金を、安定運用へ移行する。育てた資産を、今度は守りに回します。</p>
+        </div>
+        <div class="case-card">
+          <span class="case-tag">CASE 03</span>
+          <h3>教育資金・老後資金</h3>
+          <p>使う時期が近づいた資金を、計画的に管理する。値動きを抑えながら、必要なときに確実に使える形で。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <p>「私の場合、債券は活用できる？」まずはお気軽にご相談ください。</p>
+    <a href="#cta" class="btn-navy">無料個別相談を申し込む →</a>
+  </div>
+
+  <!-- ⑦ WHO IS IT FOR -->
+  <section class="bg-cream">
+    <div class="container-narrow">
+      <span class="section-label">FOR YOU</span>
+      <h2 class="section-title">債券投資はこんな方におすすめ</h2>
+      <div class="divider"></div>
+      <div class="target-cards">
+        <div class="target-card">
+          <div class="target-num">
+            <span>CASE</span>
+            <span>01</span>
+          </div>
+          <div>
+            <h3>退職金を受け取られた方</h3>
+            <p>まとまった資金を、預金だけではなく定期的な利金収入を得る仕組みに。<br>第2の年金づくりをサポートします。</p>
+          </div>
+        </div>
+        <div class="target-card">
+          <div class="target-num">
+            <span>CASE</span>
+            <span>02</span>
+          </div>
+          <div>
+            <h3>NISAで資産形成を進めている方</h3>
+            <p>株式や投資信託で育てた資産の一部を債券へ移すことで、資産全体の安定性向上を目指します。</p>
+          </div>
+        </div>
+        <div class="target-card">
+          <div class="target-num">
+            <span>CASE</span>
+            <span>03</span>
+          </div>
+          <div>
+            <h3>資産の値動きを抑えたい方</h3>
+            <p>「資産は減らしたくない」「日々の値動きを気にしたくない」そんな方にも選ばれています。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ MERIT / DEMERIT -->
+  <section>
+    <div class="container">
+      <span class="section-label">MERIT & DEMERIT</span>
+      <h2 class="section-title">債券投資のメリット・デメリット</h2>
+      <div class="divider"></div>
+      <div class="md-grid">
+        <div class="merit-box">
+          <div class="md-title">MERIT — メリット</div>
+          <ul class="md-list">
+            <li>定期的な利金収入（クーポン）が受け取れる</li>
+            <li>満期まで保有すれば原則として元本が戻る</li>
+            <li>株式に比べて価格変動が小さく安定しやすい</li>
+            <li>ポートフォリオ全体のリスク軽減に役立つ</li>
+            <li>国内外さまざまな種類から選択できる</li>
+          </ul>
+        </div>
+        <div class="demerit-box">
+          <div class="md-title" style="color: var(--text-mid);">DEMERIT — デメリット</div>
+          <ul class="md-list">
+            <li style="color: var(--text-mid);">株式と比べてリターンの上限が低め</li>
+            <li style="color: var(--text-mid);">途中売却時は市場価格次第で元本割れの可能性</li>
+            <li style="color: var(--text-mid);">発行体の信用力によってリスクが異なる</li>
+            <li style="color: var(--text-mid);">市場混乱時には流動性が低下することがある</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 24px; font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: var(--text-light);">
+        ※ デメリットについては、ヒアリングを通じてお客様一人ひとりの状況に合わせた対策をご提案します。
+      </p>
+    </div>
+  </section>
+
+  <!-- ⑨ COMPARISON: 債券 vs 貯蓄型保険 -->
+  <section class="bg-off-white">
+    <div class="container">
+      <span class="section-label">COMPARISON</span>
+      <h2 class="section-title">債券投資と貯蓄型保険との比較</h2>
+      <div class="divider"></div>
+      <p class="section-lead">同じ「守りの資産」として検討されることの多い貯蓄型保険と、債券の特徴を比較しました。</p>
+      <div class="comparison-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-bond">債券投資<span class="bond-badge">おすすめ</span></th>
+              <th>貯蓄型保険</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>利回り・収益性</td>
+              <td class="col-bond good">市場金利に連動・比較的高め</td>
+              <td class="neutral">固定・契約時点で確定</td>
+            </tr>
+            <tr>
+              <td>定期的な収入</td>
+              <td class="col-bond good">利金（クーポン）として受け取り可</td>
+              <td class="neutral">基本的に満期一括</td>
+            </tr>
+            <tr>
+              <td>流動性（換金性）</td>
+              <td class="col-bond neutral">市場で売却可能（時価変動あり）</td>
+              <td class="bad">解約返戻金が元本を下回ることが多い</td>
+            </tr>
+            <tr>
+              <td>保険機能</td>
+              <td class="col-bond neutral">なし</td>
+              <td class="good">死亡保障などが付帯</td>
+            </tr>
+            <tr>
+              <td>透明性</td>
+              <td class="col-bond good">価格・利率が市場で公開</td>
+              <td class="neutral">手数料構造がわかりにくい場合も</td>
+            </tr>
+            <tr>
+              <td>最低投資額</td>
+              <td class="col-bond neutral">商品によって異なる（100万円〜が目安）</td>
+              <td class="neutral">商品によって異なる</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 16px; font-family: 'Noto Sans JP', sans-serif; font-size: 12px; color: var(--text-light);">
+        ※ 上記はあくまで一般的な傾向です。具体的な内容は商品によって異なります。詳細はご相談時にご説明します。
+      </p>
+    </div>
+  </section>
+
+  <!-- ⑩ OUR SERVICES -->
+  <section>
+    <div class="container-narrow">
+      <span class="section-label">OUR SERVICE</span>
+      <h2 class="section-title">私たちがご提案できること</h2>
+      <div class="divider"></div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>SERVICE</span>
+            <strong>01</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>国内外の債券活用</h3>
+            <p>国内債券から海外（米国・欧州・新興国など）の債券まで、幅広い選択肢の中から最適な銘柄をご提案します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>SERVICE</span>
+            <strong>02</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>利金収入を活用した資産設計</h3>
+            <p>定期的な利金収入をライフプランに組み込み、老後の収入源として安定した生活資金を設計します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>SERVICE</span>
+            <strong>03</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>退職金運用相談</h3>
+            <p>まとまった退職金を安全に活用するための個別プランを作成。預金に眠らせないための運用設計をご提案します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>SERVICE</span>
+            <strong>04</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>相続を見据えた資産配分</h3>
+            <p>将来の相続を意識しながら、資産をどう守り・どう引き継ぐかを考えたポートフォリオを構築します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>SERVICE</span>
+            <strong>05</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>株式資産からの移行設計</h3>
+            <p>NISAや株式投資で積み上げた資産の一部を、段階的に安定資産へと移していく移行計画をご提案します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAR -->
+  <div class="cta-bar">
+    <p>退職金運用相談・老後資金シミュレーション・債券投資個別相談 — まずはお話しください</p>
+    <a href="#cta" class="btn-navy">60分の無料相談を予約する →</a>
+  </div>
+
+  <!-- ⑪ FLOW -->
+  <section class="bg-cream">
+    <div class="container-narrow">
+      <span class="section-label">FLOW</span>
+      <h2 class="section-title">相談の流れ</h2>
+      <div class="divider"></div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>STEP</span>
+            <strong>01</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>お問い合わせ・ご予約</h3>
+            <p>フォームよりご希望の日時・相談内容をお知らせください。24時間受け付けています。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>STEP</span>
+            <strong>02</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>無料個別相談（約60分）</h3>
+            <p>現在の資産状況、ご希望、ライフプランをヒアリングします。強引な勧誘は一切行いません。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>STEP</span>
+            <strong>03</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>ご提案・シミュレーション</h3>
+            <p>お客様の状況に合わせた債券活用プランをご提案。利金収入や運用シミュレーションもご覧いただけます。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">
+            <span>STEP</span>
+            <strong>04</strong>
+          </div>
+          <div class="flow-step-body">
+            <h3>ご検討・ご判断</h3>
+            <p>急かしません。十分にご検討いただき、納得のうえでお決めください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑫ RAKUTEN / MEDIA -->
+  <section>
+    <div class="container">
+      <span class="section-label">MEDIA & PLATFORM</span>
+      <h2 class="section-title">出演メディア・取引プラットフォーム</h2>
+      <div class="divider"></div>
+
+      <!-- 実績数字 -->
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">50,000<span style="font-size:0.5em">件</span></div>
+          <div class="stat-unit">以上</div>
+          <div class="stat-label">累計キャッシュフロー<br>設計実績</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5,000<span style="font-size:0.5em">件</span></div>
+          <div class="stat-unit">年間</div>
+          <div class="stat-label">個人向け<br>相談実績</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">800<span style="font-size:0.5em">回</span></div>
+          <div class="stat-unit">以上</div>
+          <div class="stat-label">セミナー<br>開催実績</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">95<span style="font-size:0.5em">%</span></div>
+          <div class="stat-unit"></div>
+          <div class="stat-label">顧客<br>定着率</div>
+        </div>
+      </div>
+
+      <!-- メディア・プラットフォーム -->
+      <div class="media-section-grid">
+        <div>
+          <div class="media-block-title">RADIO — レギュラー出演</div>
+          <div class="media-cards">
+            <div class="media-card">
+              <div class="media-card-station">ZIP-FM</div>
+              <div class="media-card-program">MONEY NAVI</div>
+              <div class="media-card-detail">毎週火曜日 16:45〜 レギュラー出演</div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-station">ニッポン放送</div>
+              <div class="media-card-program">お金の学校</div>
+              <div class="media-card-detail">毎週日曜日 21:00〜 レギュラー出演</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="media-block-title">PLATFORM — 取引プラットフォーム</div>
+          <div class="platform-card">
+            <div>
+              <div class="platform-logo-text">楽天証券</div>
+              <div class="platform-desc">国内最大級の証券プラットフォームと連携し、<br>幅広い債券商品をご提案できます。</div>
+            </div>
+          </div>
+          <div class="media-block-title" style="margin-top:24px;">EDUCATION — 教育機関での登壇</div>
+          <div class="media-cards">
+            <div class="media-card">
+              <div class="media-card-station">大学・教育機関</div>
+              <div class="media-card-program">東海大学 非常勤講師</div>
+              <div class="media-card-detail">金融リテラシー教育の普及に向けた登壇活動</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑬ VOICE -->
+  <section class="bg-off-white">
+    <div class="container-narrow">
+      <span class="section-label">VOICE</span>
+      <h2 class="section-title">ご相談いただいたお客様の声</h2>
+      <div class="divider"></div>
+      <div class="voice-cards">
+        <div class="voice-card">
+          <p>退職金の運用先に悩んでいたところ、友人に勧められてご相談しました。「守る運用」という考え方を初めて知り、債券を少しずつ取り入れることにしました。毎月の利金が年金の補いになっていて、生活の安心感が違います。</p>
+          <div class="voice-meta">
+            <span>60代男性</span>
+            <strong>元会社員・退職金運用のご相談</strong>
+          </div>
+        </div>
+        <div class="voice-card">
+          <p>NISAで株式運用を続けていましたが、50代になって「このまま株だけで大丈夫？」という不安が出てきました。ポートフォリオの一部を債券へ移すという発想がなかったので、目からウロコでした。とても丁寧に説明していただきました。</p>
+          <div class="voice-meta">
+            <span>50代女性</span>
+            <strong>会社員・NISA運用からの移行相談</strong>
+          </div>
+        </div>
+        <div class="voice-card">
+          <p>株の値動きに毎日ストレスを感じていたので、もう少し落ち着いた運用に移りたいと思っていました。相談は完全に無料で、強引に何かを勧められることもなく、自分のペースで決めることができました。</p>
+          <div class="voice-meta">
+            <span>55代男性</span>
+            <strong>自営業・安定運用へのシフト相談</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑭ RISK -->
+  <section class="bg-navy">
+    <div class="container">
+      <span class="section-label" style="color: var(--teal-light);">RISK DISCLOSURE</span>
+      <h2 class="section-title white">リスクに、誠実に向き合う</h2>
+      <div class="divider"></div>
+      <p class="section-lead white">投資にはリスクがあります。だからこそ、正しく理解することが大切です</p>
+      <div class="risk-items">
+        <div class="risk-item">
+          <h3>価格変動リスク（金利変動リスク）</h3>
+          <p class="risk-desc">途中売却の場合は市場価格での取引となり、元本を割り込む可能性があります。ただし満期まで保有すれば、原則として額面金額が償還されます。</p>
+          <p class="risk-sol">→ お客様のライフプランを丁寧にヒアリングし、「満期まで保有できる資金の範囲」で計画的なポートフォリオを設計します。</p>
+        </div>
+        <div class="risk-item">
+          <h3>信用リスク（デフォルトリスク）</h3>
+          <p class="risk-desc">発行体の財務悪化により、利金の支払いや元本返済が滞るリスクです。</p>
+          <p class="risk-sol">→ 世界的な格付け機関で認められた信用度の高い発行体のみを、独立した視点で厳選してご提案します。</p>
+        </div>
+        <div class="risk-item">
+          <h3>流動性リスク（中途換金リスク）</h3>
+          <p class="risk-desc">市場混乱時には、希望の価格ですぐに売却できないケースがあります。</p>
+          <p class="risk-sol">→ 流通量の多いメジャーな債券を中心に選定し、資産全体の流動性バランスも考慮した提案を行います。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑮ FAQ -->
+  <section class="bg-cream">
+    <div class="container-narrow">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">よくあるご質問</h2>
+      <div class="divider"></div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">相談は本当に無料ですか？</div>
+          <div class="faq-a">はい、初回個別相談は完全無料です。無理に商品を購入いただく必要はなく、情報収集だけのご利用も歓迎しています。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">投資の経験がなくても相談できますか？</div>
+          <div class="faq-a">もちろんです。「債券という言葉を初めて聞いた」という方も多くいらっしゃいます。基礎的な内容からていねいにご説明します。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">いくらから始められますか？</div>
+          <div class="faq-a">商品によって異なりますが、100万円程度から検討できる選択肢もあります。ご状況に合わせてご提案しますので、まずはご相談ください。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">NISAと債券投資は一緒にできますか？</div>
+          <div class="faq-a">はい、資産全体のバランスを見ながら、NISAでの積立と債券投資を組み合わせる設計も可能です。お客様の目的に合わせてご提案します。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">オンラインでの相談も対応していますか？</div>
+          <div class="faq-a">Zoomなどオンラインビデオ通話にも対応しています。全国どこからでもご相談いただけます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑯ CTA -->
+  <section class="cta-section" id="cta">
+    <div class="container-narrow">
+      <span class="section-label">CONSULTATION</span>
+      <h2 class="cta-big-title">
+        「私の場合、<span>債券は活用できる？</span>」<br>
+        まずは、話してみてください。
+      </h2>
+      <p class="cta-sub">60分の無料個別相談。強引な勧誘は一切ありません。</p>
+
+      <!-- 相談申込フォーム
+           将来的にWebhook連携予定。
+           data-webhook-url 属性にURLを設定するか、
+           action属性にGoogle FormsのエンドポイントURLを設定する。
+      -->
+      <form
+        class="consultation-form"
+        id="consultationForm"
+        data-webhook-url=""
+        novalidate
+      >
+
+        <!-- STEP 1: 相談内容（チェックボックス） -->
+        <div class="form-section-title">STEP 01 — ご相談内容をお選びください（複数選択可）</div>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="consultation_type" value="退職金運用相談">
+            <span class="checkbox-custom"></span>
+            <span>退職金運用相談</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="consultation_type" value="老後資金シミュレーション">
+            <span class="checkbox-custom"></span>
+            <span>老後資金シミュレーション</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="consultation_type" value="債券投資個別相談">
+            <span class="checkbox-custom"></span>
+            <span>債券投資個別相談</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: お客様情報 -->
+        <div class="form-section-title">STEP 02 — お客様情報</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">お名前<span class="required">必須</span></label>
+            <input type="text" name="name" class="form-input" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">年代</label>
+            <select name="age_group" class="form-select">
+              <option value="">選択してください</option>
+              <option value="40代">40代</option>
+              <option value="50代">50代</option>
+              <option value="60代">60代</option>
+              <option value="70代以上">70代以上</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">メールアドレス<span class="required">必須</span></label>
+            <input type="email" name="email" class="form-input" placeholder="example@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">電話番号</label>
+            <input type="tel" name="phone" class="form-input" placeholder="090-0000-0000">
+          </div>
+        </div>
+
+        <!-- STEP 3: ご希望・ご質問 -->
+        <div class="form-section-title">STEP 03 — ご希望・ご質問（任意）</div>
+        <div class="form-row full">
+          <div class="form-group">
+            <label class="form-label">ご相談の背景・お気持ちをお聞かせください</label>
+            <textarea name="message" class="form-input form-textarea" placeholder="例：退職金の運用先を考えています。株式は不安なので、安定した方法を探しています。"></textarea>
+          </div>
+        </div>
+
+        <!-- 隠しフィールド（Webhook連携用・将来のシステム統合に使用） -->
+        <input type="hidden" name="form_id" value="financial-create-consultation-v1">
+        <input type="hidden" name="source_page" value="financial-create-lp-v2">
+        <input type="hidden" name="submitted_at" id="submittedAt">
+
+        <div class="form-submit-area">
+          <button type="submit" class="btn-primary" style="font-size: 16px; padding: 20px 56px; border: none; cursor: pointer; width: 100%; max-width: 420px;">
+            無料個別相談を申し込む
+          </button>
+          <p class="form-privacy">
+            送信いただいた情報は、相談対応の目的のみに使用します。<br>
+            <a href="#">プライバシーポリシー</a>に同意のうえ送信してください。
+          </p>
+        </div>
+      </form>
+
+      <!-- 送信完了メッセージ（JS で表示切替） -->
+      <div class="form-success" id="formSuccess">
+        <h3>お申し込みありがとうございます</h3>
+        <p>担当者より2営業日以内にご連絡いたします。<br>しばらくお待ちください。</p>
+      </div>
+
+      <p class="cta-note">
+        ※ 株式会社フィナンシャルクリエイト<br>
+        ※ 投資にはリスクが伴います。詳細はご相談時にご説明いたします。
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // 相談申込フォーム送信処理
+    // Webhook連携準備済み。data-webhook-url 属性にURLを設定すると自動でPOSTする。
+    document.getElementById('consultationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const webhookUrl = form.getAttribute('data-webhook-url');
+
+      // 送信日時をセット
+      document.getElementById('submittedAt').value = new Date().toISOString();
+
+      // フォームデータ収集
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        if (data[key]) {
+          // 複数チェックボックスを配列で収集
+          data[key] = [].concat(data[key], value);
+        } else {
+          data[key] = value;
+        }
+      });
+
+      // バリデーション
+      if (!data.name || !data.email) {
+        alert('お名前とメールアドレスは必須です。');
+        return;
+      }
+
+      // Webhook送信（URLが設定されている場合）
+      if (webhookUrl) {
+        try {
+          await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+        } catch (err) {
+          console.error('Webhook error:', err);
+        }
+      }
+
+      // 送信完了表示
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+
+  <!-- DISCLAIMER -->
+  <section style="padding: 48px 0; background: var(--off-white);">
+    <div class="container-narrow">
+      <div class="disclaimer">
+        <p>
+          【ご注意・免責事項】<br>
+          本ページは情報提供を目的としたものであり、特定の金融商品の購入・売却を勧誘するものではありません。
+          債券投資を含む金融商品の取引にはリスクが伴い、投資元本を割り込む可能性があります。
+          投資判断はご自身の責任において行っていただくようお願いいたします。
+          当社は金融商品取引法に基づき、適切な投資情報の提供に努めていますが、将来の運用成果を保証するものではありません。
+          詳細な条件・リスクについては個別相談時に十分なご説明を行います。<br><br>
+          ※ 本ページに記載のお客様の声はイメージです。実際の運用成果を保証するものではありません。<br>
+          ※ 掲載メディア・プラットフォームは変更になる場合があります。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 Financial Create Inc. All rights reserved.<br>
+      金融商品の取引には元本割れ等のリスクが伴います。
+    </p>
+  </footer>
+
+</body>
+</html>
