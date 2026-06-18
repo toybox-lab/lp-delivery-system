@@ -120,55 +120,27 @@
   </div>
 </header>
 
-<!-- ========== HERO（フルスクリーンFV） ========== -->
-<section class="relative overflow-hidden" style="min-height: 100svh;">
+<!-- ========== HERO ========== -->
 
-  <!-- 背景写真（右寄せ） -->
+<!-- PC：フルスクリーン・右寄せ写真＋左白グラデ -->
+<section class="relative overflow-hidden hidden md:flex items-center" style="min-height:100svh;">
   <div class="absolute inset-0">
-    <img
-      src="https://toybox-lab.github.io/lp-delivery-system/seminar_fv.webp"
-      alt="資産運用の相談シーン"
-      class="w-full h-full object-cover object-right"
-    >
-    <!-- 左から白のグラデーション（PC） -->
-    <div class="absolute inset-0 hidden md:block" style="background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 38%, rgba(255,255,255,0.75) 55%, rgba(255,255,255,0) 72%);"></div>
-    <!-- スマホ用：下から白グラデ -->
-    <div class="absolute inset-0 md:hidden" style="background: linear-gradient(to bottom, rgba(255,255,255,0) 25%, rgba(255,255,255,0.88) 50%, rgba(255,255,255,1) 68%);"></div>
+    <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_fv.webp"
+         alt="資産運用の相談シーン"
+         class="w-full h-full object-cover object-right">
+    <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(255,255,255,1) 0%,rgba(255,255,255,0.97) 38%,rgba(255,255,255,0.7) 55%,rgba(255,255,255,0) 72%);"></div>
   </div>
-
-  <!-- コンテンツ -->
-  <div class="relative z-10 max-w-5xl mx-auto px-5 flex items-center" style="min-height: 100svh;">
-    <div class="w-full md:max-w-xl pt-24 pb-16 md:py-0">
-
+  <div class="relative z-10 max-w-5xl mx-auto px-8 w-full">
+    <div class="max-w-lg">
       <span class="inline-block lime-bg text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">将来のお金に、安心を。</span>
-
-      <h1 class="text-4xl md:text-5xl font-bold leading-snug mb-5 serif text-gray-900">
-        お金のことを、<br>正直に<br class="md:hidden">話せる場所。
-      </h1>
-
-      <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8">
-        勧誘なし、売り込みなし。<br>
-        専門家がやさしく、あなたのペースでサポートします。
-      </p>
-
-      <!-- 3つのポイント -->
-      <div class="flex gap-4 mb-8">
-        <div class="text-center flex-1">
-          <div class="icon-circle mx-auto mb-1">💰</div>
-          <p class="text-xs text-gray-600">初心者でも<br>安心</p>
-        </div>
-        <div class="text-center flex-1">
-          <div class="icon-circle mx-auto mb-1">🤝</div>
-          <p class="text-xs text-gray-600">相談しやすい<br>雰囲気</p>
-        </div>
-        <div class="text-center flex-1">
-          <div class="icon-circle mx-auto mb-1">📖</div>
-          <p class="text-xs text-gray-600">わかりやすく<br>丁寧に解説</p>
-        </div>
+      <h1 class="text-5xl font-bold leading-snug mb-5 serif text-gray-900">お金のことを、<br>正直に話せる場所。</h1>
+      <p class="text-gray-600 text-base leading-relaxed mb-8">勧誘なし、売り込みなし。<br>専門家がやさしく、あなたのペースでサポートします。</p>
+      <div class="flex gap-6 mb-8">
+        <div class="text-center"><div class="icon-circle mx-auto mb-1">💰</div><p class="text-xs text-gray-600">初心者でも安心</p></div>
+        <div class="text-center"><div class="icon-circle mx-auto mb-1">🤝</div><p class="text-xs text-gray-600">相談しやすい雰囲気</p></div>
+        <div class="text-center"><div class="icon-circle mx-auto mb-1">📖</div><p class="text-xs text-gray-600">わかりやすく丁寧に解説</p></div>
       </div>
-
-      <!-- CTAボックス -->
-      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-5 flex items-center gap-4 max-w-md">
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-5 flex items-center gap-4">
         <div class="shrink-0">
           <p class="text-xs text-gray-400 mb-0.5">\ 無料セミナー開催中！ /</p>
           <p class="text-2xl font-bold lime-text serif">参加費 <span class="text-3xl">0</span>円</p>
@@ -177,6 +149,37 @@
       </div>
       <p class="text-xs text-gray-400 mt-3">定員に達し次第、受付を終了いたします</p>
     </div>
+  </div>
+</section>
+
+<!-- スマホ：テキスト上・画像下の縦積みレイアウト -->
+<section class="md:hidden bg-white pt-8 pb-0">
+  <!-- テキストエリア（白背景・画像と重ならない） -->
+  <div class="px-5 pb-6">
+    <span class="inline-block lime-bg text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">将来のお金に、安心を。</span>
+    <h1 class="text-3xl font-bold leading-snug mb-4 serif text-gray-900">お金のことを、<br>正直に話せる場所。</h1>
+    <p class="text-gray-600 text-sm leading-relaxed mb-6">勧誘なし、売り込みなし。<br>専門家がやさしくサポートします。</p>
+    <!-- CTAボックス -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 flex items-center gap-3 mb-2">
+      <div class="shrink-0">
+        <p class="text-xs text-gray-400 mb-0.5">\ 無料セミナー開催中！ /</p>
+        <p class="text-xl font-bold lime-text serif">参加費 <span class="text-2xl">0</span>円</p>
+      </div>
+      <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn-main flex-1 text-center text-sm py-3">今すぐ申し込む →</a>
+    </div>
+    <p class="text-xs text-gray-400 text-center mb-5">定員に達し次第、受付を終了いたします</p>
+    <!-- 3ポイント -->
+    <div class="flex gap-3">
+      <div class="text-center flex-1"><div class="icon-circle mx-auto mb-1" style="width:3rem;height:3rem;font-size:1.2rem;">💰</div><p class="text-xs text-gray-600">初心者でも安心</p></div>
+      <div class="text-center flex-1"><div class="icon-circle mx-auto mb-1" style="width:3rem;height:3rem;font-size:1.2rem;">🤝</div><p class="text-xs text-gray-600">相談しやすい雰囲気</p></div>
+      <div class="text-center flex-1"><div class="icon-circle mx-auto mb-1" style="width:3rem;height:3rem;font-size:1.2rem;">📖</div><p class="text-xs text-gray-600">丁寧に解説</p></div>
+    </div>
+  </div>
+  <!-- 写真（下部に配置・テキストと完全分離） -->
+  <div class="w-full overflow-hidden" style="height:220px;">
+    <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_fv.webp"
+         alt="資産運用の相談シーン"
+         class="w-full h-full object-cover object-top">
   </div>
 </section>
 
