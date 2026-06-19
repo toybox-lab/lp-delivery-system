@@ -5,465 +5,628 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>名古屋支社オープンセミナー｜無料マネーセミナー｜セミナーBOX</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: #1F2937; background: #fff; }
-    .serif { font-family: 'Noto Serif JP', serif; }
-    .lime-text { color: #5a9e08; }
-    .lime-bg { background-color: #84CC16; }
-    .lime-light { background-color: #f0fdf4; }
-    .lime-border { border-color: #84CC16; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #333; background: #fff; font-size: 16px; line-height: 1.8; }
 
-    /* ボタン */
-    .btn-main {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      background: #84CC16;
+    /* ===== カラー変数 ===== */
+    :root {
+      --primary: #84CC16;
+      --primary-hover: #65A30D;
+      --bg: #FFFFFF;
+      --section-bg: #F7FAF3;
+      --text: #333333;
+      --sub: #666666;
+    }
+
+    /* ===== レイアウト ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 100px 0; }
+
+    /* ===== ヘッダー ===== */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e8f5d0;
+      padding: 16px 24px;
+    }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 18px; font-weight: 700; color: #333; display: flex; align-items: center; gap: 8px; }
+    .logo-bar { width: 4px; height: 22px; background: var(--primary); border-radius: 2px; }
+
+    /* ===== CTAボタン ===== */
+    .btn {
+      display: inline-block;
+      background: var(--primary);
       color: #fff;
-      font-weight: 700;
-      padding: 0.85rem 2rem;
+      padding: 18px 40px;
       border-radius: 9999px;
-      font-size: 1rem;
+      font-weight: 700;
+      font-size: 16px;
       text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(132,204,22,0.3);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(132,204,22,0.35);
     }
-    .btn-main:hover { background: #65a30d; transform: translateY(-1px); }
+    .btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(132,204,22,0.4); }
+    .btn-sm { padding: 12px 28px; font-size: 14px; }
 
-    /* セクションタイトル共通 */
-    .sec-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #5a9e08;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-    .sec-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      line-height: 1.4;
-      font-family: 'Noto Serif JP', serif;
-    }
+    /* ===== セクションタイトル ===== */
+    .sec-title { font-size: 32px; font-weight: 700; line-height: 1.4; color: var(--text); margin-bottom: 16px; }
+    .sec-sub { color: var(--sub); margin-bottom: 56px; font-size: 15px; }
+    .sec-label { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 8px; }
+    .text-center { text-align: center; }
 
-    /* アイコン丸 */
-    .icon-pill {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .icon-circle {
-      width: 4rem;
-      height: 4rem;
+    /* ===== タグ ===== */
+    .tag {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
       border-radius: 9999px;
-      background: #ecfccb;
+      margin-bottom: 20px;
+    }
+
+    /* ===== SECTION 01: FV ===== */
+    #fv {
+      padding: 0;
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    /* カード */
-    .card {
       background: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      padding: 1.5rem;
-    }
-
-    /* 参加者の声スライダー */
-    .voice-wrap {
       overflow: hidden;
-      position: relative;
     }
-    .voice-track {
+    .fv-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .fv-left { padding: 120px 0 80px; }
+    .fv-h1 { font-size: 40px; font-weight: 900; line-height: 1.4; color: var(--text); margin-bottom: 20px; }
+    .fv-sub { font-size: 16px; color: var(--sub); line-height: 1.8; margin-bottom: 32px; }
+    .fv-features { display: flex; gap: 20px; margin-bottom: 40px; }
+    .fv-feature {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .fv-feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+    .fv-cta-box {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+      padding: 24px 28px;
       display: flex;
-      transition: transform 0.4s ease;
+      align-items: center;
+      gap: 20px;
+      max-width: 480px;
+      border: 1px solid #e8f5d0;
     }
-    .voice-item {
-      min-width: 100%;
-      padding: 0 1rem;
-    }
-
-    /* 注意書き */
-    .notice {
-      font-size: 0.7rem;
-      color: #9CA3AF;
-      line-height: 1.9;
-    }
-
-    /* ヒーロー写真 */
-    .hero-photo {
+    .fv-price { flex-shrink: 0; }
+    .fv-price-label { font-size: 11px; color: var(--sub); margin-bottom: 2px; }
+    .fv-price-num { font-size: 32px; font-weight: 900; color: var(--primary); line-height: 1; }
+    .fv-price-num span { font-size: 16px; }
+    .fv-right { position: relative; height: 100vh; }
+    .fv-photo {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
     }
+    .fv-photo-grad {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
+    }
+
+    /* ===== SECTION 02: 悩み ===== */
+    #worries { background: var(--section-bg); }
+    .worries-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .worry-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 16px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .worry-card svg { width: 64px; height: 64px; margin: 0 auto 16px; display: block; }
+    .worry-card p { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.5; }
+
+    /* ===== SECTION 03: 学べること ===== */
+    #learn { background: #fff; }
+    .learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .learn-card {
+      background: var(--section-bg);
+      border-radius: 20px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+    .learn-card svg { width: 56px; height: 56px; }
+    .learn-card h3 { font-size: 17px; font-weight: 700; color: var(--text); }
+    .learn-card p { font-size: 14px; color: var(--sub); line-height: 1.7; }
+
+    /* ===== SECTION 04: メリット ===== */
+    #merit { background: var(--section-bg); }
+    .merit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .merit-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .merit-num { font-size: 36px; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 12px; }
+    .merit-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .merit-card p { font-size: 14px; color: var(--sub); }
+
+    /* ===== SECTION 05: 講師 ===== */
+    #instructor { background: #fff; }
+    .instructor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .instructor-card {
+      background: var(--section-bg);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .instructor-photo {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      flex-shrink: 0;
+      border: 3px solid #e8f5d0;
+    }
+    .instructor-license { font-size: 11px; color: var(--sub); margin-bottom: 4px; }
+    .instructor-name { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .instructor-bio { font-size: 13px; color: var(--sub); line-height: 1.7; }
+
+    /* ===== SECTION 06: 詳細 ===== */
+    #details { background: var(--section-bg); }
+    .details-inner { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
+    .details-table { width: 100%; }
+    .details-row { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid #e0edcc; align-items: flex-start; }
+    .details-row:first-child { padding-top: 0; }
+    .details-icon { font-size: 18px; flex-shrink: 0; width: 24px; }
+    .details-label { font-size: 12px; color: var(--sub); margin-bottom: 2px; }
+    .details-val { font-size: 15px; color: var(--text); font-weight: 500; }
+    .details-val a { color: var(--primary); text-decoration: none; }
+    .details-cta-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 32px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      min-width: 280px;
+      border-top: 4px solid var(--primary);
+    }
+    .details-cta-label { font-size: 12px; color: var(--sub); margin-bottom: 8px; }
+    .details-cta-price { font-size: 48px; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 4px; }
+    .details-cta-price span { font-size: 20px; }
+    .details-cta-note { font-size: 11px; color: var(--sub); margin-bottom: 20px; }
+
+    /* ===== SECTION 07: 安心 ===== */
+    #safety { background: #fff; }
+    .safety-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .safety-card {
+      border: 2px solid #e8f5d0;
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      border-top: 4px solid var(--primary);
+    }
+    .safety-card svg { width: 48px; height: 48px; margin: 0 auto 16px; display: block; }
+    .safety-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .safety-card p { font-size: 13px; color: var(--sub); line-height: 1.7; }
+
+    /* ===== SECTION 08: 最終CTA ===== */
+    #final-cta {
+      background: var(--primary);
+      text-align: center;
+      padding: 100px 24px;
+    }
+    #final-cta h2 { font-size: 36px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 12px; }
+    #final-cta p { color: rgba(255,255,255,0.8); margin-bottom: 40px; }
+    .btn-white { background: #fff; color: var(--primary); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { background: #f7fee7; transform: translateY(-2px); }
+
+    /* ===== 注意書き ===== */
+    #notice { background: #fff; padding: 60px 0; }
+    .notice-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px 32px;
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1.9;
+    }
+    .notice-box strong { color: #6b7280; font-size: 11px; }
+
+    /* ===== フッター ===== */
+    footer { background: #1f2937; color: #9ca3af; text-align: center; padding: 40px 24px; font-size: 13px; }
+    footer strong { color: #fff; display: block; margin-bottom: 4px; }
+
+    /* ===== スクロールアニメ ===== */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+    .delay-4 { transition-delay: .4s; }
+
+    /* ===== レスポンシブ ===== */
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .sec-title { font-size: 24px; }
+      .fv-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
+      .fv-left { padding: 100px 0 32px; }
+      .fv-h1 { font-size: 28px; }
+      .fv-features { flex-wrap: wrap; gap: 12px; }
+      .fv-right { height: 260px; position: relative; margin: 0 -24px; }
+      .fv-photo-grad { background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%); }
+      .fv-cta-box { flex-direction: column; align-items: flex-start; }
+      .worries-grid { grid-template-columns: repeat(2, 1fr); }
+      .worries-grid .worry-card:last-child { grid-column: span 2; }
+      .learn-grid, .merit-grid, .safety-grid { grid-template-columns: 1fr; }
+      .instructor-grid { grid-template-columns: 1fr; }
+      .details-inner { grid-template-columns: 1fr; }
+      .details-cta-box { min-width: unset; }
+      #final-cta h2 { font-size: 26px; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ========== HEADER ========== -->
-<header class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <span class="inline-block w-1.5 h-6 rounded-full lime-bg"></span>
-      <span class="font-bold text-gray-800 text-base serif">セミナーBOX</span>
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-bar"></span>
+      セミナーBOX
     </div>
-    <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn-main text-sm py-2 px-4" style="box-shadow:none;">今すぐ申し込む →</a>
+    <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn btn-sm">無料で参加する</a>
   </div>
 </header>
 
-<!-- ========== HERO ========== -->
-
-<!-- PC：フルスクリーン・右寄せ写真＋左白グラデ -->
-<section class="relative overflow-hidden hidden md:flex items-center" style="min-height:100svh;">
-  <div class="absolute inset-0">
-    <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_fv.webp"
-         alt="資産運用の相談シーン"
-         class="w-full h-full object-cover object-right">
-    <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(255,255,255,1) 0%,rgba(255,255,255,0.97) 38%,rgba(255,255,255,0.7) 55%,rgba(255,255,255,0) 72%);"></div>
-  </div>
-  <div class="relative z-10 max-w-5xl mx-auto px-8 w-full">
-    <div class="max-w-lg">
-      <span class="inline-block lime-bg text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">将来のお金に、安心を。</span>
-      <h1 class="text-5xl font-bold leading-snug mb-5 serif text-gray-900">お金のことを、<br>正直に話せる場所。</h1>
-      <p class="text-gray-600 text-base leading-relaxed mb-8">勧誘なし、売り込みなし。<br>専門家がやさしく、あなたのペースでサポートします。</p>
-      <div class="flex gap-6 mb-8">
-        <div class="text-center"><div class="icon-circle mx-auto mb-1">💰</div><p class="text-xs text-gray-600">初心者でも安心</p></div>
-        <div class="text-center"><div class="icon-circle mx-auto mb-1">🤝</div><p class="text-xs text-gray-600">相談しやすい雰囲気</p></div>
-        <div class="text-center"><div class="icon-circle mx-auto mb-1">📖</div><p class="text-xs text-gray-600">わかりやすく丁寧に解説</p></div>
+<!-- SECTION 01: FV -->
+<section id="fv">
+  <div class="fv-inner">
+    <div class="fv-left">
+      <span class="tag">名古屋支社オープン記念・参加費無料</span>
+      <h1 class="fv-h1">はじめての資産運用、<br>一緒に考えてみませんか？</h1>
+      <p class="fv-sub">将来のお金の不安を、<br>無料セミナーでわかりやすく解消。</p>
+      <div class="fv-features">
+        <div class="fv-feature"><span class="fv-feature-dot"></span>初心者歓迎</div>
+        <div class="fv-feature"><span class="fv-feature-dot"></span>参加無料</div>
+        <div class="fv-feature"><span class="fv-feature-dot"></span>個別相談あり</div>
       </div>
-      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-5 flex items-center gap-4">
-        <div class="shrink-0">
-          <p class="text-xs text-gray-400 mb-0.5">\ 無料セミナー開催中！ /</p>
-          <p class="text-2xl font-bold lime-text serif">参加費 <span class="text-3xl">0</span>円</p>
+      <div class="fv-cta-box">
+        <div class="fv-price">
+          <div class="fv-price-label">\ 無料セミナー開催中！ /</div>
+          <div class="fv-price-num">参加費 0<span>円</span></div>
         </div>
-        <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn-main flex-1 text-center text-sm">今すぐ申し込む →</a>
+        <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn" style="flex:1;text-align:center;">無料で参加する →</a>
       </div>
-      <p class="text-xs text-gray-400 mt-3">定員に達し次第、受付を終了いたします</p>
+    </div>
+    <div class="fv-right">
+      <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_fv.webp" alt="資産運用の相談シーン" class="fv-photo">
+      <div class="fv-photo-grad"></div>
     </div>
   </div>
 </section>
 
-<!-- スマホ：テキスト上・画像下の縦積みレイアウト -->
-<section class="md:hidden bg-white pt-8 pb-0">
-  <!-- テキストエリア（白背景・画像と重ならない） -->
-  <div class="px-5 pb-6">
-    <span class="inline-block lime-bg text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4">将来のお金に、安心を。</span>
-    <h1 class="text-3xl font-bold leading-snug mb-4 serif text-gray-900">お金のことを、<br>正直に話せる場所。</h1>
-    <p class="text-gray-600 text-sm leading-relaxed mb-6">勧誘なし、売り込みなし。<br>専門家がやさしくサポートします。</p>
-    <!-- CTAボックス -->
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 flex items-center gap-3 mb-2">
-      <div class="shrink-0">
-        <p class="text-xs text-gray-400 mb-0.5">\ 無料セミナー開催中！ /</p>
-        <p class="text-xl font-bold lime-text serif">参加費 <span class="text-2xl">0</span>円</p>
+<!-- SECTION 02: 悩み -->
+<section id="worries">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="sec-label">WORRIES</span>
+      <h2 class="sec-title">こんなお悩みありませんか？</h2>
+      <p class="sec-sub">多くの方が同じ悩みを抱えています</p>
+    </div>
+    <div class="worries-grid">
+      <!-- worry_01: 頭上に?マーク・困る人 -->
+      <div class="worry-card reveal delay-1">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="22" r="10"/>
+          <path d="M20 52c0-6.627 5.373-12 12-12s12 5.373 12 12"/>
+          <text x="26" y="8" font-size="12" fill="#84CC16" stroke="none" font-family="sans-serif" font-weight="bold">?</text>
+          <text x="42" y="14" font-size="10" fill="#84CC16" stroke="none" font-family="sans-serif" font-weight="bold">?</text>
+          <text x="18" y="14" font-size="9" fill="#84CC16" stroke="none" font-family="sans-serif" font-weight="bold">?</text>
+        </svg>
+        <p>何から始めれば<br>いいかわからない</p>
       </div>
-      <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn-main flex-1 text-center text-sm py-3">今すぐ申し込む →</a>
+      <!-- worry_02: 腕組み -->
+      <div class="worry-card reveal delay-2">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="18" r="9"/>
+          <path d="M18 52v-8c0-4 3-7 7-8l7 4 7-4c4 1 7 4 7 8v8"/>
+          <path d="M22 36l10 5 10-5"/>
+          <path d="M22 36v6M42 36v6"/>
+        </svg>
+        <p>投資は怖い・<br>損しそうで不安</p>
+      </div>
+      <!-- worry_03: PC前で悩む -->
+      <div class="worry-card reveal delay-3">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="12" y="30" width="40" height="26" rx="3"/>
+          <path d="M20 56h24M32 56v4"/>
+          <circle cx="38" cy="20" r="8"/>
+          <path d="M30 40c0-4.418 3.582-8 8-8"/>
+          <path d="M25 36l4-4"/>
+        </svg>
+        <p>自分に合った<br>方法がわからない</p>
+      </div>
+      <!-- worry_04: グラフを見て心配 -->
+      <div class="worry-card reveal delay-4">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="18" r="9"/>
+          <path d="M20 52v-6c0-5.523 5.373-10 12-10s12 4.477 12 10v6"/>
+          <path d="M14 44h10M40 44h10"/>
+          <path d="M16 44l-2-6M48 44l2-6"/>
+          <path d="M24 38l4-8 4 4 4-10"/>
+        </svg>
+        <p>老後資金が<br>足りるか不安</p>
+      </div>
+      <!-- worry_05: スマホを見て悩む -->
+      <div class="worry-card reveal delay-4">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="28" cy="18" r="9"/>
+          <path d="M16 52v-6c0-5 4-9 10-10"/>
+          <rect x="34" y="28" width="16" height="26" rx="3"/>
+          <path d="M40 50h4"/>
+          <path d="M38 34h8M38 38h8M38 42h5"/>
+        </svg>
+        <p>誰に相談すれば<br>いいかわからない</p>
+      </div>
     </div>
-    <p class="text-xs text-gray-400 text-center mb-5">定員に達し次第、受付を終了いたします</p>
-    <!-- 3ポイント -->
-    <div class="flex gap-3">
-      <div class="text-center flex-1"><div class="icon-circle mx-auto mb-1" style="width:3rem;height:3rem;font-size:1.2rem;">💰</div><p class="text-xs text-gray-600">初心者でも安心</p></div>
-      <div class="text-center flex-1"><div class="icon-circle mx-auto mb-1" style="width:3rem;height:3rem;font-size:1.2rem;">🤝</div><p class="text-xs text-gray-600">相談しやすい雰囲気</p></div>
-      <div class="text-center flex-1"><div class="icon-circle mx-auto mb-1" style="width:3rem;height:3rem;font-size:1.2rem;">📖</div><p class="text-xs text-gray-600">丁寧に解説</p></div>
-    </div>
-  </div>
-  <!-- 写真（下部に配置・テキストと完全分離） -->
-  <div class="w-full overflow-hidden" style="height:220px;">
-    <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_fv.webp"
-         alt="資産運用の相談シーン"
-         class="w-full h-full object-cover object-top">
   </div>
 </section>
 
-<!-- ========== こんなお悩み ========== -->
-<section class="lime-light py-14 px-4">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <span class="sec-label">お悩みはありませんか</span>
-      <h2 class="sec-title">こんなお悩みは<br class="md:hidden">ありませんか？</h2>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-      <div class="card text-center py-5">
-        <div class="icon-circle mx-auto mb-3" style="font-size:1.3rem;">🤷</div>
-        <p class="text-xs text-gray-700 leading-snug">何から始めれば<br>いいかわからない</p>
-      </div>
-      <div class="card text-center py-5">
-        <div class="icon-circle mx-auto mb-3" style="font-size:1.3rem;">😰</div>
-        <p class="text-xs text-gray-700 leading-snug">投資は怖い・<br>損しそうで不安</p>
-      </div>
-      <div class="card text-center py-5">
-        <div class="icon-circle mx-auto mb-3" style="font-size:1.3rem;">💻</div>
-        <p class="text-xs text-gray-700 leading-snug">自分に合った<br>方法がわからない</p>
-      </div>
-      <div class="card text-center py-5">
-        <div class="icon-circle mx-auto mb-3" style="font-size:1.3rem;">👴</div>
-        <p class="text-xs text-gray-700 leading-snug">老後の資金が<br>足りるか心配</p>
-      </div>
-      <div class="card text-center py-5 col-span-2 md:col-span-1">
-        <div class="icon-circle mx-auto mb-3" style="font-size:1.3rem;">🙋</div>
-        <p class="text-xs text-gray-700 leading-snug">誰に相談すれば<br>いいかわからない</p>
-      </div>
-    </div>
-    <p class="text-center text-gray-500 text-sm mt-8">そのお悩み、このセミナーで一緒に解決しましょう。</p>
-  </div>
-</section>
-
-<!-- ========== 学べること ========== -->
-<section class="bg-white py-14 px-4">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <span class="sec-label">セミナー内容</span>
+<!-- SECTION 03: 学べること -->
+<section id="learn">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="sec-label">LEARNING</span>
       <h2 class="sec-title">本セミナーで学べること</h2>
+      <p class="sec-sub">初心者にもわかりやすく、丁寧にお伝えします</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="card text-center">
-        <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_ill_growth.webp" alt="" class="w-20 mx-auto mb-3">
-        <h3 class="font-bold text-sm mb-2 serif">資産運用の基本がわかる</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">初心者にもわかりやすく、基礎から丁寧に解説します。</p>
+    <div class="learn-grid">
+      <div class="learn-card reveal delay-1">
+        <svg viewBox="0 0 56 56" fill="none" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 44V14a2 2 0 012-2h12c3 0 6 2 6 6s-3 6-6 6H10"/>
+          <path d="M28 18c0-4 3-6 6-6h12a2 2 0 012 2v30H34c-3 0-6-2-6-6V18z"/>
+          <path d="M28 18v24"/>
+        </svg>
+        <h3>資産運用の基本がわかる</h3>
+        <p>初心者にもわかりやすく、基礎から丁寧に解説します。</p>
       </div>
-      <div class="card text-center">
-        <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_ill_worry.webp" alt="" class="w-20 mx-auto mb-3">
-        <h3 class="font-bold text-sm mb-2 serif">自分に合った運用方法が見つかる</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">ライフプランに合わせた資産運用の考え方をお伝えします。</p>
+      <div class="learn-card reveal delay-2">
+        <svg viewBox="0 0 56 56" fill="none" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="28" cy="28" r="20"/>
+          <path d="M28 8v20l14 8"/>
+          <path d="M8 28h4M44 28h4M28 8v4M28 44v4"/>
+        </svg>
+        <h3>自分に合った運用方法が見つかる</h3>
+        <p>ライフプランに合わせた資産運用の考え方をお伝えします。</p>
       </div>
-      <div class="card text-center">
-        <img src="https://toybox-lab.github.io/lp-delivery-system/seminar_ill_consult.webp" alt="" class="w-20 mx-auto mb-3">
-        <h3 class="font-bold text-sm mb-2 serif">プロに直接相談できる</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">疑問や不安をその場で解消できる、相談タイムもご用意しています。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 講師紹介 + 参加者の声 ========== -->
-<section class="lime-light py-14 px-4">
-  <div class="max-w-4xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-8">
-
-      <!-- 講師紹介 -->
-      <div>
-        <span class="sec-label">講師紹介</span>
-        <h2 class="sec-title mb-6">担当アドバイザー</h2>
-
-        <!-- 講師1 -->
-        <div class="card mb-4 flex gap-4 items-start">
-          <img
-            src="https://www.financial-create.co.jp/wp/wp-content/uploads/2019/07/45-1440x958.png"
-            alt="三好 雅文"
-            class="w-16 h-16 rounded-full object-cover object-top shrink-0"
-            onerror="this.style.display='none'"
-          >
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">一種外務員</p>
-            <p class="font-bold serif text-base">三好 雅文<span class="text-xs text-gray-400 ml-1 font-normal">（みよし まさふみ）</span></p>
-            <p class="text-xs text-gray-500 mt-1 leading-relaxed">証券会社5年・メガバンク18年の金融キャリアを経てフィナンシャルクリエイトへ。お客様一人ひとりの最適な人生設計を全力でサポート。</p>
-          </div>
-        </div>
-
-        <!-- 講師2 -->
-        <div class="card flex gap-4 items-start">
-          <img
-            src="https://www.financial-create.co.jp/wp/wp-content/uploads/2025/11/21f3af94bb99aa494e0fda9e6ce73b75-1440x958.png"
-            alt="阿久津 資治"
-            class="w-16 h-16 rounded-full object-cover object-top shrink-0"
-            onerror="this.style.display='none'"
-          >
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">2級FP技能士 ／ 宅地建物取引士</p>
-            <p class="font-bold serif text-base">阿久津 資治<span class="text-xs text-gray-400 ml-1 font-normal">（あくつ もとはる）</span></p>
-            <p class="text-xs text-gray-500 mt-1 leading-relaxed">元プロボクサーという異色の経歴を持つFP。「将来への不安を解消したい」という思いで金融教育一体型のコンサルティングを実践。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 参加者の声 -->
-      <div>
-        <span class="sec-label">参加者の声</span>
-        <h2 class="sec-title mb-6">ご参加いただいた方の声</h2>
-        <div class="voice-wrap" id="voiceWrap">
-          <div class="voice-track" id="voiceTrack">
-            <div class="voice-item">
-              <div class="card">
-                <p class="text-xs text-gray-500 mb-2">⭐⭐⭐⭐⭐</p>
-                <p class="text-sm text-gray-700 leading-relaxed mb-3">「わかりやすくて安心して学べました！投資に踏み出せそうです。」</p>
-                <p class="text-xs text-gray-400">30代 女性</p>
-              </div>
-            </div>
-            <div class="voice-item">
-              <div class="card">
-                <p class="text-xs text-gray-500 mb-2">⭐⭐⭐⭐⭐</p>
-                <p class="text-sm text-gray-700 leading-relaxed mb-3">「不安が解消されて、一歩踏み出せそうです。また参加したいです。」</p>
-                <p class="text-xs text-gray-400">40代 男性</p>
-              </div>
-            </div>
-            <div class="voice-item">
-              <div class="card">
-                <p class="text-xs text-gray-500 mb-2">⭐⭐⭐⭐⭐</p>
-                <p class="text-sm text-gray-700 leading-relaxed mb-3">「相談しやすい雰囲気でよかったです。NISAの疑問がすっきりしました。」</p>
-                <p class="text-xs text-gray-400">50代 女性</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- ドット -->
-        <div class="flex justify-center gap-2 mt-4" id="voiceDots">
-          <button onclick="goVoice(0)" class="w-2 h-2 rounded-full lime-bg transition" id="dot0"></button>
-          <button onclick="goVoice(1)" class="w-2 h-2 rounded-full bg-gray-300 transition" id="dot1"></button>
-          <button onclick="goVoice(2)" class="w-2 h-2 rounded-full bg-gray-300 transition" id="dot2"></button>
-        </div>
-        <p class="text-xs text-gray-300 mt-2 text-center">※掲載の声はイメージです。実際の声は順次更新します。</p>
+      <div class="learn-card reveal delay-3">
+        <svg viewBox="0 0 56 56" fill="none" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M28 46s-20-12-20-26a20 20 0 0140 0c0 14-20 26-20 26z"/>
+          <path d="M20 24c2-4 5-6 8-6s6 2 8 6"/>
+        </svg>
+        <h3>不安や疑問を直接相談できる</h3>
+        <p>疑問や不安をその場で解消できる、相談タイムもご用意しています。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== セミナー詳細 ========== -->
-<section class="bg-white py-14 px-4">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <span class="sec-label">開催情報</span>
+<!-- SECTION 04: メリット -->
+<section id="merit">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="sec-label">MERITS</span>
+      <h2 class="sec-title">参加するメリット</h2>
+      <p class="sec-sub">だから選ばれています</p>
+    </div>
+    <div class="merit-grid">
+      <div class="merit-card reveal delay-1">
+        <div class="merit-num">01</div>
+        <h3>初心者向け</h3>
+        <p>専門用語を使わず、知識ゼロの方でも安心して参加できます。</p>
+      </div>
+      <div class="merit-card reveal delay-2">
+        <div class="merit-num">02</div>
+        <h3>少人数制</h3>
+        <p>各回定員制の少人数制だから、一人ひとりに丁寧に対応できます。</p>
+      </div>
+      <div class="merit-card reveal delay-3">
+        <div class="merit-num">03</div>
+        <h3>質問し放題</h3>
+        <p>セミナー後の個別相談タイムで、気になることを何でも聞けます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05: 講師 -->
+<section id="instructor">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="sec-label">INSTRUCTOR</span>
+      <h2 class="sec-title">講師紹介</h2>
+      <p class="sec-sub">経験豊富なIFAがやさしくサポートします</p>
+    </div>
+    <div class="instructor-grid">
+      <div class="instructor-card reveal delay-1">
+        <img src="https://www.financial-create.co.jp/wp/wp-content/uploads/2019/07/45-1440x958.png"
+             alt="三好 雅文" class="instructor-photo"
+             onerror="this.style.display='none'">
+        <div>
+          <div class="instructor-license">一種外務員</div>
+          <div class="instructor-name">三好 雅文</div>
+          <p class="instructor-bio">証券会社5年・メガバンク18年の金融キャリアを経てフィナンシャルクリエイトへ。豊富な経験をもとに、お客様一人ひとりに寄り添ったアドバイスを提供しています。</p>
+        </div>
+      </div>
+      <div class="instructor-card reveal delay-2">
+        <img src="https://www.financial-create.co.jp/wp/wp-content/uploads/2025/11/21f3af94bb99aa494e0fda9e6ce73b75-1440x958.png"
+             alt="阿久津 資治" class="instructor-photo"
+             onerror="this.style.display='none'">
+        <div>
+          <div class="instructor-license">2級FP技能士 ／ 宅地建物取引士</div>
+          <div class="instructor-name">阿久津 資治</div>
+          <p class="instructor-bio">元プロボクサーという異色の経歴を持つFP。「将来への不安を解消したい」という思いから金融業界へ。金融教育一体型のコンサルティングを実践しています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06: 詳細 -->
+<section id="details">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="sec-label">DETAILS</span>
       <h2 class="sec-title">セミナー詳細</h2>
     </div>
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-      <!-- 詳細テーブル -->
-      <div class="space-y-0">
-        <div class="flex gap-4 items-start py-4 border-b border-gray-100">
-          <span class="text-lg w-6 shrink-0">📅</span>
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">開催日程</p>
-            <a href="https://www.financial-create.co.jp/seminar/p7146/" class="lime-text text-sm underline" target="_blank">公式サイトで日程を確認する →</a>
-          </div>
+    <div class="details-inner">
+      <div class="details-table reveal delay-1">
+        <div class="details-row">
+          <span class="details-icon">📅</span>
+          <div><div class="details-label">開催日程</div>
+          <div class="details-val"><a href="https://www.financial-create.co.jp/seminar/p7146/" target="_blank">公式サイトで日程を確認する →</a></div></div>
         </div>
-        <div class="flex gap-4 items-start py-4 border-b border-gray-100">
-          <span class="text-lg w-6 shrink-0">📍</span>
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">会場</p>
-            <p class="text-sm text-gray-700">〒460-0002<br>愛知県名古屋市中区丸の内3-5-33<br>名古屋有楽ビル402</p>
-          </div>
+        <div class="details-row">
+          <span class="details-icon">📍</span>
+          <div><div class="details-label">会場</div>
+          <div class="details-val">〒460-0002 愛知県名古屋市中区丸の内3-5-33<br>名古屋有楽ビル402</div></div>
         </div>
-        <div class="flex gap-4 items-start py-4 border-b border-gray-100">
-          <span class="text-lg w-6 shrink-0">👥</span>
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">定員</p>
-            <p class="text-sm text-gray-700">各回12名（先着順）</p>
-          </div>
+        <div class="details-row">
+          <span class="details-icon">👥</span>
+          <div><div class="details-label">定員</div>
+          <div class="details-val">各回12名（先着順）</div></div>
         </div>
-        <div class="flex gap-4 items-start py-4 border-b border-gray-100">
-          <span class="text-lg w-6 shrink-0">💰</span>
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">参加費</p>
-            <p class="text-xl font-bold lime-text serif">無料</p>
-          </div>
+        <div class="details-row">
+          <span class="details-icon">💰</span>
+          <div><div class="details-label">参加費</div>
+          <div class="details-val" style="font-size:22px;font-weight:900;color:var(--primary);">無料</div></div>
         </div>
-        <div class="flex gap-4 items-start py-4">
-          <span class="text-lg w-6 shrink-0">📻</span>
-          <div>
-            <p class="text-xs text-gray-400 mb-0.5">メディア実績</p>
-            <p class="text-sm text-gray-700">ZIP-FM 毎週火曜 16:45〜 放送中</p>
-          </div>
+        <div class="details-row">
+          <span class="details-icon">📻</span>
+          <div><div class="details-label">メディア実績</div>
+          <div class="details-val">ZIP-FM 毎週火曜 16:45〜 放送中</div></div>
         </div>
       </div>
-
-      <!-- CTAボックス -->
-      <div class="card text-center flex flex-col items-center gap-4 border-t-4 lime-border">
-        <p class="text-sm text-gray-500">\ まずはお気軽にご参加ください /</p>
-        <div>
-          <p class="text-4xl font-bold lime-text serif">0<span class="text-xl">円</span></p>
-          <p class="text-xs text-gray-400">参加費は一切かかりません</p>
-        </div>
-        <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn-main w-full text-center">今すぐ申し込む →</a>
-        <p class="text-xs text-gray-400">定員に達し次第、受付を終了いたします</p>
+      <div class="details-cta-box reveal delay-2">
+        <div class="details-cta-label">\ まずはお気軽にご参加ください /</div>
+        <div class="details-cta-price">0<span>円</span></div>
+        <div class="details-cta-note">参加費は一切かかりません</div>
+        <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn" style="width:100%;text-align:center;">今すぐ申し込む →</a>
+        <p style="font-size:11px;color:var(--sub);margin-top:12px;">定員に達し次第、受付を終了いたします</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 安心ポイント ========== -->
-<section class="lime-light py-14 px-4">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <span class="sec-label">安心してご参加いただくために</span>
-      <h2 class="sec-title">3つの安心をお約束します</h2>
+<!-- SECTION 07: 安心 -->
+<section id="safety">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="sec-label">SAFETY</span>
+      <h2 class="sec-title">安心して参加いただくために</h2>
+      <p class="sec-sub">3つの約束をお守りします</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="card text-center border-t-4 lime-border">
-        <div class="icon-circle mx-auto mb-3">🛡️</div>
-        <h3 class="font-bold serif text-sm mb-2">しつこい勧誘は<br>一切ありません</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">無理な勧誘や商品販売は行いませんので、安心してご参加ください。</p>
+    <div class="safety-grid">
+      <div class="safety-card reveal delay-1">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 4l16 6v12c0 10-7 19-16 22C15 41 8 32 8 22V10l16-6z"/>
+          <path d="M16 24l6 6 10-12"/>
+        </svg>
+        <h3>強引な勧誘なし</h3>
+        <p>無理な勧誘や商品販売は一切行いません。安心してご参加ください。</p>
       </div>
-      <div class="card text-center border-t-4 lime-border">
-        <div class="icon-circle mx-auto mb-3">🔒</div>
-        <h3 class="font-bold serif text-sm mb-2">個人情報は<br>厳重に管理します</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">お預かりした個人情報は、セミナー運営以外の目的で使用しません。</p>
+      <div class="safety-card reveal delay-2">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="22" width="28" height="20" rx="3"/>
+          <path d="M16 22v-6a8 8 0 0116 0v6"/>
+          <circle cx="24" cy="32" r="3"/>
+          <path d="M24 35v4"/>
+        </svg>
+        <h3>個人情報厳守</h3>
+        <p>お預かりした情報はセミナー運営以外に使用しません。適切に管理します。</p>
       </div>
-      <div class="card text-center border-t-4 lime-border">
-        <div class="icon-circle mx-auto mb-3">🙋</div>
-        <h3 class="font-bold serif text-sm mb-2">初心者の方も<br>大歓迎です</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">専門用語は使わず、わかりやすく丁寧にお話しします。</p>
+      <div class="safety-card reveal delay-3">
+        <svg viewBox="0 0 48 48" fill="none" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="16" r="8"/>
+          <path d="M10 42c0-7.732 6.268-14 14-14s14 6.268 14 14"/>
+          <path d="M18 30l6 4 6-4"/>
+        </svg>
+        <h3>初心者歓迎</h3>
+        <p>知識ゼロでも参加可能。専門用語を使わずわかりやすく丁寧にお話しします。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== フッターCTA ========== -->
-<section class="lime-bg py-14 px-4 text-center text-white">
-  <h2 class="text-2xl md:text-3xl font-bold mb-3 serif">あなたの未来のために、<br>今できることから始めましょう。</h2>
-  <p class="text-white/80 text-sm mb-8">「日本にもっとお金の教育を」——私たちはそう信じて、このセミナーを開いています。</p>
-  <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94"
-     class="inline-block bg-white font-bold px-10 py-4 rounded-full text-base shadow-lg hover:shadow-xl transition lime-text">
-    今すぐ申し込む →
-  </a>
-  <p class="text-white/60 text-xs mt-4">定員に達し次第、受付を終了いたします</p>
-</section>
-
-<!-- ========== 注意事項 ========== -->
-<section class="bg-white py-10 px-4">
-  <div class="max-w-3xl mx-auto notice">
-    <p class="font-bold text-gray-600 mb-2 text-xs">＜勉強会における注意事項＞</p>
-    <p>勉強会開催中、当社宛てにメールやお電話でご連絡頂きましてもお答えできかねる場合がございます。誠に恐縮ですが、ご了承くださいますようお願い申し上げます。</p>
-    <br>
-    <p class="font-bold text-gray-600 mb-1 text-xs">【金融商品仲介業者の商号等】</p>
-    <p>株式会社フィナンシャルクリエイト　金融商品仲介業者　関東財務局長（金仲）第845号<br>
-    本案内に記載のセミナーでは、セミナーでご紹介する商品等の勧誘を行うことがあります。各商品等にご投資いただく際には商品毎に所定の手数料や諸経費等をご負担いただく場合があります。また、各商品等には価格の変動等による損失を生じる恐れがあります。各商品等へのご投資にかかる手数料等およびリスクについては、当該商品等の契約締結前交付書面、目論見書、お客様向け資料等をよくお読みになり内容について十分にご理解ください。</p>
-    <br>
-    <p class="font-bold text-gray-600 mb-1 text-xs">【お客様苦情相談窓口】</p>
-    <p>担当：内部管理責任者　TEL: 03-5953-1055</p>
-    <br>
-    <p class="font-bold text-gray-600 mb-1 text-xs">【所属金融商品取引業者等】</p>
-    <p>楽天証券株式会社　金融商品取引業者　関東財務局長（金商）第195号<br>
-    加入する協会：日本証券業協会、一般社団法人金融先物取引業協会、日本商品先物取引協会、一般社団法人第二種金融商品取引業協会、一般社団法人資産運用業協会、一般社団法人日本STO協会<br>
-    弊社は、所属金融商品取引業者等の代理権を有しておりません。弊社は、いかなる名目によるかを問わず、その行う金融商品仲介業に関して、お客様から金銭若しくは有価証券の預託を受けることはありません。</p>
+<!-- SECTION 08: 最終CTA -->
+<section id="final-cta">
+  <div class="reveal">
+    <h2>将来のお金の不安を、<br>今日から解消しませんか？</h2>
+    <p>「日本にもっとお金の教育を」——そんな思いで、このセミナーを開いています。</p>
+    <a href="https://form.run/@financial-create-AjMJRQ8L4Br1RRjPAM94" class="btn btn-white">無料で参加する →</a>
+    <p style="margin-top:16px;font-size:12px;">定員に達し次第、受付を終了いたします</p>
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
-<footer class="bg-gray-800 text-gray-400 text-xs py-8 px-4 text-center">
-  <p class="font-bold text-white mb-1">株式会社フィナンシャルクリエイト</p>
-  <p>〒460-0002 愛知県名古屋市中区丸の内3-5-33 名古屋有楽ビル402</p>
-  <p class="mt-4">© 2026 Financial Create Co., Ltd. All rights reserved.</p>
+<!-- 注意書き -->
+<section id="notice">
+  <div class="container">
+    <div class="notice-box">
+      <p><strong>＜勉強会における注意事項＞</strong><br>
+      勉強会開催中、当社宛てにメールやお電話でご連絡頂きましてもお答えできかねる場合がございます。誠に恐縮ですが、ご了承くださいますようお願い申し上げます。</p><br>
+      <p><strong>【金融商品仲介業者の商号等】</strong><br>
+      株式会社フィナンシャルクリエイト　金融商品仲介業者　関東財務局長（金仲）第845号<br>
+      本案内に記載のセミナーでは、セミナーでご紹介する商品等の勧誘を行うことがあります。各商品等にご投資いただく際には商品毎に所定の手数料や諸経費等をご負担いただく場合があります。また、各商品等には価格の変動等による損失を生じる恐れがあります。各商品等へのご投資にかかる手数料等およびリスクについては、当該商品等の契約締結前交付書面、目論見書、お客様向け資料等をよくお読みになり内容について十分にご理解ください。</p><br>
+      <p><strong>【お客様苦情相談窓口】</strong>　担当：内部管理責任者　TEL: 03-5953-1055</p><br>
+      <p><strong>【所属金融商品取引業者等】</strong><br>
+      楽天証券株式会社　金融商品取引業者　関東財務局長（金商）第195号<br>
+      加入する協会：日本証券業協会、一般社団法人金融先物取引業協会、日本商品先物取引協会、一般社団法人第二種金融商品取引業協会、一般社団法人資産運用業協会、一般社団法人日本STO協会<br>
+      弊社は、所属金融商品取引業者等の代理権を有しておりません。弊社は、いかなる名目によるかを問わず、その行う金融商品仲介業に関して、お客様から金銭若しくは有価証券の預託を受けることはありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <strong>株式会社フィナンシャルクリエイト</strong>
+  〒460-0002 愛知県名古屋市中区丸の内3-5-33 名古屋有楽ビル402<br>
+  <span style="margin-top:16px;display:block;">© 2026 Financial Create Co., Ltd. All rights reserved.</span>
 </footer>
 
+<!-- スクロールアニメ -->
 <script>
-  let current = 0;
-  const total = 3;
-  function goVoice(idx) {
-    current = idx;
-    document.getElementById('voiceTrack').style.transform = `translateX(-${idx * 100}%)`;
-    for (let i = 0; i < total; i++) {
-      const dot = document.getElementById('dot' + i);
-      dot.className = 'w-2 h-2 rounded-full transition ' + (i === idx ? 'lime-bg' : 'bg-gray-300');
-    }
-  }
-  // 自動スライド
-  setInterval(() => goVoice((current + 1) % total), 4000);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
 </body>
