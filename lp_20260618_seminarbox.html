@@ -93,6 +93,14 @@
       background: linear-gradient(to right, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.3) 100%);
       z-index: 1;
     }
+    @media (max-width: 767px) {
+      .fv-bg {
+        object-position: right top;
+      }
+      .fv-overlay {
+        background: linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.75) 55%, rgba(255,255,255,0.15) 100%);
+      }
+    }
     .fv-inner {
       position: relative;
       z-index: 2;
@@ -349,7 +357,10 @@
 
 <!-- SECTION 01: FV -->
 <section id="fv">
-  <img src="./seminar_fv.webp.webp" alt="資産運用の相談シーン" class="fv-bg">
+  <picture>
+    <source media="(max-width: 767px)" srcset="./seminar_fv_sp.webp">
+    <img src="./seminar_fv.webp.webp" alt="資産運用の相談シーン" class="fv-bg">
+  </picture>
   <div class="fv-overlay"></div>
   <div class="fv-inner">
     <span class="tag">名古屋支社オープン記念・参加費無料</span>
