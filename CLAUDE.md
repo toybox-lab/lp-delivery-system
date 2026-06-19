@@ -66,5 +66,20 @@ mizuk（オーナー）
 - 重要な情報はすべてメモリファイルに書き、チャットに依存しない
 
 ## 知識ベースの場所
-- LP制作ラボ: `C:\Users\mizuk\OneDrive\Desktop\ToyBox\lp-knowledge-base\`
+- LP制作ラボ（データ・納品物）: `C:\Users\mizuk\OneDrive\Desktop\ToyBox\lp-knowledge-base\`
 - メモリ: `C:\Users\mizuk\.claude\projects\C--Users-mizuk-OneDrive-Desktop-ToyBox\memory\`
+
+## エージェントSKILL.mdの場所（正規の住所）
+```
+C:\Users\mizuk\OneDrive\Desktop\ToyBox\agents\
+├── lp-lab\          ← LP制作ラボ（アンシー所管）
+│   ├── ANSHEE_SKILL.md
+│   ├── NINA_SKILL.md
+│   ├── FLORENCE_SKILL.md
+│   └── JESSIE_SKILL.md
+├── sns\             ← SNS事業部（ボブ所管）
+│   └── BOB_SKILL.md
+└── （今後の事業部をここに追加）
+```
+- 新しいSKILL.mdは必ずこの `agents/` 配下に作る
+- スケジュールタスクは `morning-lp-check/SKILL.md` から `agents/lp-lab/ANSHEE_SKILL.md` を参照する構造
