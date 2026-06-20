@@ -302,7 +302,8 @@ bash /tmp/lp_upload.sh
   - 修正フォームURL
   - imageType=yesの場合のみ：写真送付フォームURL（`https://toybox-lab.github.io/lp-delivery-system/photo-form.html?caseId={案件番号}&clientName={会社名}`）
 - 設計書確認URL：`https://toybox-lab.github.io/lp-delivery-system/lp-knowledge-base/draft-review-{caseId}.html`（クライアントに送付・確認完了後にLP制作開始）
-- 修正フォームURL：`https://toybox-lab.github.io/lp-delivery-system/correction-form.html?webhook=https://toibox.app.n8n.cloud/webhook/77e6c605-68ff-40f4-a26b-ed9762546590&clientName={会社名}&lpFile={ファイル名}`
+- 修正フォームURL：`https://toybox-lab.github.io/lp-delivery-system/lp-knowledge-base/correction-form.html?clientName={会社名}&lpFile={serviceName}.html`
+  - ※ webhookパラメータは不要（HTMLにハードコード済み）。URLに`webhook=`を絶対に含めない。
 
 ### domainType=existing（お客様が既にドメインを所有）の場合の追加処理
 お客様が既存ドメインでの公開を希望している。以下を必ず行う：
@@ -418,7 +419,7 @@ curl -s -X POST "https://toibox.app.n8n.cloud/webhook/77e6c605-68ff-40f4-a26b-ed
 - 宛先：ym.toybox@gmail.com
 - 件名：【LP修正完了】{会社名}のLPを修正しました
 - 本文：修正内容サマリー・LP URL・追加修正フォームURL
-- 追加修正フォームURL：`https://toybox-lab.github.io/lp-delivery-system/correction-form.html?webhook=https://toibox.app.n8n.cloud/webhook/77e6c605-68ff-40f4-a26b-ed9762546590&clientName={会社名}&lpFile={ファイル名}`
+- 追加修正フォームURL：`https://toybox-lab.github.io/lp-delivery-system/lp-knowledge-base/correction-form.html?clientName={会社名}&lpFile={serviceName}.html`
 - lp_processed_corrections.mdで{案件番号}の件数を数えて「今回で{N}回目の修正です」と本文に記載
 
 ### 7-6. 処理済みとして記録
