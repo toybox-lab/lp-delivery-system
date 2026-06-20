@@ -253,7 +253,11 @@ JESSIE_SKILL.mdの内容に従い、ジェシーがニナのリサーチ＋フ�
 - 金融・医療・法律系は `<meta name="robots" content="noindex, nofollow">` を追加
 
 **作成したHTMLはWriteツールで以下に保存する：**
-`C:\Users\mizuk\OneDrive\Desktop\ToyBox\lp-knowledge-base\lp_YYYYMMDD_HHMMSS.html`
+`C:\Users\mizuk\OneDrive\Desktop\ToyBox\lp-knowledge-base\{serviceName}.html`
+
+- `{serviceName}` = ヒアリングデータの `productName` をローマ字・英数字のみで小文字化したもの（例：Jerdri → `jerdri`、HAMcafe → `hamcafe`）
+- **タイムスタンプ形式（lp_YYYYMMDD_HHMMSS.html）は絶対使わない**
+- 同じサービス名のLPは常に同じファイル名で上書き保存する（URLが変わらない）
 
 ## STEP 4: GitHubにアップロード（curlのみ使用）
 
@@ -278,7 +282,10 @@ curl -s -X PUT "https://api.github.com/repos/toybox-lab/lp-delivery-system/conte
 bash /tmp/lp_upload.sh
 ```
 
-公開URL: `https://toybox-lab.github.io/lp-delivery-system/FILENAME`
+公開URL: `https://toybox-lab.github.io/lp-delivery-system/lp-knowledge-base/{serviceName}.html`
+
+- **FILENAMEは必ず `lp-knowledge-base/{serviceName}.html` 形式にする**（タイムスタンプ形式禁止）
+- 修正のたびに同じURLが更新される。クライアントへのURL共有は最初の1回のみ。
 
 ## STEP 5: 通知（LP新規作成時）
 
