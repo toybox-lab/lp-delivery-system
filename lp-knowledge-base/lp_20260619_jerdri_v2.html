@@ -15,9 +15,21 @@
       font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
       background: #FFF9F0;
       color: #3A2A10;
-      max-width: 480px;
-      margin: 0 auto;
       overflow-x: hidden;
+    }
+    .inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (min-width: 768px) {
+      .fv-catch { font-size: 56px !important; }
+      .fv-brand { font-size: 80px !important; }
+      .section-title { font-size: 40px !important; }
+      .feature-cards { flex-direction: row !important; }
+      .feature-card { flex: 1; }
+      .target-cards { gap: 24px !important; }
+      section { padding: 72px 40px !important; }
     }
 
     :root {
