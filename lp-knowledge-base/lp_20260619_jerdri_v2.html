@@ -11,21 +11,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-    /* ── PC: body背景 + 中央寄せラッパー ── */
     body {
       font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
-      background: #C8A87A;
+      background: #FFF9F0;
       color: #3A2A10;
-    }
-    #lp {
       max-width: 480px;
       margin: 0 auto;
-      background: #FFF9F0;
-      overflow: hidden;
-    }
-    @media (min-width: 520px) {
-      body { padding: 40px 0; background: #C8A87A url('jerdri_orange_deco.png') center/200px repeat; }
-      #lp { box-shadow: 0 8px 64px rgba(0,0,0,.35); border-radius: 32px; overflow: hidden; }
+      overflow-x: hidden;
     }
 
     :root {
@@ -270,7 +262,6 @@
   </style>
 </head>
 <body>
-<div id="lp">
 
 <!-- ▼ FV：ラフ画像をそのまま全面表示、CTAボタンだけ重ねる -->
 <div class="fv">
@@ -417,8 +408,6 @@
     事前登録者にはポータブルアクセをプレゼント
   </p>
 </section>
-
-</div><!-- /#lp -->
 
 <script>
   const observer = new IntersectionObserver(
