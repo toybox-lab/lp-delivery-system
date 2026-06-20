@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ラフ画像確認｜Jerdri（ジェリドリ）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #E8631A;
+      --bg: #F7F5F2;
+      --surface: #FFFFFF;
+      --border: #E8E4DF;
+      --text: #1A1A1A;
+      --text-sub: #6B6560;
+      --green: #2E9E6B;
+      --chat-user: #E8631A;
+      --chat-ai: #F0EDE8;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .header-badge {
+      background: var(--orange);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .header-title { font-size: 15px; font-weight: 700; }
+    .header-sub { font-size: 12px; color: var(--text-sub); margin-top: 1px; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+
+    .btn-complete {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .2s, transform .1s;
+    }
+    .btn-complete:hover { background: #27886A; }
+    .btn-complete:active { transform: scale(.97); }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      height: calc(100vh - 57px);
+    }
+
+    /* LEFT: ラフ画像パネル */
+    .rough-panel {
+      overflow-y: auto;
+      padding: 28px 28px 60px;
+    }
+    .rough-panel::-webkit-scrollbar { width: 6px; }
+    .rough-panel::-webkit-scrollbar-thumb { background: #D0CBC4; border-radius: 3px; }
+
+    .rough-intro {
+      background: linear-gradient(135deg, #FFF3EB 0%, #FFF8F0 100%);
+      border: 1px solid #FFDBBB;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .rough-intro-text { font-size: 13px; line-height: 1.7; color: #6B4B2E; }
+    .rough-intro-text strong { color: var(--orange); }
+
+    .step-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+    .step-item.done { color: var(--green); font-weight: 700; }
+    .step-item.current { color: var(--orange); font-weight: 700; }
+    .step-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-dot.done { background: var(--green); color: #fff; }
+    .step-dot.current { background: var(--orange); color: #fff; }
+    .step-dot.next { background: var(--border); color: var(--text-sub); }
+    .step-arrow { color: #C0BAB4; font-size: 12px; }
+
+    .rough-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .rough-block-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: #FAFAF8;
+    }
+    .rough-block-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rough-block-name { font-size: 14px; font-weight: 700; }
+    .rough-block-tag {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-sub);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2px 10px;
+    }
+
+    .fv-image-wrap {
+      padding: 16px 18px;
+    }
+    .fv-image-wrap img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      border: 1px solid var(--border);
+    }
+    .fv-image-caption {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .spec-list {
+      padding: 0 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .spec-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 6px 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid #F0EDE8;
+      font-size: 13px;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { color: var(--text-sub); font-size: 12px; }
+    .spec-value { line-height: 1.65; }
+    .spec-value em { font-style: normal; color: var(--orange); font-weight: 700; }
+
+    /* CHAT */
+    .chat-panel {
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+    }
+    .chat-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: #FAFAF8;
+    }
+    .chat-header-title {
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chat-header-sub { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+    .online-dot { width: 7px; height: 7px; border-radius: 50%; background: #2E9E6B; }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 16px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: #D0CBC4; border-radius: 2px; }
+
+    .msg { display: flex; flex-direction: column; gap: 4px; max-width: 85%; }
+    .msg.ai { align-self: flex-start; }
+    .msg.user { align-self: flex-end; }
+    .msg-sender { font-size: 10px; color: var(--text-sub); padding: 0 4px; }
+    .msg.user .msg-sender { text-align: right; }
+    .msg-bubble {
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .msg.ai .msg-bubble { background: var(--chat-ai); border-radius: 4px 14px 14px 14px; }
+    .msg.user .msg-bubble { background: var(--chat-user); border-radius: 14px 4px 14px 14px; color: #fff; }
+    .msg-time { font-size: 10px; color: #B0AAA4; padding: 0 4px; }
+    .msg.user .msg-time { text-align: right; }
+
+    .typing-indicator { display: none; align-self: flex-start; }
+    .typing-indicator.show { display: flex; }
+    .typing-bubble {
+      background: var(--chat-ai);
+      border-radius: 4px 14px 14px 14px;
+      padding: 12px 16px;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .typing-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #B0AAA4;
+      animation: typingPulse 1.2s ease infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: .2s; }
+    .typing-dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes typingPulse {
+      0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .chat-input-area { padding: 12px 14px 14px; border-top: 1px solid var(--border); }
+    .chat-input-wrap { display: flex; gap: 8px; align-items: flex-end; }
+    .chat-input {
+      flex: 1;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      line-height: 1.5;
+      max-height: 120px;
+      transition: border-color .2s;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .chat-input:focus { border-color: var(--orange); background: #fff; }
+    .chat-input::placeholder { color: #B0AAA4; }
+    .btn-send {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: var(--orange); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .1s;
+    }
+    .btn-send:hover { background: #D4570F; }
+    .btn-send:active { transform: scale(.93); }
+    .btn-send svg { width: 16px; height: 16px; fill: #fff; }
+    .chat-hint { font-size: 11px; color: var(--text-sub); margin-top: 8px; text-align: center; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.45); z-index: 200;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: #fff; border-radius: 16px; padding: 32px 28px;
+      max-width: 380px; width: 90%; text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.15);
+    }
+    .modal-icon { font-size: 48px; margin-bottom: 12px; }
+    .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .modal-text { font-size: 13px; color: var(--text-sub); line-height: 1.7; margin-bottom: 24px; }
+    .modal-btns { display: flex; gap: 10px; }
+    .btn-modal-cancel {
+      flex: 1; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 11px; font-size: 13px;
+      font-family: inherit; cursor: pointer; font-weight: 500;
+    }
+    .btn-modal-cancel:hover { background: var(--border); }
+    .btn-modal-ok {
+      flex: 1; background: var(--green); color: #fff; border: none;
+      border-radius: 8px; padding: 11px; font-size: 13px;
+      font-family: inherit; cursor: pointer; font-weight: 700;
+    }
+    .btn-modal-ok:hover { background: #27886A; }
+
+    /* COMPLETE */
+    .complete-screen {
+      display: none; position: fixed; inset: 0; background: #fff;
+      z-index: 300; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; text-align: center;
+    }
+    .complete-screen.show { display: flex; }
+    .complete-screen h2 { font-size: 22px; font-weight: 700; }
+    .complete-screen p { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .chat-panel { border-left: none; border-top: 1px solid var(--border); height: 420px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="header-badge">ラフ確認</span>
+        <span class="header-title">Jerdri（ジェリドリ）LP</span>
+      </div>
+      <div class="header-sub">ラフ画像を確認してください。修正があればチャットで。OKならボタンを押してください。</div>
+    </div>
+  </div>
+  <button class="btn-complete" onclick="openCompleteModal()">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4L6.5 11L3 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    ラフ確認完了
+  </button>
+</header>
+
+<div class="layout">
+
+  <div class="rough-panel">
+
+    <!-- ステップ表示 -->
+    <div class="step-flow">
+      <div class="step-item done">
+        <div class="step-dot done">✓</div>
+        設計書確認
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-item current">
+        <div class="step-dot current">2</div>
+        ラフ画像確認
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-item">
+        <div class="step-dot next">3</div>
+        LP制作
+      </div>
+    </div>
+
+    <div class="rough-intro">
+      <div style="font-size:20px;flex-shrink:0;margin-top:1px;">🎨</div>
+      <div class="rough-intro-text">
+        設計書をもとに作成した<strong>ラフ画像</strong>です。FVのビジュアルイメージを確認してください。<br>
+        修正・差し替えがあれば右のチャットで教えてください。<strong>OKならそのままLP制作に入ります。</strong>
+      </div>
+    </div>
+
+    <!-- FV ラフ画像 -->
+    <div class="rough-block">
+      <div class="rough-block-header">
+        <span class="rough-block-num">1</span>
+        <span class="rough-block-name">FV（ファーストビュー）ラフ画像</span>
+        <span class="rough-block-tag">最重要</span>
+      </div>
+      <div class="fv-image-wrap">
+        <img src="jerdri_rough_fv.jpg" alt="ジェリドリ FVラフ画像">
+        <div class="fv-image-caption">
+          ▲ エリク（AI画像生成）が設計書をもとに作成したFVイメージです。<br>
+          実際のLPではこの画像を全画面背景として使用します。
+        </div>
+      </div>
+      <div class="spec-list">
+        <div class="spec-row">
+          <span class="spec-label">キャッチコピー</span>
+          <span class="spec-value"><em>カバンにつけて、飲んでく？</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">サブコピー</span>
+          <span class="spec-value">果肉入りクラッシュゼリードリンク | 130ml ストラップ付き</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">CTA</span>
+          <span class="spec-value">「今すぐ事前登録する」</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">特典</span>
+          <span class="spec-value">事前登録者限定 → <em>ジェリドリポータブルアクセ</em>プレゼント</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 写真提供案内 -->
+    <div class="rough-block">
+      <div class="rough-block-header">
+        <span class="rough-block-num" style="background:#6B5F55;">📷</span>
+        <span class="rough-block-name">実際の商品写真をお持ちの場合</span>
+      </div>
+      <div style="padding:16px 18px;font-size:13px;line-height:1.8;color:var(--text-sub);">
+        このラフ画像はAIで生成したイメージです。<br>
+        実際の商品写真をお持ちの場合は、写真送付フォームからお送りいただければ差し替えます。<br><br>
+        <a href="#" style="color:var(--orange);font-weight:700;text-decoration:none;">▶ 写真送付フォームはこちら</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- チャット -->
+  <div class="chat-panel">
+    <div class="chat-header">
+      <div class="chat-header-title">
+        <div class="online-dot"></div>
+        修正チャット
+      </div>
+      <div class="chat-header-sub">ラフの気になる点をここで教えてください</div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg ai">
+        <div class="msg-sender">ToyBox</div>
+        <div class="msg-bubble">
+          ジェリドリのFVラフ画像をお送りしました！<br><br>
+          設計書の内容をもとに作成しています。イメージと合っているか確認してみてください。<br>
+          気になる点があればここで教えてください。
+        </div>
+        <div class="msg-time">今日 10:00</div>
+      </div>
+    </div>
+
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="typing-bubble">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <div class="chat-input-wrap">
+        <textarea
+          class="chat-input"
+          id="chatInput"
+          placeholder="修正点を入力してください…"
+          rows="2"
+          onkeydown="handleKey(event)"
+        ></textarea>
+        <button class="btn-send" onclick="sendMessage()">
+          <svg viewBox="0 0 16 16"><path d="M1.5 1.5l13 6.5-13 6.5V9.5l9-3-9-3V1.5z"/></svg>
+        </button>
+      </div>
+      <div class="chat-hint">Shift+Enterで改行 / Enterで送信</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- モーダル -->
+<div class="modal-overlay" id="completeModal">
+  <div class="modal">
+    <div class="modal-icon">🎨</div>
+    <div class="modal-title">ラフ画像の確認を完了しますか？</div>
+    <div class="modal-text">
+      完了後、このラフ画像をもとにLP制作を開始します。<br>
+      確認完了後はこのページにアクセスできなくなります。
+    </div>
+    <div class="modal-btns">
+      <button class="btn-modal-cancel" onclick="closeCompleteModal()">もう少し確認する</button>
+      <button class="btn-modal-ok" onclick="completeReview()">完了してLP制作へ</button>
+    </div>
+  </div>
+</div>
+
+<div class="complete-screen" id="completeScreen">
+  <div style="font-size:56px;">🚀</div>
+  <h2>ラフ確認完了！</h2>
+  <p>ありがとうございます。<br>このラフをもとにLP制作を開始します。<br>完成したらご連絡します。</p>
+</div>
+
+<script>
+  const REPLIES = [
+    "承知しました！修正して改めてお送りします。",
+    "ご確認ありがとうございます。対応します！",
+    "了解です。その点を反映して再送します。",
+    "ありがとうございます。他にご要望があればお聞きします。",
+  ];
+  let replyIndex = 0;
+
+  function now() {
+    const d = new Date();
+    return `今日 ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+  }
+
+  function addMessage(text, role) {
+    const wrap = document.createElement('div');
+    wrap.className = `msg ${role}`;
+    const sender = document.createElement('div');
+    sender.className = 'msg-sender';
+    sender.textContent = role === 'user' ? 'お客様' : 'ToyBox';
+    const bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.textContent = text;
+    const time = document.createElement('div');
+    time.className = 'msg-time';
+    time.textContent = now();
+    wrap.appendChild(sender);
+    wrap.appendChild(bubble);
+    wrap.appendChild(time);
+    const msgs = document.getElementById('chatMessages');
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    input.value = '';
+    input.style.height = '';
+    const typing = document.getElementById('typingIndicator');
+    typing.classList.add('show');
+    document.getElementById('chatMessages').scrollTop = 99999;
+    setTimeout(() => {
+      typing.classList.remove('show');
+      addMessage(REPLIES[replyIndex % REPLIES.length], 'ai');
+      replyIndex++;
+    }, 1200 + Math.random() * 600);
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    const ta = e.target;
+    ta.style.height = 'auto';
+    ta.style.height = Math.min(ta.scrollHeight, 120) + 'px';
+  }
+
+  function openCompleteModal() { document.getElementById('completeModal').classList.add('show'); }
+  function closeCompleteModal() { document.getElementById('completeModal').classList.remove('show'); }
+  function completeReview() {
+    document.getElementById('completeModal').classList.remove('show');
+    document.getElementById('completeScreen').classList.add('show');
+  }
+</script>
+</body>
+</html>
