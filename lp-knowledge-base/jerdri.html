@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerdri（ジェリドリ）| カバンにつけて、飲んでく？</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;0,900;1,900&family=Noto+Sans+JP:wght@400;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+      background: #FFF9F0;
+      color: #3A2A10;
+      overflow-x: hidden;
+    }
+    .inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (min-width: 768px) {
+      .fv-catch { font-size: 56px !important; }
+      .fv-brand { font-size: 80px !important; }
+      .section-title { font-size: 40px !important; }
+      .feature-cards { flex-direction: row !important; }
+      .feature-card { flex: 1; }
+      .target-cards { gap: 24px !important; }
+      section { padding: 72px 40px !important; }
+    }
+
+    :root {
+      --orange: #E8631A;
+      --orange-light: #FF9B23;
+      --cream: #FFF9F0;
+      --cream2: #FFF3E0;
+      --gold: #F5A623;
+      --text: #3A2A10;
+      --text-sub: #8B6A3A;
+    }
+
+    /* ── FV ── */
+    .fv {
+      position: relative;
+      width: 100%;
+    }
+    .fv-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    /* FV画像の下にCTAを配置 */
+    .fv-cta-wrap {
+      padding: 20px 24px 8px;
+      background: #FFF9F0;
+      opacity: 0;
+      animation: fadeUp .6s 1.2s forwards;
+    }
+    .btn-main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 56px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 16px 24px;
+      font-size: 18px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: .04em;
+      box-shadow: 0 6px 24px rgba(232,99,26,.55);
+      text-decoration: none;
+      touch-action: manipulation;
+      animation: pulse 2s 2s infinite;
+    }
+    .btn-main svg { width: 20px; height: 20px; flex-shrink: 0; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 6px 24px rgba(232,99,26,.55); }
+      50%      { box-shadow: 0 6px 36px rgba(232,99,26,.8), 0 0 0 8px rgba(232,99,26,.12); }
+    }
+    @keyframes bounceIn {
+      0%   { opacity:0; transform:scale(.3) rotate(-10deg); }
+      50%  { transform:scale(1.15) rotate(5deg); }
+      75%  { transform:scale(.92) rotate(-2deg); }
+      100% { opacity:1; transform:scale(1) rotate(0); }
+    }
+    @keyframes sparkleFloat {
+      0%,100% { opacity:.7; transform:scale(1) rotate(0); }
+      50%     { opacity:.3; transform:scale(.6) rotate(20deg); }
+    }
+
+    /* ── WAVE ── */
+    .wave { display:block; width:100%; overflow:hidden; line-height:0; margin-bottom:-1px; }
+    .wave svg { display:block; width:100%; }
+
+    /* ── SECTION共通 ── */
+    section { padding: 48px 24px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; border: 2px solid var(--orange); color: var(--orange);
+      font-size: 11px; font-weight: 900; letter-spacing: .1em;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 28px; font-weight: 900; line-height: 1.25;
+      color: var(--orange); margin-bottom: 12px;
+    }
+
+    /* ── CONCEPT ── */
+    .concept {
+      background: linear-gradient(135deg, #FFF5DC 0%, #FFE8B0 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .concept::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(232,99,26,.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .concept-splash {
+      position: absolute; bottom: -20px; right: -30px;
+      width: 180px; opacity: .18; pointer-events: none; transform: rotate(15deg);
+    }
+    .concept-stars {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 8px;
+    }
+    .concept-stars svg {
+      width: 16px; height: 16px; fill: var(--orange); opacity: .7;
+      animation: sparkleFloat 1.8s ease infinite;
+    }
+    .concept-stars svg:nth-child(2) { animation-delay: .6s; }
+    .concept-stars svg:nth-child(3) { animation-delay: 1.2s; }
+    .concept-text { font-size: 14px; color: var(--text-sub); line-height: 1.8; margin-top: 16px; position: relative; }
+
+    /* ── FEATURES ── */
+    .features { background: #fff; }
+    .features-title {
+      text-align: center; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+      font-size: 18px; font-weight: 900; color: var(--text); margin-bottom: 24px;
+    }
+    .features-title svg { width: 16px; height: 16px; fill: var(--orange); }
+    .feature-cards { display: flex; flex-direction: column; gap: 16px; }
+    .feature-card {
+      background: var(--cream2); border-radius: 20px; overflow: hidden;
+      border: 2px solid #FFE0A8;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .feature-card.visible { opacity: 1; transform: translateY(0); }
+    .feature-card-img {
+      width: 100%; aspect-ratio: 1;
+      background-size: 300% auto; background-repeat: no-repeat;
+      background-image: url('jerdri_feature_photos.jpg');
+    }
+    .feature-card-img.s1 { background-position: 0% center; }
+    .feature-card-img.s2 { background-position: 50% center; }
+    .feature-card-img.s3 { background-position: 100% center; }
+    .feature-card-body {
+      padding: 16px 20px 20px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .feature-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--orange); color: #fff;
+      font-size: 13px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: 'Nunito', sans-serif;
+    }
+    .feature-title { font-size: 16px; font-weight: 900; margin-bottom: 4px; color: var(--text); }
+    .feature-desc  { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+    /* ── TARGET ── */
+    .target {
+      background: linear-gradient(160deg, #FFF5DC 0%, #FFE8B0 100%);
+      text-align: center;
+    }
+    .target-title {
+      font-size: 18px; font-weight: 900; margin-bottom: 24px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .target-title svg { width: 14px; height: 14px; fill: var(--orange); }
+    .target-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .target-card {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      border: 2px solid #FFE0A8;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .target-card.visible { opacity: 1; transform: translateY(0); }
+    .target-card:nth-child(2) { transition-delay: .08s; }
+    .target-card:nth-child(3) { transition-delay: .16s; }
+    .target-card-img {
+      width: 100%; aspect-ratio: 1;
+      background-image: url('jerdri_target_photos.jpg');
+      background-size: 300% auto; background-repeat: no-repeat;
+    }
+    .target-card-img.s1 { background-position: 0% center; }
+    .target-card-img.s2 { background-position: 50% center; }
+    .target-card-img.s3 { background-position: 100% center; }
+    .target-card-label {
+      padding: 8px 6px; font-size: 11px; font-weight: 700;
+      color: var(--text); line-height: 1.4; text-align: center;
+    }
+    .target-card-label .accent { color: var(--orange); }
+
+    /* ── GIFT ── */
+    .gift { background: #fff; text-align: center; }
+    .gift-box {
+      background: linear-gradient(135deg, #FFF0D0, #FFE0A0);
+      border: 3px solid var(--orange-light); border-radius: 24px; padding: 28px 20px;
+    }
+    .gift-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--orange); color: #fff;
+      font-size: 11px; font-weight: 900;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+    }
+    .gift-tag svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .gift-title { font-size: 24px; font-weight: 900; color: var(--orange); line-height: 1.3; margin-bottom: 8px; }
+    .gift-img-wrap {
+      margin: 16px auto 12px; width: 200px; height: 200px;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(232,99,26,.2);
+    }
+    .gift-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gift-note { font-size: 11px; color: var(--text-sub); margin-top: 12px; line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(160deg, #FF9B23 0%, #E8631A 100%);
+      padding: 40px 24px 56px; text-align: center;
+    }
+    .cta-label { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: .06em; margin-bottom: 8px; }
+    .btn-cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; min-height: 60px;
+      background: #fff; color: var(--orange);
+      border: none; border-radius: 50px; padding: 20px 24px;
+      font-size: 20px; font-weight: 900; font-family: inherit;
+      cursor: pointer; letter-spacing: .04em;
+      box-shadow: 0 8px 28px rgba(0,0,0,.2);
+      margin-top: 16px; text-decoration: none;
+      animation: pulse-white 2s 1s infinite; touch-action: manipulation;
+    }
+    .btn-cta svg { width: 22px; height: 22px; flex-shrink: 0; }
+    @keyframes pulse-white {
+      0%,100% { box-shadow: 0 8px 28px rgba(0,0,0,.2); }
+      50%      { box-shadow: 0 8px 40px rgba(0,0,0,.3), 0 0 0 6px rgba(255,255,255,.2); }
+    }
+    .cta-sub { font-size: 12px; color: rgba(255,255,255,.75); margin-top: 14px; line-height: 1.6; }
+
+    /* ── SCROLL FADE ── */
+    .scroll-fade { opacity:0; transform:translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .scroll-fade.visible { opacity:1; transform:translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ▼ FV：ラフ画像をそのまま全面表示 -->
+<div class="fv">
+  <img class="fv-img" src="image-1781954190622.webp" alt="Jerdri ジェリドリ - カバンにつけて飲めるオレンジ果肉入りクラッシュゼリードリンク">
+</div>
+<!-- CTAボタンはFV画像の下に配置 -->
+<div class="fv-cta-wrap">
+  <a href="#cta" class="btn-main">
+    発売情報を受け取る
+    <svg viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>
+  </a>
+</div>
+
+<div class="wave">
+  <svg viewBox="0 0 480 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,48 L0,20 Q120,48 240,20 Q360,-8 480,20 L480,48 Z" fill="#FFF5DC"/>
+    <path d="M0,48 L0,28 Q120,56 240,28 Q360,0 480,28 L480,48 Z" fill="#FFF5DC"/>
+  </svg>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept scroll-fade">
+  <img class="concept-splash" src="jerdri_splash.png" alt="" aria-hidden="true" loading="lazy" width="180">
+  <div class="concept-stars" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z"/></svg>
+  </div>
+  <div class="section-label">CONCEPT</div>
+  <div class="section-title" style="font-size:32px;">飲む？つける？<br>どっちもジェリドリ。</div>
+  <p class="concept-text">
+    つぶつぶ果肉入りのクラッシュゼリーがぎゅっ！<br>
+    見た目もおいしさもハッピーになれる新感覚ドリンク♪
+  </p>
+</section>
+
+<div class="wave" style="background:#FFF5DC;">
+  <svg viewBox="0 0 480 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,0 L0,28 Q120,0 240,28 Q360,56 480,28 L480,0 Z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-title scroll-fade">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z"/></svg>
+    Jerdriの3つの特徴
+    <svg viewBox="0 0 24 24" fill="var(--orange)" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </div>
+  <div class="feature-cards">
+    <div class="feature-card">
+      <div class="feature-card-img s1" role="img" aria-label="つぶつぶ果肉入りのオレンジクラッシュゼリー"></div>
+      <div class="feature-card-body">
+        <div class="feature-num" aria-hidden="true">01</div>
+        <div>
+          <div class="feature-title">果肉入りクラッシュゼリー</div>
+          <div class="feature-desc">果実のつぶつぶ食感が楽しい！本物の果肉がぎゅっと詰まったリッチな味わい。</div>
+        </div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-img s2" role="img" aria-label="透明ボトル越しに果肉が透けて見えるキラキラ映え写真"></div>
+      <div class="feature-card-body">
+        <div class="feature-num" aria-hidden="true">02</div>
+        <div>
+          <div class="feature-title">透明ボトルで映え</div>
+          <div class="feature-desc">果肉が透けて見えて、写真映えバッチリ！SNSで即シェアしたくなる見た目。</div>
+        </div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-img s3" role="img" aria-label="カバンに付けられるオレンジ色ストラップとゴールドカラビナ"></div>
+      <div class="feature-card-body">
+        <div class="feature-num" aria-hidden="true">03</div>
+        <div>
+          <div class="feature-title">ストラップ付き130ml</div>
+          <div class="feature-desc">カバンにつけて持ち歩ける！アクセサリー感覚のちょうどいいサイズ感♪</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#fff;">
+  <svg viewBox="0 0 480 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,48 L0,20 Q120,48 240,20 Q360,-8 480,20 L480,48 Z" fill="#FFF5DC"/>
+  </svg>
+</div>
+
+<!-- TARGET -->
+<section class="target">
+  <div class="target-title scroll-fade">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z"/></svg>
+    こんなコにおすすめ！
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.5 7.5L21 11l-7.5 1.5L12 20l-1.5-7.5L3 11l7.5-1.5z"/></svg>
+  </div>
+  <div class="target-cards">
+    <div class="target-card">
+      <div class="target-card-img s1" role="img" aria-label="10代の女の子"></div>
+      <div class="target-card-label">かわいいが大好きなコに<span class="accent">♡</span></div>
+    </div>
+    <div class="target-card">
+      <div class="target-card-img s2" role="img" aria-label="アクセサリー感覚で楽しみたいコ"></div>
+      <div class="target-card-label">アクセサリー感覚で楽しみたいコ！</div>
+    </div>
+    <div class="target-card">
+      <div class="target-card-img s3" role="img" aria-label="トレンドに敏感なコ"></div>
+      <div class="target-card-label">トレンドに敏感なコにぴったり！</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:#FFF5DC;">
+  <svg viewBox="0 0 480 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,0 L0,28 Q120,0 240,28 Q360,56 480,28 L480,0 Z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- GIFT -->
+<section class="gift">
+  <div class="gift-box scroll-fade">
+    <div class="gift-tag">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v10H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+      事前登録でもらえる！
+    </div>
+    <div style="font-size:13px;font-weight:700;color:var(--text-sub);margin-bottom:8px;">＼ Jerdriオリジナル ／</div>
+    <div class="gift-title">ポータブルアクセ<br>プレゼント</div>
+    <p style="font-size:13px;color:var(--text-sub);line-height:1.7;">カバンやポーチにつけて可愛く持ち歩ける♪</p>
+    <div class="gift-img-wrap">
+      <img src="jerdri_gift_item.jpg" alt="Jerdriオリジナル ポータブルアクセ プレゼント品" loading="lazy" width="200" height="200">
+    </div>
+    <p class="gift-note">※デザインはイメージです。※数量限定・なくなり次第終了となります。</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-label scroll-fade">＼ 数量限定！お早めに ／</div>
+  <a href="#" class="btn-cta">
+    今すぐ事前登録する
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 6-6 6"/></svg>
+  </a>
+  <p class="cta-sub">
+    登録はメールアドレスだけ・無料・1分で完了<br>
+    事前登録者にはポータブルアクセをプレゼント
+  </p>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.15 }
+  );
+  document.querySelectorAll('.scroll-fade, .feature-card, .target-card').forEach(el => observer.observe(el));
+  document.querySelectorAll('.feature-card').forEach((c, i) => { c.style.transitionDelay = `${i * 0.12}s`; });
+</script>
+</body>
+</html>
