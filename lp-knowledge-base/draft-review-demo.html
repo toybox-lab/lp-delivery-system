@@ -707,6 +707,11 @@
 </div>
 
 <script>
+  const params = new URLSearchParams(window.location.search);
+  const CASE_ID = params.get('caseId') || 'DEMO';
+  const COMPANY_NAME = params.get('companyName') || 'Jerdri（ジェリドリ）';
+  const CONFIRM_WEBHOOK = 'https://toibox.app.n8n.cloud/webhook/99b1245b-b123-438c-9718-00d0e22d66e0';
+
   const DEMO_REPLIES = [
     "承知しました！修正します。他に気になる点はありますか？",
     "ご確認ありがとうございます。設計書を更新しました！",
@@ -782,9 +787,16 @@
   function closeCompleteModal() {
     document.getElementById('completeModal').classList.remove('show');
   }
-  function completeReview() {
+  async function completeReview() {
     document.getElementById('completeModal').classList.remove('show');
     document.getElementById('completeScreen').classList.add('show');
+    try {
+      await fetch(CONFIRM_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ caseId: CASE_ID, companyName: COMPANY_NAME })
+      });
+    } catch(e) {}
   }
 </script>
 </body>
