@@ -26,12 +26,25 @@
     .success { text-align: center; padding: 40px; display: none; }
     .success h2 { font-size: 20px; margin-bottom: 12px; }
     .success p { color: #666; font-size: 14px; }
+    .revision-badge { display: inline-block; background: #f0f4ff; border: 1px solid #c7d2fe; color: #4338ca; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; }
+    .revision-badge.warning { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+    .revision-float { display: none; position: fixed; top: 16px; right: 16px; z-index: 50; background: #f0f4ff; border: 1px solid #c7d2fe; color: #4338ca; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); letter-spacing: 0.02em; }
+    .revision-float.warning { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+    /* モーダル */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; }
+    .modal-overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 12px; padding: 32px; max-width: 420px; width: 90%; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+    .modal h2 { font-size: 18px; margin-bottom: 12px; color: #c2410c; }
+    .modal p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 24px; }
+    .modal button { padding: 12px 32px; background: #111; color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }
+    .modal button:hover { background: #333; }
   </style>
 </head>
 <body>
   <div class="container">
     <div id="formArea">
       <h1>LP確認・修正ヒアリング</h1>
+      <div id="revisionBadge" style="display:none"></div>
       <p class="subtitle"><span id="clientGreeting"></span>LPをご確認いただきありがとうございます。以下にご記入ください。</p>
 
       <form id="correctionForm">
@@ -115,6 +128,18 @@
       </form>
     </div>
 
+    <!-- 右上固定バッジ -->
+    <div class="revision-float" id="revisionFloat"></div>
+
+    <!-- 4回目以降ポップアップ -->
+    <div class="modal-overlay" id="paidModal">
+      <div class="modal">
+        <h2>⚠️ 追加修正について</h2>
+        <p>今回は<strong id="modalRevisionNum"></strong>回目の修正依頼となります。<br>無料修正の範囲（3回）を超えているため、<br>追加修正は<strong>有料オプション</strong>となります。<br><br>ご了承の上、引き続きフォームをご記入ください。</p>
+        <button onclick="document.getElementById('paidModal').classList.remove('show')">内容を確認しました</button>
+      </div>
+    </div>
+
     <div class="success" id="successArea">
       <h2>送信完了しました</h2>
       <p>ご回答ありがとうございます。<br>内容を確認後、担当者よりご連絡いたします。</p>
@@ -130,6 +155,26 @@
       document.getElementById('clientGreeting').textContent = clientName + '様、';
     }
     document.getElementById('lpFile').value = params.get('lpFile') || '';
+
+    // 修正回数バッジ＋ポップアップ
+    const revisionCount = parseInt(params.get('revisionCount') || '0', 10);
+    if (revisionCount > 0) {
+      const badge = document.getElementById('revisionBadge');
+      const isPaid = revisionCount >= 4;
+      badge.className = 'revision-badge' + (isPaid ? ' warning' : '');
+      badge.textContent = '今回で ' + revisionCount + ' 回目の修正です' + (isPaid ? '（有料オプション対象）' : '');
+      badge.style.display = 'inline-block';
+      // 右上固定バッジ
+      const floatBadge = document.getElementById('revisionFloat');
+      floatBadge.className = 'revision-float' + (isPaid ? ' warning' : '');
+      floatBadge.textContent = '修正 ' + revisionCount + ' 回目';
+      floatBadge.style.display = 'block';
+
+      if (isPaid) {
+        document.getElementById('modalRevisionNum').textContent = revisionCount;
+        document.getElementById('paidModal').classList.add('show');
+      }
+    }
 
     const form = document.getElementById('correctionForm');
     const correctionDetails = document.getElementById('correctionDetails');
