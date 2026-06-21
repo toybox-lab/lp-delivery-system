@@ -30,6 +30,7 @@
       .feature-card { flex: 1; }
       .target-cards { gap: 24px !important; }
       section { padding: 72px 40px !important; }
+      .story-grid { grid-template-columns: repeat(4, 1fr) !important; }
     }
 
     :root {
@@ -268,6 +269,26 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
     }
+
+    /* ── STORY ── */
+    .story { background: var(--cream2); text-align: center; }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .story-card {
+      background: #fff; border: 2px solid #FFE0A8;
+      border-radius: 16px; padding: 16px 12px; text-align: center;
+    }
+    .story-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--cream); margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .story-card-label { font-size: 12px; font-weight: 900; color: var(--text); margin-bottom: 6px; }
+    .story-card-desc { font-size: 11px; color: var(--text-sub); line-height: 1.6; }
+    .story-summary {
+      background: linear-gradient(135deg, #FFF0D0, #FFE0A0);
+      border-radius: 16px; padding: 20px;
+      font-size: 13px; color: var(--text); line-height: 1.8; text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -309,7 +330,71 @@
 
 <div class="wave" style="background:#FFF5DC;">
   <svg viewBox="0 0 480 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M0,0 L0,28 Q120,0 240,28 Q360,56 480,28 L480,0 Z" fill="#fff"/>
+    <path d="M0,0 L0,28 Q120,0 240,28 Q360,56 480,28 L480,0 Z" fill="#FFF3E0"/>
+  </svg>
+</div>
+
+<!-- STORY -->
+<section class="story scroll-fade">
+  <div class="section-label">STORY</div>
+  <div class="section-title" style="font-size:26px;">「気分はジェリドリ」<br>な瞬間、ありませんか？</div>
+  <p style="font-size:13px;color:var(--text-sub);line-height:1.9;margin:12px 0 28px;">
+    お腹はすいてないけど、なにか甘いものが欲しい。<br>
+    ガッツリ食べるほどじゃないけど、ちょっと口に入れたい。<br>
+    そんな"ちょうどいい"を叶える新感覚ゼリードリンク。
+  </p>
+  <div class="story-grid">
+    <div class="story-card">
+      <div class="story-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 2h6l1 4H8L9 2z"/><rect x="4" y="6" width="16" height="14" rx="3"/><path d="M4 10h16"/>
+        </svg>
+      </div>
+      <div class="story-card-label">登下校中に</div>
+      <p class="story-card-desc">カバンにつけてそのまま飲める。手が離せないときも気軽にさっぱり。</p>
+    </div>
+    <div class="story-card">
+      <div class="story-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <circle cx="12" cy="17" r="1" fill="var(--orange)" stroke="none"/>
+        </svg>
+      </div>
+      <div class="story-card-label">スマホタイムのお供に</div>
+      <p class="story-card-desc">動画を見ながらちびちびと。130mlのちょうどいいサイズ感。</p>
+    </div>
+    <div class="story-card">
+      <div class="story-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="7" r="3"/><circle cx="16" cy="7" r="3"/>
+          <path d="M2 20c0-3 3-5 7-5M10 20c1-3 3-5 6-5M16 15c3 0 5.5 1.5 5.5 5"/>
+        </svg>
+      </div>
+      <div class="story-card-label">友達とおでかけに</div>
+      <p class="story-card-desc">カラフルボトルがSNS映えアイテムに。持ち歩くだけでかわいい。</p>
+    </div>
+    <div class="story-card">
+      <div class="story-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="story-card-label">ちょっと休憩したいとき</div>
+      <p class="story-card-desc">甘すぎない爽やかな味で、疲れた午後をリフレッシュ。</p>
+    </div>
+  </div>
+  <div class="story-summary">
+    <strong style="color:var(--orange);font-size:14px;">飲み物よりも満足感があって、ゼリーよりずっと手軽。</strong><br>
+    スプーンも不要。こぼれない。カバンにつけたまま飲める。<br>
+    カップゼリーより手軽で、ウィダーよりずっとかわいい。<br>
+    それが Jerdri ── 130ml の新感覚ゼリードリンク。
+  </div>
+</section>
+
+<div class="wave" style="background:#FFF3E0;">
+  <svg viewBox="0 0 480 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,48 L0,20 Q120,48 240,20 Q360,-8 480,20 L480,48 Z" fill="#fff"/>
   </svg>
 </div>
 
