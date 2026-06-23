@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- Design Style: Glassmorphism | Case: TBX-20260623-001 | MAISON COIF -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON COIF｜麻布十番の完全予約制ヘアサロン</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  color: #3a3028;
+  background: hsl(0,0%,98%);
+  overflow-x: hidden;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+/* ===== COLORS ===== */
+:root {
+  --gold:        hsl(45, 60%, 55%);
+  --gold-light:  hsl(45, 30%, 88%);
+  --gold-deep:   hsl(45, 50%, 42%);
+  --white:       hsl(0, 0%, 98%);
+  --text:        #3a3028;
+  --text-light:  #7a6a58;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  color: #fff;
+  text-decoration: none;
+}
+.header-cta {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.6);
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.header-cta:hover { background: #fff; color: var(--gold-deep); }
+
+/* ===== L1〜L5: FV ===== */
+.fv {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* L1: 背景 */
+.fv-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('maisoncoif_fv.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.05);
+  animation: bgReveal 2.5s ease forwards;
+}
+@keyframes bgReveal {
+  0%   { filter: blur(12px); transform: scale(1.1); }
+  100% { filter: blur(2px);  transform: scale(1.05); }
+}
+
+/* L2: オーバーレイ */
+.fv-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(247, 237, 215, 0.55) 0%,
+    rgba(30, 20, 10, 0.45) 100%
+  );
+}
+
+/* L3: 装飾（右上glow） */
+.fv-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.fv-deco-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,169,110,0.3) 0%, transparent 70%);
+  filter: blur(80px);
+}
+
+/* L4: テキスト */
+.fv-text {
+  position: relative;
+  z-index: 10;
+  padding: 0 10% 0 8%;
+  max-width: 680px;
+  animation: fadeInUp 1s ease 0.8s both;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fv-en-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+}
+.fv-catch {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.fv-sub {
+  font-size: clamp(13px, 1.5vw, 15px);
+  color: rgba(255,255,255,0.85);
+  line-height: 2;
+  letter-spacing: 0.08em;
+  margin-bottom: 40px;
+}
+.fv-cta {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--gold);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  animation: pulse 2.5s ease-in-out infinite;
+  transition: background 0.3s;
+}
+.fv-cta:hover { background: var(--gold-deep); animation: none; }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.03); }
+}
+.fv-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.6);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  animation: fadeInUp 1s ease 2s both;
+}
+.fv-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1); opacity: 0.6; }
+  50%       { transform: scaleY(0.5); opacity: 0.3; }
+}
+
+/* ===== FV → 次セクションの接続（緩やかなグラデーション） ===== */
+.section-bridge {
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(247,237,215,0.3), hsl(0,0%,98%));
+}
+
+/* ===== 悩みセクション ===== */
+.pain-section {
+  padding: 100px 8%;
+  background: hsl(0,0%,98%);
+}
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 56px;
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 900px;
+}
+.pain-item {
+  padding: 32px 28px;
+  background: #fff;
+  border: 1px solid hsl(45,30%,88%);
+  border-top: 3px solid var(--gold);
+  transition: box-shadow 0.3s;
+}
+.pain-item:hover { box-shadow: 0 8px 32px rgba(201,169,110,0.15); }
+.pain-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.pain-item p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-light);
+}
+
+/* ===== 強みセクション ===== */
+.strength-section {
+  padding: 100px 8%;
+  background: linear-gradient(to bottom, hsl(0,0%,98%), hsl(45,30%,96%));
+}
+.strength-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.strength-card {
+  padding: 40px 32px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(201,169,110,0.25);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.strength-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(201,169,110,0.12) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.strength-card:hover::before { transform: translateX(100%); }
+.strength-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(201,169,110,0.2); }
+.strength-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.strength-card h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.strength-card p {
+  font-size: 13px;
+  line-height: 2;
+  color: var(--text-light);
+}
+
+/* ===== 実績セクション ===== */
+.results-section {
+  padding: 100px 8%;
+  background: #1a1208;
+  text-align: center;
+}
+.results-section .section-label { color: var(--gold-light); }
+.results-section .section-title { color: #fff; margin-bottom: 64px; }
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.result-item {}
+.result-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.result-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+}
+
+/* ===== ストーリーセクション ===== */
+.story-section {
+  padding: 120px 8%;
+  background: linear-gradient(to bottom, hsl(45,30%,96%), hsl(0,0%,98%));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.story-image-placeholder {
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, hsl(45,30%,88%) 0%, hsl(45,20%,78%) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-image-placeholder span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--gold-deep);
+  opacity: 0.5;
+}
+.story-text .section-label { margin-bottom: 16px; }
+.story-text h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.story-text p {
+  font-size: 14px;
+  line-height: 2.2;
+  color: var(--text-light);
+}
+
+/* ===== CTA最終セクション ===== */
+.cta-section {
+  padding: 120px 8%;
+  text-align: center;
+  background: linear-gradient(135deg, hsl(45,30%,94%) 0%, hsl(0,0%,98%) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.cta-section .section-label { margin-bottom: 16px; }
+.cta-section h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+.cta-section .gift-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border: 1px solid var(--gold);
+  color: var(--gold-deep);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  margin-bottom: 48px;
+}
+.btn-cta-main {
+  display: inline-block;
+  padding: 20px 64px;
+  background: var(--gold);
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.25em;
+  animation: pulse 2.5s ease-in-out infinite;
+  transition: background 0.3s;
+}
+.btn-cta-main:hover { background: var(--gold-deep); animation: none; }
+.cta-note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 48px 8%;
+  background: #1a1208;
+  text-align: center;
+}
+footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+  .site-header { padding: 16px 24px; }
+  .logo { font-size: 16px; }
+
+  /* FV スマホ：L3装飾1つのみ・L5なし・中央寄せ */
+  .fv-text { text-align: center; padding: 0 6%; max-width: 100%; }
+  .fv-deco-glow { display: none; } /* L3省略 */
+  .fv { height: 100svh; }
+  .fv-cta { width: 100%; text-align: center; }
+
+  .pain-grid { grid-template-columns: 1fr; }
+  .strength-grid { grid-template-columns: 1fr; gap: 24px; }
+  .results-grid { grid-template-columns: 1fr; gap: 32px; }
+  .story-section { grid-template-columns: 1fr; gap: 40px; padding: 80px 6%; }
+  .pain-section, .strength-section, .results-section, .cta-section { padding: 80px 6%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="#" class="logo">MAISON COIF</a>
+  <a href="https://beauty.hotpepper.jp/" class="header-cta">RESERVE →</a>
+</header>
+
+<!-- ===== FV（L1〜L5） ===== -->
+<section class="fv">
+  <!-- L1: 背景 -->
+  <div class="fv-bg"></div>
+  <!-- L2: オーバーレイ -->
+  <div class="fv-overlay"></div>
+  <!-- L3: 装飾 -->
+  <div class="fv-deco">
+    <div class="fv-deco-glow"></div>
+  </div>
+  <!-- L4: テキスト -->
+  <div class="fv-text">
+    <p class="fv-en-label">AZABU-JUBAN · HAIR SALON</p>
+    <h1 class="fv-catch">毎回、<br>あなたのために。</h1>
+    <p class="fv-sub">
+      担当が変わらない。予約が取れる。<br>
+      あなただけの空間がある。
+    </p>
+    <a href="https://beauty.hotpepper.jp/" class="fv-cta">初回ヘッドスパ無料｜ご予約はこちら</a>
+  </div>
+  <!-- L5: なし（内観写真で世界観充足） -->
+  <!-- SCROLL -->
+  <div class="fv-scroll">
+    <div class="fv-scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- FV→悩みセクションの緩やかな接続 -->
+<div class="section-bridge"></div>
+
+<!-- ===== 悩みセクション ===== -->
+<section class="pain-section">
+  <p class="section-label reveal">YOUR CONCERNS</p>
+  <h2 class="section-title reveal">こんなお悩み、<br>ありませんか？</h2>
+  <div class="pain-grid">
+    <div class="pain-item reveal">
+      <div class="pain-icon">✂️</div>
+      <p>担当者が毎回変わって、仕上がりが安定しない</p>
+    </div>
+    <div class="pain-item reveal" style="transition-delay:.1s">
+      <div class="pain-icon">📅</div>
+      <p>人気サロンは予約が取れず、いつも妥協している</p>
+    </div>
+    <div class="pain-item reveal" style="transition-delay:.2s">
+      <div class="pain-icon">🪞</div>
+      <p>サロンに入っても、なんとなく落ち着かない</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 強みセクション ===== -->
+<section class="strength-section">
+  <div style="max-width:1000px; margin: 0 auto;">
+    <p class="section-label reveal">WHY MAISON COIF</p>
+    <h2 class="section-title reveal">選ばれる、<span style="background:linear-gradient(transparent 60%, hsl(45,60%,80%) 60%)">3つの理由。</span></h2>
+    <div class="strength-grid">
+      <div class="strength-card reveal">
+        <div class="strength-num">01</div>
+        <h3>完全指名制</h3>
+        <p>初回から最後まで、同じスタイリストが担当します。あなたの髪の履歴を知り続けるプロが、毎回いる安心感。</p>
+      </div>
+      <div class="strength-card reveal" style="transition-delay:.1s">
+        <div class="strength-num">02</div>
+        <h3>骨格診断カット</h3>
+        <p>フランス仕込みの技術をベースに、あなたの骨格・顔立ちに合わせたカットを提案。「なりたい」を引き出します。</p>
+      </div>
+      <div class="strength-card reveal" style="transition-delay:.2s">
+        <div class="strength-num">03</div>
+        <h3>半個室の静けさ</h3>
+        <p>周りを気にせず、自分のことだけを考えられる時間。オーガニック薬剤とアロマオイルで、心まで整えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 実績セクション ===== -->
+<section class="results-section">
+  <p class="section-label reveal">OUR RECORD</p>
+  <h2 class="section-title reveal">お客様の声が、<br>私たちの誇りです。</h2>
+  <div class="results-grid">
+    <div class="result-item reveal">
+      <div class="result-num">8<span style="font-size:0.5em">年</span></div>
+      <div class="result-label">創業年数</div>
+    </div>
+    <div class="result-item reveal" style="transition-delay:.15s">
+      <div class="result-num">92<span style="font-size:0.5em">%</span></div>
+      <div class="result-label">リピート率</div>
+    </div>
+    <div class="result-item reveal" style="transition-delay:.3s">
+      <div class="result-num">4.9</div>
+      <div class="result-label">Google口コミ評価</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ストーリーセクション ===== -->
+<section style="padding: 120px 8%; background: linear-gradient(to bottom, hsl(45,30%,96%), hsl(0,0%,98%));">
+  <div class="story-section" style="padding:0; max-width:1000px;">
+    <div class="story-image-placeholder reveal">
+      <span>SALON IMAGE</span>
+    </div>
+    <div class="story-text reveal" style="transition-delay:.2s">
+      <p class="section-label">OUR STORY</p>
+      <h2>髪を切ることは、<br>自分を取り戻すこと。</h2>
+      <p>
+        フランス留学中に出会った考え方があります。<br><br>
+        髪を切る時間は、忙しい日常から一歩引いて、自分のことだけを考えられる特別な時間である、と。<br><br>
+        その感覚をそのまま麻布十番に持ち帰り、MAISON COIFを開業しました。<br><br>
+        忙しいあなたが、ここに来た2時間だけは自分のことだけ考えられる場所に。<br>
+        それが、私たちの変わらない願いです。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA最終 ===== -->
+<section class="cta-section">
+  <p class="section-label reveal">FIRST VISIT</p>
+  <h2 class="reveal">初めての方へ、<br>特別なご挨拶を。</h2>
+  <div class="gift-badge reveal">🎁 初回限定｜ヘッドスパ 15分 プレゼント</div>
+  <br>
+  <a href="https://beauty.hotpepper.jp/" class="btn-cta-main reveal">ご予約はホットペッパービューティーから</a>
+  <p class="cta-note reveal">完全予約制｜麻布十番駅より徒歩3分</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© MAISON COIF. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
